@@ -12,3 +12,6 @@ github_username:  seotory
 
 # Build settings
 markdown: kramdown
+
+# url change
+permalink: /:categories/:title
