@@ -13,5 +13,29 @@ github_username:  seotory
 # Build settings
 markdown: kramdown
 
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# post separator
+excerpt_separator: <!--more-->
+
+# highlighter settings
+highlighter: pygments
+
 # url change
-permalink: /:categories/:title
+permalink: /:categories/:title/
+
+# collections
+collections:
+  solutions:
+    output: false
+    permalink: /solution/:categories/:title/
+
+# paging
+paginate: 3
+paginate_path: "/list:num/"
+
+# gems
+gems: [jekyll-paginate]
+

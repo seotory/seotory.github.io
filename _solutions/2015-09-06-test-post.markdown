@@ -2,9 +2,9 @@
 layout: post
 title:  "한글 테스트"
 date:   2015-09-06 12:04:16
-categories: post ex
-published: false
-tags: test
+categories: error
+published: true
+tags: oracle
 ---
 한글 글을 테스트 중입니다.
 
@@ -55,11 +55,11 @@ function () {}
 ### 카테고리
 
 {% for category in site.categories %}
-  -> {{ category | first }}
+   {{ category | first }}
 
   {% for posts in category %}
     {% for post in posts %}
-      -> {{ post.url }}
+       {{ post.url }}
     {% endfor %}
   {% endfor %}
 
