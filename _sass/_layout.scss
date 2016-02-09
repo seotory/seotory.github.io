@@ -14,6 +14,10 @@
 .site-menu {
     max-width: 100%;
     float: right;
+
+    @include media-query($on-laptop) {
+        margin-right: -15px;
+    }
 }
 .site-menu ul {
     list-style: none;
@@ -37,6 +41,10 @@
     transition-duration: 0.3s;
     /*transition: visibility 0.3s, opacity 0.3s linear;*/
     padding: 10px;
+
+    @include media-query($on-laptop) {
+        left: 0px;
+    }
 }
 .site-cate.active {
     visibility: visible;

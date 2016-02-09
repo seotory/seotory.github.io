@@ -42,8 +42,17 @@
     });
   }
 
+  var use_log = true;
+  function log ( msg ) {
+    if ( use_log ) {
+      if ( console )
+        console.log( msg );
+    }
+  }
+
 })();
     </script>
+    {% include footerScript.html %}
   </body>
 
 </html>
