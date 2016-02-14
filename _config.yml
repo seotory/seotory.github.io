@@ -15,17 +15,17 @@ markdown: kramdown
 
 kramdown:
   input: GFM
-  parse_block_html: true
   syntax_highlighter: rouge
+  parse_block_html: true
 
 # post separator
 excerpt_separator: <!--more-->
 
 # highlighter settings
-# highlighter: pygments
+# highlighter: rouge
 
 # url change
-permalink: /:categories/:title/
+# permalink: /:categories/:title/
 
 # collections
 collections:
@@ -35,7 +35,7 @@ collections:
 
 # paging
 paginate: 3
-paginate_path: "/list:num/"
+paginate_path: "/list/:num/"
 
 # gems
 gems: [jekyll-paginate]
