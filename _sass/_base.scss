@@ -134,11 +134,11 @@ blockquote {
  * hr
  */
 hr {
-    border: 0;
-    border-bottom: 1px dashed #ccc;
-    background: #999;
-    margin-top: 30px;
-    margin-bottom: 20px;
+  border: 0;
+  border-bottom: 1px dashed #ccc;
+  background: #999;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 
@@ -245,11 +245,11 @@ pre {
  * Clearfix
  */
 %clearfix {
-    &:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
 .clearfix {
   @extend %clearfix;
@@ -262,16 +262,16 @@ pre {
  */
 .icon {
 
-    > svg {
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        vertical-align: middle;
+  > svg {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
 
-        path {
-            fill: $grey-color;
-        }
+    path {
+        fill: $grey-color;
     }
+  }
 }
 
 
@@ -389,7 +389,7 @@ pre {
  * Grid
  */
 .row {
-  
+  margin: 0 ($spacing-unit/4*-1);
 }
 .row:after {
   content: ' ';
@@ -401,6 +401,7 @@ pre {
 
 div[class^='col'] {
   float: left;
+  padding: 0 $spacing-unit/4;
 }
 .col-free {
 

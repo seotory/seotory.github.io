@@ -36,11 +36,12 @@
     top: 50px;
     visibility: hidden;
     opacity: 0;
+    color: #fff;
     background-color: black;
     transition-property: all;
     transition-duration: 0.3s;
     /*transition: visibility 0.3s, opacity 0.3s linear;*/
-    padding: 10px;
+    padding: 15px;
 
     @include media-query($on-laptop) {
         left: 0px;

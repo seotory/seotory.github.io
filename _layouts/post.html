@@ -14,8 +14,9 @@ layout: default
     {{ content }}
   </article>
 
+  {% if (site.categories[page.categories.last].size - 1) > 0 %}
   <div>
-  	<h1>
+    <h1>
       another posts
     </h1>
   	<ul>
@@ -26,5 +27,6 @@ layout: default
 			{% endfor %}
   	</ul>
   </div>
+  {% endif %}
 
 </div>
