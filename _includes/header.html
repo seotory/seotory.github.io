@@ -19,11 +19,17 @@
       </ul>
     </div>
     <div class="site-cate">
-      <ul>
-        {% for category in site.categories %}
-        <li><a href="/{{ category | first }}/">{{ category | first }}</a></li>
-        {% endfor %}
-      </ul>
+      <div class="row">
+        <div class="col-2-4">
+          <ul>
+            {% for category in site.categories %}
+            <li><a href="/{{ category | first }}/">{{ category | first }}</a></li>
+            {% endfor %}
+          </ul>
+          
+        </div>
+        <div class="col-2-4"></div>
+      </div>
     </div>
   </div>
 

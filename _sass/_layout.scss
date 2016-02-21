@@ -36,7 +36,7 @@
     top: 50px;
     visibility: hidden;
     opacity: 0;
-    background-color: #ff3264;
+    background-color: black;
     transition-property: all;
     transition-duration: 0.3s;
     /*transition: visibility 0.3s, opacity 0.3s linear;*/
@@ -49,7 +49,6 @@
 .site-cate.active {
     visibility: visible;
     opacity: 1;
-    background-color: #cb0032;
 }
 .site-cate a {
     display: block;
