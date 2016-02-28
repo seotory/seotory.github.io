@@ -7,6 +7,8 @@
     box-sizing: border-box;
 }
 
+
+
 /**
  * Reset some basic elements
  */
@@ -61,6 +63,8 @@ img {
 figure > img {
     display: block;
 }
+
+
 
 figcaption {
     font-size: $small-font-size;
@@ -159,7 +163,7 @@ code {
 
 pre {
     padding: 8px 12px;
-    overflow-x: scroll;
+    overflow: hidden;
 
     > code {
         border: 0;

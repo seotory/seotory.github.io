@@ -3,6 +3,7 @@
  */
 .highlight > pre {
     padding: 0px;
+    overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
 }
 .highlight pre.lineno {
