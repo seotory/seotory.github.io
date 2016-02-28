@@ -9,12 +9,12 @@ layout: default
       <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
     </div>
   </header>
-
+ 
   <article class="post-content">
     {{ content }}
   </article>
 
-  {% if (site.categories[page.categories.last].size - 1) > 0 %}
+  {% if site.categories[page.categories.last].size > 1 %}
   <div>
     <h1>
       another posts
@@ -28,5 +28,33 @@ layout: default
   	</ul>
   </div>
   {% endif %}
+
+  <!-- 전후글 -->
+  {% for post in site.categories[page.categories.last] %}
+    {% if post.url == page.url %}
+      {% assign post_index0 = forloop.index0 %}
+      {% assign post_index1 = forloop.index %}
+    {% endif %}
+  {% endfor %}
+  {% for post in site.categories[page.categories.last] %}
+    {% if post_index0 == forloop.index %}
+      {% assign next_post = post.url %}
+    {% endif %}
+    {% if post_index1 == forloop.index0 %}
+      {% assign prev_post = post.url %}
+    {% endif %}
+  {% endfor %}
+  <div>
+  {% if next_post %}
+    <div>
+      <a href="{{ next_post }}">Next Post</a> <br>
+    </div>
+  {% endif %}
+  {% if prev_post %}
+    <div>
+      <a href="{{ prev_post }}">Previous Post</a> <br>
+    </div>
+  {% endif %}
+  </div>
 
 </div>
