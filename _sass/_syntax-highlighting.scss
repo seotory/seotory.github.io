@@ -1,6 +1,14 @@
 /**
  * Syntax highlighting styles
  */
+.highlight > pre {
+    padding: 0px;
+    -webkit-overflow-scrolling: touch;
+}
+.highlight pre.lineno {
+    min-width: 45px;
+}
+
 .highlight {
     background: #fff;
    /* @extend %vertical-rhythm;*/
