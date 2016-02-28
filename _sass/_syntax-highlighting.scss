@@ -4,13 +4,19 @@
 .highlight > pre {
     display: block;
     width: 100%;
-    padding: 8px;
+    padding: 0px;
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
 }
+
+.highlight pre code {
+  white-space: pre; 
+}
+
 .highlight pre.lineno {
     min-width: 45px;
 }
+
 .highlight .code pre {
     padding: 8px 62px 8px 12px
 }
