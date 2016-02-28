@@ -33,7 +33,7 @@
 .site-cate {
     position: absolute;
     width: 100%;
-    top: 50px;
+    top: 49px;
     visibility: hidden;
     opacity: 0;
     color: #fff;
@@ -67,7 +67,19 @@
     font-size: $menu-font-size * 1.1;
 }
 
+/* list */
+.list-header {
+    margin-top: 15px;
+}
+.list-post-time {
+    font-size: 12px;
+    color: #bababa;
+}
+
 /* post section */
+.post-header {
+    margin-top: 15px;
+}
 .post-list {
     margin-top: 15px;
 }
@@ -75,9 +87,6 @@
     padding-top: 50px;
     padding-bottom: 50px;
     text-align: center;
-}
-.post-title {
-    margin-bottom: 0px;
 }
 .post-meta {
     font-size: $small-font-size;
