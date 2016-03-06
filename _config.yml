@@ -15,14 +15,14 @@ markdown: kramdown
 
 kramdown:
   input: GFM
-  syntax_highlighter: rouge
+  # syntax_highlighter: pygments
   parse_block_html: true
 
 # post separator
 excerpt_separator: <!--more-->
 
 # highlighter settings
-# highlighter: rouge
+highlighter: pygments
 
 # url change
 permalink: /:categories/:year/:month/:day/:title

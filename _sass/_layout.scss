@@ -1,7 +1,7 @@
 
 /* site header css */
 .site-header {
-    border-bottom: #BABABA 1px solid;    
+    border-bottom: #dadada 1px solid;    
 }
 .site-header .wrapper {
     position: relative;
@@ -67,6 +67,11 @@
     list-style: none;
     text-align: center;
     font-size: $menu-font-size * 1.1;
+}
+
+/* home */
+.home {
+    padding-top: 20px;
 }
 
 /* list */
