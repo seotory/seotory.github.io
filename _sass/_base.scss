@@ -152,7 +152,7 @@ hr {
 pre,
 code {
     font-size: 15px;
-    border: 1px solid $grey-color-light;
+    /*border: 1px solid $grey-color-light;*/
     border-radius: 3px;
 }
 
@@ -160,7 +160,8 @@ code {
     padding: 1px 5px;
 }
 code.highlighter-rouge {
-    background-color: #eef;
+    color: #C31D1D;
+    background-color: #F9F3F3;
 }
 
 pre {
