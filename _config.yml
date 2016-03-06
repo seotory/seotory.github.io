@@ -10,22 +10,32 @@ url: "http://seotory.github.io" # the base hostname & protocol for your site
 twitter_username: seotory
 github_username:  seotory
 
+# url change
+permalink: /:categories/:year/:month/:day/:title
+
 # Build settings
 markdown: kramdown
 
 kramdown:
   input: GFM
-  # syntax_highlighter: pygments
+  syntax_highlighter: rouge
   parse_block_html: true
+
+# highlighter settings
+# highlighter: rouge
+
+markdown: redcarpet
+highlighter: pygments
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
 
 # post separator
 excerpt_separator: <!--more-->
 
-# highlighter settings
-highlighter: pygments
+# CSS
+sass:
+  sass_dir: _sass
 
-# url change
-permalink: /:categories/:year/:month/:day/:title
 
 # collections
 collections:
