@@ -1,10 +1,12 @@
 
 /* site header css */
+.site-header {
+    border-bottom: #BABABA 1px solid;    
+}
 .site-header .wrapper {
     position: relative;
     height: 50px;
     line-height: 50px;
-    border-bottom: #BABABA 1px solid;
 }
 .site-title {
     font-size: $menu-font-size;
