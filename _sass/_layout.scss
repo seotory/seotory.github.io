@@ -1,7 +1,11 @@
 
 /* site header css */
 .site-header {
+    color: #DADADA;
     border-bottom: #dadada 1px solid;    
+}
+.site-header a {
+    color: #000;
 }
 .site-header .wrapper {
     position: relative;

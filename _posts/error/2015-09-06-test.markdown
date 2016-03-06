@@ -10,7 +10,7 @@ To add new posts, simply add a file in the `_posts` directory that follows the c
 
 Jekyll also offers powerful support for code snippets:
 
-{% highlight ruby linenos %}
+{% highlight ruby %}
 def print_hi(name)
 	puts "Hi, #{name}"
 end
@@ -18,7 +18,7 @@ print_hi('Tom')
 # prints 'Hi, Tom' to STDOUT.
 {% endhighlight %}
 
-{% highlight java linenos %}
+{% highlight java %}
 public class main {
     public static void main(String[] args) {
 

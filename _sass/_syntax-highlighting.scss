@@ -4,9 +4,10 @@
 .highlight > pre {
     display: block;
     width: 100%;
-    padding: 0px;
+    padding: 10px;
     overflow-x: auto;
     background-color: #000;
+    border-radius: 10px;
     -webkit-overflow-scrolling: touch;
 }
 
