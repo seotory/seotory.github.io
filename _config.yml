@@ -13,16 +13,16 @@ github_username:  seotory
 # url change
 permalink: /:categories/:year/:month/:day/:title
 
+# highlighter settings
 # Build settings
+highlighter: rouge
 markdown: kramdown
 
 kramdown:
   input: GFM
+  auto_ids: true
   syntax_highlighter: rouge
   parse_block_html: true
-
-# highlighter settings
-# highlighter: rouge
 
 # post separator
 excerpt_separator: <!--more-->
