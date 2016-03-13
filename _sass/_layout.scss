@@ -139,3 +139,33 @@
     margin: 20px;
     text-align: center;
 }
+
+/* icon */
+span.icon {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    white-space: nowrap;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+}
+span.icon > i {
+    margin-right: 5px;
+    color: #ddd;
+    font-size: $icon-font-size;
+    line-height: 0.75em;
+    vertical-align: -10%;
+}
+
+span.icon.basic {
+    background-color: #7FB80E;
+    border: 1px solid #96B35B;
+    color: #fff;
+}
+span.icon.basic > i {
+    color: #fff;
+}

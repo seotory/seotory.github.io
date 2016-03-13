@@ -102,7 +102,7 @@ end
 {: .language-ruby}
 
 - First item A second paragraph
-  -   nested list
+  - nested list
 
     > blockquote
 
@@ -117,6 +117,10 @@ end
 
 - 1qjs
 - 2qjs
+
+<span class="icon basic">
+  <i class="fa fa-rss"></i>한글test
+</span>
 
 $$
 \begin{align*}
