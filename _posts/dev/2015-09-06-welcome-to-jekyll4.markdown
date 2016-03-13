@@ -29,6 +29,24 @@ function test()
 }
 ~~~
 
+test
+
+~~~ javascript linenos
+function test() 
+{
+
+}
+~~~
+
+## test
+
+``` javascript
+function test() 
+{
+
+}
+```
+
 - test
     - 1.1 인가?
 {% highlight javascript %}
@@ -83,12 +101,12 @@ end
 ~~~
 {: .language-ruby}
 
-*   First item
-
-    A second paragraph
-    * nested list
+- First item A second paragraph
+  -   nested list
 
     > blockquote
+
+### test
 
 *   Second item
 
@@ -96,6 +114,9 @@ end
   Here continues the above paragraph.
 
 * This is a normal list item.
+
+- 1qjs
+- 2qjs
 
 $$
 \begin{align*}
