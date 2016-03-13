@@ -153,7 +153,8 @@ span.icon {
     touch-action: manipulation;
     cursor: pointer;
 }
-span.icon > i {
+span.icon > i,
+span.icon a {
     margin-right: 5px;
     color: #ddd;
     font-size: $icon-font-size;
@@ -161,11 +162,12 @@ span.icon > i {
     vertical-align: -10%;
 }
 
-span.icon.basic {
+span.icon.green {
     background-color: #7FB80E;
-    border: 1px solid #96B35B;
+    border: 1px solid #7FB80E;
     color: #fff;
 }
-span.icon.basic > i {
+span.icon.green > i,
+span.icon.green a {
     color: #fff;
 }

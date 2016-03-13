@@ -118,7 +118,7 @@ end
 - 1qjs
 - 2qjs
 
-<span class="icon basic">
+<span class="icon green">
   <i class="fa fa-rss"></i>한글test
 </span>
 
