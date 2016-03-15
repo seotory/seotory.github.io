@@ -105,6 +105,34 @@
     color: #777;
 }
 
+.post-other {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px 15px 5px 15px;
+    > h2, ul {
+        margin-bottom: 0px;
+    }
+    ul {
+        color: #999;
+        list-style-type: decimal;
+    }
+    a {
+        color: #999;
+    }
+}
+
+.post-close {
+    clear: both;
+    overflow: hidden;
+}
+.post-next {
+    float: right;
+    margin: 15px 0px;
+}
+.post-prev {
+    float: left;
+    margin: 15px 0px;
+}
 
 /* @include media-query($on-laptop) {} */
 

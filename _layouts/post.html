@@ -14,19 +14,17 @@ layout: default
     {{ content }}
   </article>
 
-  <hr />
-
   {% if site.categories[page.categories.last].size > 1 %}
-  <div>
-    <h1>
-      another posts
-    </h1>
+  <hr />
+  <div class="post-other">
+    <h2>Other posts</h2>
   	<ul>
 			{% for post in site.categories[page.categories.last] %} 
 				{% if post.title != page.title %}
 			  <li><a href="{{post.url}}">{{ post.title }}</a></li>
 			  {% endif %}
 			{% endfor %}
+      <li>test</li>
   	</ul>
   </div>
   {% endif %}
@@ -46,14 +44,14 @@ layout: default
       {% assign prev_post = post.url %}
     {% endif %}
   {% endfor %}
-  <div>
+  <div class="post-close">
   {% if next_post %}
-    <div>
+    <div class="post-next">
       <a href="{{ next_post }}">Next Post</a> <br>
     </div>
   {% endif %}
   {% if prev_post %}
-    <div>
+    <div class="post-prev">
       <a href="{{ prev_post }}">Previous Post</a> <br>
     </div>
   {% endif %}
