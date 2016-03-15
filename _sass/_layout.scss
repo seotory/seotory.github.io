@@ -98,6 +98,7 @@
     padding-top: 50px;
     padding-bottom: 50px;
     text-align: center;
+    word-break: keep-all;
 }
 .post-meta {
     font-size: $small-font-size;
@@ -108,8 +109,10 @@
 /* @include media-query($on-laptop) {} */
 
 /* site footer css */
-.site-footer .wrapper {
+footer {
     border-top: #dadada 1px solid;
+}
+.site-footer .wrapper {
     text-align: center;
 }
 .site-share, .site-copyright {
@@ -144,7 +147,7 @@
 span.icon {
     border-radius: 5px;
     border: 1px solid #ddd;
-    padding: 8px 12px;
+    padding: 8px 12px 6px 12px;
     white-space: nowrap;
     margin-bottom: 0;
     font-weight: normal;
@@ -157,7 +160,7 @@ span.icon > i,
 span.icon a {
     margin-right: 5px;
     color: #ddd;
-    font-size: $icon-font-size;
+    font-size: 18px;
     line-height: 0.75em;
     vertical-align: -10%;
 }

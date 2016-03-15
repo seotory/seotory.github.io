@@ -222,6 +222,7 @@ pre,
 code {
     font-family: "Consolas", "Menlo", "Monaco", "Courier", monospace;
     font-size: 15px;
+    line-height: $code-line-height;
     /*border: 1px solid $grey-color-light;*/
     border-radius: 3px;
 }
@@ -235,9 +236,6 @@ code.highlighter-rouge {
 }
 
 pre {
-    padding: 8px 12px;
-    overflow: hidden;
-
     > code {
         border: 0;
         padding-right: 0;

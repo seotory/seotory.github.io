@@ -2,32 +2,37 @@
  * Syntax highlighting styles
  */
 pre.highlight,
-.highlight > pre {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    overflow-x: auto;
-    border-radius: 10px;
-    -webkit-overflow-scrolling: touch;
-    margin-bottom: 15px;
+figure.highlight {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  overflow-x: auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 15px;
+}
+
+figure.highlight {
+  padding: 10px;
+}
+
+code > table {
+  margin: -10px;
+}
+
+td > pre {
+  padding: 10px;
 }
 
 .highlight pre code {
   white-space: pre; 
 }
 
-.highlight pre.lineno {
-    min-width: 45px;
-}
-
-.highlight .code pre {
-    padding: 8px 62px 8px 12px
-}
-
 blockquote pre.highlight {
-    color: #666;
-    background: #efefef;
-    margin-bottom: 0px; 
+  color: #666;
+  background: #efefef;
+  margin-bottom: 0px; 
 }
 
 /*
@@ -96,7 +101,6 @@ blockquote pre.highlight {
     .il    { color: #099 } // Literal.Number.Integer.Long
 }
 */
-.highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
 .highlight .cm {
   color: #999988;
