@@ -103,6 +103,7 @@
 .post-meta {
     font-size: $small-font-size;
     color: #777;
+    margin-top: -10px;
 }
 
 .post-other {
@@ -158,13 +159,14 @@
 
 /* site footer css */
 footer {
+    background: #f4f4f4;
     border-top: #dadada 1px solid;
 }
 .site-footer .wrapper {
     text-align: center;
 }
 .site-share, .site-copyright {
-    margin: 15px 0;
+    margin: 30px 0;
 }
 .site-share ul {
     margin: 0px;
