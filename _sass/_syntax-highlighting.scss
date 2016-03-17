@@ -5,7 +5,7 @@ pre.highlight,
 figure.highlight {
   display: block;
   width: 100%;
-  padding: 10px;
+  padding: 15px 20px;
   overflow-x: auto;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -14,15 +14,19 @@ figure.highlight {
 }
 
 figure.highlight {
-  padding: 10px;
+  padding: 15px 20px;
+}
+
+td > pre.lineno {
+  padding: 15px 10px 15px 20px;
+}
+
+td.code > pre {
+  padding: 15px 20px 15px 10px;
 }
 
 code > table {
-  margin: -10px;
-}
-
-td > pre {
-  padding: 10px;
+  margin: -15px -20px;
 }
 
 .highlight pre code {
@@ -30,9 +34,10 @@ td > pre {
 }
 
 blockquote pre.highlight {
+  border: 0px;
+  margin-bottom: 0px; 
   color: #666;
   background: #efefef;
-  margin-bottom: 0px; 
 }
 
 /*
