@@ -1,227 +1,228 @@
 
 /* site header css */
 .site-header {
-    color: #DADADA;
-    border-bottom: #dadada 1px solid;    
+	color: #DADADA;
+	border-bottom: #dadada 1px solid;    
 }
 .site-header a {
-    color: #000;
+	color: #000;
 }
 .site-header .wrapper {
-    position: relative;
-    height: 50px;
-    line-height: 50px;
+	position: relative;
+	height: 50px;
+	line-height: 50px;
 }
 .site-title {
-    font-size: $menu-font-size;
-    position: absolute;
-    top: 0;
+	font-size: $menu-font-size;
+	position: absolute;
+	top: 0;
 }
 .site-menu {
-    max-width: 100%;
-    float: right;
+	max-width: 100%;
+	float: right;
 
-    @include media-query($on-laptop) {
-        margin-right: -15px;
-    }
+	@include media-query($on-laptop) {
+		margin-right: -15px;
+	}
 }
 .site-menu ul {
-    list-style: none;
+	list-style: none;
 }
 .site-menu ul li {
-    /*padding-left: $spacing-unit / 2;*/
-    padding-right: $spacing-unit / 2;
-    float: left;
+	/*padding-left: $spacing-unit / 2;*/
+	padding-right: $spacing-unit / 2;
+	float: left;
 }
 .site-menu ul li:last-child {
-    padding-right: 0px;
+	padding-right: 0px;
 }
 .site-cate {
-    position: absolute;
-    width: 100%;
-    top: 50px;
-    visibility: hidden;
-    opacity: 0;
-    color: #fff;
-    background-color: black;
-    transition-property: all;
-    transition-duration: 0.3s;
-    /*transition: visibility 0.3s, opacity 0.3s linear;*/
-    padding: 15px;
+	position: absolute;
+	width: 100%;
+	top: 50px;
+	visibility: hidden;
+	opacity: 0;
+	color: #fff;
+	background-color: black;
+	transition-property: all;
+	transition-duration: 0.3s;
+	/*transition: visibility 0.3s, opacity 0.3s linear;*/
+	padding: 15px;
 
-    @include media-query($on-laptop) {
-        left: 0px;
-    }
+	@include media-query($on-laptop) {
+		left: 0px;
+	}
 }
 .site-cate.active {
-    visibility: visible;
-    opacity: 1;
+	visibility: visible;
+	opacity: 1;
 }
 .site-cate a {
-    display: block;
-    border-radius: 5px;
-    color: #fff;
+	display: block;
+	border-radius: 5px;
+	color: #fff;
 }
 .site-cate a:hover {
-    background-color: rgba(255, 255, 255, 0.2)
+	background-color: rgba(255, 255, 255, 0.2)
 }
 .site-cate ul {
-    margin: 0px;
-    padding: 0px;
-    list-style: none;
-    text-align: center;
-    font-size: $menu-font-size * 1.1;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	text-align: center;
+	font-size: $menu-font-size * 1.1;
 }
 
 /* home */
 .home {
-    padding-top: 20px;
+	padding-top: 20px;
 }
 
 /* list */
 .list-header {
-    margin-top: 15px;
+	margin-top: 15px;
 }
 .list-post-time {
-    font-size: 12px;
-    color: #bababa;
+	font-size: 12px;
+	color: #bababa;
 }
 
 /* post section */
 .post-header {
-    margin-top: 15px;
+	margin-top: 15px;
 }
 .post-list {
-    margin-top: 15px;
+	margin-top: 15px;
 }
 .post-info {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    text-align: center;
-    word-break: keep-all;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	text-align: center;
+	word-break: keep-all;
 }
 .post-meta {
-    font-size: $small-font-size;
-    color: #777;
-    margin-top: -10px;
+	font-size: $small-font-size;
+	color: #777;
+	margin-top: -10px;
 }
 
 .post-other {
-    /*
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px 15px 5px 15px;
-    */
-    > h2, ul {
-        margin-bottom: 0px;
-    }
-    ul {
-        margin: 0px;
-        list-style-type: none;
-        clear: both;
-        overflow: hidden;
-        li {
-            display: inline-block;
-            padding: 5px; 
-            float: left;
-        }
-    }
-    a {
-        color: #999;
-    }
+	/*
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding: 10px 15px 5px 15px;
+	*/
+	> h2, ul {
+		margin-bottom: 0px;
+	}
+	ul {
+		margin: 0px;
+		list-style-type: none;
+		clear: both;
+		overflow: hidden;
+		li {
+			display: inline-block;
+			padding: 5px; 
+			float: left;
+		}
+	}
+	a {
+		color: #999;
+	}
 }
 
 .post-close {
-    clear: both;
-    overflow: hidden;
+	clear: both;
+	overflow: hidden;
 }
 .post-next {
-    float: right;
-    margin: 15px 0px;
+	float: right;
+	margin: 15px 0px;
 }
 .post-prev {
-    float: left;
-    margin: 15px 0px;
+	float: left;
+	margin: 15px 0px;
 }
 .post-next,
 .post-prev {
-    a {
-        display: inline-block;
-        padding: 10px 20px;
-        border: 1px solid #2196F3;
-        color: #fff;
-        background: #2196F3;
-        color: #fff;
-    }
+	a {
+		display: inline-block;
+		padding: 10px 20px;
+		border: 1px solid #2196F3;
+		color: #fff;
+		background: #2196F3;
+		color: #fff;
+	}
 }
 
 /* @include media-query($on-laptop) {} */
 
 /* site footer css */
 footer {
-    background: #f4f4f4;
-    border-top: #dadada 1px solid;
+	/* border-top: #dadada 1px solid; */
+	margin-top: 50px;
+	.wrapper {
+	    text-align: center;
+	}
 }
-.site-footer .wrapper {
-    text-align: center;
-}
+.site-footer 
 .site-share, .site-copyright {
-    margin: 30px 0;
+	margin: 50px 0;
 }
 .site-share ul {
-    margin: 0px;
+	margin: 0px;
 }
 .site-share ul li {
-    display: inline;
-    list-style: none;
-    padding: $spacing-unit / 6;
+	display: inline;
+	list-style: none;
+	padding: $spacing-unit / 6;
 }
 .site-share .facebook {
-    color: #3a5795;
+	color: #3a5795;
 }
 .site-share .twitter {
-    color: #55acee;
+	color: #55acee;
 }
 .site-share .rss {
-    color: #ED9654;
+	color: #ED9654;
 }
 
 /* paging.. */
 .pagination {
-    margin: 0 auto;
-    margin: 20px;
-    text-align: center;
+	margin: 0 auto;
+	margin: 20px;
+	text-align: center;
 }
 
 /* icon */
 span.icon {
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    padding: 7px 12px 6px 12px;
-    white-space: nowrap;
-    margin-bottom: 0;
-    font-weight: normal;
-    line-height: 1;
-    text-align: center;
-    /*vertical-align: middle;*/
-    touch-action: manipulation;
-    cursor: pointer;
+	border-radius: 5px;
+	border: 1px solid #ddd;
+	padding: 7px 12px 6px 12px;
+	white-space: nowrap;
+	margin-bottom: 0;
+	font-weight: normal;
+	line-height: 1;
+	text-align: center;
+	/*vertical-align: middle;*/
+	touch-action: manipulation;
+	cursor: pointer;
 }
 span.icon > i,
 span.icon a {
-    margin-right: 5px;
-    color: #ddd;
-    font-size: 17px;
-    line-height: 0.75em;
-    vertical-align: -10%;
+	margin-right: 5px;
+	color: #ddd;
+	font-size: 17px;
+	line-height: 0.75em;
+	vertical-align: -10%;
 }
 
 span.icon.green {
-    background-color: #7FB80E;
-    border: 1px solid #7FB80E;
-    color: #fff;
+	background-color: #7FB80E;
+	border: 1px solid #7FB80E;
+	color: #fff;
 }
 span.icon.green > i,
 span.icon.green a {
-    color: #fff;
+	color: #fff;
 }
