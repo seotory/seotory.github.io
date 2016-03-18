@@ -14,8 +14,20 @@ layout: default
     {{ content }}
   </article>
 
-  {% if site.categories[page.categories.last].size > 1 %}
   <hr />
+
+  {% if page.tags.size > 1 %}
+  <div class="post-tags">
+    <h2>Tags</h2>
+    <ul>
+      {% for tag in page.tags %}
+      <li><a href="/search/?tags={{ tag }}">{{ tag | downcase }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if site.categories[page.categories.last].size > 1 %}
   <div class="post-other">
     <h2>Other posts</h2>
   	<ul>
@@ -24,7 +36,6 @@ layout: default
 			  <li><a href="{{post.url}}">{{ post.title }}</a></li>
 			  {% endif %}
 			{% endfor %}
-      <li>test</li>
   	</ul>
   </div>
   {% endif %}

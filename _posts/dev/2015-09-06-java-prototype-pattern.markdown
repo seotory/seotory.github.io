@@ -3,7 +3,9 @@ layout: post
 title:  java prototype pattern (프로토타입 패턴)
 date:   2015-09-06 12:04:16
 categories: dev
-tags: java
+tags: 
+- java
+- pattern
 ---
 `prototype pattern`은 생산적인 디자인 패턴 중에 하나로써, 패턴 내에서 object의 생성을 제공해준다. `prototype pattern`은 object 생성이 높은 비용으로 수 많은 요청을 하는 경우, 또는 비슷한 object를 지속적으로 생성해야 할 때 유용하게 사용할 수 있다. `prototype pattern`은 본래의 object로 부터 새로운 object를 만들어내며(서로 다른 인스턴스), 각 객체에 따라 데이터 수정이 가능한 메커니즘을 제공한다.
 
