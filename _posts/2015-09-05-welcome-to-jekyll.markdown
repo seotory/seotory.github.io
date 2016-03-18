@@ -2,7 +2,6 @@
 layout: post
 title:  "Welcome to Jekyll!"
 date:   2015-09-05 12:04:16
-categories: dev
 published: true
 ---
 
