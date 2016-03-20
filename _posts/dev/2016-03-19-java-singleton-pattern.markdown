@@ -20,7 +20,7 @@ tags:
 
 # Eager initialization
 
-아래가 가장 기본적인 singleton pattern이다. 전역 변수로 instance를 만드는데 private static을 이용한다. static이 붙은 클래스변수는 인스턴스화에 상관없이 사용이 가능하게 된다. 하지만 앞의 private 접근제어자로 인해 EagerInitialization.instance로의 접근은 불가능하다. 이런 상태에서 생성자를 private로 명시한다. 생성자를 private로 붙이게되면, new 키워드를 사용할 수 없게된다. 즉 다른 클래스에서 EagerInitialization instance = new EagerInitialization(); 이런 방법을 통한 인스턴스 생성은 불가능해진다. 결국 외부 클래스가 EagerInitialization 클래스의 인스턴스를 가질 수 있는 방법은 11번째 라인에 있는 getInstance() method를 사용하는 수 밖에 없다.
+아래가 가장 기본적인 singleton pattern이다. 전역 변수로 instance를 만드는데 `private static`을 이용한다. `static`이 붙은 클래스변수는 인스턴스화에 상관없이 사용이 가능하게 된다. 하지만 앞의 `private` 접근제어자로 인해 `EagerInitialization.instance`로의 접근은 불가능하다. 이런 상태에서 생성자를 `private`로 명시한다. 생성자를 `private`로 붙이게되면, `new` 키워드를 사용할 수 없게된다. 즉 다른 클래스에서 `EagerInitialization instance = new EagerInitialization();` 이런 방법을 통한 인스턴스 생성은 불가능해진다. 결국 외부 클래스가 EagerInitialization 클래스의 인스턴스를 가질 수 있는 방법은 11번째 라인에 있는 `getInstance()` method를 사용하는 수 밖에 없다.
 
 ```java
 public class EagerInitialization {
@@ -42,7 +42,7 @@ public class EagerInitialization {
 }
 ```
 
-위의 단순한 singleton pattern은 리소스가 작은 프로그램일때엔 고도화 대상이 아니다. 하지만 프로그램의 크기가 커져서 수 많은 클래스에서 위와 같은 singleton pattern을 사용한다고 가정해보자. 3번째 라인의 new EagerInitialization();으로 인해 클래스가 load 되는 시점에 인스턴스를 생성시키는데 이마저도 부담스러울 수가 있다. 또한 이 소스는 EagerInitialization 클래스가 인스턴스화 되는 시점에 어떠한 에러처리도 할 수가 없다.
+위의 단순한 singleton pattern은 리소스가 작은 프로그램일때엔 고도화 대상이 아니다. 하지만 프로그램의 크기가 커져서 수 많은 클래스에서 위와 같은 singleton pattern을 사용한다고 가정해보자. 3번째 라인의 `new EagerInitialization();`으로 인해 클래스가 load 되는 시점에 인스턴스를 생성시키는데 이마저도 부담스러울 수가 있다. 또한 이 소스는 EagerInitialization 클래스가 인스턴스화 되는 시점에 어떠한 에러처리도 할 수가 없다.
 
 # static block initialization
 
@@ -72,7 +72,7 @@ public class StaticBlockInitalization {
 }
 ```
 
-static 초기화블럭을 이용하면 클래스가 로딩 될 때 최초 한번 실행하게 된다. 특히나 초기화블럭을 이용하면 logic을 담을 수 있기 때문에 복잡한 초기변수 셋팅이나 위와 같이 에러처리를 위한 구문을 담을 수 있다. 첫 번째 패턴보다 좋아보이지만 인스턴스가 사용되는 시점에 생성되는 것은 아니다.
+`static` 초기화블럭을 이용하면 클래스가 로딩 될 때 최초 한번 실행하게 된다. 특히나 초기화블럭을 이용하면 logic을 담을 수 있기 때문에 복잡한 초기변수 셋팅이나 위와 같이 에러처리를 위한 구문을 담을 수 있다. 첫 번째 패턴보다 좋아보이지만 인스턴스가 사용되는 시점에 생성되는 것은 아니다.
 
 # lazy initialization
 
@@ -97,11 +97,11 @@ public class LazyInitialization {
 }
 ```
 
-new LazyInitialization(); 가 어디에 선언되었는지 주목해보자. getInstance() method 안에서 사용되었다. if문을 이용해 instance가 null 인 경우에만 new를 사용해 객체를 생성하였다. 최초 사용시점에만 인스턴스화 시키기 때문에 프로그램이 메모리에 적재되는 시점에 부담이 많이 줄게된다. 하지만 여전히 문제는 남아있다. 만약 프로그램이 muilti thread 방식이라면 위와 같은 singleton pattern은 안전하지 않다. 동일 시점에 getInstance() method를 호출하면 인스턴스가 두번 생길 위험이 있다.
+`new LazyInitialization();` 가 어디에 선언되었는지 주목해보자. `getInstance()` method 안에서 사용되었다. if문을 이용해 instance가 null 인 경우에만 `new`를 사용해 객체를 생성하였다. 최초 사용시점에만 인스턴스화 시키기 때문에 프로그램이 메모리에 적재되는 시점에 부담이 많이 줄게된다. 하지만 여전히 문제는 남아있다. 만약 프로그램이 muilti thread 방식이라면 위와 같은 singleton pattern은 안전하지 않다. 동일 시점에 `getInstance()` method를 호출하면 인스턴스가 두번 생길 위험이 있다.
 
 # thread safe initalization
 
-위에서 문제가 되었던 muilit thread문제를 해결하기 위해 synchronized(동기화)를 사용하여 singleton pattern을 구현한다. 여러 thread들이 동시에 접근해서 인스턴스를 생성시키는 위험은 없어졌다. 하지만 수 많은 thread 들이 getInstance() method 를 호출하게 되면 높은 cost 비용으로 인해 프로그램 전반에 성능저하가 일어난다.
+위에서 문제가 되었던 muilit thread문제를 해결하기 위해 synchronized(동기화)를 사용하여 singleton pattern을 구현한다. 여러 thread들이 동시에 접근해서 인스턴스를 생성시키는 위험은 없어졌다. 하지만 수 많은 thread 들이 `getInstance()` method 를 호출하게 되면 높은 cost 비용으로 인해 프로그램 전반에 성능저하가 일어난다.
 
 ```java
 public class ThreadSafeInitalization {
@@ -194,4 +194,4 @@ public class UsingReflectionToDestroySingleton {
 }
 ```
 
-위의 코드를 실행해보면 아래 System.out.println();의 두 라인에서 찍히는 hachCode()값이 다른 것을 확인 할 수 있다. java의 reflection은 매우 강력하다. 설령 class 의 생성자가 private 일지라도 강제로 가져와서 새로운 인스턴스 생성이 가능하다. 결국 singleton pattern을 깨뜨리는 것이다. 이 외에도 reflection을 여러곳에서 사용할 수 있으니 알아두는 것이 좋다.
+위의 코드를 실행해보면 아래 `System.out.println();`의 두 라인에서 찍히는 `hachCode()`값이 다른 것을 확인 할 수 있다. java의 reflection은 매우 강력하다. 설령 class 의 생성자가 private 일지라도 강제로 가져와서 새로운 인스턴스 생성이 가능하다. 결국 singleton pattern을 깨뜨리는 것이다. 이 외에도 reflection을 여러곳에서 사용할 수 있으니 알아두는 것이 좋다.
