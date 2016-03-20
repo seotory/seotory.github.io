@@ -3,7 +3,7 @@ layout: post
 title:  "Welcome to Jekyll!"
 date:   2015-09-05 12:04:16
 published: true
-comments: false
+comments: true
 ---
 
 jekyll 문법 테스트용 페이지입니다.
