@@ -28,5 +28,14 @@ function log ( msg ) {
       }
     });
   }
+
+  $('#btn-up').on('click', function ( e ) {
+    $("html, body").animate({ scrollTop: 0 }, "fast");
+    return false;
+  });
+  $('#btn-down').on('click', function ( e ) {
+    $("html, body").animate({ scrollTop: $(document).height() }, "fast");
+    return false;
+  });
 })();
 </script>
