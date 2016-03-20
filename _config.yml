@@ -16,6 +16,9 @@ github_username:  seotory
 # url change
 permalink: /:year/:month/:day/:title
 
+# timezone
+timezone: Asia/Seoul
+
 # highlighter settings
 # Build settings
 highlighter: rouge
@@ -43,7 +46,7 @@ collections:
     permalink: /solution/:categories/:title/
 
 # paging
-paginate: 2
+paginate: 15
 paginate_path: "/list/:num/"
 
 # gems
