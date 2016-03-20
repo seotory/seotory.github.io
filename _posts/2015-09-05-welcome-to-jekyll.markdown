@@ -157,8 +157,16 @@ You’ll find this post in your _posts directory. Go ahead and edit it and re-bu
 
 
 <span class="icon green">
-  <i class="fa fa-rss"></i>한글test
+  <i class="fa fa-rss"></i>RSS
 </span>
+<span class="icon orange">
+  <i class="fa fa-rss"></i>rss
+</span>
+
+<span class="icon blue">
+  <i class="fa fa-rss"></i>rss
+</span>
+
 
 $$
 \begin{align*}
