@@ -414,7 +414,6 @@ pre {
 }
 
 .c-hamburger--htx {
-  /*background-color: #ff3264;*/
   background-color: #FFF;
 }
 
@@ -477,11 +476,7 @@ pre {
   margin: 0 ($spacing-unit/4*-1);
 }
 .row:after {
-  content: ' ';
-  position: relative;
-  display: block;
-  clear: both;
-  overflow: hidden;
+  @extend %clearfix;
 }
 
 div[class^='col'] {

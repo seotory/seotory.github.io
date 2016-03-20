@@ -61,11 +61,3 @@ public class main {
 ```
 
 만약 userList의 클론이 제공되지 않는다면 매번 우리는 userList를 DB 또는 file로 부터 로드해야 할 것이다. `prototype pattern`은 그런 비효율을 줄이기 위해 사용된다.
-
-<!--
-Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll’s dedicated Help repository][jekyll-help].
-
-[jekyll]:      http://jekyllrb.com
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-help]: https://github.com/jekyll/jekyll-help
--->

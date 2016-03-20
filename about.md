@@ -4,4 +4,6 @@ title: About
 permalink: /about/
 ---
 
-작성중..
+# 서토리
+
+# 향후 계획
