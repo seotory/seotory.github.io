@@ -6,10 +6,11 @@
 	bottom: 20px;
 	right: 20px;
 	text-align: center;
-	color: rgba(0, 0, 0, 0.35);
-	> div {
-		cursor: pointer;
-	}
+  color: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+  > div {
+    cursor: pointer;
+  }
 }
 
 /* site header css */
