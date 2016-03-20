@@ -2,6 +2,7 @@
 layout: post
 title:  java prototype pattern (프로토타입 패턴)
 date:   2015-09-06 12:04:16
+comments: true
 categories: dev
 tags: 
 - java
