@@ -179,8 +179,8 @@ article {
 }
 
 .post-close {
-  clear: both;
-  overflow: hidden;
+  margin-bottom: 15px;
+  @extend %clearfix;
 }
 .post-next {
   float: right;
