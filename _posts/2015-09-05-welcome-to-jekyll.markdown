@@ -201,6 +201,9 @@ You’ll find this post in your _posts directory. Go ahead and edit it and re-bu
   <i class="fa fa-rss"></i>rss
 </span>
 
+<span class="icon gray">
+  <i class="fa fa-rss"></i>rss
+</span>
 
 $$
 \begin{align*}
