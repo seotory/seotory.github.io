@@ -15,7 +15,7 @@ java에서 maven을 이용한 build 시스템을 만들다보면 로컬 저장�
 
 ```xml
 <repositories>
-	<!-- 로컬용 -->
+	<!-- local -->
 	<repository>
 		<id>local-repo</id>
 		<name>local Repository</name>
@@ -26,7 +26,7 @@ java에서 maven을 이용한 build 시스템을 만들다보면 로컬 저장�
 
 `file://${project.basedir}/tmp-repo`은 치환되어 `file://D:/workspace/application/tmp-repo`가 된다.
 
-만약 이 저장소가 젠킨스 안에서도 제대로 작동하고 싶다면 아래의 저장소도 추가적으로 적어주도록 한다.
+만약 이 저장소가 jenkins 안에서도 제대로 작동하고 싶다면 아래의 저장소도 추가적으로 적어주도록 한다.
 
 ```xml
 <repositories>

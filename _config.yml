@@ -50,5 +50,13 @@ paginate: 15
 paginate_path: "/list/:num/"
 
 # gems
-gems: [jekyll-paginate]
+gems:
+  - jekyll-paginate
+#  - flickraw
+#  - flickr_image #flickraw
 
+# plugins
+# safe: true
+
+# exclude
+exclude: [Rakefile, README]
