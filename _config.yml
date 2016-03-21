@@ -17,7 +17,7 @@ github_username:  seotory
 permalink: /:year/:month/:day/:title
 
 # timezone
-timezone: Asia/Seoul
+# timezone: Asia/Seoul
 
 # highlighter settings
 # Build settings
@@ -27,7 +27,7 @@ markdown: kramdown
 kramdown:
   input: GFM
   hard_wrap: false
-  /*auto_ids: true*/
+  auto_ids: true
   /*enable_coderay: true*/
   syntax_highlighter: rouge
   /*parse_block_html: true*/

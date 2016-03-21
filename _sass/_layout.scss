@@ -103,7 +103,7 @@
 
 article {
   h1, h2, h3, h4, h5, h6 {
-	margin-top: 30px;
+	margin-top: 35px;
   }
 }
 
@@ -121,10 +121,18 @@ article {
   }
 }
 .post-info {
-  padding-top: 70px;
-  padding-bottom: 70px;
+  padding-top: 80px;
+  padding-bottom: 80px;
   text-align: center;
   word-break: keep-all;
+  h1 {
+  	font-weight: 700;
+  	font-size: 35px;
+  }
+  p {
+  	margin-bottom: 0px;
+  	font-weight: 700;
+  }
 }
 .post-meta {
   font-size: $small-font-size;

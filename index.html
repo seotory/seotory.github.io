@@ -17,7 +17,13 @@ layout: default
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         </h3>
         {% if post.excerpt %}
-          <p>{{ post.excerpt | remove: '<p>' | remove: '</p>' | truncatewords: 40 }} <a href="{{ root_url }}{{ post.url }}#disqus_thread" data-disqus-identifier="{{post.url}}"></a> <a href="{{ root_url }}{{ post.url }}">[more]</a></p>
+          <p>
+            {{ post.excerpt | remove: '<p>' | remove: '</p>' | truncatewords: 40 }} 
+            {% if post.comments %}
+            <a href="{{ root_url }}{{ post.url }}#disqus_thread" data-disqus-identifier="{{post.url}}"></a>
+            {% endif %}
+            <a href="{{ root_url }}{{ post.url }}">[more]</a>
+          </p>
         {% endif %}
       </li>
     {% endfor %}
