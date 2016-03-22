@@ -235,10 +235,11 @@ code {
 
 code {
   padding: 1px 5px;
-  .highlighter-rouge {
-    color: #C31D1D;
-    background-color: #F9F3F3;
-  }
+}
+
+code.highlighter-rouge {
+  color: #C31D1D;
+  background-color: #F9F3F3;
 }
 
 pre {
