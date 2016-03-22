@@ -24,9 +24,20 @@ java에서 maven을 이용한 build 시스템을 만들다보면 로컬 저장�
 </repositories>
 ```
 
-`file://${project.basedir}/tmp-repo`은 치환되어 `file://D:/workspace/application/tmp-repo`가 된다.
+`file://${project.basedir}/tmp-repo`은 치환되어 `file://D:/workspace/application/tmp-repo`가 된다. 후에 필요한 jar를 아래와 같이 `dependency`로 추가한다. 아래의 예제는 ojdbc6를 예로 들었다.
 
-만약 이 저장소가 jenkins 안에서도 제대로 작동하고 싶다면 아래의 저장소도 추가적으로 적어주도록 한다.
+```xml
+<dependencies>
+	<dependency>
+		<groupId>com.oracle</groupId>
+		<artifactId>ojdbc6</artifactId>
+		<version>11.2.0.4</version>
+	</dependency>
+</dependencies>
+```
+jar의 실제 물리경로는 `D:/workspace/application/tmp-repo/com/oracle/ojdbc6/11.2.0.4` 폴더여야한다.
+
+만약 이 임시 repository가 jenkins 안에서도 제대로 작동하고 싶다면 추가적으로 아래의 repository도 적어주도록 한다.
 
 ```xml
 <repositories>
