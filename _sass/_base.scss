@@ -230,16 +230,15 @@ code {
   font-family: "Consolas", "Menlo", "Monaco", "Courier", monospace;
   font-size: 15px;
   line-height: $code-line-height;
-  /*border: 1px solid $grey-color-light;*/
   border-radius: 3px;
 }
 
 code {
   padding: 1px 5px;
-}
-code.highlighter-rouge {
-  color: #C31D1D;
-  background-color: #F9F3F3;
+  .highlighter-rouge {
+    color: #C31D1D;
+    background-color: #F9F3F3;
+  }
 }
 
 pre {

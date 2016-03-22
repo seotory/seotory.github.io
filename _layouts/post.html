@@ -15,19 +15,16 @@ layout: default
     {{ content }}
   </article>
 
-  <hr />
-
   <!-- tags -->
   {% if page.tags.size > 1 %}
   <div class="post-tags">
-    <h2>Tags</h2>
-    <ul>
       {% for tag in page.tags %}
-      <li><a href="/tags/?#{{ tag }}">{{ tag | downcase }}</a></li>
+      <span><a href="/tags/?#{{ tag }}">{{ tag | downcase }}</a></span>
       {% endfor %}
-    </ul>
   </div>
   {% endif %}
+
+  <hr />
 
   <!-- category other posts -->
   {% if site.categories[page.categories.last].size > 1 %}
@@ -61,12 +58,12 @@ layout: default
   <div class="post-close">
   {% if next_post %}
     <div class="post-next">
-      <a href="{{ next_post }}">Next Post > </a> <br>
+      <a href="{{ next_post }}">NEXT > </a> <br>
     </div>
   {% endif %}
   {% if prev_post %}
     <div class="post-prev">
-      <a href="{{ prev_post }}"> < Previous Post</a> <br>
+      <a href="{{ prev_post }}"> < PREV</a> <br>
     </div>
   {% endif %}
   </div>

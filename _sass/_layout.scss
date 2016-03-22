@@ -173,29 +173,23 @@ article {
 }
 
 .post-tags {
-  margin-bottom: 20px;
-  a {
-	color: slategrey;
-  }
-  > h2, ul {
-	margin-bottom: 5px;
-  }
-  ul {
-	margin: 0px;
+  margin-top: 30px;
 	font-size: $small-font-size;
-	li {
+  a {
+   color: slategrey;
+  }
+	span {
 	  display: inline-block;
 	  a {
-		padding: 4px 6px;
-		border: 1px solid #eee;
-		border-radius: 5px;
-		background-color: #eee;
+  		padding: 4px 6px;
+  		border: 1px solid #eee;
+  		border-radius: 5px;
+  		background-color: #eee;
 	  }
 	  a:hover {
-		color: #2196F3;
+		  color: #2196F3;
 	  }
 	}
-  }
 }
 
 .post-close {
