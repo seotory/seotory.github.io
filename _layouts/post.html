@@ -16,7 +16,7 @@ layout: default
   </article>
 
   <!-- tags -->
-  {% if page.tags.size > 1 %}
+  {% if page.tags.size > 0 %}
   <div class="post-tags">
       {% for tag in page.tags %}
       <span><a href="/tags/?#{{ tag }}">{{ tag | downcase }}</a></span>
@@ -27,7 +27,7 @@ layout: default
   <hr />
 
   <!-- category other posts -->
-  {% if site.categories[page.categories.last].size > 1 %}
+  {% if site.categories[page.categories.last].size > 0 %}
   <div class="post-other">
     <h2>Other posts</h2>
   	<ul>
