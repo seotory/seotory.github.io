@@ -12,6 +12,7 @@ enforce_ssl: blog.seotory.com
 # sns info
 twitter_username: seotory
 github_username:  seotory
+facebook_username: ""
 
 # url change
 permalink: /:year/:month/:day/:title
@@ -57,4 +58,4 @@ gems:
 # safe: true
 
 # exclude
-exclude: [Rakefile, README]
+exclude: [Rakefile, README, Gemfile]

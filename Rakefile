@@ -9,12 +9,18 @@ print message
 STDIN.gets.chomp
 end
 
+# for post build.
 namespace "post" do
   #Create new a post
   task :new do #default
     title = ask('Title: ')
     category = ask('Category: ')
     filename = category + (category ? "/" : "") + "#{Time.now.strftime('%Y-%m-%d')}-#{title.gsub(/\s/, '-').downcase}.markdown"
+
+    # if is new folder? make folder.
+    Dir.mkdir(File.join("_posts", category)) unless File.exists?(File.join("_posts", category))
+
+    # make file
     path = File.join("_posts", filename)
     if File.exist? path; raise RuntimeError.new("File exists #{path}"); end
     File.open(path, 'w') do |file|
@@ -28,10 +34,45 @@ published: false
 comments: false
 ---
 문서를 작성해주세요.
-  EOS
+EOS
+    puts '성공적으로 ' + path + '경로에 파일을 생성하였습니다.'
     end
 
     # invoke Textmate to edit file
     # sh "mate #{path}"
+  end
+end
+
+
+
+# for cate build.
+namespace "cate" do
+  #Create new cate index file
+  task :new do #default
+    category = ask('Category: ')
+    filename = "index.html"
+
+    if category == ''
+      raise('category가 입력되지 않았습니다. 작업에 실패하였습니다.')
+    end
+
+    puts 'category가 입력되었습니다. 하위에 index.html을 생성합니다.'
+
+    # if is new folder? make folder.
+    Dir.mkdir(category) unless File.exists?(category)
+
+    # make file
+    path = File.join(category, filename)
+    if File.exist? path; raise RuntimeError.new("File exists #{path}"); end
+    File.open(path, 'w') do |file|
+      file.write <<-EOS
+---
+layout: list
+---
+
+{% include cateList.html name="#{category}" %}
+EOS
+    puts '성공적으로 ' + path + '경로에 파일을 생성하였습니다.'
+    end
   end
 end
