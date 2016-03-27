@@ -17,6 +17,9 @@ namespace "post" do
     category = ask('Category: ')
     filename = category + (category ? "/" : "") + "#{Time.now.strftime('%Y-%m-%d')}-#{title.gsub(/\s/, '-').downcase}.markdown"
 
+    puts 'title name: ' + title
+    puts 'category name: ' + category
+
     # if is new folder? make folder.
     Dir.mkdir(File.join("_posts", category)) unless File.exists?(File.join("_posts", category))
 
@@ -32,10 +35,12 @@ date: #{Time.now.strftime('%Y-%m-%d %k:%M:%S')} +0900
 categories: #{category}
 published: false
 comments: false
+tags:
+- ''
 ---
 문서를 작성해주세요.
 EOS
-    puts '성공적으로 ' + path + '경로에 파일을 생성하였습니다.'
+    puts '성공적으로 [' + path + ']경로에 파일을 생성하였습니다.'
     end
 
     # invoke Textmate to edit file
@@ -72,7 +77,7 @@ layout: list
 
 {% include cateList.html name="#{category}" %}
 EOS
-    puts '성공적으로 ' + path + '경로에 파일을 생성하였습니다.'
+    puts '성공적으로 [' + path + ']경로에 파일을 생성하였습니다.'
     end
   end
 end

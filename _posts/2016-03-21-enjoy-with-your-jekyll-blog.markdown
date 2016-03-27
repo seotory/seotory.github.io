@@ -7,17 +7,24 @@ published: false
 comments: false
 ---
 
-문서를 작성해주세요.
+이 포스팅은 jekyll의 환경변수나 만드는 방법을 알려주는 것이 아니라, 내가 만들면서 사용했던 것들을 팁 형식으로 적은 글이다. 또 다른 분들이 jekyll blog를 만든다면 아래의 글이 도움이 되었으면 좋겠다. 문서는 지속적으로 업데이트가 되고 있다.
+
 <!--more-->
 
-- 현재 글의 이전, 이후 버튼 생성하기
-- 작성중인 문서 관리법
-- rake를 이용해 markdown 생성하기
-- disqus 댓글 카운트 노출
-- post에 선택적으로 disqus 댓글 보이기
-- image file 관리하기
-- jekyll blog에 ssl 적용하기
-- uri 전략
+# 목차
+
+1. 현재 글의 카테고리 이전, 이후 버튼 생성하기
+2. tag 별로 post 리스팅하기
+3. 작성중인 문서 관리법
+4. rake를 이용해 markdown file 생성하기
+5. disqus 댓글 카운트 노출
+6. post에 선택적으로 disqus 댓글 보이기
+7. image file 관리하기
+8. jekyll blog에 ssl 적용하기
+9. uri 전략
+10. 포스팅을 했는데, 노출되지 않을 때
+11. porse.io 이용해보기
+12. 사용자 변수 활용해보기
 
 
 작성중인 문서 관리법
