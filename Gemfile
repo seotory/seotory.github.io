@@ -1,2 +1,4 @@
-source 'https://rubygems.org'
-# gem 'github-pages'
+gem 'jekyll-paginate', '1.1.0'
+gem 'kramdown', '1.10.0'
+gem 'rouge', '1.10.1'
+gem 'jekyll-watch', '1.3.1'
