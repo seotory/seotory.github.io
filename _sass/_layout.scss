@@ -109,7 +109,9 @@ article {
 
 /* post section */
 .post-header {
-  margin-top: 15px;
+  margin-top: -1px;
+  margin-bottom: 20px;
+  background-color: rgba(0,0,0,0.8);
 }
 .post-list {
   margin-top: 15px;
@@ -121,11 +123,11 @@ article {
   }
 }
 .post-info {
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding: 80px 15px;
   text-align: center;
   word-break: keep-all;
   h1 {
+    color: #fff;
   	font-weight: 700;
   	font-size: 35px;
   }
@@ -136,7 +138,7 @@ article {
 }
 .post-meta {
   font-size: $small-font-size;
-  color: #777;
+  color: #999;
   margin-top: -10px;
 }
 

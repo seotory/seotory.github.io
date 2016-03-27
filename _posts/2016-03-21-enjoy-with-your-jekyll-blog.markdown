@@ -25,7 +25,14 @@ comments: false
 10. 포스팅을 했는데, 노출되지 않을 때
 11. porse.io 이용해보기
 12. 사용자 변수 활용해보기
+13. jekyll에서 favicon.ico 사용하기 
+14. window에서 Gemfile
 
+13
+http://stackoverflow.com/questions/30551501/unable-to-set-favicon-using-jekyll-and-github-pages
+
+14
+http://yizeng.me/2013/05/10/setup-jekyll-on-windows/
 
 작성중인 문서 관리법
 
