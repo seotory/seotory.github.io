@@ -198,7 +198,7 @@ blockquote p:last-child {
 /**
  * hr
  */
-hr {
+hr.dot {
   display: block;
   margin-top: 46px;
   /*margin-bottom: 42px;*/
@@ -206,7 +206,7 @@ hr {
   border: 0;
 }
 
-hr:before {
+hr.dot:before {
   position: relative;
   top: -25px;
   display: inline-block;
