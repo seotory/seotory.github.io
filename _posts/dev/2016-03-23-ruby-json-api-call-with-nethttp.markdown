@@ -7,6 +7,7 @@ published: false
 comments: false
 tags:
 - ruby
+- ssl
 ---
 
 ruby의 제공 모듈인 net/http를 이용하여 json api를 하려면 아래와 같이 작성하여 실행해보면된다. java와는 다르게 매우 쉽게 작성할 수 있다.
@@ -29,11 +30,11 @@ p obj
 
 https 호출인 경우 window 환경이라면 아래과 같은 error가 발생한다. 
 
-```
+```shell
 C:/Ruby22-x64/lib/ruby/2.2.0/net/http.rb:923:in `connect': SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed (OpenSSL::SSL::SSLError)
 ```
 
-이유는 ruby의 기본 라이브러리인 net/http에서 TLS handshake 시 ssl 인증서가 유효한지 체크하지 않기 때문이다. ruby는 라이브러리로 openssl을 이용하고 있으니 아래와 같이 하면 해당 error를 해결할 수 있다.
+이유는 ruby의 기본 라이브러리인 net/http에서 TLS handshake 시 ssl 인증서가 유효한지 체크하지 않기 때문이다. ruby net/http 안쪽에서 openssl을 이용하고 있다. openssl은 SSL_CERT_FILE 이라는 환경변수를 이용하는데, 이 환경변수는 인증서의 위치를 가르킨다. 따라서 아래와 같이 SSL_CERT_FILE 셋팅하면 error를 해결할 수 있다.
 
 - [https://gist.github.com/fnichol/867550](https://gist.github.com/fnichol/867550){:target="_blank"}
 - [http://www.rubyinside.com/how-to-cure-nethttps-risky-default-https-behavior-4010.html](http://www.rubyinside.com/how-to-cure-nethttps-risky-default-https-behavior-4010.html){:target="_blank"}
@@ -42,5 +43,8 @@ C:/Ruby22-x64/lib/ruby/2.2.0/net/http.rb:923:in `connect': SSL_connect returned=
 OpenSSL uses the SSL_CERT_FILE environment variable.
 
 
-https://blog.udemy.com/ruby-openssl/
-http://ruby-doc.org/stdlib-2.0.0/libdoc/openssl/rdoc/OpenSSL.html
+## 참조
+
+- [net/http solution](https://gist.github.com/fnichol/867550){:target='_blank'}
+- [net/http source code](http://rxr.whitequark.org/mri/source/lib/net/http.rb){:target='_blank'}
+- [Ruby OpenSSL](https://blog.udemy.com/ruby-openssl/){:target='_blank'}
