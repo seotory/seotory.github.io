@@ -34,7 +34,7 @@ https 호출인 경우 window 환경이라면 아래과 같은 error가 발생�
 C:/Ruby22-x64/lib/ruby/2.2.0/net/http.rb:923:in `connect': SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed (OpenSSL::SSL::SSLError)
 ```
 
-이유는 ruby의 기본 라이브러리인 net/http에서 TLS handshake 시 ssl 인증서가 유효한지 체크하지 않기 때문이다. ruby net/http 안쪽에서 openssl을 이용하고 있다. openssl은 SSL_CERT_FILE 이라는 환경변수를 이용하는데, 이 환경변수는 인증서의 위치를 가르킨다. 따라서 아래와 같이 SSL_CERT_FILE 셋팅하면 error를 해결할 수 있다.
+이유는 ruby의 기본 라이브러리인 net/http에서 TLS handshake 시 ssl 인증서가 유효한지 체크하지 않기 때문이다. ruby net/http 안쪽에서 openssl을 이용하고 있다. openssl은 `SSL_CERT_FILE` 이라는 환경변수를 이용하는데, 이 환경변수는 인증서의 위치를 가르킨다. 따라서 아래와 같이 SSL_CERT_FILE 셋팅하면 error를 해결할 수 있다.
 
 - [https://gist.github.com/fnichol/867550](https://gist.github.com/fnichol/867550){:target="_blank"}
 - [http://www.rubyinside.com/how-to-cure-nethttps-risky-default-https-behavior-4010.html](http://www.rubyinside.com/how-to-cure-nethttps-risky-default-https-behavior-4010.html){:target="_blank"}

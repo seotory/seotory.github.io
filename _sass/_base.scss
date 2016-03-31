@@ -198,6 +198,15 @@ blockquote p:last-child {
 /**
  * hr
  */
+hr.line {
+  border: none;
+  height: 1px;
+  color: #ddd;
+  background-color: #ddd;
+  margin-top: 50px;
+  margin-bottom: 35px;
+}
+
 hr.dot {
   display: block;
   margin-top: 46px;
@@ -414,7 +423,7 @@ pre {
 }
 
 .c-hamburger--htx {
-  background-color: #FFF;
+  background-color: #fafafa;
 }
 
 .c-hamburger--htx span {

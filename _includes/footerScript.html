@@ -30,11 +30,11 @@ function log ( msg ) {
   }
 
   $('#btn-up').on('click', function ( e ) {
-    $("html, body").animate({ scrollTop: 0 }, "fast");
+    $(window).scrollTop(0);
     return false;
   });
   $('#btn-down').on('click', function ( e ) {
-    $("html, body").animate({ scrollTop: $(document).height() }, "fast");
+    $(window).scrollTop($(document).height());
     return false;
   });
 })();

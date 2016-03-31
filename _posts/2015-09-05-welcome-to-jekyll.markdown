@@ -227,6 +227,31 @@ Check out the [Jekyll docs][jekyll] for more info on how to get the most out of 
 
 - [jekyll kmarkdown option](http://kramdown.gettalong.org/rdoc/Kramdown/Options.html){:target="_blank"}
 
+---
+
+## icon
+
+```css
+ul.social-buttons li a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    font-size: 20px;
+    line-height: 40px;
+    outline: 0;
+    color: #fff;
+    background-color: #222;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s;
+}
+```
+
+```html
+<a href="http://twitter.com/jekyllrb"><i class="fa fa-twitter"></i></a>
+```
+
 [jekyll]:      http://jekyllrb.com
 [jekyll-gh]:   https://github.com/jekyll/jekyll
 [jekyll-help]: https://github.com/jekyll/jekyll-help
