@@ -122,6 +122,8 @@ article > *:first-child {
 	background: url(/images/title-background.jpg);
     background-position: center;
     background-repeat: no-repeat;
+    background-position-x: 100%;
+	background-position-y: 50%;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -khtml-background-size: cover;
