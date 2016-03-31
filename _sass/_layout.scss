@@ -162,13 +162,14 @@ article > *:first-child {
 		padding: 4px 6px;
 		margin-bottom: 0px;
 		border-radius: 5px;
+		color: #eee;
 		background-color: rgba(0,0,0,0.2);
 		font-weight: 700;
 	}
 }
 .post-meta {
 	font-size: $small-font-size;
-	color: #eee;
+	color: #999;
 	margin-top: -10px;
 }
 
