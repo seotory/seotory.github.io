@@ -115,19 +115,21 @@ article > *:first-child {
 
 /* page section */
 .page-header {
+	width:100%;
 	margin-top: -1px;
 	margin-bottom: 50px;
 	text-shadow: 0 2px 1px rgba(0, 0, 0, 0.67);
 	/*background-color: rgba(0,0,0,0.8);*/
-	background: url(/images/title-background.jpg);
+	background: url(/images/title-background.jpg) no-repeat;
     background-position: center;
-    background-repeat: no-repeat;
     background-position-x: 100%;
 	background-position-y: 50%;
+
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -khtml-background-size: cover;
     background-size: cover;
+
     z-index: 0;
 }
 .page-content {
