@@ -109,6 +109,10 @@ article {
 	}
 }
 
+article > *:first-child {
+	margin-top: 0 !important;
+}
+
 /* page section */
 .page-header {
 	margin-top: -1px;
@@ -158,10 +162,6 @@ article {
 	font-size: $small-font-size;
 	color: #999;
 	margin-top: -10px;
-}
-
-.post-content > *:first-child {
-	margin-top: 0 !important;
 }
 
 .post-other {
