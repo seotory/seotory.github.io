@@ -124,10 +124,10 @@ article > *:first-child {
 	text-shadow: 0 2px 1px rgba(0, 0, 0, 0.67);
 	/*background-color: rgba(0,0,0,0.8);*/
 	background: url(/images/title-background.jpg) no-repeat;
-	background-size: cover;
-  background-attachment: fixed;
   background-position: center center;
-  z-index: 0;
+  background-attachment: fixed !important;
+  background-size: cover !important;
+  z-index: -9999;
   @include media-query($on-laptop) {
     background-attachment:scroll
   }
