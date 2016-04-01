@@ -125,8 +125,7 @@ article > *:first-child {
 	/*background-color: rgba(0,0,0,0.8);*/
 	background: url(/images/title-background.jpg) no-repeat;
   background-position: center center;
-  background-attachment: fixed !important;
-  background-size: cover !important;
+  background-size: cover;
   z-index: -9999;
   @include media-query($on-laptop) {
     background-attachment:scroll
