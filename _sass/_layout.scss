@@ -116,6 +116,7 @@ article > *:first-child {
 /* page section */
 .page-header {
 	position: relative;
+  display: block;
 	width:100%;
 	height: auto;
 	overflow:hidden;
@@ -123,8 +124,8 @@ article > *:first-child {
 	margin-bottom: 50px;
 	text-shadow: 0 2px 1px rgba(0, 0, 0, 0.67);
 	/*background-color: rgba(0,0,0,0.8);*/
-	background: url(/images/title-background.jpg) no-repeat;
-  background-position: center center;
+	background: url(../images/title-background.jpg) no-repeat;
+  background-position: 0 50%;
   background-size: cover;
   z-index: -9999;
   @include media-query($on-laptop) {
