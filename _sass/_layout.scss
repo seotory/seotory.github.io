@@ -63,6 +63,7 @@
 	transition-duration: 0.3s;
 	/*transition: visibility 0.3s, opacity 0.3s linear;*/
 	padding: 15px;
+  z-index: 9999;
 
 	@include media-query($on-laptop) {
 		left: 0px;
@@ -118,7 +119,7 @@ article > *:first-child {
 	position: relative;
   display: block;
 	width: 100%;
-  padding: 10% 20%;
+  height: 500px;
 	overflow: hidden;
 	margin-top: -1px;
 	margin-bottom: 50px;
@@ -128,6 +129,11 @@ article > *:first-child {
   background-position: 0 50%;
   background-size: cover;
   z-index: -9999;
+
+  .wrapper {
+    height: inherit;
+  }
+
   @include media-query($on-laptop) {
     background-attachment:scroll
   }
@@ -152,6 +158,12 @@ article > *:first-child {
 		margin-top: 0px;
 	}
 }
+.post-header {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+}
+
 .post-info {
 	text-align: center;
 	word-break: keep-all;
