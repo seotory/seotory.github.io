@@ -13,7 +13,7 @@ comments: false
 
 # 목차
 
-1. 현재 글의 카테고리 이전, 이후 버튼 생성하기
+1. 현재 글의 카테고리 이전, 이후 글 버튼 생성하기
 2. tag 별로 post 리스팅하기
 3. 작성중인 문서 관리법
 4. rake를 이용해 markdown file 생성하기
@@ -33,6 +33,9 @@ http://stackoverflow.com/questions/30551501/unable-to-set-favicon-using-jekyll-a
 
 14
 http://yizeng.me/2013/05/10/setup-jekyll-on-windows/
+
+## 현재 글의 카테고리 이전, 이후 버튼 생성하기
+
 
 작성중인 문서 관리법
 
