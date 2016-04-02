@@ -120,9 +120,11 @@ article > *:first-child {
 	margin-top: -1px;
 	margin-bottom: 50px;
 	text-shadow: 0 2px 1px rgba(0, 0, 0, 0.67);
-	background: url(../images/title-background.jpg) no-repeat center center scroll;
+	background: url(../images/title-background.jpg) no-repeat center center;
+  background-attachment: fixed;
   /*background-position: 0 50%;*/
-  background-size: cover;
+  background-size: cover !important;
+  z-index:2;
 
   .wrapper {
     height: inherit;
