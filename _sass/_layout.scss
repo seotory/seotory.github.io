@@ -89,11 +89,6 @@
 	font-size: $menu-font-size * 1.1;
 }
 
-/* home */
-.home {
-	padding-top: 20px;
-}
-
 /* list */
 .list-header {
 	margin-top: 15px;
@@ -106,7 +101,9 @@
 article {
 	h1, h2, h3, h4, h5, h6 {
 		margin-top: 35px;
+		margin-bottom: 16px;
 		font-weight: bold;
+		line-height: 1.2;
 	}
 }
 
@@ -139,7 +136,7 @@ article > *:first-child {
   }
 }
 .page-content {
-	margin-bottom: 50px;
+	padding: 50px 0;
 }
 .page-comments {
 	border-top: #dadada 1px solid;
@@ -155,8 +152,13 @@ article > *:first-child {
   vertical-align: middle;
 }
 
+.post-content {
+	.tags > *:first-child {
+		margin-top: 0px;
+	}
+}
+
 .post-list {
-	margin-top: 15px;
 	li {
 		margin-top: 30px;
 	}
