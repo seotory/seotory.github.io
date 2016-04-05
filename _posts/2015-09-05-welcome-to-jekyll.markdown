@@ -252,6 +252,9 @@ ul.social-buttons li a {
 <a href="http://twitter.com/jekyllrb"><i class="fa fa-twitter"></i></a>
 ```
 
+|test|1|2|3|
+|test|1|2|3|
+
 [jekyll]:      http://jekyllrb.com
 [jekyll-gh]:   https://github.com/jekyll/jekyll
 [jekyll-help]: https://github.com/jekyll/jekyll-help
