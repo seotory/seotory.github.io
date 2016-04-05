@@ -267,12 +267,32 @@ article > *:first-child {
 
 /* site footer css */
 footer {
+	position: relative;
 	border-top: #dadada 1px solid;
+	.feed {
+		position: absolute;
+		display: block;
+		width: 30px;
+		height: 30px;
+		top: -15px;
+		left: calc(50% - 15px);
+		padding: 1px 0 0 2px;
+		border-radius: 30px;
+		border: 1px solid #dadada;
+		color: #dadada;
+		background: #fff;
+    	text-align: center;
+    	-webkit-transition: all .3s;
+		-moz-transition: all .3s;
+		transition: all .3s;
+	}
+	.feed:hover {
+		color: #FF9800;
+	}
 	.wrapper {
 		text-align: center;
 	}
 }
-.site-footer 
 .site-share {
 	margin: 40px 0 15px 0;
 }
