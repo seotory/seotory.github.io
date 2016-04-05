@@ -99,7 +99,6 @@ article {
 	h1, h2, h3, h4, h5, h6 {
 		margin-top: 45px;
 		margin-bottom: 16px;
-		font-weight: bold;
 		line-height: 1.2;
 	}
 }
@@ -164,8 +163,8 @@ article > *:first-child {
 }
 .post-info {
 	text-align: center;
-  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.67);
-  word-break: keep-all;
+	text-shadow: 0 2px 1px rgba(0, 0, 0, 0.67);
+	word-break: keep-all;
 	h1 {
 		color: #fff;
 		font-weight: 700;
@@ -178,7 +177,6 @@ article > *:first-child {
 		border-radius: 5px;
 		color: #eee;
 		background-color: rgba(0,0,0,0.2);
-		font-weight: 700;
 	}
 }
 .post-meta {
@@ -282,6 +280,7 @@ footer {
 		color: #dadada;
 		background: #fff;
     	text-align: center;
+		font-family: "Lora","Helvetica Neue",Helvetica,Arial,sans-serif;
     	-webkit-transition: all .3s;
 		-moz-transition: all .3s;
 		transition: all .3s;
