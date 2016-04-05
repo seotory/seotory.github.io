@@ -12,14 +12,12 @@ permalink: /feed/
     <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
     <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
     <generator>Jekyll v{{ jekyll.version }}</generator>
-    {% for post in site.posts limit:10 %}
+    {% for post in site.posts limit:20 %}
       {% if post.published %}
       <item>
         <title>{{ post.title | xml_escape }}</title>
         <description>
-          <![CDATA[
-          {{ post.excerpt | xml_escape }}
-          ]]>
+          {{ post.content | xml_escape }}
         </description>
         <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
         <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
