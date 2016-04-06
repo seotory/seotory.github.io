@@ -137,9 +137,6 @@ blockquote {
   letter-spacing: -1px;
   font-style: italic;
 
-  > :last-child {
-    margin-bottom: 0;
-  }
 }
 */
 blockquote {
@@ -156,6 +153,10 @@ blockquote {
   border: 1px solid #eee;
   border-radius: 10px;
   margin-bottom: 15px;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
 }
 
 blockquote::before {

@@ -31,7 +31,7 @@ kramdown:
   auto_ids: true
   /*enable_coderay: true*/
   syntax_highlighter: rouge
-  /*parse_block_html: true*/
+  parse_block_html: false
 
 # post separator
 excerpt_separator: <!--more-->

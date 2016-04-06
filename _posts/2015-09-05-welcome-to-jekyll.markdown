@@ -252,15 +252,86 @@ ul.social-buttons li a {
 <a href="http://twitter.com/jekyllrb"><i class="fa fa-twitter"></i></a>
 ```
 
+------------
+
 |test|1|2|3|
 |test|1|2|3|
 
+|-----------------+------------+-----------------+----------------|
+| Default aligned |Left aligned| Center aligned  | Right aligned  |
+|-----------------|:-----------|:---------------:|---------------:|
+| First body part |Second cell | Third cell      | fourth cell    |
+| Second line     |foo         | **strong**      | baz            |
+| Third line      |quux        | baz             | bar            |
+|-----------------+------------+-----------------+----------------|
+| Second body     |            |                 |                |
+| 2 line          |            |                 |                |
+|=================+============+=================+================|
+| Footer row      |            |                 |                |
+|-----------------+------------+-----------------+----------------|
+
+----------
 
 - list1
-  ```
-  function(){}
-  ```
+      
+      function(){}
+        
 
-[jekyll]:      http://jekyllrb.com
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-help]: https://github.com/jekyll/jekyll-help
+----------
+
+# First level header
+
+### Third level header    ###
+
+## Second level header ######
+
+kramdown
+: A Markdown-superset converter
+
+Maruku
+:     Another Markdown-superset converter
+
+-----------
+
+ee<div>test
+</div>
+
+------
+
+This is some text.[^1]. Other text.[^footnote].
+
+[^1]: Some *crazy* footnote definition.
+
+[^footnote]:
+    > Blockquotes can be in a footnote.
+
+        as well as code blocks
+
+    or, naturally, simple paragraphs.
+
+[^other-note]:       no code block here (spaces are stripped away)
+
+[^codeblock-note]:
+        this is now a code block (8 spaces indentation)
+
+-----
+
+This is some text not written in HTML but in another language!
+
+*[another language]: It's called Markdown
+
+*[HTML]: HyperTextMarkupLanguage
+{:.mega-big}
+
+-------------
+
+{::comment}
+This text is completely ignored by kramdown - a comment in the text.
+{:/comment}
+
+Do you see {::comment}this text{:/comment}?
+{::comment}some other comment{:/}
+
+{::options key="val" /}
+
+--------
