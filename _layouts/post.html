@@ -29,10 +29,11 @@ layout: default
       </div>
       {% endif %}
 
-      <hr class="dot" />
 
-      <!-- category other posts -->
       {% if site.categories[page.categories.last].size > 1 %}
+      
+      <!-- category other posts -->
+      <hr class="dot" />
       <div class="post-other">
         <h2>Other posts</h2>
       	<ul>
@@ -43,7 +44,6 @@ layout: default
     			{% endfor %}
       	</ul>
       </div>
-      {% endif %}
 
       <!-- 전후글 -->
       {% for post in site.categories[page.categories.last] %}
@@ -72,6 +72,9 @@ layout: default
         </div>
       {% endif %}
       </div>
+
+      {% endif %}
+
     </div>
   </div>
 </section>
