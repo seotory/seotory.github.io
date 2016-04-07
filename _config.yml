@@ -28,10 +28,20 @@ markdown: kramdown
 kramdown:
   input: GFM
   hard_wrap: false
-  auto_ids: true
+  auto_ids: false
+  auto_id_stripping: false
   /*enable_coderay: true*/
   syntax_highlighter: rouge
   parse_block_html: false
+  /*html_to_native: ture*/
+  enable_coderay: true
+
+  coderay:
+    coderay_wrap: div
+    coderay_line_numbers: inline
+    coderay_tab_width: 4
+    coderay_bold_every: 10
+    coderay_css: class
 
 # post separator
 excerpt_separator: <!--more-->

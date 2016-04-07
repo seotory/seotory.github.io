@@ -272,8 +272,8 @@ ul.social-buttons li a {
 
 ----------
 
-- list1
-      
+- list1  
+
       function(){}
         
 
@@ -334,4 +334,19 @@ Do you see {::comment}this text{:/comment}?
 
 {::options key="val" /}
 
+---
 --------
+
+test for test
+{:id="test"}  
+
+{:.ruby}
+    Some code here
+
+testsetstsetset  f  
+setsetsetsdfs
+  
+
+
+
+<div>test</div>  
