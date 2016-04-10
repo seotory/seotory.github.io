@@ -3,6 +3,9 @@
 # http://elia.wordpress.com/2008/11/07/get-input-in-rake-tasks/
 # http://www.layouts-the.me/rake/2011/04/23/rake_tasks_for_jekyll/
 
+require 'fileutils'
+
+# functions
 # Asking for title
 def ask message
 print message
@@ -52,21 +55,28 @@ EOS
   # post file 정리
   task :order do
     files = FileList.new("_posts/*.markdown", "_posts/*/*.markdown");
-
-    # order filelist <
-    puts files
+    #files = FileList.new("_posts/*/*.markdown");
 
     # move by category
     files.each do |filePath|
+
       fileContents = File.read(filePath)
-      # puts fileContents
+      regObj = /^categories: (.*)/.match(fileContents)
 
-      selectLine = /^categories: .*/.match(fileContents)
-      puts selectLine
+      if (regObj.class != NilClass && regObj.length > 1)
+        if (filePath.index(regObj[1]).class != NilClass && filePath.index(regObj[1]) > -1)
+        else
+          postName = filePath.split('/')[-1]
+          afterPath = '_posts/' + (regObj[1] ? regObj[1]+'/' : '') + postName
 
-      splitLine = selectLine.split(" ")
-      puts splitLine
+          puts '[' + postName + ']의 위치가 비정상적입니다. 위치를 조정합니다.'
+          puts filePath + ' -> ' + afterPath
 
+          FileUtils.mv(filePath, afterPath);
+        end
+      else
+        puts filePath + '에 categories: 설정이 빠졌습니다.'
+      end
     end
   end
 end

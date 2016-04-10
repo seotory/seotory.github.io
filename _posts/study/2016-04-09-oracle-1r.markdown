@@ -4,7 +4,7 @@ title: oracle 1r
 date: 2016-04-09  9:14:56 +0900
 description: ''
 image: ''
-categories: etc
+categories: study
 published: false
 comments: false
 tags:
