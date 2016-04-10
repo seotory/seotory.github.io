@@ -11,7 +11,7 @@ end
 
 # for post build.
 namespace "post" do
-  #Create new a post
+  # Create new a post
   task :new do #default
     title = ask('Title: ')
     category = ask('Category: ')
@@ -47,6 +47,27 @@ EOS
 
     # invoke Textmate to edit file
     # sh "mate #{path}"
+  end
+
+  # post file 정리
+  task :order do
+    files = FileList.new("_posts/*.markdown", "_posts/*/*.markdown");
+
+    # order filelist <
+    puts files
+
+    # move by category
+    files.each do |filePath|
+      fileContents = File.read(filePath)
+      # puts fileContents
+
+      selectLine = /^categories: .*/.match(fileContents)
+      puts selectLine
+
+      splitLine = selectLine.split(" ")
+      puts splitLine
+
+    end
   end
 end
 
