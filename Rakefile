@@ -2,6 +2,7 @@
 # http://jasonseifer.com/2010/04/06/rake-tutorial
 # http://elia.wordpress.com/2008/11/07/get-input-in-rake-tasks/
 # http://www.layouts-the.me/rake/2011/04/23/rake_tasks_for_jekyll/
+# https://blog.seotory.com
 
 require 'fileutils'
 
@@ -14,6 +15,7 @@ end
 
 # for post build.
 namespace "post" do
+
   # Create new a post
   task :new do #default
     title = ask('Title: ')
@@ -47,17 +49,11 @@ tags:
 EOS
     puts '성공적으로 [' + path + ']경로에 파일을 생성하였습니다.'
     end
-
-    # invoke Textmate to edit file
-    # sh "mate #{path}"
   end
 
   # post file 정리
   task :order do
     files = FileList.new("_posts/*.markdown", "_posts/*/*.markdown");
-    #files = FileList.new("_posts/*/*.markdown");
-
-    # move by category
     files.each do |filePath|
 
       fileContents = File.read(filePath)
