@@ -83,6 +83,7 @@ namespace "cate" do
   task :new do #default
     category = ask('Category: ')
     filename = "index.html"
+    catePath = 'categories/' + category
 
     if category == ''
       raise('category가 입력되지 않았습니다. 작업에 실패하였습니다.')
@@ -91,10 +92,10 @@ namespace "cate" do
     puts 'category가 입력되었습니다. 하위에 index.html을 생성합니다.'
 
     # if is new folder? make folder.
-    Dir.mkdir(category) unless File.exists?(category)
+    Dir.mkdir(catePath) unless File.exists?(catePath)
 
     # make file
-    path = File.join(category, filename)
+    path = File.join(catePath, filename)
     if File.exist? path; raise RuntimeError.new("File exists #{path}"); end
     File.open(path, 'w') do |file|
       file.write <<-EOS

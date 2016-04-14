@@ -27,6 +27,7 @@ comments: false
 12. 사용자 변수 활용해보기
 13. jekyll에서 favicon.ico 사용하기 
 14. window에서 Gemfile
+15. jekyll에서 플로그인은...?
 
 13
 http://stackoverflow.com/questions/30551501/unable-to-set-favicon-using-jekyll-and-github-pages
@@ -100,3 +101,10 @@ method=flickr.photos.getInfo
 &format=json
 &nojsoncallback=1 
  
+
+# 15
+
+- http://gumpcha.github.io/blog/github-pages-with-jekyll-custom-plugin/
+- http://ixti.net/software/2013/01/28/using-jekyll-plugins-on-github-pages.html
+
+이렇게 해야한다. 넘나 복잡한 것.

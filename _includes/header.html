@@ -21,7 +21,7 @@
     <div class="site-cate">
       <ul>
         {% for category in site.categories %}
-        <li><a href="/{{ category | first }}/">{{ category | first }}</a></li>
+        <li><a href="/categories/{{ category | first }}/">{{ category | first }}</a></li>
         {% endfor %}
       </ul>
     </div>

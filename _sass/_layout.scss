@@ -225,6 +225,7 @@ article > *:first-child {
   }
   span {
     display: inline-block;
+    color: slategrey;
     a {
       padding: 4px 6px;
       border: 1px solid #eee;
@@ -234,6 +235,10 @@ article > *:first-child {
     a:hover {
       color: #2196F3;
     }
+  }
+  .post-tags-icon {
+    margin-right: 5px;
+    color: slategrey;
   }
 }
 
@@ -251,13 +256,15 @@ article > *:first-child {
   a {
     display: inline-block;
     padding: 10px 20px;
-    border: 1px solid #2196F3;
-    color: #fff;
-    background: #2196F3;
-    color: #fff;
+    color: #A7A7A7;
+    background: #ebebeb;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
   }
   a:hover {
-    font-weight: 700;
+    color: #fff;
+    background: #2196F3;
   }
 }
 
@@ -340,9 +347,10 @@ footer {
 .icon {
   border-radius: 5px;
   border: 1px solid #ddd;
-  padding: 6px 11px 5px 11px;
+  padding: 3px 10px 2px 10px;
   white-space: nowrap;
   margin-bottom: 0;
+  font-size: 14px;
   font-weight: normal;
   line-height: 1;
   text-align: center;
@@ -350,9 +358,9 @@ footer {
   cursor: pointer;
 
   > i, a {
-    margin-right: 5px;
+    margin-right: 3px;
     color: #ddd;
-    font-size: 17px;
+    font-size: 13px;
     line-height: 0.75em;
     vertical-align: -10%;
   }

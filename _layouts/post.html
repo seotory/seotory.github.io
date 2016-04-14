@@ -23,6 +23,10 @@ layout: default
       <!-- tags -->
       {% if page.tags.size > 0 %}
       <div class="post-tags">
+          <span>
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            tags
+          </span>
           {% for tag in page.tags %}
           <span><a href="/tags/?#{{ tag }}">{{ tag | downcase }}</a></span>
           {% endfor %}
