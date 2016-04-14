@@ -37,13 +37,12 @@ namespace "post" do
 layout: post
 title: #{title}
 date: #{Time.now.strftime('%Y-%m-%d %k:%M:%S')} +0900
-description: ''
-image: ''
+description: 
+image: 
 categories: #{category}
 published: false
 comments: false
 tags:
-- ''
 ---
 문서를 작성해주세요.
 EOS
