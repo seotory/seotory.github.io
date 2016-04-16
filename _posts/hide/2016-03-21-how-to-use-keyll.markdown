@@ -2,7 +2,7 @@
 layout: post
 title: jekyll 사용방법
 date: 2016-03-21 19:11:01 +0900
-categories: etc
+categories: hide
 published: false
 comments: false
 ---

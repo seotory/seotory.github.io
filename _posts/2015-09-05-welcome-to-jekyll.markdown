@@ -7,7 +7,24 @@ published: false
 comments: false
 ---
 
+{% assign imgPath = '/images' + page.title %}
+
+{{imgPath}}
+
 jekyll 문법 테스트용 페이지입니다.
+ 
+# 코드관련
+
+## 문구 강조
+
+`code` 강조 테스트
+
+## 구문강조 3가지
+
+```
+test.
+```
+
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
@@ -348,6 +365,8 @@ testsetstsetset  f
 setsetsetsdfs
   
 
+{{page.path}}
 
+{{page.url | }}
 
 <div>test</div>  
