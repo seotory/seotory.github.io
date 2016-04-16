@@ -15,7 +15,7 @@ github_username:  seotory
 facebook_username: ""
 
 # url change (/:year/:month/:day)
-permalink: /post/:title
+permalink: /post/:year/:month/:title
 
 # timezone
 timezone: Asia/Seoul
@@ -46,7 +46,7 @@ kramdown:
 # post separator
 excerpt_separator: <!--more-->
 
-# CSS
+# CSSls
 sass:
   sass_dir: _sass
 

@@ -7,9 +7,7 @@ published: false
 comments: false
 ---
 
-{% assign imgPath = '/images' + page.title %}
-
-{{imgPath}}
+{{site.url}}
 
 jekyll 문법 테스트용 페이지입니다.
  
