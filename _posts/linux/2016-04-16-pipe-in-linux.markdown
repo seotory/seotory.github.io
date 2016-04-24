@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 리눅스에서 pipe(파이프)란?
+title: 리눅스에서 std(standard streams)란
 date: 2016-04-16 20:35:47 +0900
 description: 
 image: 
