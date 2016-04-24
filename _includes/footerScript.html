@@ -37,5 +37,33 @@ function log ( msg ) {
     $(window).scrollTop($(document).height());
     return false;
   });
+
+  var imgAry = [];
+  imgAry.push('/images/title-background.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/4.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/6.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/13.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/15.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/18.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/20.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/21.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/24.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/26.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/30.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/31.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/35.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/42.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/47.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/52.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/67.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/68.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/69.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/72.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/79.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/80.jpg');
+  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/82.jpg');
+
+  var rNum = Math.floor((Math.random() * imgAry.length));
+  $('.page-header').css({"background-image":"url("+ imgAry[rNum] +")"}).animate({opacity: 1});  //url('../images/title-background.jpg')
 })();
 </script>
