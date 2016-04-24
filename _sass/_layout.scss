@@ -100,6 +100,9 @@ article {
     margin-bottom: 16px;
     line-height: 1.2;
   }
+  a {
+    word-break: break-all;
+  }
 }
 
 article > *:first-child {
