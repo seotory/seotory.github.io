@@ -59,11 +59,9 @@ function log ( msg ) {
   imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/68.jpg');
   imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/69.jpg');
   imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/72.jpg');
-  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/79.jpg');
-  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/80.jpg');
   imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/82.jpg');
 
   var rNum = Math.floor((Math.random() * imgAry.length));
-  $('.page-header').css({"background-image":"url("+ imgAry[rNum] +")"}).animate({opacity: 1});  //url('../images/title-background.jpg')
+  $('.page-header').css({"background-image":"url("+ imgAry[rNum] +")"});  // .animate({opacity: 1})
 })();
 </script>

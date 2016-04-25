@@ -128,9 +128,10 @@ article > *:first-child {
   -moz-background-size: cover; 
   -webkit-background-size:cover;
   z-index: -1;
+  /*
   opacity: 0.0;
   filter: alpha(opacity=0);
-
+  */
   .wrapper {
     width: 100%;
     height: 100%;
