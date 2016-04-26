@@ -1,0 +1,107 @@
+---
+layout: post
+title:  "한글 테스트"
+date:   2015-09-06 12:04:16
+categories: error
+published: false
+tags: oracle
+---
+한글 글을 테스트 중입니다.
+
+# 제목 1
+
+## 제목 2
+
+### 제목 3
+
+#### 제목 4
+
+##### 제목 5
+
+###### 제목 6
+
+------
+
+### code 
+
+#### 코드 강조
+
+`<html>` 태그 강조
+
+#### 문법강조
+
+```
+function () {}
+```
+
+---------
+
+### 리스트
+
+- list 1
+- list 2
+- list 3
+
+1. list 1
+2. list 2
+3. list 3
+
+--------
+
+### 테이블
+
+------
+
+### 카테고리
+
+{% for category in site.categories %}
+   {{ category | first }}
+
+  {% for posts in category %}
+    {% for post in posts %}
+       {{ post.url }}
+    {% endfor %}
+  {% endfor %}
+
+{% endfor %}
+
+-----
+
+### 변수 호출
+
+{% for catogory in site.data.category %}
+  {{ catogory.depth1.name }}
+{% endfor %}
+
+-----
+
+### tags test
+
+{% for tag in page.tags %}
+  {{tag}} /
+{% endfor %}
+
+------
+
+### block
+
+> test
+testset...@@
+
+> test
+> > test test
+
+
+-----
+
+### link
+
+-----
+
+{{page.categories.last}}
+
+
+
+-----
+
+[naver](www.naver.com)
