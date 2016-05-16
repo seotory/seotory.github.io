@@ -1,0 +1,221 @@
+---
+layout: post
+title: oracle 3r
+date: 2016-04-30  9:03:22 +0900
+description: 
+image: 
+categories: study
+published: false
+comments: false
+tags:
+---
+# SQL
+
+- stauctrued(standard) query language
+
+원래 IBM에서 만들어졌다. 최초 이름은 stauctrued engilish qurey language (SEQUEL -> SQL 로 변경)
+
+왜 `SQL`인가? 절차적(procedural) 언어이다. 답을 요구하는 언어임으로 *어떻게 작성해야 DB가 값을 읽어올 것인가*에 대해 연구하고 공부해야 한다.
+
+
+```sql
+select * | ([DISTNCT] column | expression [alias], ..)
+    FROM table
+```
+
+`DISTNCT`를 사용한다면 테이블 구조가 뭔가 잘못된 것이다. `DISTNCT`를 쓸바에는 `group by`를 써야한다. 
+
+- clause -> 절
+- statement -> 완전한 sql문
+
+## sql 작성법
+
+- 들여쓰기 잘할 것 
+
+기타 등등
+
+## 컬럼 셀렉트
+
+from clause는 집합이다.(테이블의 개념으로 생각하지 말자)
+
+## null value
+
+> 실제 데이터는 A컬럼의 length -> A컬럼의 값이 일반적인데 null value는 length가 0으로 들어간다.
+
+- 피연산자가 하나라도 null이 들어가면 result는 0이다.
+- null은 더하기 연산을 할 경우 제외된다.  
+  이런 경우에는 `sum()`후에 `nvl()`로 치환하는게 옳다.
+- 기본 연산자에서는 에러가 나오지는 않는다.
+- 조건 비교는 되지 않는다  
+  오직 `is null`이나 `is not null`로 비교해야 한다.
+
+## 설치시 data type
+
+설치시 특별한 옵션을 안주면 기본 데이트 타입은 `DD-MON-RR`이다. `RR`은 현제 시점을 이야기 한다.
+
+## 와일드카드
+
+- `%` 하나 이상의 캐릭터
+- `_` 하나의 캐릭터  
+  만약 문자로 \_를 사용하고 싶다면 `\_`로 표현하면 된다.
+
+> 주의할 것은 기본적으로 length를 출력하면 글자의 수가 출력된다.
+
+## in 
+
+`in`안에는 주로 서브 쿼리가 들어간다. 여기서 초급자와 중급자 이상의 차이가 난다. 보통 `in`을 사용하면 옵티마이져가 실행경로를 잘 찾지 못한다.
+
+## order by
+
+`order by 3`의 뜻은 `select`의 3번째 컬럼을 뜻한다.
+
+-----
+
+# data type
+
+> 오라클에서는 사용자가 데이터 타입을 만들 수도 있다.
+
+데이터 타입을 잘 모르는 경우는 모델링을 잘 안하기 때문이다. 
+
+- varchar2
+
+  length를 지정하더라도 순차적으로 입력한다. 
+
+- nchar
+
+- nvarchar2
+
+- row 
+
+  바이너리 데이터
+
+- long && longrow
+
+  비추천한다.
+
+  - func이 작동하지 않음  
+
+  - table 하나당 하나만 사용이 가능함
+  
+- timestamp
+
+  좀 더 세밀한 시간을 위해 설계되었다. 나노초까지 설정이 가능하다. 또한 `timezone`을 설정할 수 있다. 
+
+- date
+
+  `1`의 기본적인 의미는 `day`를 의미한다. 즉 아래의 의미는 어제의 시간을 호출하는 것이다.
+
+       select sysdate -1 from dual
+  
+- rowid
+
+  오라클이 저장하는 방식과 셀렉트 할 때의 값은 다른다. 인덱스 자체를 테이블로 만들면 
+
+- clob
+
+  캐릭터 라지 오브젝트
+
+- blob
+  
+  바이너리 라지 오브젝트
+
+- bfile
+  
+  데이터 파이에 저장되는 것이 아니라 다른 영역에 파일을 저장하고 db에서 사용하는 것이다.
+
+- number
+  
+  - number(p, s)  
+    p 오라클에서 지원하는 모든 범위의 숫자를 지원한다.(유효한 숫자는 38자리)
+
+  - number(p)
+
+## comparison rules of character values
+
+- blank-paded  
+  'a ' = 'a'
+- nonpadded  
+  'a ' > 'a'
+
+## date type
+
+- 표준 `YY-MON-DD:HH24:MI`으로 표현된다. 
+- `DATA '1998-12-25'`로도 표현가능하다.
+
+> date type 타입의 컬럼을 인덱스로 잡는건 좋지 않다. 중요하다면 char로 변경해야한다.
+
+- timestamp
+  
+  초를 조금더 정말하게 하기위해 ns까지 지원하고, timezone을 지원하기 위함이다. 기본적으로 ms를 사용한다. 그래서 초에 소수점이 생긴다.
+
+  - ts => 걍 타임스템프 값
+  - ts_tz => 타임스탬프에 타임존도 같이 저장
+  - ts_ltz => 클라이언트에서 로컬(세션별로) 타임존을 설정하면서 타임스템프를 변경 가능  
+
+- timestamp & timezone
+
+  세계적으로 `UTC`(세계 협정시)를 사용한다.
+
+### date formet model
+
+- AD(A.D.)
+- BC(B.C.)
+
+# 가상컬럼 (pseudocolumns)
+
+- currval and nextval
+- level
+
+  계층형 쿼리란 해당 row마다 계층으로 연결 고리를 만들어지는 것을 뜻한다.(오라클이 자체적으로) `오라클만 가능`
+
+  ex1)
+
+       select (...) 
+       from A 
+       start with no = startNo 
+       connect by startNo = nextNo
+
+  ex2)
+
+       select (...) 
+       from A 
+       start with "상위직책자" is null
+       connect by prior 사번 = 상위직책자
+
+  위의 sql같은 경우 계층 구조가 생겨나고 따라서 오라클은 leveling을 하게 된다. 이런 구조에서 `level`이라는 가상 컬럼을 사용할 수 있게 된다. 위의 예제는 top-down 구조이다.
+
+  ex3)
+
+       select (...) 
+       from A 
+       start with 사번 = '111'
+       connect by 사번 = prior 상위직책자
+
+  위의 방식은 bottom-top 구조이다. `prior` 의 위치에 주의
+
+  start with connect에서는 where 조건이 최하위로 실행된다. 그런데 특정 level단계를 제외하고 싶다면 아래와 같이 한다. ppt 자료 참조
+  
+- rownum
+  
+  결과 집합의 참인 데이터에 대해 rownum을 부여한다.
+
+  업데이트시 고유 넘버를 만들고 싶다면..
+
+       update A set c = ROWNUM
+
+- rowid
+
+  `rowid`를 쓸려면 테이블이 일단 재생성되면 저장되는 위치가 틀려지면서 `rowid`가 달라지게 된다. 주의해야한다. 블럭이 깨면 어드레스 주소가 나오면서 읽어내지 못한다. 복구용으로 사용하기도 한다. 또는 대용량에서 페이징시 사용하기도 한다.
+
+# rule based 방식
+
+쿼리문의 파싱하는 순서를 확인하고 싶다면 일부러 에러를 내서 체크해보자.
+
+- in(1,2,3) > 3부터 찾는다
+- from A, B > B부터 액세스한다.
+
+일반적으로는 데이터를 뒤에서부터 파싱한다. 그래서 주로 중요한 테이블을 뒤에다가 작성한다.
+
+# hints
+
+`/*+ hint [text] [hint[test]] */` 이런식으로 줄 수 있으나 이것은 절대적인 것은 아니다. 최대한 where에서 실행계획을 정해놓고 보험성격으로 hints를 넣는다.

@@ -1,0 +1,139 @@
+---
+layout: post
+title: oracle 4r
+date: 2016-05-14  8:55:45 +0900
+description: 
+image: 
+categories: study
+published: false
+comments: false
+tags:
+---
+
+
+# oracle 4r
+
+> operator is given a null operand, the result is always null. The only operator that
+does not follow this rule is concatenation (||).
+>
+> 둘 중에 하나가 널이라도 널이 되지 않음
+
+## set operators
+
+집합의 연산자이다.
+
+union, intersect, minus는 내부적으로 **소팅**을 한다. 후에 같은 값을 제외하고 출력한다. 즉 사용하면 성능상 좋지 않다. sort merge 안에서 내부적으로 돌아간다.
+
+## 비교조건
+
+`!=`, `<>` 주로 많이 쓴다. `any`, `all`은 오퍼레이터이다. `any`, `all`은 반듯이 부등호가 앞에 나와야 한다.
+
+- any
+
+```sql
+ SELECT employee_id, last_name, job_id, salary
+ FROM employees
+ WHERE salary < ANY (SELECT salary
+ FROM employees
+ WHERE job_id = 'IT_PROG')
+ AND job_id <> 'IT_PROG';
+```
+
+위의 sql에서 any는 salary의 어떤 값보다 작다는 뜻이다. 즉 제일 큰 값보다 작다. any뒤에 오는 값은 모두 or 연산으로 풀려서 계산된다.
+
+- all
+
+```sql
+SELECT employee_id, last_name, job_id, salary
+ FROM employees
+ WHERE salary < ALL (SELECT salary
+ FROM employees
+ WHERE job_id = 'IT_PROG')
+ AND job_id <> 'IT_PROG';
+```
+
+위의 sql은 제일 all뒤의 sql의 작은 값보다 작은 값을 뜻한다.
+
+- in, not in
+  - in > 이고, 이고 즉 or 연사
+  - not in 에 null이 있으면 모든 집합이 false가 됨으로 서브 쿼리에서 null이 안들어 가는 것을 보장해야한다.
+
+```sql
+SELECT 'True'
+ FROM employees
+ WHERE department_id NOT IN (SELECT 0 FROM dual WHERE 1=2);
+```
+
+- exists
+
+> 메인쿼리에서 생기는 집합은 서브쿼리에서 사용할 수 있으나, 서브쿼리에서 생기는 집합은 메인쿼리에서 사용할 수 없다.
+
+서브쿼리와 메인쿼리의 수행은 작동 방식이 상황에 따라 틀리다. 서브쿼리와 exists를 같이 쓰는 이유는, 참인 값이 하나만 나오면 수행을 종료한다. where 절에서 서브쿼리가 사용된다면 exists이 궁합이 제일 좋다.
+
+## function
+
+- sing-row function : 하나의 row를 대상
+  - Character Functions  
+    4000 바이트를 넘어가면 그냥 자른다..
+    - substr
+      - 포지션이 0이면 1로 간주
+      - 포지션이 음수면 뒤에서부터
+    - instr, instrb  
+      내가 찾고자 하는 스트링을 찾아서 위치를 반환
+    - lpad, rpad  
+      문자열을 채움, 기본은 스페이스  
+      **무조건 바이트 계산**
+    - translate  
+      from_string, to_string의 문자열이 1:1로 매칭되어 동작함
+    - chr  
+      캐릭터 코드셋을 이용해 문자열 변환
+    - ascii
+      chr 반대.
+  - Number Functions
+    - sign  
+      decode에 범위를 지정할 수 있게 해주는게 sign....으로도 활용이 가능하다.  
+      `select sign(sysdate-7) from daul`
+    - bitand  
+      비트연산 > 둘 중하나의 값을 가진 컬럼을 하나의 컬럼으로 합쳐도 사용가능
+  - Datetime Functions
+    - round  
+      무조건 31일 기준으로 반올림, 반내림을 한다. 15일 이하 반내림, 16일 이상 반올림
+    - current_date  
+      해당 세션존에 존재하는 시간을 반환한다. 세션존에 존재하는 시간은 설정이 가능하다.  
+      **글로벌서비스 할 때 좋음**
+    - months_between  
+      소숫점의 기준은 31일이 기준점이다.
+    - systimestamp  
+      시스템의 시간
+    - current_timestamp  
+      시스템 시간에 세션 타임
+    - localtimestamp  
+      오직 세션타임만
+    - sys_extract_utc  
+      utc로 변환을 해준다.
+  - Conversion Functions  
+    변환 함수이다. 대부분 prefix로 `to_`가 붙어 있다. 주의할 것은 캐릭터와 넘버가 붙으면 내부적으로 무조건 넘버로 간다.
+    - bin_to_num  
+      비트를 10진수로 바꿔준다.
+  - General Functions 
+    - nvl  
+      자주 사용해서...
+    - nvl2  
+      널이 아니면 A를 하고 아니면 B를 한다.
+    - nullif  
+      a,b가 같으면 널, 같지 않으면 a를 리턴
+    - coalesce  
+      값이 null일 경우 다음 값으로 연산이 넘어간다.
+    - greatest  
+      나중에
+    - decode  
+      cost비용이 크다.
+  - Miscellaneous Single-Row Functions
+- multiple-row function : row가 2건 이상  
+  group function 이라고도 한다. 집합이 공집합이여도 무조건 row 1개(값은 null)가 나온다. 다만 count는 공집합이여도 null을 리턴하지 않음으로 0을 리턴한다.
+  - count  
+    count(*)을 주면 row의 건수를, count(col)은 col의 값이 null일때는 카운트에서 제외가 된다. *를 쓰는것이 유리한 이유는 블럭 헤더에 row 갯수가 있는데 이것들만 합쳐서 리턴시키기 때문이다.  
+    
+
+> 멀티플 함수를 실행후 싱글 함수를 쓰면 비효율, 싱글 함수를 쓰고 멀티를 사용하는 것이 좋다.
+
