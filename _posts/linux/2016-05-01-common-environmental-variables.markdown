@@ -4,29 +4,35 @@ title: GNU/Linux의 일반적인 환경변수
 date: 2016-05-01 12:01:18 +0900
 description: 
 image: 
-categories: study
-published: false
-comments: false
+categories: linux
+published: true
+comments: true
 tags:
 ---
 
 GNU/Linux의 일반적인 환경변수들을 한 번 알아보자.
 
-# set, printenv, env
+# 환경변수 확인
 
-```shell
-$ set
-```
+환경변수 확인에는 `set`, `printenv`, `env`와 같은 3가지 정도의 명령어가 있다.  
 
-```shell
-$ printenv
-```
+1. set
 
-```shell
-$ env
-```
+       $ set
 
-# 종류
+2. printenv
+
+       $ printenv
+    
+    `printenv`는 뒤에 옵션을 줄 수 있으나, `env`는 옵션을 줄 수가 없다.
+
+       printenv [OPTION]... [VARIABLE]...
+
+3. env
+       
+       $ env
+
+# 자주 사용되는 환경변수
 
 - SHELL: 커맨드쉘 프로그램의 경로, 기본으로 bash shell을 이용한다 (/bin/bash)
 
@@ -69,8 +75,7 @@ $ pstree -pa 1472
 bash,1472
   └─pstree,1782 -pa 1472
 
-$ cat /proc/1472/environ && echo \n
+$ cat /proc/1472/environ
 TERM=xterm-colorHOME=/rootSHELL=/bin/bashUSER=rootLOGNAME=rootPATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/binXDG_SESSION_ID=2n
 ```
 
-`cat` 실행 뒤에 && `echo \n`을 붙이는 것은 `cat`의 명령어 뒤에 line separator없기 때문이다.

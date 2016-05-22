@@ -3,7 +3,7 @@ layout: post
 title: redhat file system document
 date: 2016-04-05 17:40:14 +0900
 description: ''
-image: ''
+image: 
 categories: dev
 published: false
 comments: false
