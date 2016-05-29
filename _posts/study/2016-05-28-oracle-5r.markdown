@@ -1,0 +1,120 @@
+---
+layout: post
+title: oracle 5r
+date: 2016-05-28  9:01:55 +0900
+description: 
+image: 
+categories: study
+published: false
+comments: false
+tags:
+---
+
+오라클 5주째.
+
+> 무엇이든 공부를 시작할때엔 개념을 이해하는 것이 빠르다. 개념적인 부분을 먼저 파악하고 공부를 시작하도록 한다.
+
+# join의 개념
+
+분리되어 있는 집합을 연결하는 것이다.
+
+- join
+  - 집합을 곱하기를 한다. 즉 집합의 곱
+  - 카티션 프로덕
+  - 집합이 확장된다. 이것은 `m:n`의 조인으로써 `1:n`의 조인을 만들려면 조건을 넣어야한다. 이것은 어느 한쪽이 반드시 1이여야 한다는 뜻이다.
+  - 데이터 축소의 방법
+    1. where 사용
+    2. grouping
+    3. group by having
+- sub query
+  - 메인 쿼리에 변형을 일으킬수 없다. 집합에 변형이 일어나지 않는다.
+  - sub query 의 값은 메인쿼리에서 참조하지 않는다
+- function
+  - 메인 집합에 변형은 없다.
+  - 리턴 값은 단 하나.
+- union [all] 연결
+  - 위의 join과 다르게 곱하기 연산이 아닌 더하기 연산을 한다.
+  - 데이터 축소의 방법
+    1. group by
+
+# type of joins (구조적 관점, 스탠다드 쿼리)
+
+- equijoin
+
+  쿼리문에 where 절에 `=` 연산자를 사용한 방식
+- nonquijoin
+
+  where 절에 `=` 이외의 연산자를 사용
+- outer join
+  
+  `(+)`를 사용해서 집합을 보존함
+
+  > 오라클에서는 full outer join은 없다.
+- self join
+
+  자기 자신의 데이터를 조인함
+- cross joins (거의 쓸일 없음)
+
+      select a, b from a_table cross join b_table;
+- natural joins
+
+      select a, b from a_table natural join b_table;
+
+  컬럼 이름이 같으면 다 연결한다.
+- on (거의 이거씀..)
+  
+  여러 개의 테이블 조인도 가능하다.
+
+- right outer join
+- left outer join
+- full outer join
+
+`join using`절에서 `usion`을 사용할때에는 축약어를 사용할 수 없다. 스탠다드 쿼리는 기본적으로 주,부 테이블이라는 개념이 없다. 옵티마이져를 염려한 구문은 아니다.
+
+## sub query
+
+- scalar subquery
+
+  select 절에 쿼리를 넣는 것을 이야기한다. 답은 나오나 퍼포먼스는 떨어진다.
+
+  - 한 하나의 로우와 한 하나의 벨류를 리턴하는 것
+- correlated query
+
+  where 절에 들어있는 쿼리문, 그중에서도 메인 쿼리의 결과 값을 참조하는 쿼리이다. 서브쿼리가 독립적으로 실행이 가능하다면 데이터 엑세스 방식은 먼저 서브쿼리가 실행되어 벨류를 상수로 만들고 메인 쿼리의 where에 넣어 실행한다. 그러나 이 쿼리는 메인 쿼리의 값을 가져와야 함으로 서브 쿼리가 먼저 실행될 수 없다. 이 말인즉 메인쿼리 1건 **실행 -> 값 전달 -> 서브쿼리 1건 실행** 이런식으로 실행이되어 성능의 문제가 있다. 메인 쿼리의 건수가 매우 적어야 사용할 수 있다.
+
+  건 by 건 실행이 되기 때문에 `update`와 `delete`에 매우 유용하게 사용을 할 수 있다.
+
+## group by
+  
+rollup, cube는 group by의 확정 버젼이다.
+
+- rollup
+
+  `group by rollup(a,b)` 말아올리면서 group by
+- cube
+
+  `group by cube(a,b)` a,b의 그룹, a그룹, b그룹, 전체의 그룹 문제는 null 처리다. select 절에 `grouping` 함수를 씌워서 0,1을 확인하여 체크한다. not null이 보장되지 않으면 반드시 그룹핑을 씌워본다.
+- grouping set
+  
+  rollup, cube의 집합 중 선택적으로 group by를 하는걸 가능하게 해준다.
+- concatenated grouping
+
+  `group by grouping set(a,b) grouping set(b,c)`
+
+결론적으로 이야기 하면 group by는 모든경우의 수에 대해 가능하다. 문제는 **null 데이터에 대해 체크 조건이 필요하다.**
+
+----
+
+# analytic function
+
+엔터프라이즈에만 탑제되어 있는 기능이다. 이 function을 쓰지 않고 답을 구할 수 있어야한다. 이 함수를 사용하려면 기본적으로 `partition`이라는 개념이 있어야한다. 파티션은 하나의 집합을 쪼개는 것을 이야기한다. `window` 이것은 파티션에 종속되어 있는 개념이다. 윈도우는 가변적이여서 범위가 실행 중에 변할 수 있다. 또는 실행 `row`를 기준으로 일정 범위를 지정할 수도 있다. 윈도우를 사용할 때에는 파티션 내에 `order by`가 필수다.
+
+## 3대 요소
+
+- Result Set Partitions
+- (Sliding) Window
+- Current Row
+
+## 사용시 주의사항
+
+null은 order by를 할 수 없다. 그러나 order 가 중요함으로 `nulls last` 또는 `nulls first`라는 구문이 있다.
