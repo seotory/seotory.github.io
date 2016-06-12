@@ -57,7 +57,7 @@ collections:
     permalink: /solution/:categories/:title/
 
 # paging
-paginate: 15
+paginate: 10
 paginate_path: "/list/:num/"
 
 # gems
