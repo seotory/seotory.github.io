@@ -2,7 +2,7 @@
 layout: post
 title: click event 자바스크립트로 체크하기
 date: 2016-04-08 16:55:59 +0900
-description: ''
+description: 
 image: ''
 categories: dev
 published: true
