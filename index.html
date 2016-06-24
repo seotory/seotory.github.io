@@ -21,9 +21,9 @@ layout: default
           <div class="cube-body-wrap">
             <div class="cube-body-contents cube-body-contents--hide">
               {% if post.description %}
-                {{ post.description | strip_html }} 
+                {{ post.description | strip_html }} [더보기]
               {% else %}
-                {{ post.excerpt | strip_html | truncatewords: 40 }} 
+                {{ post.excerpt | strip_html | truncatewords: 40 }} [더보기]
               {% endif %}
             </div>
             <div class="cube-body-info-wrap">
