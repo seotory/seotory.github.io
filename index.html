@@ -3,62 +3,60 @@ layout: default
 ---
 <section class="page-content">
   <div class="wrapper">
-    <div class="home">
-
-      <ul class="post-list">
-        {% for post in paginator.posts %}
-          <li>
-            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-            <h3>
-              <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-            </h3>
-            {% if post.description %}
-              <p>
+    <ul class="display">
+      {% for post in paginator.posts %}
+      <li class="display-item">
+        <div class="cube" data-href="{{ post.url | prepend: site.baseurl }}" data-bg-img="{{ post.image }}">
+          <div class="cube-title">{{ post.title }}</div>
+          <div class="cube-body-wrap">
+            <div class="cube-body-contents cube-body-contents--hide">
+              {% if post.description %}
                 {{ post.description | strip_html }} 
-                {% if post.comments %}
-                <a href="{{ root_url }}{{ post.url }}#disqus_thread" data-disqus-identifier="{{post.url}}"></a>
-                {% endif %}
-                <a href="{{ root_url }}{{ post.url }}">[more]</a>
-              </p>
-            {% else %}
-              <p>
+              {% else %}
                 {{ post.excerpt | strip_html | truncatewords: 40 }} 
-                {% if post.comments %}
-                <a href="{{ root_url }}{{ post.url }}#disqus_thread" data-disqus-identifier="{{post.url}}"></a>
-                {% endif %}
-                <a href="{{ root_url }}{{ post.url }}">[more]</a>
-              </p>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-
-      {% if paginator.total_pages > 1 %}
-      <div class="pagination">
-        {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
-        {% else %}
-        <span>&laquo; Prev</span>
-        {% endif %}
-
-        {% for page in (1..paginator.total_pages) %}
-          {% if page == paginator.page %}
-          <em>{{ page }}</em>
-          {% elsif page == 1 %}
-          <a href="/{{site.baseurl | replace: '//', '/'}}">{{ page }}</a>
-          {% else %}
-          <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
-          {% endif %}
-        {% endfor %}
-
-        {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
-        {% else %}
-        <span>Next &raquo;</span>
-        {% endif %}
-      </div>
-      {% endif %}
-
-    </div>
+              {% endif %}
+            </div>
+            <div class="cube-body-info-wrap">
+              {% if post.comments %}
+              <span class="cube-body-info-icon cube-body-info-icon--red">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+              </span>
+              <span class="cube-body-info-link">
+                <a href="#" onclick="return false;" data-disqus-identifier="{{post.url}}"></a>
+              </span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
   </div>
+
+  {% if paginator.total_pages > 1 %}
+  <div class="pagination">
+    {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
+    {% else %}
+    <span>&laquo; Prev</span>
+    {% endif %}
+
+    {% for page in (1..paginator.total_pages) %}
+      {% if page == paginator.page %}
+      <em>{{ page }}</em>
+      {% elsif page == 1 %}
+      <a href="/{{site.baseurl | replace: '//', '/'}}">{{ page }}</a>
+      {% else %}
+      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
+    {% else %}
+    <span>Next &raquo;</span>
+    {% endif %}
+  </div>
+  {% endif %}
+
 </section>

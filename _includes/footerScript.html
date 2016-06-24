@@ -63,5 +63,33 @@ function log ( msg ) {
 
   var rNum = Math.floor((Math.random() * imgAry.length));
   $('.page-header').css({"background-image":"url("+ imgAry[rNum] +")"});  // .animate({opacity: 1})
+
+  // main
+  var
+  beforeColor = '',
+  colorSet = ['#CDDC39','#FFC107','#FD92B6','#7FA8CA','#BFBFBF'],
+  colorStr = function () {
+    var rNum = Math.floor((Math.random() * colorSet.length));
+    return colorSet[rNum];
+  },
+  getColor = function ( el ) {
+    var color = colorStr();
+    if ( color == beforeColor ) {  
+      return getColor();
+    } else {
+      beforeColor = color;
+      return color;
+    }
+  }
+  ; 
+  $('.cube').each(function ( idx ) {
+    var color = getColor();
+    $(this).css('background-color', color);
+
+    var href = $(this).data('href');
+    $(this).on('click', function(){
+      window.location.href = href;
+    });
+  });
 })();
 </script>

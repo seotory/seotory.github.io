@@ -1,0 +1,37 @@
+---
+layout: post
+title: oracle 6r
+date: 2016-06-18  9:02:36 +0900
+description: 
+image: 
+categories: study
+published: false
+comments: false
+tags:
+---
+
+# 오라클 6R 
+
+> row별로 비즈니스 로직을 심을 수 있다.
+
+# Analytic Family func.
+
+## window 구절
+
+- 피지컬 윈도우, 로직컬 윈도우 2가지가 존제
+  
+  > 밑에 두 가지 차이를 확실하게 구별해야 한다.
+  
+  - 피지컬 윈도우 : 시스템에서 준 순서대로 다르게 인식
+    - ROWS : 물리적인 ROW 단위로 WINDOW 지정
+  - 로직컬 윈도우 : 값이 같으면 같은 Row로 인식 (왜냐하면 RANGE로 범위 설정)
+  - `만약 order by를 사용해 유니크하게 만들면 피지컬, 로직컬 모두 값이 같아진다.`
+- 범위를 고정할 수도 있고 범위를 움직이면서 window를 설정할 수도 있다.
+  - 범위 고정시
+    - `1 PRECEDING` 구문을 쓴다.
+
+*window 값을 주지 안으면 RANGE 범위로 본다.*
+
+DB에서 성능은 IO가 결정.
+
+실전 sql < oracle
