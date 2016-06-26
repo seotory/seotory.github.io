@@ -62,7 +62,14 @@ function log ( msg ) {
   imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/82.jpg');
 
   var rNum = Math.floor((Math.random() * imgAry.length));
-  $('.page-header').css({"background-image":"url("+ imgAry[rNum] +")"});  // .animate({opacity: 1})
+  var _img = new Image;
+  _img.addEventListener('load', function(){
+    $('.page-header').css({"background-image":"url("+ imgAry[rNum] +")", "opacity":"0"}).animate({opacity: 1}, 'slow');
+  });
+  _img.addEventListener('error', function(){
+    $('.page-header').css({"background-color":"#bbb", "opacity":"0"}).animate({opacity: 1}, 'slow');
+  });
+  _img.src = imgAry[rNum];
 
   // main
   var

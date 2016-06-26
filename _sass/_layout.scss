@@ -253,14 +253,6 @@ article {
     min-height: calc(100% - 211px);
     margin-top: 50px;
   }
-  /* paging.. */
-  /*
-  .pagination {
-    margin: 0 auto;
-    margin: 20px;
-    text-align: center;
-  }
-  */
 }
 
 
@@ -275,7 +267,7 @@ article {
     padding: 0;
     text-align: center;
 
-    display: inline-block; // an inline-block will allow you to use it with other contents
+    display: inline-block; /* an inline-block will allow you to use it with other contents */
   }
 
   li {
@@ -356,6 +348,25 @@ article {
 }
 
 /* post section */
+.post {
+
+  overflow: hidden;
+  clear: both;
+  
+  > div {
+    /*float: left;*/
+  }
+
+  &-wrap {
+
+  }
+
+  &-info {
+
+  }
+
+}
+
 .post-header {
   height: inherit;
   display: table-cell;

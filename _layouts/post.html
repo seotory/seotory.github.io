@@ -16,70 +16,74 @@ layout: default
 <section class="page-content">
   <div class="wrapper">
     <div class="post">
-      <!-- post -->
-      <article class="post-content">
-        {{ content }}
-      </article>
+      <div class="post-wrap">
+        <!-- post -->
+        <article class="post-content">
+          {{ content }}
+        </article>
 
-      <!-- tags -->
-      {% if page.tags.size > 0 %}
-      <div class="post-tags">
-          <span>
-            <i class="fa fa-tags" aria-hidden="true"></i>
-            tags
-          </span>
-          {% for tag in page.tags %}
-          <span><a href="/tags/?#{{ tag }}">{{ tag | downcase }}</a></span>
-          {% endfor %}
-      </div>
-      {% endif %}
-
-
-      {% if site.categories[page.categories.last].size > 1 %}
-      
-      <!-- category other posts -->
-      <hr class="dot" />
-      <div class="post-other">
-        <h2>Other posts</h2>
-      	<ul>
-    			{% for post in site.categories[page.categories.last] %} 
-    				{% if post.title != page.title %}
-    			  <li><a href="{{post.url}}">{{ post.title }}</a></li>
-    			  {% endif %}
-    			{% endfor %}
-      	</ul>
-      </div>
-
-      <!-- 전후글 -->
-      {% for post in site.categories[page.categories.last] %}
-        {% if post.url == page.url %}
-          {% assign post_index0 = forloop.index0 %}
-          {% assign post_index1 = forloop.index %}
-        {% endif %}
-      {% endfor %}
-      {% for post in site.categories[page.categories.last] %}
-        {% if post_index0 == forloop.index %}
-          {% assign next_post = post.url %}
-        {% endif %}
-        {% if post_index1 == forloop.index0 %}
-          {% assign prev_post = post.url %}
-        {% endif %}
-      {% endfor %}
-      <div class="post-close">
-      {% if next_post %}
-        <div class="post-next">
-          <a href="{{ next_post }}">NEXT ></a> <br>
+        <!-- tags -->
+        {% if page.tags.size > 0 %}
+        <div class="post-tags">
+            <span>
+              <i class="fa fa-tags" aria-hidden="true"></i>
+              tags
+            </span>
+            {% for tag in page.tags %}
+            <span><a href="/tags/?#{{ tag }}">{{ tag | downcase }}</a></span>
+            {% endfor %}
         </div>
-      {% endif %}
-      {% if prev_post %}
-        <div class="post-prev">
-          <a href="{{ prev_post }}">< PREV</a> <br>
+        {% endif %}
+
+
+        {% if site.categories[page.categories.last].size > 1 %}
+        
+        <!-- category other posts -->
+        <hr class="dot" />
+        <div class="post-other">
+          <h2>Other posts</h2>
+        	<ul>
+      			{% for post in site.categories[page.categories.last] %} 
+      				{% if post.title != page.title %}
+      			  <li><a href="{{post.url}}">{{ post.title }}</a></li>
+      			  {% endif %}
+      			{% endfor %}
+        	</ul>
         </div>
-      {% endif %}
+
+        <!-- 전후글 -->
+        {% for post in site.categories[page.categories.last] %}
+          {% if post.url == page.url %}
+            {% assign post_index0 = forloop.index0 %}
+            {% assign post_index1 = forloop.index %}
+          {% endif %}
+        {% endfor %}
+        {% for post in site.categories[page.categories.last] %}
+          {% if post_index0 == forloop.index %}
+            {% assign next_post = post.url %}
+          {% endif %}
+          {% if post_index1 == forloop.index0 %}
+            {% assign prev_post = post.url %}
+          {% endif %}
+        {% endfor %}
+        <div class="post-close">
+        {% if next_post %}
+          <div class="post-next">
+            <a href="{{ next_post }}">NEXT ></a> <br>
+          </div>
+        {% endif %}
+        {% if prev_post %}
+          <div class="post-prev">
+            <a href="{{ prev_post }}">< PREV</a> <br>
+          </div>
+        {% endif %}
+        </div>
+
+        {% endif %}
+
       </div>
-
-      {% endif %}
-
+      <div class="post-info">
+      </div>
     </div>
   </div>
 </section>
