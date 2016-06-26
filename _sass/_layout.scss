@@ -224,6 +224,7 @@ article {
   background-size: cover;
   -moz-background-size: cover; 
   -webkit-background-size: cover;
+  -webkit-overflow-scrolling: touch;
   z-index: -1;
 
   .wrapper {
