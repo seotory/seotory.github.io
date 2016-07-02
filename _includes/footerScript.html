@@ -117,6 +117,7 @@ var timer;
     var titleElList = [];
     var aEl = document.getElementsByTagName('article')[0];
     if ( aEl ) {
+      var titleIdx = 0;
       for ( var p in aEl.children ) {
         if ( p > -1 ) {
           var childEl = aEl.children[p];
@@ -130,17 +131,30 @@ var timer;
             if ( titleSet.topDepth > depth ) titleSet.topDepth = depth;
 
             titleElList.push({
+              index: titleIdx,
               tagName: tagName,
               depth: depth,
               title: childEl.textContent,
               top: childEl.offsetTop
             });
+
+            titleIdx++;
           }
         }
       }
-      //console.log( titleElList );
-      //console.log( titleSet );
+
+      titleSet.list = titleElList;
+
+      console.log( titleElList );
+      console.log( titleSet );
+
       // scroll event;
+      var scrollIdx = 0;
+      $( window ).scroll(function () {
+        //console.log( $(window).scrollTop() );
+        var cursor = $(window).scrollTop();
+      });
+
     }
   }
 
