@@ -198,7 +198,7 @@ ReadDoc.prototype.readBox = function ( option ) {
   }
 
   return function ( cursor ) {
-    if ( compareElHeight = compareEl.offsetHeight ) refresh ();
+    if ( compareElHeight != compareEl.offsetHeight ) refresh ();
     if ( cursor >= startPosition && cursor < endPosition ) {
       el.style.top = '10px';
       el.style.position = 'fixed';
