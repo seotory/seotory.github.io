@@ -183,15 +183,22 @@ ReadDoc.prototype.readProcess = function ( option ) {
 ReadDoc.prototype.readBox = function ( option ) {
   
 	var el = document.querySelector( option.target );
+  var compareEl = document.querySelector( option.compareTarget );
+  var compareElHeight = compareEl.offsetHeight;
   var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
   var topGap = scrollTop + Math.floor(el.getBoundingClientRect().top);
   var topMargin = option.marginTop || 15;
 
   var startPosition = topGap-topMargin;
-  var endPosition = topGap + option.limiteHeight - topMargin - el.offsetHeight;
+  var endPosition = topGap + compareElHeight - topMargin - el.offsetHeight;
+
+  function refresh () {
+    compareElHeight = compareEl.offsetHeight;
+    endPosition = topGap + compareElHeight - topMargin - el.offsetHeight;
+  }
 
   return function ( cursor ) {
-    var limiteHeight = option.limiteHeight;
+    if ( compareElHeight = compareEl.offsetHeight ) refresh ();
     if ( cursor >= startPosition && cursor < endPosition ) {
       el.style.top = '10px';
       el.style.position = 'fixed';
@@ -199,7 +206,7 @@ ReadDoc.prototype.readBox = function ( option ) {
       el.style.top = '0px';
       el.style.position = 'absolute';
     } else {
-    	el.style.top = (limiteHeight-el.clientHeight) + 'px';
+    	el.style.top = (compareElHeight-el.clientHeight) + 'px';
       el.style.position = 'absolute';
     }
   }
@@ -255,7 +262,7 @@ var a = new ReadDoc({
 	readBox : {
 		target: '.post .post-info-move',
 		marginTop: 15,
-		limiteHeight: document.querySelector('.post').offsetHeight
+		compareTarget: '.post'
 	}
 });
 a.run();
