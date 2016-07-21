@@ -38,9 +38,7 @@ var ReadDoc = ReadDoc || function ( option ) {
 	this.printTarget = this.option.printTarget || '';
 	this.root = document.querySelectorAll( this.target )[0];
 	this.isHeaderTag = this.option.isHeaderTag || true; 
-	this.headerInfo = {
-		topDepth : 9
-	}
+	this.topDepth = 9;
 
 	this.itemIdx = 0;
 	this.itemsRegExp = this.option.itemsRegExp || 'H[1-6]';
@@ -85,7 +83,7 @@ ReadDoc.prototype.refresh = function () {
 
       	if ( this.isHeaderTag ) {
 	        var depth = tagName.replace( /H/ig, '' );
-	        if ( this.headerInfo.topDepth > depth ) this.headerInfo.topDepth = depth;
+	        if ( this.topDepth > depth ) this.topDepth = depth;
 	        items[idx].depth = depth;
       	}
 
@@ -108,7 +106,7 @@ ReadDoc.prototype.print = function () {
     var row = items[i];
     var headerStr = '';
     if ( this.isHeaderTag ) {
-    	headerStr = '<li class="title-index-'+(i+1)+' title-depth-'+row.depth+'" ' 
+    	headerStr = '<li class="title-index-'+(i+1)+' title-depth-'+(row.depth-(this.topDepth-1))+'" ' 
     								+ 'data-title-depth="'+row.depth+'"'
     								+ '>';
     } else {
@@ -192,11 +190,14 @@ ReadDoc.prototype.readBox = function ( option ) {
   return function ( cursor ) {
     var limiteHeight = option.limiteHeight;
     if ( cursor >= startPosition && cursor < endPosition ) {
-      el.style.top = (cursor-startPosition)+'px';
+      el.style.top = '10px';
+      el.style.position = 'fixed';
     } else if ( cursor - topMargin < topGap ) {
       el.style.top = '0px';
+      el.style.position = 'absolute';
     } else {
     	el.style.top = (limiteHeight-el.clientHeight) + 'px';
+      el.style.position = 'absolute';
     }
   }
 }
@@ -249,7 +250,7 @@ var a = new ReadDoc({
 		}
 	},
 	readBox : {
-		target: '.post .post-info',
+		target: '.post .post-info-move',
 		marginTop: 15,
 		limiteHeight: document.querySelector('.post').offsetHeight
 	}

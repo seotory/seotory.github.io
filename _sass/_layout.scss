@@ -275,15 +275,23 @@ article {
 
   .post-wrap {
     padding-right: 300px;
+    width: 100%;
+    float: left;
   }
 
   .post-info {
-    position: absolute;
-    top: 0px;
-    right: 0px;
+    float: right;
+    margin-left: -300px;
     width: 300px - ($spacing-unit/2);
     border-radius: 10px;
     font-size: 14px;
+
+    &-move {
+      position: absolute;
+      top: 0;
+      width: 300px - ($spacing-unit/2);
+    }
+
     a {
       color: #000;
     }
