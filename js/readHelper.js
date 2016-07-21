@@ -58,7 +58,7 @@ ReadDoc.prototype.refresh = function () {
 	var regExp = that.itemsRegExp;
 	var idx = 0;
 	var items = [];
-	var scrollTop = document.body.scrollTop;
+	var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
 
 	this.targetHeight = that.root.offsetHeight;
 	this.itemsInfo = {};
@@ -128,10 +128,11 @@ ReadDoc.prototype.readPosition = function ( option ) {
 	var that = this;
 
 	function moveIdx () {
+    var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
 		that.itemIdx = 0;
-	  for ( var i=0 ; i<that.itemsTops.length ; i++ ) {
-	    if ( that.itemsTops[i] <= document.body.scrollTop ) {
-	      that.itemIdx ++;
+	  for ( var i=0 ; i<that.itemsTops.length ; i++ ) {      
+	    if ( that.itemsTops[i] <= scrollTop ) {
+	      ++that.itemIdx;
 	    } 
 	  }
 	}
@@ -142,7 +143,7 @@ ReadDoc.prototype.readPosition = function ( option ) {
 
 	return function ( cursor ) {
 		if ( that.itemsTops[that.itemIdx] <= cursor && (that.itemIdx+1) <= that.itemsTops.length ) {
-			if ( that.itemsTops[that.itemIdx+1] <= cursor ) {
+      if ( that.itemsTops[that.itemIdx+1] <= cursor ) {
 			  moveIdx();
 			} else {
       	that.itemIdx ++;
@@ -162,7 +163,8 @@ ReadDoc.prototype.readPosition = function ( option ) {
 ReadDoc.prototype.readProcess = function ( option ) {
 
 	var that = this;
-  var topGap = document.body.scrollTop + Math.floor(that.root.getBoundingClientRect().top);
+  var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+  var topGap = scrollTop + Math.floor(that.root.getBoundingClientRect().top);
 
 	return function ( cursor ) {
 		if ( cursor >= topGap ) {
@@ -181,7 +183,8 @@ ReadDoc.prototype.readProcess = function ( option ) {
 ReadDoc.prototype.readBox = function ( option ) {
   
 	var el = document.querySelector( option.target );
-  var topGap = document.body.scrollTop + Math.floor(el.getBoundingClientRect().top);
+  var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+  var topGap = scrollTop + Math.floor(el.getBoundingClientRect().top);
   var topMargin = option.marginTop || 15;
 
   var startPosition = topGap-topMargin;
