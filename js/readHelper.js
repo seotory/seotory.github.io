@@ -114,7 +114,7 @@ ReadDoc.prototype.print = function () {
     }
 
     html += headerStr
-        + '<a href="#" data-top="'+row.top+'" onclick="ReadDoc.move(this, '+i+');return false;">'
+        + '<a href="#" data-top="'+row.top+'" onclick="ReadDoc.move(this, '+row.top+');return false;">'
         + row.txt 
         + '</a>'
         + '</li>';
@@ -224,8 +224,8 @@ ReadDoc.prototype.init = function () {
 	this.refresh();
 }
 
-ReadDoc.move = function ( el ) {
-	window.scrollTo(0, el.dataset.top);
+ReadDoc.move = function ( el, top ) {
+	window.scrollTo(0, top);
 }
 
 window.ReadDoc = ReadDoc;
