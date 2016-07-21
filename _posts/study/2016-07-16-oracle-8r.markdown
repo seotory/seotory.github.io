@@ -1,0 +1,124 @@
+---
+layout: post
+title: oracle 8r
+date: 2016-07-16  8:52:12 +0900
+description: 
+image: 
+categories: study
+published: false
+comments: false
+tags:
+---
+
+# 인덱스 선정절차
+
+## 기본
+
+- 인덱스는 기본적으로 가지고 있는 cost가 크다.
+- 인덱스는 랜덤 블럭 스캔을 실행한다. (cost가 매우 크다.)
+
+## 선정기준
+
+- 분포도가 좋은 컬럼은 단독적으로 생성
+- 조합되어 사용되면 결합인덱스
+- 인덱스간 역활분담
+- 수정없는 컬럼
+- pk, fk
+- 결합인덱스는 컬럼 순서에 주의
+
+# 비트맵 인덱스
+
+레드, 블랙, 화이트, 블랙 다음과 같은 4가지의 값의 분포도가 25% 가 있다고 가상, 이런 경우는 b-tree인덱스를 태우면 25% 범위를 스캔한다. 비트맵 인덱스에서는 값을 저장하지 않고 비트를 저장하는데, 인덱스를 만들때 부터 컬럼의 값에 따라 영역을 아예 분리 시켜서 저장한다. 추가적으로 컬럼이 널이면 널을 허용하는 영역도 만든다.
+
+그리고 나서 테이블의 로우 아이디 순으로 영역에 저장을 한다. 첫번째 건이 블루인 경우 비트 1를 저장한다. 나머지 영역에는 0비트를 저장한다. 두번째 건이 레드이면 0, 1, 0, 0, 0를 각각 저장한다. 즉 로우 아이디 별로 영역에 생긴다. 찾을때에는 이 저장된 비트의 위치를 역계산 하여 로우 아이디르 찾는다. 이렇게 생성된 비트맵 인덱스는 크기가 매우 작아진다.
+
+아래와 같은 이런 비트맵 인덱스의 특성상 부정형에 대한 인덱스 효율이 매우 좋다. 아래와 같은 경우는 red 영역에서 0비트만 찾아서 출력을 시키면 된다.
+
+```sql
+select * from dual where color <> 'red'
+```
+
+이런 비트맵 인덱스의 단점은 레드, 블랙, 화이트, 블랙 이외의 값이 들어오면 새로운 영역을 하나 더 만들어야하고, 기존의 영역에도 변경이 불가피해지므로, 고정값이 아닌 컬럼에 대해 이용하게 될경우 cost가 높아진다. 즉 비트맵 인덱스를 사용하려면 경우의 수를 모두 만들어 놓아야한다.
+
+다른 장점은 비트맵 인덱스가 머지이면서 and 연산인 경우 bit연산을 하여 bit and 연산으로 참인 녀석을 뽑는다. 반대로 or 인 경우 bit or 연산으로 찾아낸다.
+
+## 장점
+
+- size가 작다
+- 통계 등에서는 사용하기가 좋다.
+
+# function based index
+
+펑션이 사용하면 컬럼에 대해 어떤 값이 나오게 되는데 그 값을 인덱스로 만든다. 주로 설계상의 오류를 바로 잡는데 사용한다.
+
+```sql
+CREATE INDEX from_loc_idx ON orders (SUBSTR(ship_id, 5, 3));
+CREATE INDEX repair_ord_idx ON orders (SUBSTR(ship_id, 5, 3), ord_date);
+```
+
+```sql
+-- FAIL 1
+SELECT *
+FROM item_group x, items y
+WHERE x.class1||x.class2||x.class3 = y.group_cd
+
+-- FAIL2
+SELECT *
+FROM item_group x, items y
+WHERE x.class1 = SUBSTR(y.group_cd, 1, 2)
+AND x.class2 = SUBSTR(y.group_cd, 3, 2)
+AND x.class3 = SUBSTR(y.group_cd, 5, 2)
+
+-- 해결책, 첫번째 쿼리를 이용해야 이 인덱스를 사용
+CREATE INDEX group_cd_idx ON item_group (class1||class2||class3);
+```
+
+**function index 를 사용하면 좋을 때**
+
+- Column의 중간 부분의 검색 
+- Join 연결고리 Column이 대응하지 않는 경우의 해결
+- 일자 Column이 분할된 경우의 해결
+- Data Type이 상이한 Join Column
+- Join Column이 경우에 따라 달라지는 경우의 Join
+
+# arc 관계 (exclusive or)
+
+모델상의 관점에서 계좌라는 테이블이 있다고 생각하자. 계좌주라는 컬럼이 있고 이 컬럼이 다른 테이블에 매칭되는데, 계좌주에는 개인과, 법인이 있다. 일차적을 생각하면 단일 테이블에서 컬럼 값을 나누는 것이고, 다른 방법은 계좌주에 따라서 테이블을 다르게 매칭시킬수도 있는데 이런 관계를 arc관계라고 한다.
+
+아크 관계를 그대로 모델링으로 가져가면 문제가 생기는데, 집합의 연산은 반드시 두 집합을 먼저 연산한다. 즉 3개를 조인하더라도 a,b를 연산후 c를 연산하던지 a,c를 연산하고 b를 연산하게 된다.
+
+즉 계좌와 개인을 먼저 조인하고 이 집합에 법인을 조인하게 되는데 이게 매우 비효율적이다. 따라서 아크 관계가 발생하면 하나의 테이블로 생성시킨다. 즉 엔티티 통합의 과정을 걸친다. 그렇다하더라도 정답이 있는건 아니다.
+
+이런 경우 유니크한 인덱스를 만들때에 function index 안에서 case문을 이용하여 유니크하게 만들어 줄 수 있다.
+
+```sql
+CREATE UNIQUE INDEX official_id_idx ON customers
+(CASE WHERE cust_type = 1 THEN resident_id ELSE business_id END);
+```
+
+# function 과 function index
+
+function 과 function index를 결합하면 자기자신이 가지고 있지 않은 데이터를 가지고도 인덱스를 구성할 수 있게 되며 구성에 따라 매우 유용하게 된다. 즉 function index 자체가 캐쉬가 되는 셈이다.
+
+> function에서의 **DETERMINISTIC** 참조
+
+# object type index
+
+아래와 같이 사용자 타입의 객체를 지정할 수 있다. 자바에서의 class와 비슷.
+
+
+```sql
+CREATE TYPE cube AS OBJECT
+( 
+	length NUMBER,
+	width NUMBER,
+	height NUMBER,
+	MEMBER FUNCTION volume RETURN NUMBER DETERMINISTIC
+);
+```
+
+# 부분범위 처리
+
+기술적인 것은 아니고 개념적인 것이다. 기본적을 전체 스캔을 해야하는 경우에는 부분범위 처리가 불가능하다.
+
+- exists를 사용시에는 서브쿼리에 select 절을 무조건 상수값으로 샛팅한다. 굳이 테이블을 읽을 필요가 없다.

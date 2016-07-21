@@ -1,4 +1,3 @@
-<script>
 function log ( msg ) {
 	if ( console )
 		console.log( msg );
@@ -110,54 +109,6 @@ var timer;
       //$('.page-header').css({"background-image":"url('/images/title-background.jpg')", "opacity":"0"}).animate({opacity: 1}, 'slow');
     }, 1000);
 
-    // article
-    var titleSet = {
-      topDepth: 9
-    }
-    var titleElList = [];
-    var aEl = document.getElementsByTagName('article')[0];
-    if ( aEl ) {
-      var titleIdx = 0;
-      for ( var p in aEl.children ) {
-        if ( p > -1 ) {
-          var childEl = aEl.children[p];
-          var tagName = childEl.tagName;
-          if ( /H([1-6])/ig.test(tagName) ) {
-            //console.log( tagName );
-            //console.dir( childEl );
-
-            var depth = tagName.replace( /H/ig, '' );
-
-            if ( titleSet.topDepth > depth ) titleSet.topDepth = depth;
-
-            titleElList.push({
-              index: titleIdx,
-              tagName: tagName,
-              depth: depth,
-              title: childEl.textContent,
-              top: childEl.offsetTop
-            });
-
-            titleIdx++;
-          }
-        }
-      }
-
-      titleSet.list = titleElList;
-
-      //console.log( titleElList );
-      //console.log( titleSet );
-
-      // scroll event;
-      var scrollIdx = 0;
-      $( window ).scroll(function () {
-        //console.log( $(window).scrollTop() );
-        var cursor = $(window).scrollTop();
-      });
-
-    }
   }
 
-
 })();
-</script>

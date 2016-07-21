@@ -265,6 +265,7 @@ article {
 /* post section */
 .post {
 
+  position: relative;
   overflow: hidden;
   clear: both;
   
@@ -272,14 +273,62 @@ article {
     /*float: left;*/
   }
 
-  &-wrap {
-
+  .post-wrap {
+    padding-right: 300px;
   }
 
-  &-info {
+  .post-info {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 300px - ($spacing-unit/2);
+    border-radius: 10px;
+    font-size: 14px;
+    a {
+      color: #000;
+    }
 
+    ul {
+      margin-bottom: 0px;
+    }
+
+    li {
+      margin: 10px 0;
+      line-height: 120%;
+
+      &.title-depth-2 {
+        margin-left: 15px
+      }
+      &.title-depth-3 {
+        margin-left: 30px
+      }
+      &.title-depth-4 {
+        margin-left: 45px
+      }
+      &.title-depth-5 {
+        margin-left: 60px
+      }
+      &.title-depth-6 {
+        margin-left: 75px
+      }
+      &.on {
+        a {
+          color: red;
+        }
+      }
+    }
   }
+}
 
+@include media-query($on-laptop) {
+  .post {
+    .post-wrap {
+      padding-right: 0px;
+    }
+    .post-info {
+      display: none;
+    }
+  }
 }
 
 .post-header {
@@ -287,6 +336,23 @@ article {
   display: table-cell;
   vertical-align: bottom;
   padding-bottom: 30px;
+
+  .post-info {
+    text-shadow: 0 2px 1px rgba(0, 0, 0, 0.67);
+    word-break: keep-all;
+    h1 {
+      color: #fff;
+      font-size: 35px;
+      line-height: 1.3;
+    }
+    .post-meta {
+      padding: 4px 6px;
+      margin-bottom: 0px;
+      border-radius: 5px;
+      color: #eee;
+      background-color: rgba(0,0,0,0.2);
+    }
+  }
 }
 
 .post-content {
@@ -305,23 +371,6 @@ article {
   .post-meta {
     font-size: $small-font-size;
     color: #999;
-  }
-}
-
-.post-info {
-  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.67);
-  word-break: keep-all;
-  h1 {
-    color: #fff;
-    font-size: 35px;
-    line-height: 1.3;
-  }
-  .post-meta {
-    padding: 4px 6px;
-    margin-bottom: 0px;
-    border-radius: 5px;
-    color: #eee;
-    background-color: rgba(0,0,0,0.2);
   }
 }
 
@@ -555,7 +604,7 @@ footer {
   }
 
   .site-copyright {
-    margin: 15px 0 40px 0;
+    padding: 0 0 40px 0;
     font-size: 15px;
   }
 }

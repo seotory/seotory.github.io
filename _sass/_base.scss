@@ -122,16 +122,6 @@ a {
 /**
  * Blockquotes
  */
- /*
-blockquote {
-  color: $grey-color;
-  border-left: 4px solid $grey-color-light;
-  padding-left: $spacing-unit / 2;
-  font-size: 18px;
-  letter-spacing: -1px;
-  font-style: italic;
-}
-*/
 blockquote {
   display: block;
   background: #efefef;
@@ -165,7 +155,7 @@ blockquote {
     content: "";
   }
 
-  > :last-child {
+  *:last-child {
     margin-bottom: 0;
   }
 
@@ -189,9 +179,6 @@ blockquote {
     font-style: italic;
   }
 
-  p:last-child {
-    margin-bottom: 0px;
-  }
 }
 
 
