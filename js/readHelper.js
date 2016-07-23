@@ -1,6 +1,3 @@
-var aEl = document.getElementsByTagName('article')[0];
-if ( aEl ) {
-
 ;(function(window, ReadDoc) {
 
 var fs = {
@@ -240,31 +237,3 @@ ReadDoc.move = function ( top ) {
 
 window.ReadDoc = ReadDoc;
 })(window);
-
-var a = new ReadDoc({
-	target: 'article',
-	printTarget: '.post .post-info-title',
-	readPosition : {
-		onReachEvent : function ( idx ) {
-      $('.post .post-info-title').find('li').removeClass('on');
-      idx = idx-1;
-      if ( idx > -1 ) {
-        $('.post .post-info-title').find('li').eq(idx).addClass('on');
-      }
-		}
-	},
-	readProcess : {
-		onChangeEvent : function ( per ) {
-			var bar = document.querySelector(".progress div");
-			bar.style.width = per + '%';
-		}
-	},
-	readBox : {
-		target: '.post .post-info-move',
-		marginTop: 15,
-		compareTarget: '.post'
-	}
-});
-a.run();
-
-}

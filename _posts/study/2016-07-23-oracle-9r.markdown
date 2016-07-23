@@ -1,0 +1,105 @@
+---
+layout: post
+title: oracle 9r
+date: 2016-07-23  9:06:39 +0900
+description: 
+image: 
+categories: study
+published: false
+comments: false
+tags:
+---
+
+# oracle join
+
+join에 대해서 한번 알아보자.
+
+## loop join (loop-query 어플리케이션 로직)
+
+- declare sursor 를 통해 해당 table을 하나씩 fetch(가져와서) 거기서 얻은 상수값으로 for loop에서 다시 연결하는 sql을 수행하는 방식
+- access path(접근순서)가 바뀌질 않는다. (고정을 시킬 수 있는 장점은 있으나 속도가...)
+- select 절 내에 select쿼리인 경우 loop join에 해당한다.
+- 결론적으로 별로 안좋다.
+
+### ex)
+
+**join**
+
+tab1 acuss
+1000
+
+tal1 fetch
+0
+
+연결
+1000
+
+result
+1
+
+**loop**
+
+tab1 acuss
+1000
+
+tal1 fetch (fetch 또한 sql call이다.)
+1000
+
+연결
+1000
+
+result
+1001
+
+결과적으로 loop가 sql call이 2000건 발생한다.
+
+## nested join
+
+- join 컬럼에 인덱스가 없으면 무용지물이다.
+- random block io의 코스트를 어떻게 줄일것인가가 가장 큰 과제
+
+## hash join
+
+- 아무리 잘못짜도 최악의 상황이 오지 않는다.
+- 10g 부터는 보통 hash로 풀린다.
+- random acess가 없음
+- 컬럼 값을 해쉬 값으로 변경하는 작업이 필요하다.
+- 해쉬 조인을 선택해야할 이유는 없다. (내가 짠 쿼리에서 해쉬조인이 나오면 안된다.)
+
+### in-memory
+
+메모리 안에서 해시 조인이 일어난다.
+
+1. build- in
+  - build-in 을 먼저하는데 작은 집합을 대상으로 실행한다.
+  - 작은 집합에 해쉬 펑션을 씌워서 bitmap에 넣음
+  - 두번째 해쉬 펑션을 씌워서 클러스터에 넣어준다.
+  - **문제는 이과정에서 불필요한 데이터까지 모드 bitmap을 만드는데에 있다.**
+2. p input
+  - 두번째 집합의 값을 첫번째 해쉬 펑션을 태우고 값이 있는지 확인한다.
+  - 후에 클러스터 주소를 확인
+
+### 유예
+
+해쉬 영역이 모자르면.. 실제 디스크에 저장하고 
+
+## sort merge
+
+- 두 개의 테이블을 동시에 탐색하고 액세스 한 후에, 2개의 데이터 집합 sort 하고 merge 한다.
+- 결국 결합 인덱스가 필요가 없다.
+
+## start join (merge join)
+
+- 상관없는 테이블들을 catesian product로 모든 경우의 수를 가진 하나의 테이블을 만든다.
+- 후에 hash join 시도
+
+# tip
+
+- 오라클에서는 결과값이 중요한 것이 아니라 그 값을 내기 위해서 몇 건을 읽었느냐가 중요하다.
+- 오라클에는 fetch를 위한 array size 옵션이 있다.
+- 1->n, n->1 표면적으로는 1->n 이 유리하지만 실제 메커니즘으로는 n->1 역시 느린편은 아니다. 데이터 블럭을 ps영역에 올려 놓고 인덱스 영역에 접근하기 때문이다. 
+- 실제 결과를 보려면 트레이서를 확인해야한다. 플랜은 실행계획만을 보여준다.
+- 인라인뷰가 먼저 실행된다는 보장은 없다.
+  - 인라인뷰쿼리가 액세스쿼리에 머지가 되기도 한다.
+  - 인라인뷰를 무조건 강제 실행시킬려면, select절에 rownum을 써준다.
+  - 보통은 group by, order by를 사용하기 때문에 집합이 보존된다.
