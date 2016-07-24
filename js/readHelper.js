@@ -185,23 +185,24 @@ ReadDoc.prototype.readBox = function ( option ) {
   var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
   var topGap = scrollTop + Math.floor(el.getBoundingClientRect().top);
   var topMargin = option.marginTop || 15;
+  var fixedTopMargin = 10;
 
-  var startPosition = topGap-topMargin;
-  var endPosition = topGap + compareElHeight - topMargin - el.offsetHeight;
+  var startPosition = topGap+topMargin - (fixedTopMargin*2);
+  var endPosition = topGap + compareElHeight - el.offsetHeight - fixedTopMargin;
 
   function refresh () {
     compareElHeight = compareEl.offsetHeight;
-    endPosition = topGap + compareElHeight - topMargin - el.offsetHeight;
+    endPosition = topGap + compareElHeight - el.offsetHeight - fixedTopMargin;
   }
 
   return function ( cursor ) {
     if ( compareElHeight != compareEl.offsetHeight ) refresh ();
     if ( cursor >= startPosition && cursor < endPosition ) {
-      el.style.top = '10px';
+      el.style.top = fixedTopMargin + 'px';
       el.style.position = 'fixed';
     } else if ( cursor - topMargin < topGap ) {
       el.style.top = '0px';
-      el.style.position = 'absolute';
+      el.style.position = 'relative';
     } else {
     	el.style.top = (compareElHeight-el.clientHeight) + 'px';
       el.style.position = 'absolute';

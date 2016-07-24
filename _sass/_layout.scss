@@ -274,22 +274,22 @@ article {
   }
 
   .post-wrap {
-    padding-right: 300px;
+    padding-right: 350px;
     width: 100%;
     float: left;
   }
 
   .post-info {
     float: right;
-    margin-left: -300px;
-    width: 300px - ($spacing-unit/2);
+    margin-left: -350px;
+    width: 336px;
     border-radius: 10px;
     font-size: 14px;
 
     &-move {
       position: absolute;
       top: 0;
-      width: 300px - ($spacing-unit/2);
+      width: 336px;
     }
 
     a {
