@@ -3,8 +3,8 @@ layout: post
 title:  스프링, request array data 처리하기
 date:   2016-07-21 16:04:16
 categories: dev
-published: false
-comments: false
+published: true
+comments: true
 tags: 
 - java
 - spring
@@ -39,7 +39,7 @@ public ModelAndView test (String[] name) throws Exception {
 
 단일 데이터는 정말 어렵지 않다. 생각했던 그대로 데이터가 나온다.
 
-## parameter 가 2가지 이상일 때 기본 전달 방법
+## 다중 배열 처리 방법
 
 **html**
 
@@ -84,10 +84,10 @@ public ModelAndView test (String[] name, String[] phone) throws Exception {
 **java dto**
 
 ```java
-public class testDto {
+public class TestDto {
 	private String name;
 	private String phone;
-	private List<testDto> list;
+	private List<TestDto> list;
 
 	public void setName(String name) {
 		this.name = name;
@@ -105,11 +105,11 @@ public class testDto {
 		return this.phone;
 	}
 
-	public void setList(List<testDto> list) {
+	public void setList(List<TestDto> list) {
 		this.list = list;
 	}
 
-	public List<testDto> getList() {
+	public List<TestDto> getList() {
 		return this.list;
 	}
 }
@@ -119,7 +119,7 @@ public class testDto {
 
 ```java
 @RequestMapping(value = "test", method = RequestMethod.GET)
-public ModelAndView test (List<testDto> list) throws Exception {
+public ModelAndView test (TestDto dto) throws Exception {
 	return null;
 }
 ```
@@ -128,7 +128,7 @@ html을 작성하는 방법이 이전이랑 조금 달라지는데 input name의
 
 2가지의 불편함에도 불구하고 스프링에서는 이 형태로 가장 많이 사용되고 있다. 문제는 api작성자가 클라이언트단까지 모두 만들면 상관이 없는데, 다른 사람과 협업을 통한 api작업 중엔 form의 input name을 index로 작성해 달라고 요청하면 의아해 할 수도 있다. (스프링을 경험하지 못한 프로그래머라면..)
 
-# 선택한 방법
+# @RequestBody를 이용
 
 이번에는 전통적인 parameter를 전달하여 값을 받는 방식 대신에 json string을 활용하여 raw로 데이터를 전송하여 받아보자. 경험상 위의 방법보다 이 방법이 훨씬 간단하였다.
 
@@ -141,13 +141,15 @@ html을 작성하는 방법이 이전이랑 조금 달라지는데 input name의
 <input type="text" name="phone" value="011"/>
 ```
 
+`@RequestBody`를 이용하면 좋은점이 클라이언트 단의 input name을 index와 상관없이 그대로 사용할수 있다는 점이다.
+
 **java dto**
 
 ```java
-public class testDto {
+public class TestDto {
 	private String name;
 	private String phone;
-	private List<testDto> list;
+	private List<TestDto> list;
 
 	public void setName(String name) {
 		this.name = name;
@@ -165,11 +167,11 @@ public class testDto {
 		return this.phone;
 	}
 
-	public void setList(List<testDto> list) {
+	public void setList(List<TestDto> list) {
 		this.list = list;
 	}
 
-	public List<testDto> getList() {
+	public List<TestDto> getList() {
 		return this.list;
 	}
 }
@@ -180,4 +182,22 @@ dto는 위와 동일하다.
 **java controller**
 
 ```java
+@RequestMapping(value = "test", method = RequestMethod.GET)
+public ModelAndView test (@RequestBody TestDto dto) throws Exception {
+	return null;
+}
 ```
+
+**호출 예제**
+
+```
+http://localhost:8080/test?{"list":[{"name":"ssw"},{"name":"ssw2"}]}
+```
+
+json string 으로 body부분을 받게 되면, 스프링 컨트롤러 진입전에 자동으로 파싱을 시도하여 json 객체로 만들어 준다. 이 json 객체를 다시 `List<TestDto>`에 바인딩을 시켜준다.
+
+list wrap 객체를 만드는 것에는 위와 변함이 없지만, html에서 가장 많이 사용되는 객체 구조인 json을 그대로 reqeust로 받아서 처리하는 방식은 input name의 변경이 없고 각각의 파라메터의 길이에 신경쓰지 않아도 되는 장점이 존재한다.
+
+# 결론
+
+회사에서는 제일 마지막에 사용한 `@RequestBody`를 활용하여 array data를 받게끔 처리하였다. json string raw 데이터로 처리하는 편이 훨신 간편하고 쉬웠다.
