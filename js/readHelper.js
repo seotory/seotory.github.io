@@ -179,26 +179,28 @@ ReadDoc.prototype.readProcess = function ( option ) {
 
 ReadDoc.prototype.readBox = function ( option ) {
   
-	var el = document.querySelector( option.target );
-  var compareEl = document.querySelector( option.compareTarget );
-  var compareElHeight = compareEl.offsetHeight;
   var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
-  var topGap = scrollTop + Math.floor(el.getBoundingClientRect().top);
   var topMargin = option.marginTop || 15;
-  var fixedTopMargin = 10;
+  
+  var compareEl = document.querySelector( option.compareTarget );
+  var compareTopGap = scrollTop + Math.floor(compareEl.getBoundingClientRect().top);
+  var compareElHeight = compareEl.offsetHeight;
 
-  var startPosition = topGap+topMargin - (fixedTopMargin*2);
-  var endPosition = topGap + compareElHeight - el.offsetHeight - fixedTopMargin;
+  var el = document.querySelector( option.target );
+  var topGap = scrollTop + Math.floor(el.getBoundingClientRect().top);
+
+  var startPosition = topGap - topMargin;
+  var endPosition = (compareTopGap + compareElHeight) - (topMargin + el.offsetHeight);
 
   function refresh () {
     compareElHeight = compareEl.offsetHeight;
-    endPosition = topGap + compareElHeight - el.offsetHeight - fixedTopMargin;
+    endPosition = (compareTopGap + compareElHeight) - (topMargin + el.offsetHeight);
   }
 
   return function ( cursor ) {
     if ( compareElHeight != compareEl.offsetHeight ) refresh ();
     if ( cursor >= startPosition && cursor < endPosition ) {
-      el.style.top = fixedTopMargin + 'px';
+      el.style.top = topMargin + 'px';
       el.style.position = 'fixed';
     } else if ( cursor - topMargin < topGap ) {
       el.style.top = '0px';
