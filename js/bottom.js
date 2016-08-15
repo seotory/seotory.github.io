@@ -3,7 +3,6 @@ function log ( msg ) {
 		console.log( msg );
 }
 
-var timer;
 (function() {
   "use strict";
 
@@ -36,7 +35,10 @@ var timer;
     $(window).scrollTop($(document).height());
     return false;
   });
+})();
 
+var timer;
+(function() {
   if ( $('.display').size() > 0 ) {
     // main
     var
@@ -110,5 +112,4 @@ var timer;
     }, 1000);
 
   }
-
 })();
