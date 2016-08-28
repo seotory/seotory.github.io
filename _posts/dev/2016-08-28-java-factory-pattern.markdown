@@ -1,20 +1,20 @@
 ---
 layout: post
-title: java factory pattern
+title: java factory pattern (팩토리 패턴)
 date: 2016-08-28 16:23:51 +0900
 description:
 image:
 categories: dev
-published: false
-comments: false
+published: true
+comments: true
 tags:
  - java
  - pattern
 ---
 
-Factory pattern은 유명한 디자인 패턴 중 하나이다. 이것 역시 JDK 및 우리가 잘 알고 있는 Spring, Struts 프레임워크에 많이 사용되고 있다.
+`factory pattern`은 유명한 디자인 패턴 중 하나이다. 이것 역시 JDK 및 우리가 잘 알고 있는 Spring, Struts 프레임워크에 많이 사용되고 있다.
 
-super class와 여러개의 sub class가 있는 상황에서 input이 발생하면 하나의 sub class를 반환해야 할때 factory pattern이 사용된다. factory class는 client class로 부터 인스턴스를 생성하는 책임을 가져온다.
+super class와 여러개의 sub class가 있는 상황에서 input이 발생하면 하나의 sub class를 반환해야 할때 `factory pattern`이 사용된다. factory class는 client class로 부터 인스턴스를 생성하는 책임을 가져온다.
 
 # 슈퍼 클래스
 
