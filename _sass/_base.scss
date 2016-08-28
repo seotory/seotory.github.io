@@ -248,7 +248,7 @@ pre {
 }
 
 /*
- having a lineno-container made it easier to style line number 
+ having a lineno-container made it easier to style line number
  code blocks without impacting normal code blocks
 
 .lineno-container > figure > pre {
@@ -259,7 +259,7 @@ pre {
 .highlight {
   pre.lineno {
     border: none;
-    @include opacity(0.6);  
+    @include opacity(0.6);
   }
 
   .lineno {
@@ -286,16 +286,16 @@ pre {
  */
 .wrapper {
   position: relative;
-  max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-  max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
+  max-width: -webkit-calc(#{$layout-width} - (#{$spacing-unit} * 2));
+  max-width:         calc(#{$layout-width} - (#{$spacing-unit} * 2));
   margin-right: auto;
   margin-left: auto;
 
   @extend %clearfix;
 
   @include media-query($on-laptop) {
-    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
-    max-width:         calc(#{$content-width} - (#{$spacing-unit}));
+    max-width: -webkit-calc(#{$layout-width} - (#{$spacing-unit}));
+    max-width:         calc(#{$layout-width} - (#{$spacing-unit}));
     padding-right: $spacing-unit / 2;
     padding-left: $spacing-unit / 2;
   }

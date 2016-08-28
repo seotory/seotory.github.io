@@ -212,6 +212,36 @@ article {
   }
 }
 
+/* ws - working space */
+.ws {
+
+  position: relative;
+  overflow: hidden;
+  clear: both;
+
+  &-right {
+    padding-right: #{$menu-width + 20}px;
+    width: 100%;
+    float: left;
+  }
+  &-left {
+    float: right;
+    margin-left: -#{$menu-width + 20}px;
+    width: #{$menu-width}px;
+    font-size: 14px;
+  }
+}
+
+@include media-query($on-laptop) {
+  .ws {
+    &-right {
+      padding-right: 0px;
+    }
+    &-left {
+      display: none;
+    }
+  }
+}
 
 /* page section */
 .page-header {
@@ -220,9 +250,9 @@ article {
   width: 100%;
   height: 400px;
   margin-top: -1px;
-  background: no-repeat center center scroll; /*url('../images/title-background.jpg')*/
+  background: no-repeat center center scroll;
   background-size: cover;
-  -moz-background-size: cover; 
+  -moz-background-size: cover;
   -webkit-background-size: cover;
   -webkit-overflow-scrolling: touch;
   z-index: -1;
@@ -265,31 +295,12 @@ article {
 /* post section */
 .post {
 
-  position: relative;
-  overflow: hidden;
-  clear: both;
-  
-  > div {
-    /*float: left;*/
-  }
-
-  .post-wrap {
-    padding-right: 350px;
-    width: 100%;
-    float: left;
-  }
-
   .post-info {
-    float: right;
-    margin-left: -350px;
-    width: 336px;
-    border-radius: 10px;
-    font-size: 14px;
 
     &-move {
       position: relative;
       top: 0;
-      width: 336px;
+      width: #{$menu-width}px;
     }
 
     a {
@@ -324,17 +335,6 @@ article {
           color: red;
         }
       }
-    }
-  }
-}
-
-@include media-query($on-laptop) {
-  .post {
-    .post-wrap {
-      padding-right: 0px;
-    }
-    .post-info {
-      display: none;
     }
   }
 }
@@ -395,8 +395,8 @@ article {
     margin: 0px;
     list-style: none;
     color: slategrey;
-    li { 
-      padding-left: 1em; 
+    li {
+      padding-left: 1em;
       text-indent: -0.7em;
       ::before {
         content: "• ";
@@ -543,7 +543,7 @@ article {
       background-image:    -moz-linear-gradient(top, #5f5f5f, #5c5c5c);
       background-image:     -ms-linear-gradient(top, #5f5f5f, #5c5c5c);
       background-image:      -o-linear-gradient(top, #5f5f5f, #5c5c5c);
-      background-image:         linear-gradient(top, #5f5f5f, #5c5c5c);
+      background-image:         tilinear-gradient(top, #5f5f5f, #5c5c5c);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#5f5f5f', EndColorStr='#5c5c5c');
     }
   }
@@ -583,7 +583,7 @@ footer {
 
     ul {
       margin: 0px;
-      
+
       li {
         display: inline-block;
         padding-right: 5px;
