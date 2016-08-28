@@ -31,6 +31,7 @@ public abstract class Product {
     }
 }
 ```
+
 # 서브 클래스
 
 Product class를 상속받은 Computer와 Ticket class를 구현한다. 아래의 클래스들은 super class 하위의 sub class를 정의 한 것이다.
