@@ -76,7 +76,7 @@ public class Ticket extends Product {
 }
 ```
 
-# 팩토리 클랙스 마다 각각의 서브 클래스
+# 팩토리 클랙스마다 각각의 서브 클래스
 
 먼저 abstract factory interface(또는 abstract)가 필요하다.
 
