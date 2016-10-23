@@ -20,28 +20,20 @@ permalink: /post/:year/:month/:title
 # timezone
 timezone: Asia/Seoul
 
+# read file
+markdown_ext: markdown,mkdown,mkdn,mkd,md
+
 # highlighter settings
 # Build settings
-highlighter: rouge
 markdown: kramdown
+highlighter: rouge
 
 kramdown:
-  input: GFM
+  enable_coderay: false
   hard_wrap: false
   auto_ids: false
   auto_id_stripping: false
-  /*enable_coderay: true*/
-  syntax_highlighter: rouge
   parse_block_html: false
-  /*html_to_native: ture*/
-  enable_coderay: true
-
-  coderay:
-    coderay_wrap: div
-    coderay_line_numbers: inline
-    coderay_tab_width: 4
-    coderay_bold_every: 10
-    coderay_css: class
 
 # post separator
 excerpt_separator: <!--more-->

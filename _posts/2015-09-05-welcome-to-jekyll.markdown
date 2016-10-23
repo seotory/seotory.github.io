@@ -2,7 +2,7 @@
 layout: post
 title:  "Welcome to Jekyll!"
 date:   2015-09-05 12:04:16
-categories: 
+categories:
 published: false
 comments: false
 ---
@@ -10,7 +10,7 @@ comments: false
 {{site.url}}
 
 jekyll 문법 테스트용 페이지입니다.
- 
+
 # 코드관련
 
 ## 문구 강조
@@ -76,7 +76,7 @@ public class Users implements Cloneable {
 Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll’s dedicated Help repository][jekyll-help].
 
 ~~~ javascript
-function test() 
+function test()
 {
 
 }
@@ -85,7 +85,7 @@ function test()
 test
 
 ~~~ javascript linenos
-function test() 
+function test()
 {
 
 }
@@ -94,7 +94,7 @@ function test()
 ## test
 
 ``` javascript
-function test() 
+function test()
 {
 
 }
@@ -103,7 +103,7 @@ function test()
 - test
     - 1.1 인가?
 {% highlight javascript %}
-function test() 
+function test()
 {
 
 }
@@ -142,7 +142,7 @@ that continues here
 > > and here 한글 테스트.
 
 ``` javascript
-function test(){} 
+function test(){}
 ```
 
 >     ruby -e 'puts :works'
@@ -291,7 +291,7 @@ ul.social-buttons li a {
 - list1  
 
       function(){}
-        
+
 
 ----------
 
@@ -361,10 +361,8 @@ test for test
 
 testsetstsetset  f  
 setsetsetsdfs
-  
+
 
 {{page.path}}
-
-{{page.url | }}
 
 <div>test</div>  

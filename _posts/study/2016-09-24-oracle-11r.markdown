@@ -1,0 +1,40 @@
+---
+layout: post
+title: oracle 11r
+date: 2016-09-24  9:17:32 +0900
+description:
+image:
+categories: study
+published: false
+comments: false
+tags:
+---
+
+# oracle
+
+## OLTP
+
+온라인 트랜잭션 처리(Online transaction processing, `OLTP`)는 트랜잭션 지향 애플리케이션을 손쉽게 관리할 수 있도록 도와주는 정보 시스템의 한 계열로서, 일반적으로 데이터 기입 및 트랜잭션 처리를 위해 존재한다.
+
+## tip
+
+- 단일 집합 또는 인덱스 인 경우 `in`을 사용하면 인덱스 렌지 스캔 유리
+- 만약 집합대 집합에서 `in`을 사용하게 되면 집합대 집합을 한번 더 액세스하게 됨으로 성능이 매우 떨어짐
+- `join` 보다 `union all`을 사용하여 집합을 합쳐야 유리한 경우가 있다.
+- `function` 함수 사용시 `group by` 와 함께 사용하면 내부적으로 데이터가 캐싱되어 `select` 절에서 사용해도 `function` 함수를 사용하지 않는다.
+- from 절에서는 먼저 드라이빙 되는 테이블은 뒤에서, where 도 마찬가지 -> sql은 무조건 뒤에서부터 체크를 한다.
+- `stored function`에서는 부분 범위 처리가 가능해진다. 퍼포먼스 유리
+- rownum을 뷰쿼리에서 as rnum으로 사용시에 옵티마이져는 이 rnum에 대해서 인덱스를 알지 못한다.
+- exsits 안쪽 쿼리가 인덱스를 사용하지 못하는 조건이라면 퍼포먼스에 문제가 생긴다. 이 부분을 방지하려면 function을 만들어서 사용한다.
+- 아크관계
+  - select절을 사용할 때에도 `stored function`을 사용하는 경우가 유리하다.
+  - 테이블을 join으로 하려면 `where ( 구문 or 구문 )` 으로 엮으면 안되고 union으로 사용하여 집합을 합친다.
+  - 차선책으로 아우터 조인을 사용하면 답을 구할 수 있다.
+  - `union all`을 사용하여 구분자를 두고 합치면 값을 구할 수 있다.
+- select 안에 있는 쿼리(스칼라쿼리)는 function과 동일하다.
+
+## 한달에서 주 구하기
+
+```sql
+decode(to_char(검사일, 'yyyymmdd'), '199712', '0', ceil((to_char(검사일, 'dd')+to_char(trunk(검사일, 'mm'), 'd')-1)/7)) 주
+```
