@@ -23,7 +23,8 @@ String 데이터 타입은 redis의 가장 기본적인 타입이다. redis에�
 
 String 타입의 값은 최대 512메가바이트까지 저장이 가능하다.
 
-redis string 데이터 타입에서는 아래처럼 몇 가지 재미있는 기능을 제공한다.  
+redis string 데이터 타입에서는 아래처럼 몇 가지 재미있는 기능을 제공한다.
+
 - INCR(INCR, DECR, INCRBY)과 같은 명령을 통해 자동 증가 값을 사용할 수 있다.
 - APPEND 명령어를 이용해서 문자열을 추가로 붙일 수 있다.
 - GETRANGE와 SETRANGE를 이용해서 해당 범위의 문자열을 리턴할 수 있다. (마치 substring 처럼)
@@ -49,7 +50,8 @@ list는 개당 최대 2^32-1(4,294,967,295)개의 요소값을 가질 수 있다
 
 list의 주요특징으로 수백만건의 삽입과 삭제가 head와 tail에 일어나더라도 일정한 시간복잡도를 제공한다. head와 tail 근처의 요소에는 매우 빠른 속도로 접근되지만, 매우 큰 list의 중간 지점을 접근하게 되면 O(N)의 연산이기 때문에 느리다.
 
-redis list 데이터 타입에서는 아래처럼 몇 가지 재미있는 기능을 제공한다.  
+redis list 데이터 타입에서는 아래처럼 몇 가지 재미있는 기능을 제공한다.
+
 - 소셜 미디어의 타임라인 모델인 경우, LPUSH를 이용하여 새로운 요소를 입력하고, LRANGE를 이용하여 최근 입력된 요소를을 가져올 수 있다.
 - LPUSH와 함께 LTRIM을 사용하여 특정 갯수를 초과하지 않는 list를 만들 수 있지만, but just remembers the latest N elements.
 - list는 메세지 전달 요소(message passing primitive)로 사용될 수 있다. 유명한 Ruby library인 [Resque](https://github.com/resque/resque)가 백그라운드 작업 생성 과정을 사례로 볼 수 있다.
