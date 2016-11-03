@@ -17,3 +17,4 @@ comments: false
 - 네트워크 환경에서 linux 파일 이동
 - 뮤턴트
 - 동시집계
+- pipe
