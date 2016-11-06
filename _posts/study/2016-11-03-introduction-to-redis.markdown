@@ -11,6 +11,34 @@ tags:
   - redis
 ---
 
+# redis 설치
+
+## source를 이용하여 설치
+
+```
+wget http://download.redis.io/redis-stable.tar.gz
+tar xvzf redis-stable.tar.gz
+cd redis-stable
+make
+```
+
+위와 같이 입력한 다음 제대로 작동하는지 확인하고 싶다면 `make test`를 입력하여 확인한다. 후에 `src` 폴더에 들어가보면 아래와 같은 실행파일을 확인해볼 수 있다.
+
+- redis-server
+- redis-seninel
+- redis-cli
+- redis-benchmark
+- redis-check-aof, redis-check-dump
+
+위의 파일들은 아래의 커맨드를 이용해서 경로를 바꾼다.
+
+- sudo cp src/redis-server /usr/local/bin/
+- sudo cp src/redis-cli /usr/local/bin/
+
+또는 `make install`을 이용한다.
+
+# redis 시작
+
 # redis의 데이터 타입
 
 redis에서 사용할 수 있는 데이터 타입은 크게 5가지이다. 이것이 memcached와 가장 큰 차이점이라고 할 수 있다.
@@ -54,7 +82,7 @@ redis list 데이터 타입에서는 아래처럼 몇 가지 재미있는 기능
 
 - 소셜 미디어의 타임라인 모델인 경우, LPUSH를 이용하여 새로운 요소를 입력하고, LRANGE를 이용하여 최근 입력된 요소를을 가져올 수 있다.
 - LPUSH와 함께 LTRIM을 사용하여 특정 갯수를 초과하지 않는 list를 만들 수 있지만, but just remembers the latest N elements.
-- list는 메세지 전달 요소(message passing primitive)로 사용될 수 있다. 유명한 Ruby library인 [Resque](https://github.com/resque/resque)가 백그라운드 작업 생성 과정을 사례로 볼 수 있다.
+- list는 메세지 전달 요소(message passing primitive)로 사용될 수 있다. 유명한 Ruby library인 [Resque](https://github.com/resque/resque)의 백그라운드 작업 생성 과정을 사례로 볼 수 있다.
 - 많은 것을 list 데이터 타입과 함께 작업할 수 있으며, list 데이터 타입 역시 많은 명령어와 BLPOP 같은 블럭 명령어를 지원한다.
 
 ## 3. Set
@@ -73,4 +101,5 @@ set은 최대 2^32-1(4,294,967,295)개의 멤버를 가질 수 있다.
 
 # 원문
 
+[redis(quickstart)](http://redis.io/topics/quickstart)
 [redis(Data types)](http://redis.io/topics/data-types){:target="_blank"}
