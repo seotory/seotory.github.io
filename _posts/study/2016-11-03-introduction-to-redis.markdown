@@ -5,8 +5,8 @@ date: 2016-11-03 16:25:20 +0900
 description:
 image:
 categories: study
-published: false
-comments: false
+published: true
+comments: true
 tags:
   - redis
   - db
@@ -46,7 +46,7 @@ make
 
 # redis server 시작
 
-redis 서버를 띄우려면, `/usr/local/bin/` 폴더 안에 redis-server 바이너리 파일을 옵션 없이 바로 띄울 수 있다. 만약 예를 들어 `/etc/` 폴더 안에 있는 config 파일을 이용해서 서버를 띄우려고 한다면 아래와 같이 입력한다.
+redis 서버를 띄우려면, `/usr/local/bin/` 폴더 안에 redis-server 실행 파일을 옵션 없이 바로 띄울 수 있다. 만약 예를 들어 `/etc/` 폴더 안에 있는 config 파일을 이용해서 서버를 띄우려고 한다면 아래와 같이 입력한다.
 
 ```
 $ redis-server /etc/redis.conf
@@ -64,6 +64,39 @@ $ redis-server --daemonize yes
 $ redis-cli ping
 PONG
 ``` 
+
+서버를 종료하고 싶다면 아래와 같이 입력한다.
+
+```
+$ redis-cli
+> shutdown
+```
+
+## 서버 커넥션시 에러 (참고)
+
+`/etc/redis/redis.conf`에 비밀번호 설정이 안되어 있는 경우 아래와 같은 에러가 난다.
+
+```
+Error ReplyError: DENIED Redis is running in protected mode because protected mo
+de is enabled, no bind address was specified, no authentication password is requ
+ested to clients. In this mode connections are only accepted from the loopback i
+nterface. If you want to connect from external computers to Redis you may adopt
+one of the following solutions: 1) Just disable protected mode sending the comma
+nd 'CONFIG SET protected-mode no' from the loopback interface by connecting to R
+edis from the same host the server is running, however MAKE SURE Redis is not pu
+blicly accessible from internet if you do so. Use CONFIG REWRITE to make this ch
+ange permanent. 2) Alternatively you can just disable the protected mode by edit
+ing the Redis configuration file, and setting the protected mode option to 'no',
+ and then restarting the server. 3) If you started the server manually just for
+testing, restart it with the '--protected-mode no' option. 4) Setup a bind addre
+ss or an authentication password. NOTE: You only need to do one of the above thi
+ngs in order for the server to start accepting connections from the outside.
+Error Error: Redis connection to 192.168.56.101:6379 failed - read ECONNRESET
+Error AbortError: Ready check failed: Redis connection lost and command aborted.
+ It might have been processed.
+```
+
+`/etc/redis/redis.conf` 안에 옵션 중 `requirepass`를 설정함으로 해결할 수 있다.
 
 # redis의 데이터 타입
 
