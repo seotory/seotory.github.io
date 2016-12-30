@@ -40,10 +40,12 @@ function log ( msg ) {
 var timer;
 (function() {
   if ( $('.display').size() > 0 ) {
+    /*
     // main
     var
     beforeColor = '',
-    colorSet = ['#BBCA2D','#FFC107','#FD92B6','#7FA8CA','#BFBFBF'],
+    //colorSet = ['#BBCA2D','#FFC107','#FD92B6','#7FA8CA','#BFBFBF'],
+    colorSet = ['#f4f4f4'],
     colorStr = function () {
       var rNum = Math.floor((Math.random() * colorSet.length));
       return colorSet[rNum];
@@ -51,7 +53,8 @@ var timer;
     getColor = function ( el ) {
       var color = colorStr();
       if ( color == beforeColor ) {
-        return getColor();
+        //return getColor();
+        return color;
       } else {
         beforeColor = color;
         return color;
@@ -67,24 +70,20 @@ var timer;
         window.location.href = href;
       });
     });
-  }
-  else if ( $('article').size() > 0 ) {
+    */
+  } else if ( $('article').size() > 0 ) {
 
     var imgAry = [];
     imgAry.push('https://lh3.googleusercontent.com/ZHSms8IkXdgZ8GLlwmutc_DiJ7-ksjP5NW47NMnk7lCtD-4Bihot7rk396hjS25W3A7i2MjWv_9ITeDWaF5PzJeM7K_ewqJIODrPd7mvh_bxrWRKY273KJgD-Ao6LZ1UPlcqOnUj7RgPFWofyE9IhOTLjzwRzg0qZ78WBnJI0PnAJbBpsa9UalvcuxaCc0zcJO8Trf6qT86blIXHZW2oc_vEEVWy5xbps0trH6jFYg8ghrktZoKjxY600nX8-U2smbgefOysh2ZOwlQqpbPki0WlVtHEPaHJDPbChdF9fFfPh6ilkq6go4c02Aj704XzABXhy-mJMtmQIe642EgZdKPVJEeVT3PPFY9l4hHD6wirHelDQB83HEkVyZFqdJmGHvrrFRoZjqzwx28_P4KnEWmbpcIErQqLwu5dgWupI5NV5gcJwumA2dsHfkseClM3TCZGkb5tp7YmbyDPcgyqH0KBH95Zo_UoVeoxb0HgFsIrTx59yh_c9J_qhp-rzBwzje3u7ezpdcT0ttDsjALBKWapi-afILFL4RzeZQKcLxsrtJLcK-dbv-xtafu_nH7nNEOWRSDbnUh9htmj4TUfx9cygNwjOps0plwJAH5b7tetTed5=s0');
     imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/4.jpg');
     imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/6.jpg');
-    // imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/13.jpg');
     imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/15.jpg');
-    // imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/18.jpg');
     imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/20.jpg');
     imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/21.jpg');
     imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/24.jpg');
-    //  imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/26.jpg');
     imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/30.jpg');
     imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/31.jpg');
     imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/35.jpg');
-    // imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/42.jpg');
     imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/47.jpg');
     imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/52.jpg');
     imgAry.push('http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/67.jpg');

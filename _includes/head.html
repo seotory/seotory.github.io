@@ -8,16 +8,16 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
 
-  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ "/css/main.css?v0.2" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- facebook -->
-  <meta property="og:url"                content="{% if page.url %}{{site.url}}{{page.url}}{% else %}{{site.url}}{% endif %}" />
+  <meta property="og:url" content="{% if page.url %}{{site.url}}{{page.url}}{% else %}{{site.url}}{% endif %}" />
   <!--<meta property="og:type"               content="{{}}" />-->
-  <meta property="og:title"              content="{% if page.title %}{{page.title}}{% else %}seotory it blog{% endif %}" />
-  <meta property="og:description"        content="{{page.description}}" />
-  <meta property="og:image"              content="" />
+  <meta property="og:title" content="{% if page.title %}{{page.title}}{% else %}seotory it blog{% endif %}" />
+  <meta property="og:description" content="{{page.description}}" />
+  <meta property="og:image" content="" />
 
 
   <!-- font -->

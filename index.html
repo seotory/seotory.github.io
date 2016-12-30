@@ -4,7 +4,8 @@ layout: default
 <section class="page-content">
   <div class="wrapper">
     <ul class="display">
-      <li class="display-item">
+      <!-- google AD -->
+      <li class="">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- main_top_336_280 -->
         <ins class="adsbygoogle"
@@ -15,33 +16,67 @@ layout: default
         (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
       </li>
+      <!-- article list -->
       {% for post in paginator.posts %}
-      <li class="display-item">
-        <div class="cube" data-href="{{ post.url | prepend: site.baseurl }}" data-bg-img="{{ post.image }}">
-          <div class="cube-title">{{ post.title }}</div>
-          <div class="cube-body-wrap">
-            <div class="cube-body-contents cube-body-contents--hide">
-              {% if post.description %}
-                {{ post.description | strip_html }} [더보기]
-              {% else %}
-                {{ post.excerpt | strip_html | truncatewords: 40 }} [더보기]
-              {% endif %}
-            </div>
-            <div class="cube-body-info-wrap">
+      <li class="">
+        <div class="article-list-date">
+          {{ post.date | date_to_long_string }}
+        </div>
+        <div class="article-list" data-href="{{ post.url | prepend: site.baseurl }}" data-bg-img="{{ post.image }}">
+          <div class="article-list-header">
+
+            <a href="{{ post.url }}"><h2>{{ post.title }}</h2></a>
+          </div>
+          <div class="article-list-body">
+            {% if post.description %}
+              {{ post.description | strip_html }} 
+              <br/>
+              <a href="{{ post.url }}">read more...</a>
+            {% else %}
+              {{ post.excerpt | strip_html | truncatewords: 40 }} 
+              <br/>
+              <a href="{{ post.url }}">read more...</a>
+            {% endif %}
+          </div>
+          <div class="article-list-footer">
+            <ul>
+              <li>
+                <span>
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                </span>
+                <span>
+                  Seotorys
+                </span>
+              </li>
               {% if post.comments %}
-              <span class="cube-body-info-icon cube-body-info-icon--red">
-                <i class="fa fa-heart" aria-hidden="true"></i>
-              </span>
-              <span class="cube-body-info-link">
-                <a href="#" onclick="return false;" data-disqus-identifier="{{post.url}}"></a>
-              </span>
+              <li>
+                <span>
+                  <i class="fa fa-heart" aria-hidden="true"></i>
+                </span>
+                <span>
+                  <a href="#" onclick="return false;" data-disqus-identifier="{{post.url}}"></a>건
+                </span>
+              </li>
               {% endif %}
-            </div>
+              {% if post.tags.size > 0 %}
+              <li>
+                <span>
+                  <i class="fa fa-tags" aria-hidden="true"></i>
+                </span>
+                {% for tag in post.tags %}
+                <span class="tag">
+                  {{tag}}
+                </span>
+                {% endfor %}
+              </li>
+              {% endif %}
+            </ul>
           </div>
         </div>
       </li>
       {% endfor %}
-      <li class="display-item">
+      <!-- google AD -->
+      <li class="">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- main_bottom_336_280 -->
         <ins class="adsbygoogle"
@@ -52,6 +87,7 @@ layout: default
         (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
       </li>
+
     </ul>
   </div>
 

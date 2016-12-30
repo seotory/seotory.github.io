@@ -136,78 +136,61 @@ article {
   flex-flow: row wrap;
   justify-content: center;
 
-  &-item {
-    width: 336px;
-    height: 280px;
-    display: inline-block;
-    border: 4px solid #fff;
-    box-sizing: content-box;
+  > li {
+    width: 100%;
   }
 }
 
-.cube {
+.article-list-date {
+  color: #999;
+}
+.article-list {
   width: 100%;
-  height: 100%;
-  display: table;
-  padding: 15px;
-  color: #fff;
-  position: relative;
-  cursor: pointer;
+  padding: 20px 20px 15px 20px;
+  margin-bottom: 30px;
+  border: 1px solid #eee;
+  background: #f9f9f9;
 
   a {
-    color: #fff;
+    color: #2196F3
   }
 
-  &-title {
-    display: table-cell;
-    vertical-align: middle;
-    width: 100%;
-    height: inherit;
-    font-size: 22px;
-    line-height: 120%;
-    text-align: center;
-    text-shadow: 1px 1px 0px rgba(0,0,0,0.3);
+  &-header {
   }
 
   &-body {
-    &-wrap {
-      width: 100%;
-      position: absolute;
-      left: 0px;
-      bottom: 0px;
-      padding: 20px 25px;
-      text-align: left;
-    }
-    &-contents {
-      height: 212px;
-      overflow: hidden;
-      line-height: 166%;
-      &--hide {
-        display: none;
-      }
-    }
-    &-info {
-      &-wrap {
-        height: 28px;
-      }
-      &-icon {
-        &--red {
-          color: red;
-        }
-      }
-    }
+
   }
 
-  &:hover {
-    .cube-title {
+  &-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
 
-    }
-    .cube-body-wrap {
-      box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.6) inset;
-      background-color: rgba(0, 0, 0, 0.6);
-    }
-    .cube-body-contents {
-      display: block;
+    color: #888;
+
+    ul {
+      height: 30px;
+      padding: 0px;
+      margin: 0px;
+      list-style: none;
+
+      li {
+        margin-right: 15px;
+        float: left;
+
+        &:hover {
+          color: #000;
+        }
+
+        span.tag {
+          margin-right: 5px;
+          padding: 3px;
+          border-radius: 3px;
+          background: #ddd;
+          font-size: 14px;
+        }
+      }
     }
   }
 }
