@@ -43,7 +43,8 @@ settings.json
         "python": "python",
         "ruby": "ruby",
         "go": "go run"
-    }
+    },
+    "terminal.external.osxExec": "iTerm.app"
 }
 }
 ```
