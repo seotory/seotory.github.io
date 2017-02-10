@@ -37,14 +37,26 @@ settings.json
     "window.zoomLevel": 0,
     "editor.fontSize": 13,
     "editor.fontFamily": "Monaco, 'Courier New', monospace",
-    "editor.renderIndentGuides": true
+    "editor.renderIndentGuides": true,
+    "code-runner.executorMap": {
+        "javascript": "node",
+        "python": "python",
+        "ruby": "ruby",
+        "go": "go run"
+    }
+}
 }
 ```
 
 setup plugin
 
+- Go
+- Preview
 - Ayu
 - HTML Class Suggestions
 - HTML Snippets
-- Nome Dark Icon Theme
+- Nome Dark Icon theme
 - Sass
+- Code Runner
+  사용 가능언어 C, C++, Java, JavaScript, PHP, Python, Perl, Ruby, Go, Lua, Groovy, PowerShell, BAT/CMD, BASH/SH, F# Script, C# Script, VBScript, TypeScript, CoffeeScript, Scala, Swift, Julia, Crystal, OCaml Script, R, AppleScript, Elixir, Visual Basic .NET, Clojure, Haxe 등
+- vscode-pandoc
