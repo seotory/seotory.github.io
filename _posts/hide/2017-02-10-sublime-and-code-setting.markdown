@@ -56,7 +56,7 @@ setup plugin
 - Ayu
 - HTML Class Suggestions
 - HTML Snippets
-- Nome Dark Icon theme
+- Material Icon Theme
 - Sass
 - Code Runner
   사용 가능언어 C, C++, Java, JavaScript, PHP, Python, Perl, Ruby, Go, Lua, Groovy, PowerShell, BAT/CMD, BASH/SH, F# Script, C# Script, VBScript, TypeScript, CoffeeScript, Scala, Swift, Julia, Crystal, OCaml Script, R, AppleScript, Elixir, Visual Basic .NET, Clojure, Haxe 등
