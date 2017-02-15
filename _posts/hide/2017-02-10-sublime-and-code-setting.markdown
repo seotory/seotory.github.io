@@ -16,7 +16,7 @@ tags:
 
 # settings.json
 
-Code > 기본 설정 > 설정을 클릭해서 settings.json 파일을 아래와 같이 수정했다.
+`Code > 기본 설정 > 설정`을 클릭해서 `settings.json` 파일을 아래와 같이 수정했다.
 
 ```json
 {
@@ -36,6 +36,10 @@ Code > 기본 설정 > 설정을 클릭해서 settings.json 파일을 아래와 
 
 # setup plugin
 
+`sublime`과 비슷하게 `code` 역시 플러그인을 지원하는데 에디터 내에서 관련 내용 및 별점을 확인해 볼 수있어서 `sublime`보다는 직관적이였다. 사용하기 편한건 덤이다.
+
+아래는 `code`에 설치한 플러그인의 목록이다.
+
 - Go
 - Preview
 - Ayu
@@ -48,3 +52,4 @@ Code > 기본 설정 > 설정을 클릭해서 settings.json 파일을 아래와 
 - vscode-pandoc
 - Git History
 - Docker Support
+
