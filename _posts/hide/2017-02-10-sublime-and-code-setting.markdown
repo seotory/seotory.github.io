@@ -10,29 +10,15 @@ comments: false
 tags:
 ---
 
-# sublime
+얼마 전에 메인 에디터를 `visual studio code`로 갈아탔다. 알려지다시피 `code`는 `electron`을 이용해서 만들어진 에디터이다. 직접 사용해보니 생각보다 매우 편했다. 특히 프로젝트 도중에 `git`을 사용하여 work flow를 보거나 특정파일만 state에 반영할 때 UI를 이용해서 매우 편리하게 사용할수 있어서 좋았다. 또한 `nodejs`나 `javascript`같은 경우에는 자동완성 기능이 지원되고 이클립스만큼은 아니여도 어느정도 메소드 추적이 가능하다.
 
-```
-{
-	"color_scheme": "Packages/ayu/ayu-mirage.tmTheme",
-	"font_size": 14,
-	"ignored_packages":
-	[
-		"Vintage"
-	],
-	"save_on_focus_lost": true,
-	"show_full_path": true,
-	"theme": "ayu-mirage.sublime-theme"
-}
+`code`로 갈아타면서 셋팅했던 부분들을 기록으로 남겨둔다.
 
-```
+# settings.json
 
-# code
+Code > 기본 설정 > 설정을 클릭해서 settings.json 파일을 아래와 같이 수정했다.
 
-settings.json
-
-```
-// 설정을 이 파일에 넣어서 기본 설정을 덮어씁니다.
+```json
 {
     "window.zoomLevel": 0,
     "editor.fontSize": 13,
@@ -46,10 +32,9 @@ settings.json
     },
     "terminal.external.osxExec": "iTerm.app"
 }
-}
 ```
 
-setup plugin
+# setup plugin
 
 - Go
 - Preview

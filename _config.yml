@@ -28,7 +28,22 @@ markdown_ext: markdown,mkdown,mkdn,mkd,md
 markdown: kramdown
 highlighter: rouge
 
+# Markdown Processors
+rdiscount:
+  extensions: []
+
+redcarpet:
+  extensions: []
+
 kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  input: GFM
+  hard_wrap: false
+  footnote_nr: 1
   enable_coderay: false
   hard_wrap: false
   auto_ids: false
@@ -45,7 +60,7 @@ sass:
 # collections
 collections:
   solutions:
-    output: false
+    output: false 
     permalink: /solution/:categories/:title/
 
 # paging
