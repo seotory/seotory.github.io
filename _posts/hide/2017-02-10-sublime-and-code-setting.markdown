@@ -53,3 +53,14 @@ tags:
 - Git History
 - Docker Support
 
+# key mapping
+
+```json
+[
+    {
+        "key": "cmd+d",
+        "command": "editor.action.deleteLines",
+        "when": "editorFocus" 
+    }
+]
+```
