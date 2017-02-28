@@ -60,8 +60,8 @@ sass:
 # collections
 collections:
   solutions:
-    output: false 
-    permalink: /solution/:categories/:title/
+    output: true
+    permalink: /solution/:year/:month/:title
 
 # paging
 paginate: 10
