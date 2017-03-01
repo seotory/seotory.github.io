@@ -30,7 +30,12 @@ tags:
         "ruby": "ruby",
         "go": "go run"
     },
-    "terminal.external.osxExec": "iTerm.app"
+    "terminal.external.osxExec": "iTerm.app",
+    
+    "editor.wordWrap": true,
+    "workbench.sideBar.location": "left",
+    "workbench.colorTheme": "Ayu Mirage",
+    "workbench.iconTheme": "material-icon-theme"
 }
 ```
 

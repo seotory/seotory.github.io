@@ -43,7 +43,7 @@ LC_IDENTIFICATION="en_US.UTF-8"
 LC_ALL=
 ```
 
-`locale -a` 명령어를 사용해서 현재 시스템에서 사용가능한 로케일을 확인한다. 이 정보는 `/usr/lib/locale/locale-archive`에 있는 정보이다. 위와 비교해보니 `en_US.UTF-8` 로케일이 없는 것이 문제 상황으로 파악됬다.
+`locale -a` 명령어를 사용해서 현재 시스템에서 사용가능한 로케일을 확인한다. 
 
 ```
 [root@7b3a3ede1d74 /]# locale -a
@@ -54,9 +54,11 @@ C
 POSIX
 ```
 
-> Centos/Fedora에는 **locale-gen**가 없다. 대신에 **localedef**를 사용하면 된다.
+이 정보는 `/usr/lib/locale/locale-archive`에 있는 정보이다. 위와 비교해보니 `en_US.UTF-8` 로케일이 없는 것이 문제 상황으로 파악됬다.
 
 로케일을 정의한 파일들은 `/usr/share/i18n/locales` 폴더 아래에 있고, charmap(캐릭터맵)에 대한 정보는 `/usr/share/i18n/charmaps` 폴더 아래에 있다. 이 두가지 정보가 `localedef`의 명령어로 컴파일 되며 컴파일 된 내용은 위에서 보았던 `/usr/lib/locale/locale-archive` 파일안으로 들어가게 된다. 
+
+> Centos/Fedora에는 **locale-gen**가 없다. 대신에 **localedef**를 사용하면 된다.
 
 아래와 같이 입력해서 필요한 로케일을 컴파일 시킨다.
 
