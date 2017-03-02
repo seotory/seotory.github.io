@@ -4,10 +4,11 @@ title: docker 컨테이너 내의 locale(로케일) 에러 해결
 date: 2017-02-28 10:37:02 +0900
 description: 
 image: 
-categories: 
+categories: linux
 published: true
 comments: true
 tags:
+- linux
 ---
 
 특정 docker image를 컨테이너로 만들고 접속해보니 아래와 같은 `locale` 에러 메세지가 발생했다. 무시하고 작업을 해도 되지만 매우 거슬려서 아래와 같이 추가 설정을 하였다.
