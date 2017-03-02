@@ -17,6 +17,13 @@ facebook_username: ""
 # url change (/:year/:month/:day)
 permalink: /post/:year/:month/:title
 
+# collections
+collections:
+  solutions:
+    output: true
+    permalink: /solution/:year/:month/:title
+  
+
 # timezone
 timezone: Asia/Seoul
 
@@ -56,12 +63,6 @@ excerpt_separator: <!--more-->
 # CSSls
 sass:
   sass_dir: _sass
-
-# collections
-collections:
-  solutions:
-    output: true
-    permalink: /solution/:year/:month/:title
 
 # paging
 paginate: 10
