@@ -60,7 +60,7 @@ kramdown:
 # post separator
 excerpt_separator: <!--more-->
 
-# CSSls
+# CSS
 sass:
   sass_dir: _sass
 
