@@ -116,21 +116,21 @@ echo 'eval "$(pyenv init -)"' >> ~/.bash_profil
 `pyenv`를 이용하면 `python`의 전역 버젼 뿐만 아니라 특정 폴더에서 로컬 version을 가지고 실행이 가능하다. 테스트를 위해 3.6.0 버젼을 설치하여 아래와 같이 실행해본다.
 
 ```
-mkdir python-test
-cd python-test
+$ mkdir python-test
+$ cd python-test
 
-pyenv install 3.6.0
-pyenv versions
+$ pyenv install 3.6.0
+$ pyenv versions
   system
 * 2.7.12 (set by /Users/seotory/.pyenv/version)
   3.6.0
 
-pyenv local 3.6.0
-python -V
+$ pyenv local 3.6.0
+$ python -V
 Python 3.6.0
 
-cd ..
-python -V
+$ cd ..
+$ python -V
 Python 2.7.12
 ```
 
