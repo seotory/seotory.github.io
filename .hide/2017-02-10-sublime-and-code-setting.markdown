@@ -56,7 +56,7 @@ tags:
   C, C++, Java, JavaScript, PHP, Python, Perl, Ruby, Go, Lua, Groovy, PowerShell, BAT/CMD, BASH/SH, F# Script, C# Script, VBScript, TypeScript, CoffeeScript, Scala, Swift, Julia, Crystal, OCaml Script, R, AppleScript, Elixir, Visual Basic .NET, Clojure, Haxe 등
 - vscode-pandoc
 - Git History
-- Docker Support
+- Docker
 
 # key mapping
 
