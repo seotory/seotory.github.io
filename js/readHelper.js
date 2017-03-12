@@ -157,26 +157,6 @@ ReadDoc.prototype.readPosition = function ( option ) {
 	}
 }
 
-ReadDoc.prototype.readProcess = function ( option ) {
-
-	var that = this;
-  var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
-  var topGap = scrollTop + Math.floor(that.root.getBoundingClientRect().top);
-
-	return function ( cursor ) {
-		if ( cursor >= topGap ) {
-      var per = ((cursor-500) / that.root.offsetHeight) * 100;
-      if ( per <= 100 ) {
-				if ( option.onChangeEvent ) option.onChangeEvent ( per );
-      } else {
-      	if ( option.onChangeEvent ) option.onChangeEvent ( 100 );
-      }
-    } else {
-      if ( option.onChangeEvent ) option.onChangeEvent ( 0 );
-    }
-	}
-}
-
 ReadDoc.prototype.readBox = function ( option ) {
   
   var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
@@ -215,7 +195,6 @@ ReadDoc.prototype.readBox = function ( option ) {
 ReadDoc.prototype.run = function () {
 	var that = this;
 	var readPosition = that.readPosition( that.option.readPosition );
-	var readProcess = that.readProcess( that.option.readProcess );
 	var readBox = that.readBox( that.option.readBox );
 
 	$( window ).scroll(function () {
@@ -225,7 +204,6 @@ ReadDoc.prototype.run = function () {
 
     var cursor = $(window).scrollTop();
     readPosition( cursor );
-    readProcess( cursor );
     readBox( cursor );
   });
 }
