@@ -8,9 +8,19 @@
       <ul>
       {% for page in site.pages %}
         {% if page.title %}
-          <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
+        <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
         {% endif %}
       {% endfor %}
+        <li>
+          Category
+          <ul>
+            {% for category in site.categories %}
+            <li><a href="/categories/{{ category | first }}/">{{ category | first }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+      </ul>
+      <ul style="display: none;">
         <li>
           <button class="c-hamburger c-hamburger--htx">
             <span>toggle menu</span>

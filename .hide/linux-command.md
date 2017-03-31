@@ -10,7 +10,7 @@ echo $PATH | tr ":" "\n"
 while true; do [실행문]; sleep 2; done
 ```
 
-# grep regex
+# grep regex(정규식) 사용하기
 
 ```
 keys *.category.shop | grep -ie "[0-9].*shop"
