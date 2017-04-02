@@ -40,6 +40,7 @@ date: #{Time.now.strftime('%Y-%m-%d %k:%M:%S')} +0900
 description: 
 image: 
 categories: #{category}
+history: false
 published: false
 comments: false
 tags:
@@ -134,6 +135,7 @@ date: #{Time.now.strftime('%Y-%m-%d %k:%M:%S')} +0900
 description: 
 image: 
 categories: #{category}
+history: false
 published: false
 comments: false
 tags:

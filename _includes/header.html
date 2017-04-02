@@ -5,13 +5,13 @@
       <a href="/">{{ site.title }}</a>
     </div>
     <div class="site-menu">
-      <ul>
+      <ul class="pc-menu">
       {% for page in site.pages %}
         {% if page.title %}
         <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
         {% endif %}
       {% endfor %}
-        <li>
+        <li class="on-pc">
           Category
           <ul>
             {% for category in site.categories %}
@@ -19,8 +19,16 @@
             {% endfor %}
           </ul>
         </li>
+        <li class="on-pc">
+          ETC
+          <ul>
+            <li><a href="/solutions/">Error solutions</a></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </li>
       </ul>
-      <ul style="display: none;">
+      <ul class="mobile-menu">
         <li>
           <button class="c-hamburger c-hamburger--htx">
             <span>toggle menu</span>
