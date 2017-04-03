@@ -4,13 +4,18 @@ title: About
 permalink: /about/
 ---
 
-#### 서토리
+#### 서토리 (seotory)
 
 안녕하세요. it 업계에서 잡다한 업무로 일하고 있는 서토리입니다. 
 
 이 블로그는 개인적인 블로그이며, 공부한 내용을 주로 정리하는 블로그가 될 것입니다. 하나 부탁드리는 것은 제 실력이 뛰어나지않기 때문에 혹여나 잘못된 정보가 있을 시에는 선배의 마음으로 너그럽게 알려주셨으면 합니다.
 
-#### jekyll
+#### seotory history
+
+- 1986년 생
+
+
+#### blog with jekyll
 
 jekyll로 오기 전까지 여러 가지 플랫폼의 blog를 사용해보았지만, static html blog의 강력함에 이끌려 결국 jekyll로 오고 말았습니다. 
 
@@ -20,7 +25,9 @@ wordpress는 제법 글 쓰는데 재미를 붙여준 CMS입니다. 블로그의
 
 결국 jekyll!! markdown의 강력함과 따로 database가 필요하지 않다는 점은 정말 편한듯합니다. 또한 어디서든 제 git remote를 pull만 받으면 블로그 작업이 가능하다는 점.. 정말 매력적인 것 같네요.
 
-만약 여러분이 새로운 블로그를 계획 중이라면 jekyll을 추천하겠습니다.
+#### blog history
+
+- 2016년 3월 18일 blog 이전 (tistory -> jekyll)
 
 #### code에 대한 마음가짐
 

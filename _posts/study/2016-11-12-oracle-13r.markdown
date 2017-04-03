@@ -1,10 +1,15 @@
 ---
 layout: post
 title: oracle 13r
-date: 2016-11-12  9:04:41 +0900
+date: 2016-11-12 9:04:41 +0900
 description:
 image:
 categories: study
+history: 
+  use: true
+  data: 
+    - 20161112
+    - 20161130
 published: false
 comments: false
 tags:

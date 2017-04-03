@@ -22,7 +22,6 @@ collections:
   solutions:
     output: true
     permalink: /solution/:year/:month/:title
-  
 
 # timezone
 timezone: Asia/Seoul

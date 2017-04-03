@@ -17,6 +17,9 @@ layout: default
   <div class="wrapper">
     <div class="post ws">
       <div class="post-wrap ws-right">
+
+        {% include history.html history=page.history %}
+
         <!-- post -->
         <article class="post-content">
           {{ content }}
