@@ -44,11 +44,11 @@
 
     ul {
       list-style: none;
+      @extend %reset;
     }
 
     > ul {
       display: inline-flex;
-      @extend %reset;
     }
 
     .mobile-menu {
@@ -66,7 +66,7 @@
         &:hover {
           color: #fff;
           background: #000;
-          ul {
+          div {
             visibility: visible;
             opacity: 1;
           }
@@ -75,21 +75,22 @@
           }
         }
 
-        > ul {
+        > div {
           @extend %reset;
           position: absolute;
           width: 180px;
           border: 5px;
+          padding: 10px;
           top: 100%;
           right: 0;
-          background: #FAFAFA;
+          background: #000;
           z-index: 100;
 
           visibility: hidden;
           opacity: 0;
           @include anime(all 0.3s);
 
-          > li {
+          > ul > li {
             @extend %reset;
             float: none;
             line-height: 35px;
@@ -112,7 +113,7 @@
     }
 
     @include media-query($on-laptop) {
-      .on-pc {
+      .pc-menu {
         display: none;
       }
       .mobile-menu {
@@ -187,6 +188,10 @@ article {
 
   > *:first-child {
     margin-top: 0 !important;
+  }
+
+  ul, ol {
+    margin-left: $spacing-unit;
   }
 }
 
@@ -352,6 +357,10 @@ article {
 .post {
 
   .post-info {
+
+    &-title ul {
+      padding-left: 30px;
+    }
 
     &-move {
       position: relative;

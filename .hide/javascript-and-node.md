@@ -17,6 +17,7 @@ https://github.com/typicode/json-server
 # javascript, node event queue, test queue
 
 http://meetup.toast.com/posts/89
+http://asfirstalways.tistory.com/362
 
 # javascript queue
 

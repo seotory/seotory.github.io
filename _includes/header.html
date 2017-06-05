@@ -11,21 +11,25 @@
         <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
         {% endif %}
       {% endfor %}
-        <li class="on-pc">
+        <li>
           Category
-          <ul>
-            {% for category in site.categories %}
-            <li><a href="/categories/{{ category | first }}/">{{ category | first }}</a></li>
-            {% endfor %}
-          </ul>
+          <div>
+            <ul>
+              {% for category in site.categories %}
+              <li><a href="/categories/{{ category | first }}/">{{ category | first }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
         </li>
-        <li class="on-pc">
+        <li>
           ETC
-          <ul>
-            <li><a href="/solutions/">Error solutions</a></li>
-            <li></li>
-            <li></li>
-          </ul>
+          <div>
+            <ul>
+              <li><a href="/solutions/">Error solutions</a></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
         </li>
       </ul>
       <ul class="mobile-menu">

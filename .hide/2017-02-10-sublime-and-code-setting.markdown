@@ -57,6 +57,7 @@ tags:
 - vscode-pandoc
 - Git History
 - Docker
+- Active File In StatusBar
 
 # key mapping
 
@@ -69,3 +70,5 @@ tags:
     }
 ]
 ```
+
+
