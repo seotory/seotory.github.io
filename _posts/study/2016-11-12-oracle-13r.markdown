@@ -6,10 +6,8 @@ description:
 image:
 categories: study
 history: 
-  use: true
-  data: 
-    - 20161112
-    - 20161130
+- 20161112
+- 20161130
 published: false
 comments: false
 tags:
