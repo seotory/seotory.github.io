@@ -25,7 +25,7 @@ http://stackoverflow.com/questions/1590247/how-do-you-implement-a-stack-and-a-qu
 
 # node fs
 
-```
+```js
 const fs = require('fs');
 const path = require('path');
 const allFilesSync = (dir, fileList = []) => {
@@ -40,7 +40,7 @@ const allFilesSync = (dir, fileList = []) => {
     return fileList;
 }
 ```
-```
+```js
 const fs = require('fs');
 const path = require('path');
 const allFilesSync = (dir, fileList = []) => {
@@ -57,7 +57,7 @@ const allFilesSync = (dir, fileList = []) => {
 ```
 
 # promise utils
-
+```js
 Promise.serialize = function(arr, func){
     let result = [];
     let s = Promise.resolve();
@@ -77,3 +77,16 @@ Promise.prototype.sleep = function(n){
         });
     });
 };
+
+if (!Promise.prototype.spread) {
+    Promise.prototype.spread = function (fn) {
+        return this.then(function (args) {
+            return Promise.all(args); // wait for all
+        }).then(function(args){
+         //this is always undefined in A+ complaint, but just in case
+            return fn.apply(this, args); 
+        });
+
+    };
+}
+```
