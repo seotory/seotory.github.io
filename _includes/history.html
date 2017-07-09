@@ -1,8 +1,8 @@
 <!-- include.history -->
-{% if include.history.use %}
+{% if include.history %}
 <div class="history" style="border: 1px solid #eee; padding: 10px;margin-bottom:40px;list-style: none;border-radius: 10px;background:#eee;">
   <ul style="margin-bottom:0px;">
-    {% for date in include.history.data %}
+    {% for date in include.history %}
     <li>본 포스팅은 {{ date | slice: 0, 4 }}년 {{ date | slice: 4, 2 }}월 {{ date | slice: 6, 2 }}일에 수정되었습니다.</li>
     {% endfor %}
   </ul>
