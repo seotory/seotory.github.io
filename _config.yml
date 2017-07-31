@@ -17,17 +17,32 @@ facebook_username: ""
 # url change (/:year/:month/:day)
 permalink: /post/:year/:month/:title
 
-# collections
-collections:
-  solutions:
-    output: true
-    permalink: /solution/:year/:month/:title
-
 # timezone
 timezone: Asia/Seoul
 
 # read file
 markdown_ext: markdown,mkdown,mkdn,mkd,md
+
+# layout setting
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  -
+    scope: 
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+# collections
+collections:
+  solutions:
+    output: true
+    permalink: /solution/:year/:month/:title
 
 # highlighter settings
 # Build settings

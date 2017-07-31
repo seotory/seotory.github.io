@@ -4,8 +4,10 @@
  * Syntax highlighting styles
  */
 blockquote > pre,
-pre.highlight,
-figure.highlight {
+figure > pre,
+// div.highlighter-rouge > pre,
+pre.highlight
+ {
   display: block;
   width: 100%;
   padding: 15px 20px;
@@ -16,26 +18,22 @@ figure.highlight {
   margin-bottom: 15px;
 }
 
-figure.highlight {
-  padding: 15px 20px;
+figure {
+  margin: 0px;
 }
 
 td > pre.lineno {
-  padding: 15px 10px 15px 10px;
-}
-
-td.code > pre {
-  padding: 15px 20px 15px 20px;
-}
-
-code > table {
-  margin: -15px -20px;
+  padding-right: 20px;
 }
 
 .highlight pre code {
   white-space: pre; 
 }
 
+code.highlighter-rouge {
+    color: #C31D1D;
+    background-color: #F9F3F3;
+}
 
 blockquote > pre,
 blockquote pre.highlight {

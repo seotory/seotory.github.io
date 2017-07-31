@@ -1,0 +1,41 @@
+article {
+  font-family: $base-font-family;
+//   font-size: $base-font-size;
+  line-height: $base-line-height;
+//   font-weight: $base-font-weight;
+//   color: $text-color;
+  -webkit-text-size-adjust: none;
+
+  p {
+    line-height: $base-line-height;
+  }
+  img {
+    max-width: 100%;
+    vertical-align: middle;
+  }
+}
+
+pre, code {
+    font-family: "Consolas", "Menlo", "Monaco", "Courier", monospace;
+    // font-size: 15px;
+    line-height: 1.3;
+    border-radius: 3px;
+    tab-size: 4;
+}
+
+code {
+  padding: 1px 5px;
+}
+
+code.highlighter-rouge {
+  color: #C31D1D;
+  background-color: #F9F3F3;
+}
+
+pre {
+  > code {
+    border: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+}

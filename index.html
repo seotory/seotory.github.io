@@ -1,8 +1,8 @@
 ---
 layout: default
 ---
-<section class="page-content">
-  <div class="wrapper">
+<section style="margin: 50px 0px;">
+  <div class="ui container">
     
     <!-- google AD -->
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -14,10 +14,45 @@ layout: default
     <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-    <ul class="display">
+
+    <div class="ui divided items">
       <!-- article list -->
       {% for post in paginator.posts %}
-      <li class="">
+      <div class="item">
+        <div class="ui medium image">
+          <img src="http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/6.jpg">
+        </div>
+        <div class="content">
+          <a href="{{ post.url }}" class="header">{{ post.title }}</a>
+          <div class="meta">
+            <span class="cinema">{{ post.date | date_to_long_string }}</span>
+          </div>
+          <div class="description">
+            {% if post.description %}
+            <p>{{ post.description | strip_html }}</p>
+            {% else %}
+            <p>{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+            {% endif %}
+
+          </div>
+          <div class="extra">
+            <div class="ui label"><i class="desktop icon"></i>{{post.categories}}</div>
+            {% if post.comments %}
+            <!-- <span class="right floated">
+              <i class="heart outline like icon"></i>
+              <a href="#" onclick="return false;" data-disqus-identifier="{{post.url}}"></a> likes
+              17 likes
+            </span> -->
+            <div class="ui red label">
+              <i class="heart icon"></i>
+              <a href="#" onclick="return false;" data-disqus-identifier="{{post.url}}"></a>
+            </div> 
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- <li class="">
         <div class="article-list-date">
           {{ post.date | date_to_long_string }}
         </div>
@@ -72,9 +107,9 @@ layout: default
             </ul>
           </div>
         </div>
-      </li>
+      </li>  -->
       {% endfor %}
-    </ul>
+    </div>
     <!-- google AD -->
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- main_bottom_336_280 -->
@@ -86,35 +121,49 @@ layout: default
     (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
   </div>
-
 </section>
 
 {% if paginator.total_pages > 1 %}
-<section class="paginate">
-  <ul>
+<section style="margin-bottom: 50px;">
+  <div class="ui container">
+    <div class="grid">
+      <div class="row">
+        <div class="ui pagination menu">
+          {% if paginator.previous_page %}
+          <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="icon item">
+            <i class="left chevron icon"></i>
+          </a>
+          {% else %}
+          <a href="#" class="icon item">
+            <i class="left chevron icon"></i>
+          </a>
+          {% endif %}
 
-    {% if paginator.previous_page %}
-    <li><a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&lang;</a></li>
-    {% else %}
-    <li><a href="#">&lang;</a></li>
-    {% endif %}
+          {% for page in (1..paginator.total_pages) %}
+            {% if page == paginator.page %}
+          <!-- <li><a href="" class="active">{{ page }}</a></li> -->
+          <a class="active item">{{ page }}</a>
+            {% elsif page == 1 %}
+          <!-- <li><a href="/{{site.baseurl | replace: '//', '/'}}">{{ page }}</a></li> -->
+          <a href="/{{site.baseurl | replace: '//', '/'}}" class="item">{{ page }}</a>
+            {% else %}
+          <!-- <li><a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a></li> -->
+          <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}" class="item">{{ page }}</a>
+            {% endif %}
+          {% endfor %}
 
-    {% for page in (1..paginator.total_pages) %}
-      {% if page == paginator.page %}
-    <li><a href="" class="active">{{ page }}</a></li>
-      {% elsif page == 1 %}
-    <li><a href="/{{site.baseurl | replace: '//', '/'}}">{{ page }}</a></li>
-      {% else %}
-    <li><a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a></li>
-      {% endif %}
-    {% endfor %}
-
-    {% if paginator.next_page %}
-    <li><a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">&rang;</a></li>
-    {% else %}
-    <li><a href="#">&rang;</a></li>
-    {% endif %}
-
-  </ul>
+          {% if paginator.next_page %}
+          <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="icon item">
+            <i class="right chevron icon"></i>
+          </a>
+          {% else %}
+          <a href="#" class="icon item">
+            <i class="right chevron icon"></i>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 {% endif %}

@@ -1,113 +1,115 @@
 ---
 layout: default
 ---
-<section class="page-header">
-  <div class="wrapper">
-    <header class="post-header">
-      <div class="post-info">
-        <span class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</span>
-        <h1 class="post-title">{{ page.title }}</h1>
+<!-- title header -->
+<section class="ui inverted vertical masthead center aligned segment" style="min-height: 500px; padding: 1em 0em; margin-bottom: 50px;">
+  <div class="ui container">
+    <div class="column">
+      <div style="margin-top: 15em;">
+        <h1 style="font-size: 3.5em;">{{ page.title }}</h1>
+        <span>{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</span>
       </div>
-    </header>
+    </div>
   </div>
 </section>
 
-<div class="empty-space"></div>
-<section class="page-content">
-  <div class="wrapper">
-    <div class="post ws">
-      <div class="post-wrap ws-right">
+<!-- contents body -->
+<section style="margin: 50px 0px;">
+  <div class="ui container">
 
-        {% include history.html history=page.history %}
+    <div style="margin-right: 387px !important; position: relative">
 
-        <!-- post -->
-        <article class="post-content">
+    <div class="ui grid">
+      {% include history.html history=page.history %}
+      <!-- post -->
+      <div class="row">
+        <div class="column">
+          <article>
           {{ content }}
-        </article>
-
-        <!-- tags -->
-        {% if page.tags.size > 0 %}
-        <div class="post-tags">
-            <span>
-              <i class="fa fa-tags" aria-hidden="true"></i>
-              tags
-            </span>
-            {% for tag in page.tags %}
-            <span><a href="/tags/?#{{ tag }}">{{ tag | downcase }}</a></span>
-            {% endfor %}
+          </article>
         </div>
-        {% endif %}
-
-        {% if site.categories[page.categories.last].size > 1 %}
-
-        <!-- category other posts -->
-        <hr class="dot" />
-        <div class="post-other">
-          <h2>Other posts</h2>
-        	<ul>
-            {% assign counter = 0 %}
-      			{% for post in site.categories[page.categories.last] %}
-      				{% if post.title != page.title and counter < 5 %}
-              {% assign counter=counter | plus:1 %}
-      			  <li><a href="{{post.url}}">{{ post.title }}</a></li>
-      			  {% endif %}
-      			{% endfor %}
-        	</ul>
-        </div>
-
-        <!-- 전후글 -->
-        {% for post in site.categories[page.categories.last] %}
-          {% if post.url == page.url %}
-            {% assign post_index0 = forloop.index0 %}
-            {% assign post_index1 = forloop.index %}
-          {% endif %}
-        {% endfor %}
-        {% for post in site.categories[page.categories.last] %}
-          {% if post_index0 == forloop.index %}
-            {% assign next_post = post.url %}
-          {% endif %}
-          {% if post_index1 == forloop.index0 %}
-            {% assign prev_post = post.url %}
-          {% endif %}
-        {% endfor %}
-        <div class="post-close">
-        {% if next_post %}
-          <div class="post-next">
-            <a href="{{ next_post }}">NEXT ></a> <br>
-          </div>
-        {% endif %}
-        {% if prev_post %}
-          <div class="post-prev">
-            <a href="{{ prev_post }}">< PREV</a> <br>
-          </div>
-        {% endif %}
-        </div>
-
-        {% endif %}
-
       </div>
-      <div class="post-info ws-left">
-        <div>
-          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-          <!-- post_right_300_250 -->
-          <ins class="adsbygoogle"
-               style="display:inline-block;width:300px;height:250px"
-               data-ad-client="ca-pub-1634875166425349"
-               data-ad-slot="1483687319"></ins>
-          <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-        </div>
-        <div class="post-info-move">
-          <!--
-          <div class="post-info-process">
-            <div class="progress" style="height:22px;border:1px solid #ccc;">
-              <div style="background:#ccc;width:0%;height:20px;"></div>
+
+      <!-- 전후글 -->
+      {% for post in site.categories[page.categories.last] %}
+        {% if post.url == page.url %}
+          {% assign post_index0 = forloop.index0 %}
+          {% assign post_index1 = forloop.index %}
+        {% endif %}
+      {% endfor %}
+      {% for post in site.categories[page.categories.last] %}
+        {% if post_index0 == forloop.index %}
+          {% assign next_post = post.url %}
+        {% endif %}
+        {% if post_index1 == forloop.index0 %}
+          {% assign prev_post = post.url %}
+        {% endif %}
+      {% endfor %}
+      <div class="row">
+        <div class="column">
+          <div class="ui grid">
+            <div class="two column large screen only row">
+            <!-- <div class="post-prev">
+              <a href="{{ prev_post }}">< PREV</a> <br>
+            </div> -->
+              <div class="column">
+          {% if prev_post %}
+                <div class="ui fade animated primary button">
+                  <div class="visible content">Prev</div>
+                  <div class="hidden content">
+                    <i class="left arrow icon"></i>
+                  </div>
+                </div>
+          {% endif %}
+              </div>
+              <!-- <div class="post-next">
+                <a href="{{ next_post }}">NEXT ></a> <br>
+              </div> -->
+              <div class="right aligned column">
+          {% if next_post %}
+                <div class="ui fade animated primary button">
+                  <div class="visible content">Next</div>
+                  <div class="hidden content">
+                    <i class="right arrow icon"></i>
+                  </div>
+                </div>
+          {% endif %}
+              </div>
             </div>
           </div>
-          -->
-          <div class="post-info-title">
-          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="" style="position: absolute; width: 367px; top: 0; right: 0; margin-right: -387px;">
+      <!-- tags -->
+      {% if page.tags.size > 0 %}
+      <h3 class="ui horizontal divider header">
+        <i class="tag icon"></i>
+        Tags
+      </h3>
+        {% for tag in page.tags %}
+      <a class="ui tag label" href="/tags/?#{{ tag }}">{{ tag | downcase }}</a>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    </div>
+  </div>
+
+  <div class="ui container">
+    <div class="ui grid"> 
+      <div class="row">
+        <div class="column">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- post_right_300_250 -->
+        <ins class="adsbygoogle"
+              style="display:inline-block;width:300px;height:250px"
+              data-ad-client="ca-pub-1634875166425349"
+              data-ad-slot="1483687319"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
         </div>
       </div>
     </div>
@@ -116,64 +118,57 @@ layout: default
 
 {% if page.comments %}
 <!-- disqus -->
-<section class="page-comments">
-  <div class="wrapper">
-    <div class="ws">
-        <div id="disqus_thread"></div>
-        <script>
-        /**
-        * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-        * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-        */
-        var disqus_shortname = 'seotory-blog';
-        var disqus_config = function () {
-          //this.page.url = "blog.seotory.com{{ page.url }}";
-          this.page.identifier = "{{ page.url }}";
-          this.page.title = "{{ page.title }}";
-        };
-        (function() { // DON'T EDIT BELOW THIS LINE
-          var d = document, s = d.createElement('script');
-          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          s.setAttribute('data-timestamp', +new Date());
-          (d.head || d.body).appendChild(s);
-        })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-      <!-- 
-      <div class="ws-right"></div>
-      <div class="ws-left"></div>
-      -->
-    </div>
+<section style="border-top: rgba(34,36,38,.1) 1px solid; padding: 50px 0px; background: #f5f5f5;">
+  <div class="ui container">
+    <div id="disqus_thread"></div>
+    <script>
+    /**
+    * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+    */
+    var disqus_shortname = 'seotory-blog';
+    var disqus_config = function () {
+      //this.page.url = "blog.seotory.com{{ page.url }}";
+      this.page.identifier = "{{ page.url }}";
+      this.page.title = "{{ page.title }}";
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
   </div>
 </section>
 {% endif %}
-<script src="/js/readHelper.js"></script>
-<script>
-$(document).ready(function(){
-  var a = new ReadDoc({
-    target: 'article',
-    printTarget: '.post .post-info-title',
-    readPosition: {
-      onReachEvent: function ( idx ) {
-        $('.post .post-info-title').find('li').removeClass('on');
-        idx = idx-1;
-        if ( idx > -1 ) {
-          $('.post .post-info-title').find('li').eq(idx).addClass('on');
-        }
-      }
-    },
-    readProcess: {
-      onChangeEvent: function ( per ) {
-        var bar = document.querySelector(".progress div");
-        bar.style.width = per + '%';
-      }
-    },
-    readBox: {
-      target: '.post .post-info-move',
-      marginTop: 15,
-      compareTarget: '.post'
-    }
-  });
-  a.run();
-});
-</script>
+
+<section style="border-top: rgba(34,36,38,.1) 1px solid; padding: 50px 0px;">
+  <div class="ui container">
+      <!-- category other posts start -->
+      {% if site.categories[page.categories.last].size > 1 %}
+      <!-- <h3 class="ui horizontal divider header">
+        <i class="bar chart icon"></i>
+        Other posts
+      </h3> -->
+      <div class="ui four column doubling stackable grid">
+        {% assign counter = 0 %}
+        {% for post in site.categories[page.categories.last] %}
+          {% if post.title != page.title and counter < 6 %}
+            {% assign counter=counter | plus:1 %}
+        <!-- <a class="header" href="{{post.url}}"> -->
+        <div class="column">
+          <div class="ui segment">
+            <h4 class="ui header">{{post.title}}</h4>
+            <p>test</p>
+          </div>
+        </div>
+        <!-- </a> -->
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
+      <!-- category other posts end -->
+  </div>
+</section>

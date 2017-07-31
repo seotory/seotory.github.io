@@ -90,3 +90,28 @@ if (!Promise.prototype.spread) {
     };
 }
 ```
+
+# 간단한 이벤트 어뎁터.
+
+```javascript
+let Event = new class {
+    constructor () {
+        this.vue = new Vue({});
+    }
+
+    fire (event, data = null) {
+        this.vue.$emit(event, data);
+    }
+
+    listen (event, callback) {
+        this.vue.$on(event, callback);
+    }
+}
+
+let eventBus = new Event();
+eventBus.fire('click', {data: 'test'})
+eventBus.listen('click', ()=>{
+    console.log('click');    
+})
+
+```

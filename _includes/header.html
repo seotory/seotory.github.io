@@ -1,52 +1,35 @@
-<header class="site-header">
-
-  <div class="wrapper clearfix">
-    <div class="site-title">
+<div class="ui top fixed menu"><!-- ui large top fixed hidden menu -->
+  <div class="ui container">
+    <div class="active item">
       <a href="/">{{ site.title }}</a>
     </div>
-    <div class="site-menu">
-      <ul class="pc-menu">
+    <div class="right menu">
       {% for page in site.pages %}
-        {% if page.title %}
-        <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
-        {% endif %}
+      {% if page.title %}
+      <a href="{{ page.url | prepend: site.baseurl }}" class="teal item">{{ page.title }}</a>
+      {% endif %}
       {% endfor %}
-        <li>
-          Category
-          <div>
-            <ul>
-              {% for category in site.categories %}
-              <li><a href="/categories/{{ category | first }}/">{{ category | first }}</a></li>
-              {% endfor %}
-            </ul>
-          </div>
-        </li>
-        <li>
-          ETC
-          <div>
-            <ul>
-              <li><a href="/solutions/">Error solutions</a></li>
-              <li></li>
-              <li></li>
-            </ul>
-          </div>
-        </li>
-      </ul>
-      <ul class="mobile-menu">
-        <li>
-          <button class="c-hamburger c-hamburger--htx">
-            <span>toggle menu</span>
-          </button>       
-        </li>
-      </ul>
-    </div>
-    <div class="site-cate">
-      <ul>
-        {% for category in site.categories %}
-        <li><a href="/categories/{{ category | first }}/">{{ category | first }}</a></li>
-        {% endfor %}
-      </ul>
+      <div class="ui simple dropdown item">
+        Category
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          {% for category in site.categories %}
+          <a href="/categories/{{ category | first }}/" class="teal item">{{ category | first }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="ui simple dropdown item">
+        ETC
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <a href="/solutions/" class="teal item">Error solutions</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="ui input">
+          <input type="text" placeholder="search">
+        </div>
+      </div>
     </div>
   </div>
-
-</header>
+</div>

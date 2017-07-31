@@ -9,7 +9,11 @@
   <!-- 파비콘 ? jekyll error 방지 -->
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
 
-  <link rel="stylesheet" href="{{ "/css/main.css?v0.2" | prepend: site.baseurl }}">
+  <!-- semantic UI -->
+  <link rel="stylesheet" type="text/css" href="/css/semantic.min.css">  
+
+  <!-- defualt -->
+  <link rel="stylesheet" href="{{ "/css/main.css?v0.2" | prepend: site.baseurl }}"> 
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
@@ -25,11 +29,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:400,700">
 
-  <!-- fontawesome -->
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  
   <!-- jQuery -->
-  <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>  
 
   <!-- mathjax -->
   <script type="text/javascript" async
@@ -53,5 +57,4 @@
     ga('create', 'UA-66666483-2', 'auto');
     ga('send', 'pageview');
   </script>
-  
 </head>
