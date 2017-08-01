@@ -51,63 +51,6 @@ layout: default
           </div>
         </div>
       </div>
-
-      <!-- <li class="">
-        <div class="article-list-date">
-          {{ post.date | date_to_long_string }}
-        </div>
-        <div class="article-list" data-href="{{ post.url | prepend: site.baseurl }}" data-bg-img="{{ post.image }}">
-          <div class="article-list-header">
-
-            <a href="{{ post.url }}"><h2>{{ post.title }}</h2></a>
-          </div>
-          <div class="article-list-body">
-            {% if post.description %}
-              {{ post.description | strip_html }} 
-              <br/>
-              <a href="{{ post.url }}">read more...</a>
-            {% else %}
-              {{ post.excerpt | strip_html | truncatewords: 40 }} 
-              <br/>
-              <a href="{{ post.url }}">read more...</a>
-            {% endif %}
-          </div>
-          <div class="article-list-footer">
-            <ul>
-              <li>
-                <span>
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
-                </span>
-                <span>
-                  Seotory
-                </span>
-              </li>
-              {% if post.comments %}
-              <li>
-                <span>
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                </span>
-                <span>
-                  <a href="#" onclick="return false;" data-disqus-identifier="{{post.url}}"></a>건
-                </span>
-              </li>
-              {% endif %}
-              {% if post.tags.size > 0 %}
-              <li>
-                <span>
-                  <i class="fa fa-tags" aria-hidden="true"></i>
-                </span>
-                {% for tag in post.tags %}
-                <span class="tag">
-                  {{tag}}
-                </span>
-                {% endfor %}
-              </li>
-              {% endif %}
-            </ul>
-          </div>
-        </div>
-      </li>  -->
       {% endfor %}
     </div>
     <!-- google AD -->
