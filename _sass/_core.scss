@@ -1,17 +1,18 @@
 html, body {
   width: 100%!important;
   height: 100%!important;
+  overflow: initial;
+  background: none;
 }
 
-html {
-  overflow-x: hidden;
-  display: block;
-}
-html,
-html body {
-  height: 100% !important;
-  -webkit-overflow-scrolling: touch;
-}
+// html {
+//   overflow-x: hidden;
+//   display: block;
+// }
+// html,
+// html body {
+//   -webkit-overflow-scrolling: touch;
+// }
 body {
   position: relative;
 }
