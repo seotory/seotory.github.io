@@ -2,32 +2,36 @@
 <html>
   {% include head.html %}
   <body>
-    <div style="position: relative; overflow: hidden;"></div>
+    <div style="position: absolute; width: 100%; overflow-x: hidden">
 
-    {% include header.html %}
+      {% include header.html %}
 
-    <div class="ui grid">
-      <div class="computer tablet only row"> 
-        <section style="height: 20px; width: 100%;">
-          <div class="ui container"></div>		
-        </section> 
-      </div> 
-      <div class="mobile only row">
-        <section style="height: 12px; width: 100%;">
-          <div class="ui container"></div>		
-        </section> 
-      </div> 
+      <div class="ui grid">
+        <div class="computer tablet only row"> 
+          <section style="height: 20px; width: 100%;">
+            <div class="ui container"></div>		
+          </section> 
+        </div> 
+        <div class="mobile only row">
+          <section style="height: 12px; width: 100%;">
+            <div class="ui container"></div>		
+          </section> 
+        </div> 
+      </div>
+
+      {{ content }}
+
+      {% include footer.html %}
+
     </div>
-
-    {{ content }}
-
-    {% include footer.html %}
+    <!-- <div style="top: 0!important; left: 0!important; width: 100%; height: 100%; background-color: rgba(0,0,0,.85); z-index: 500; opacity: 1;"></div> -->
 
     <!-- disqus count js -->
     <script type="text/javascript" id="dsq-count-scr" src="//seotory-blog.disqus.com/count.js" async></script>
 
     <!-- semantic UI -->
     <script type="text/javascript" src="/js/semantic.min.js"></script>
+
   </body>
 </html>
 <!-- Proudly Hosted on GitHub | Generated {{ site.time }} | Revision {{ site.github.build_revision }} -->

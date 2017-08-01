@@ -45,7 +45,7 @@
     <div class="ui fixed inverted navbar menu">
         <a href="/" class="brand item">Seotory</a>
         <div class="right menu">
-            <a href="#" onclick="mobileMenuController(this);return false;" class="menu item">
+            <a href="#" onclick="mobileMenuController(this);return false;" class="menu item" data-show-left-menu="off">
                 <i class="sidebar icon"></i>
             </a>
         </div>
@@ -75,19 +75,24 @@
 </div>
 <script>
   $(document).ready(function(){
-    let $bodyDimmer = $('body').dimmer('get dimmer');
-    $bodyDimmer.on('click', function(){
-      $('#mobile-menu').animate({
-        left: '-15rem'
-      })
-    });
+    // $('body').dimmer('set disabled', function(){
+    //   console.log('test');
+    // });
+    $('body').dimmer('get dimmer')
+      .on('click', function(){
+        $('#mobile-menu').animate({left: '-15rem'});
+      });
   })
   function mobileMenuController(el) {
-    var val = $('#mobile-menu').css('left');
-    $('#mobile-menu').animate({
-      left: val == (0 || '0px') ? '-15rem' : '0px'
-    });
-    $('body').dimmer('toggle');
+    // var showLeftMenu = $(el).data('show-left-menu');
+    // if ( showLeftMenu == 'on' ) {
+    //   $('#mobile-menu').animate({left: '-15rem'});
+    //   $(el).data('show-left-menu', 'off');
+    // } else {
+      // $(el).data('show-left-menu', 'on');
+    // }
+    $('#mobile-menu').animate({left: '0px'});
+    $('body').dimmer('show');
     return false;
   }
 </script>
