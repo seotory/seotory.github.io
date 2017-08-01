@@ -39,3 +39,8 @@ pre {
     padding-left: 0;
   }
 }
+
+#post > .container {
+  position: relative;
+  padding-right: 325px !important; 
+}

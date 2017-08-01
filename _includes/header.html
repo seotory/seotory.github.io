@@ -1,10 +1,12 @@
 <div class="ui grid">
+  <!-- pc menu -->
   <div class="computer tablet only row">
     <div class="ui stackable top fixed menu"><!-- ui large top fixed hidden menu -->
       <div class="ui container">
-        <div class="active item">
+        <a href="/" class="teal item">{{ site.title }}</a>
+        <!-- <div class="teal item">
           <a href="/">{{ site.title }}</a>
-        </div>
+        </div> -->
         <div class="right menu">
           {% for page in site.pages %}
           {% if page.title %}
@@ -38,37 +40,56 @@
     </div>
   </div>
 
+  <!-- mobile menu -->
   <div class="mobile only row">
     <div class="ui fixed inverted navbar menu">
-        <a href="" class="brand item">Seotory</a>
+        <a href="/" class="brand item">Seotory</a>
         <div class="right menu">
-            <a href="#" onclick="mobileMenuController(this);" class="menu item">
+            <a href="#" onclick="mobileMenuController(this);return false;" class="menu item">
                 <i class="sidebar icon"></i>
             </a>
         </div>
     </div> 
-    <!-- ui left fixed vertical menu -->
-    <!-- ui vertical navbar menu -->
-    <div class="ui left fixed vertical menu" id="mobile-menu" style="left: -15rem; z-index:9999">
-        <a href="/" class="active item">Home</a>
-        <a href="" class="item">About</a>
-        <a href="" class="item">Contact</a>
-        <div class="ui item">
-            <div class="text">Dropdown</div>
-            <div class="menu">
-                <a class="item">Action</a>
-                <a class="item">Another action</a>
-                <a class="item">Something else here</a>
-                <a class="ui aider"></a>
-                <a class="item">Seperated link</a>
-                <a class="item">One more seperated link</a>
-              </div>
-        </div>
+    <div id="mobile-menu" class="ui left fixed vertical menu" style="left: -15rem; z-index: 9999;">
+      {% for page in site.pages %}
+      {% if page.title %}
+      <a href="{{ page.url | prepend: site.baseurl }}" class="item">{{ page.title }}</a>
+      {% endif %}
+      {% endfor %}
+      <div class="ui item">
+        <div class="text">Category</div>
         <div class="menu">
-            <a href="" class="active item">Default</a>
-            <a href="" class="item">Static top</a>
-            <a href="" class="item">Fixed top</a>
+          {% for category in site.categories %}
+          <a href="/categories/{{ category | first }}/" class="item">{{ category | first }}</a>
+          {% endfor %}
         </div>
+      </div>
+      <div class="ui item">
+        <div class="text">ETC</div>
+        <div class="menu">
+          <a href="/solutions/" class="item">Error solutions</a>
+        </div>
+      </div>
+
+      <!-- <a href="/" class="active item">Home</a>
+      <a href="" class="item">About</a>
+      <a href="" class="item">Contact</a>
+      <div class="ui item">
+          <div class="text">Dropdown</div>
+          <div class="menu">
+              <a class="item">Action</a>
+              <a class="item">Another action</a>
+              <a class="item">Something else here</a>
+              <a class="ui aider"></a>
+              <a class="item">Seperated link</a>
+              <a class="item">One more seperated link</a>
+            </div>
+      </div>
+      <div class="menu">
+          <a href="" class="active item">Default</a>
+          <a href="" class="item">Static top</a>
+          <a href="" class="item">Fixed top</a>
+      </div> -->
     </div>
   </div>
 </div>
@@ -83,9 +104,8 @@
   })
   function mobileMenuController(el) {
     var val = $('#mobile-menu').css('left');
-    var left = val == (0 || '0px') ? '-15rem' : '0px';
     $('#mobile-menu').animate({
-      left: left
+      left: val == (0 || '0px') ? '-15rem' : '0px'
     });
     $('body').dimmer('toggle');
     return false;

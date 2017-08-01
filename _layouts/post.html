@@ -14,10 +14,8 @@ layout: default
 </section>
 
 <!-- contents body -->
-<section style="margin: 50px 0px;">
+<section id="post" style="margin: 50px 0px;">
   <div class="ui container">
-
-    <div style="margin-right: 387px !important; position: relative">
 
     <div class="ui grid">
       {% include history.html history=page.history %}
@@ -45,6 +43,7 @@ layout: default
           {% assign prev_post = post.url %}
         {% endif %}
       {% endfor %}
+      {% if prev_post or next_post %}
       <div class="row">
         <div class="column">
           <div class="ui grid">
@@ -79,28 +78,28 @@ layout: default
           </div>
         </div>
       </div>
-    </div>
+      {% endif %}
+    </div> 
 
-    <div class="" style="position: absolute; width: 367px; top: 0; right: 0; margin-right: -387px;">
+    <!-- right menu -->
+    <div class="ui computer tablet only grid" style="position: absolute; width: 300px!important; top: 0; right: 0;margin: 0px;">
+
       <!-- tags -->
       {% if page.tags.size > 0 %}
-      <h3 class="ui horizontal divider header">
-        <i class="tag icon"></i>
-        Tags
-      </h3>
-        {% for tag in page.tags %}
-      <a class="ui tag label" href="/tags/?#{{ tag }}">{{ tag | downcase }}</a>
-        {% endfor %}
-      {% endif %}
-    </div>
-
-    </div>
-  </div>
-
-  <div class="ui container">
-    <div class="ui grid"> 
       <div class="row">
-        <div class="column">
+        <div class="ui padded segment">
+          <h4 class="ui horizontal divider header">
+            <i class="tag icon"></i>
+            Tags
+          </h4>
+          {% for tag in page.tags %}
+          <a class="ui tag label" href="/tags/?#{{ tag }}">{{ tag | downcase }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+      
+      <div class="row">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- post_right_300_250 -->
         <ins class="adsbygoogle"
@@ -110,9 +109,9 @@ layout: default
         <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-        </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -146,29 +145,32 @@ layout: default
 
 <section style="border-top: rgba(34,36,38,.1) 1px solid; padding: 50px 0px;">
   <div class="ui container">
-      <!-- category other posts start -->
-      {% if site.categories[page.categories.last].size > 1 %}
-      <!-- <h3 class="ui horizontal divider header">
-        <i class="bar chart icon"></i>
-        Other posts
-      </h3> -->
-      <div class="ui four column doubling stackable grid">
-        {% assign counter = 0 %}
-        {% for post in site.categories[page.categories.last] %}
-          {% if post.title != page.title and counter < 6 %}
-            {% assign counter=counter | plus:1 %}
-        <!-- <a class="header" href="{{post.url}}"> -->
-        <div class="column">
-          <div class="ui segment">
-            <h4 class="ui header">{{post.title}}</h4>
-            <p>test</p>
+    <!-- category other posts start -->
+    {% if site.categories[page.categories.last].size > 1 %}
+    <div class="ui cards">
+      {% assign counter = 0 %}
+      {% for post in site.categories[page.categories.last] %}
+        {% if post.title != page.title and counter < 6 %}
+          {% assign counter=counter | plus:1 %}
+        <div class="ui centered card">
+          <div class="content">
+            <div class="header">{{post.title}}</div>
+            <div class="meta">
+              <span class="category">{{post.categories.last}}</span>
+            </div>
+            <!-- <div class="description">
+              Elliot Fu is a film-maker from New York.
+            </div> -->
+          </div>
+          <div class="ui bottom attached button">
+            <i class="add icon"></i>
+            <a class="header" href="{{post.url}}" style="color: rgba(0,0,0,.6);">Read More</a>
           </div>
         </div>
-        <!-- </a> -->
-          {% endif %}
-        {% endfor %}
-      </div>
-      {% endif %}
-      <!-- category other posts end -->
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+    <!-- category other posts end -->
   </div>
 </section>

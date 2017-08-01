@@ -126,8 +126,8 @@ layout: default
 {% if paginator.total_pages > 1 %}
 <section style="margin-bottom: 50px;">
   <div class="ui container">
-    <div class="grid">
-      <div class="row">
+    <div class="ui grid">
+      <div class="centered row">
         <div class="ui pagination menu">
           {% if paginator.previous_page %}
           <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="icon item">
