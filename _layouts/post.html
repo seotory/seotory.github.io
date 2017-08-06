@@ -143,10 +143,10 @@ layout: default
 </section>
 {% endif %}
 
+{% if site.categories[page.categories.last].size > 1 %}
 <section style="border-top: rgba(34,36,38,.1) 1px solid; padding: 50px 0px;">
   <div class="ui container">
     <!-- category other posts start -->
-    {% if site.categories[page.categories.last].size > 1 %}
     <div class="ui cards">
       {% assign counter = 0 %}
       {% for post in site.categories[page.categories.last] %}
@@ -170,7 +170,7 @@ layout: default
         {% endif %}
       {% endfor %}
     </div>
-    {% endif %}
     <!-- category other posts end -->
   </div>
 </section>
+{% endif %}

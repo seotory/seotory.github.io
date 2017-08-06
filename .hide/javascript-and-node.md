@@ -112,6 +112,6 @@ let eventBus = new Event();
 eventBus.fire('click', {data: 'test'})
 eventBus.listen('click', ()=>{
     console.log('click');    
-})
+});
 
 ```

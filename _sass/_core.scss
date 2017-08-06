@@ -3,6 +3,10 @@ html, body {
   height: 100%!important;
 }
 
+body {
+  font-size: $base-font-size;
+}
+
 article {
   font-family: $base-font-family;
 //   font-size: $base-font-size;
