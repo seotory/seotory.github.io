@@ -144,3 +144,9 @@ EOS
     end
   end
 end
+
+namespace "jekyll" do
+  task :start do
+    system "JEKYLL_ENV=development jekyll serve --config _config.yml,_config.dev.yml --unpublished -t";
+  end
+end

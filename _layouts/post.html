@@ -100,6 +100,7 @@ layout: default
       {% endif %}
       
       <div class="row">
+        {% if jekyll.environment != "development" %}
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- post_right_300_250 -->
         <ins class="adsbygoogle"
@@ -109,13 +110,14 @@ layout: default
         <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
+        {% endif %}
       </div>
     </div>
 
   </div>
 </section>
 
-{% if page.comments %}
+{% if page.comments and jekyll.environment != "development" %}
 <!-- disqus -->
 <section style="border-top: rgba(34,36,38,.1) 1px solid; padding: 50px 0px; background: #f5f5f5;">
   <div class="ui container">
