@@ -75,22 +75,12 @@
 </div>
 <script>
   $(document).ready(function(){
-    // $('body').dimmer('set disabled', function(){
-    //   console.log('test');
-    // });
     $('body').dimmer('get dimmer')
       .on('click', function(){
         $('#mobile-menu').animate({left: '-15rem'});
       });
   })
   function mobileMenuController(el) {
-    // var showLeftMenu = $(el).data('show-left-menu');
-    // if ( showLeftMenu == 'on' ) {
-    //   $('#mobile-menu').animate({left: '-15rem'});
-    //   $(el).data('show-left-menu', 'off');
-    // } else {
-      // $(el).data('show-left-menu', 'on');
-    // }
     $('#mobile-menu').animate({left: '0px'});
     $('body').dimmer('show');
     return false;
