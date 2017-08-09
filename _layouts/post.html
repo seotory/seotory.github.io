@@ -16,9 +16,24 @@ layout: default
 <!-- contents body -->
 <section id="post" style="margin: 50px 0px;">
   <div class="ui container">
-
     <div class="ui grid">
-      {% include history.html history=page.history %}
+
+      <!-- notice -->
+      <div class="row">
+        <div class="column">
+          <div class="ui warning message">
+            <i class="home icon"></i> 블로그 UI가 개편중입니다. 참고해주세요.
+          </div>
+        </div>
+      </div>
+
+      <!-- history -->
+      <div class="row">
+        <div class="column">
+          {% include history.html history=page.history %}
+        </div>
+      </div>
+
       <!-- post -->
       <div class="row">
         <div class="column">
