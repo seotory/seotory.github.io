@@ -1,17 +1,21 @@
 <!-- include.history -->
 {% if include.history %}
-<div class="ui icon info message transition">
-  <!-- <i class="close icon"></i> -->
-  <i class="info circle icon"></i> <!-- loading -->
-  <div class="content">
-    <div class="header">
-      History
+<div class="row">
+  <div class="column">
+    <div class="ui icon info message transition">
+      <!-- <i class="close icon"></i> -->
+      <i class="info circle icon"></i> <!-- loading -->
+      <div class="content">
+        <div class="header">
+          History
+        </div>
+        <ul class="list">
+          {% for date in include.history %}
+          <li>본 포스팅은 {{ date | slice: 0, 4 }}년 {{ date | slice: 4, 2 }}월 {{ date | slice: 6, 2 }}일에 수정되었습니다.</li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
-    <ul class="list">
-      {% for date in include.history %}
-      <li>본 포스팅은 {{ date | slice: 0, 4 }}년 {{ date | slice: 4, 2 }}월 {{ date | slice: 6, 2 }}일에 수정되었습니다.</li>
-      {% endfor %}
-    </ul>
   </div>
 </div>
 {% endif %}
