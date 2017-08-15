@@ -5,12 +5,14 @@ date: 2017-03-02 13:39:26 +0900
 description: 
 image: 
 categories: 
+history: 
+ - '20170809'
 published: true
 comments: true
 tags:
 ---
 
-git 사용중에 아래와 같은 vi 관련 에러 메시지가 발생했다.
+git 사용중에 아래와 같은 vi 관련 에러 메시지가 발생했다. 이 에러가 발생하면 git 명령어 처리가 제대로 작동하지 않는다.
 
 ```
 error: There was a problem with the editor 'vi'.
