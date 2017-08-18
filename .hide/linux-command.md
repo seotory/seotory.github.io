@@ -39,6 +39,10 @@ This works very well for me, to achieve almost the same purpose like yours.
 
 For more options check man grep.
 
+# 실시간 접속자
+
+netstat -napt | grep 1883 | grep EST | wc -l
+
 # 폴더별로 env를 관리해야 할 때
 
 https://blog.outsider.ne.kr/1306
