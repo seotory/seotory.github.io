@@ -3,7 +3,7 @@ title: webpack으로 nodejs 서버사이드 개발시 옵션
 date: 2017-08-18 11:00:08 +0900
 description: 
 image: 
-categories: 
+categories: dev
 history: false
 published: true
 comments: true
