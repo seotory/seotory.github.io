@@ -12,7 +12,7 @@ tags:
  - nodejs
 ---
 
-webpack으로 nodejs server-side를 작성하려고 하니까 모듈 exports나 기타 모듈 관계 생성이 잘 동작하지 않는다. webpack이 많은 옵션들이 기본적으로 front-side 옵션 벨류 값을 default로 가지고 있기 때문이다. server-side에서 바로 시작할 수 있게끔 webpack의 가장 중요한 옵션을 정리해본다.
+webpack으로 nodejs server-side를 작성하려고 하니까 모듈 exports나 기타 모듈 관계 생성이 잘 동작하지 않는다. webpack의 기본 옵션은 front-side로 맞춰져 있기 때문이다. server-side에서 바로 시작할 수 있게끔 webpack의 가장 중요한 옵션을 정리해본다.
 
 # config file 수정
 
