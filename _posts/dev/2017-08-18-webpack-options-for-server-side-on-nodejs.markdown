@@ -16,13 +16,14 @@ webpack으로 nodejs server-side를 작성하려고 하니까 모듈 exports나 
 
 # config file 수정
 
-아래를 참고해서 3부분을 수정하면 바로 nodejs용 webpack을 이용할 수 있다.
+아래를 참고해서 3부분을 수정하면 바로 server-side용으로 webpack을 이용할 수 있다.
 
 > 옵션 설명 기준은 webpack2 이다.
 
 1. target: 'node'
 
-    기본 값은 `web`이다. 꼭 변경해야한다.
+    기본 값은 `web`이다. 꼭 변경해야한다.  
+
 
 2. externals: [nodeExternals()]
 
@@ -40,7 +41,7 @@ webpack으로 nodejs server-side를 작성하려고 하니까 모듈 exports나 
 
 3. output.libraryTarget: 'commonjs2'
 
-    사용중인 라이브러리를 어떻게 exports 시킬지 정하는 옵션이다. 기본으로 `var`가 선택되어 있다. 이 옵션을 `commonjs2`로 사용하면 bun dle.js에 아래와 같이 적힌다.
+    사용중인 라이브러리를 어떻게 exports 시킬지 정하는 옵션이다. 기본으로 `var`가 선택되어 있다. 이 옵션을 `commonjs2`로 사용하면 bundle.js에 아래와 같이 적힌다.
 
     ```javascript
     /* 1 */

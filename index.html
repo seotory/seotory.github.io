@@ -20,7 +20,7 @@ layout: default
     <div class="ui divided items">
       <!-- article list -->
       {% for post in paginator.posts %}
-      <div class="item">
+      <div class="item index">
         <div class="ui medium image">
           <img src="http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/6.jpg">
         </div>
@@ -45,9 +45,8 @@ layout: default
               <a href="#" onclick="return false;" data-disqus-identifier="{{post.url}}"></a> likes
               17 likes
             </span> -->
-            <div class="ui red label">
-              <i class="heart icon"></i>
-              <a href="#" onclick="return false;" data-disqus-identifier="{{post.url}}"></a>
+            <div class="ui teal label">
+              <i class="comment icon"></i><a class="color-white" href="#" onclick="return false;" data-disqus-identifier="{{post.url}}"></a>
             </div> 
             {% endif %}
           </div>

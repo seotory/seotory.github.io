@@ -108,7 +108,7 @@ namespace "build" do
     system "cross-env JEKYLL_ENV=development jekyll serve --config _config.yml,_config.dev.yml --unpublished -t";
   end
   task :real do
-    system "cross-env JEKYLL_ENV=production jekyll serve --config _config.yml --unpublished -t";
+    system "cross-env JEKYLL_ENV=production jekyll serve --config _config.yml -t";
   end
 end
 ```
