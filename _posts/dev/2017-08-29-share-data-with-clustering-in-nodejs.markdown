@@ -27,14 +27,15 @@ nodejs의 cluster는 기본적으로 child_process의 기능을 바탕으로 만
 위와 같이 clustering이 된 프로세스들이 있다고 가정해본다. 일단 위에서 말한데로 공유 메모리를 통해서 데이터를 받을 수는 없다. 그러나 아래와 같은 과정으로 코드를 작성하면 IPC를 이용해서 각각의 프로세스에 같은 데이터를 전달시킬 수 있다.
 
 1. 공유가 필요한 데이터 setting 요청
-2. master process 해당 데이터 전송
-3. master process에서 모든 worker process로 broadcast
-4. broadcast 받은 worker process는 해당 데이터를 저장
-5. 각 프로세스 내에서 전달받은 데이터 사용
+2. master process로 해당 데이터 전송
+3. master process에 데이터 저장
+4. master process에서 모든 worker process로 데이터를 broadcast 시킴
+5. broadcast로 데이터를 받은 worker process는 해당 데이터를 저장
+6. 각 프로세스 내에서 전달받은 데이터 사용
 
 # interface
 
-나는 프로그래밍을 시작할 때 인터페이스를 습관적으로 제일 먼저 고려하는 편이다. 이유는 인터페이스가 잘 나와주면 사실 코드의 내용은 얼마든지 바꿀 수 있기 때문이다. 이번에는 아래의 인터페이스를 목표로 코딩을 한다.
+나는 프로그래밍을 시작할 때 인터페이스를 습관적으로 제일 먼저 고려하는 편이다. 이유는 인터페이스가 잘 설계되면 나중에 프로그램의 크기가 커져도 코드의 내용은 얼마든지 바꿀 수 있기 때문이다. 이번에는 아래의 인터페이스를 목표로 코딩을 한다. 인터페이스의 내용은 매우 간단하다. set, get으로 데이터를 넣고 빼는 역활만 한다.
 
 ```javascript
 // 데이터 셋팅
@@ -43,7 +44,7 @@ globalVal.set('greeting', 'Hi!, from seotory');
 // 데이터 사용
 globalVal.get('greeting'); // Hi!, from seotory
 
-// 필요에 따라 브로드캐스팅 - master 프로세스에서만 동작
+// 필요에 따라 브로드캐스팅
 globalVal.broadcast();
 ```
 
@@ -79,11 +80,17 @@ export function set ( name: string, val: any ) {
 
 // 3. 데이터 전파
 export function broadcast () {
-    for (const id in cluster.workers) {
-        let worker = cluster.workers[id];
-        worker.send({
-            cmd: 'val:edit',
-            data: globalData
+    if ( cluster.isMaster ) {
+        for (const id in cluster.workers) {
+            let worker = cluster.workers[id];
+            worker.send({
+                cmd: 'val:edit',
+                data: globalData
+            });
+        }
+    } else {
+        process.send({
+            cmd: 'val:broadcast'
         });
     }
 }
@@ -93,6 +100,8 @@ if ( cluster.isMaster ) {
         // 2. 수정 요청 받음
         if ( message.cmd === 'val:edit-request' ) {
             globalData = message.data;
+            broadcast();
+        } else if ( message.cmd === 'val:broadcast' ) {
             broadcast();
         }
     });
