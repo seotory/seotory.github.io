@@ -1,0 +1,108 @@
+---
+title: nodejs cluster 프로세스에서 데이터 공유하기
+date: 2017-08-29 17:17:54 +0900
+description: 
+image: 
+categories: dev
+history: false
+published: false
+comments: false
+tags:
+---
+
+nodejs의 cluster는 기본적으로 child_process의 기능을 바탕으로 만들어졌다. master process와 worker process는 프로세스간 통신할때 일반적으로 사용되는 IPC를 사용하여 서로 통신한다. 또한 cluster 모듈을 사용할 때 공식적으로 프로세스간에 공유하는 메모리는 없다. 따라서 같은 메모리 주소값을 참조해서 데이터를 사용하는 방법 역시 없다.
+
+하지만 nodejs cluster로 서비스를 실제 운영하다보면, 프로세스간의 데이터 공유가 필요한 상황이 자주 찾아오게 된다. 일반적으로 해결하는 방법은 공용으로 쓸 수 있는 redis 같은 in memory db를 사용하는 방법이 있다. 
+
+일반적이진 않지만 지금부터 적어볼 IPC를 이용한 공유 방법도 있다. 이번에 프로젝트를 하면서 이 방법을 사용해 봤는데 소규모 프로젝트에서는 나쁘지 않은것 같다. 어려운 코드는 아니니 직접 작성해 보도록 한다.
+
+# how to work?
+
+<pre>
+┌────────────┐       ┌────────────┐
+│   Master   │   ↔   │   worker   │
+└────────────┘       └────────────┘
+</pre>
+
+위와 같이 clustering이 된 프로세스들이 있다고 가정해본다. 일단 위에서 말한데로 공유 메모리를 통해서 데이터를 받을 수는 없다. 그러나 아래와 같은 과정으로 코드를 작성하면 IPC를 이용해서 각각의 프로세스에 같은 데이터를 전달시킬 수 있다.
+
+1. 공유가 필요한 데이터 setting 요청
+2. master process 해당 데이터 전송
+3. master process에서 모든 worker process로 broadcast
+4. broadcast 받은 worker process는 해당 데이터를 저장
+5. 각 프로세스 내에서 전달받은 데이터 사용
+
+# interface
+
+나는 프로그래밍을 시작할 때 인터페이스를 습관적으로 제일 먼저 고려하는 편이다. 이유는 인터페이스가 잘 나와주면 사실 코드의 내용은 얼마든지 바꿀 수 있기 때문이다. 이번에는 아래의 인터페이스를 목표로 코딩을 한다.
+
+```javascript
+// 데이터 셋팅
+globalVal.set('greeting', 'Hi!, from seotory');
+
+// 데이터 사용
+globalVal.get('greeting'); // Hi!, from seotory
+
+// 필요에 따라 브로드캐스팅 - master 프로세스에서만 동작
+globalVal.broadcast();
+```
+
+# code
+
+아래서부터는 위에서 적었던 방법과 interface 대로 구현한 코드이다. typescript로 작성되었다.
+
+```javascript
+// globalVal.ts
+import cluster from "cluster";
+
+let globalData = {};
+
+export function get ( name: string ) {
+    return globalData[name];
+}
+
+// 1. 수정 요청 보냄
+export function set ( name: string, val: any ) {
+    globalData[name] = val;
+
+    // 1-1. 워커인 경우 요청을 마스터로 보냄
+    if ( cluster.isWorker ) {
+        process.send({
+            cmd: 'val:edit-request', 
+            data: globalData
+        });
+    // 1-2. 마스터인 경우 바로 브로드캐스트. -> 3. 단계로 넘어감
+    } else {
+        broadcast();
+    }
+}
+
+// 3. 데이터 전파
+export function broadcast () {
+    for (const id in cluster.workers) {
+        let worker = cluster.workers[id];
+        worker.send({
+            cmd: 'val:edit',
+            data: globalData
+        });
+    }
+}
+
+if ( cluster.isMaster ) {
+    cluster.on('message', (worker, message) => {
+        // 2. 수정 요청 받음
+        if ( message.cmd === 'val:edit-request' ) {
+            globalData = message.data;
+            broadcast();
+        }
+    });
+} else {
+    process.on('message', function (message) {
+        // 4. 전파 받은 후 데이터 수정
+        if ( message.cmd === 'val:edit' ) {
+            globalData = message.data;
+            console.log(`[${process.pid}:globalData:edit] ${JSON.stringify(globalData)}`);
+        }
+    });
+}
+```
