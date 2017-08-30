@@ -128,6 +128,7 @@ namespace "solution" do
     File.open(path, 'w') do |file|
       file.write <<-EOS
 ---
+layout: post
 title: #{title}
 date: #{Time.now.strftime('%Y-%m-%d %k:%M:%S')} +0900
 description: 

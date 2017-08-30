@@ -42,7 +42,7 @@ defaults:
 collections:
   solutions:
     output: true
-    permalink: /solution/:year/:month/:title
+    permalink: /post/:year/:month/:title
 
 # highlighter settings
 # Build settings

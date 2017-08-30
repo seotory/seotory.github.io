@@ -48,6 +48,8 @@
     var host = "blog.seotory.com";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
         window.location.protocol = "https";
+    if (document.location.href.indexOf("solution/20") > -1)
+        window.location.href = window.location.href.replace('solution', 'post');
   </script>
 
   <!-- google web log -->
