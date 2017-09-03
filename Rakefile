@@ -128,7 +128,6 @@ namespace "solution" do
     File.open(path, 'w') do |file|
       file.write <<-EOS
 ---
-layout: post
 title: #{title}
 date: #{Time.now.strftime('%Y-%m-%d %k:%M:%S')} +0900
 description: 
@@ -149,5 +148,8 @@ end
 namespace "jekyll" do
   task :start do
     system "JEKYLL_ENV=development jekyll serve --config _config.yml,_config.dev.yml --unpublished -t";
+  end
+  task :live do
+    system "JEKYLL_ENV=production jekyll serve --config _config.yml -t";
   end
 end

@@ -34,6 +34,12 @@ defaults:
   -
     scope: 
       path: ""
+      type: "solutions"
+    values:
+      layout: "page"
+  -
+    scope: 
+      path: ""
       type: "pages"
     values:
       layout: "page"

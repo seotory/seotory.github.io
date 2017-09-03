@@ -70,19 +70,21 @@ Promise.serialize = function(arr, func){
     return s;
 };
 
-Promise.prototype.sleep = function(n){
-    return this.then(function(res){
-        return new Promise(function(s,f){
-            setTimeout(function(){s(res);}, n);
+if ( !Promise.prototype.sleep ) {
+    Promise.prototype.sleep = function (n) {
+        return this.then(function (res) {
+            return new Promise(function (s,f) {
+                setTimeout(function() { s(res); }, n);
+            });
         });
-    });
-};
+    };
+}
 
-if (!Promise.prototype.spread) {
+if ( !Promise.prototype.spread ) {
     Promise.prototype.spread = function (fn) {
         return this.then(function (args) {
             return Promise.all(args); // wait for all
-        }).then(function(args){
+        }).then(function (args) {
          //this is always undefined in A+ complaint, but just in case
             return fn.apply(this, args); 
         });
@@ -212,62 +214,5 @@ export function onWarkerCreated (func) {
 
 export function onWarkerReCreated (func) {
     onWarkerReCreatedFunc = func;
-}
-```
-
-# cluster global val
-
-```javascript
-import cluster from "cluster";
-
-let globalData = {};
-
-export function get ( name: string ) {
-    return globalData[name];
-}
-
-// 1. 수정 요청 보냄
-export function set ( name: string, val: any ) {
-    globalData[name] = val;
-
-    // 1-1. 워커인 경우 요청을 마스터로 보냄
-    if ( cluster.isWorker ) {
-        process.send({
-            cmd: 'val:edit-request', 
-            data: globalData
-        });
-    // 1-2. 마스터인 경우 바로 브로드캐스트. -> 3. 단계로 넘어감
-    } else {
-        broadcast(globalData);
-    }
-}
-
-// 3. 데이터 전파
-function broadcast ( data ) {
-    for (const id in cluster.workers) {
-        let worker = cluster.workers[id];
-        worker.send({
-            cmd: 'val:edit',
-            data: data
-        });
-    }
-}
-
-if ( cluster.isMaster ) {
-    cluster.on('message', (worker, message) => {
-        // 2. 수정 요청 받음
-        if ( message.cmd === 'val:edit-request' ) {
-            globalData = message.data;
-            broadcast(message.data);
-        }
-    });
-} else {
-    process.on('message', function (message) {
-        // 4. 전파 받은 후 데이터 수정
-        if ( message.cmd === 'val:edit' ) {
-            globalData = message.data;
-            console.log(`[${process.pid}:globalData:edit] ${JSON.stringify(globalData)}`);
-        }
-    });
 }
 ```
