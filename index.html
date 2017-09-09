@@ -21,9 +21,11 @@ layout: default
       <!-- article list -->
       {% for post in paginator.posts %}
       <div class="item index">
+        {% if post.image %}
         <div class="ui medium image">
           <img src="http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/6.jpg">
         </div>
+        {% endif %}
         <div class="content">
           <a href="{{ post.url }}" class="header">{{ post.title }}</a>
           <div class="meta">
@@ -35,7 +37,6 @@ layout: default
             {% else %}
             <p>{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
             {% endif %}
-
           </div>
           <div class="extra">
             <div class="ui label"><i class="desktop icon"></i>{{post.categories}}</div>

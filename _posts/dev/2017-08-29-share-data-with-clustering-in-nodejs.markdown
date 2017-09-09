@@ -99,7 +99,10 @@ if ( cluster.isMaster ) {
     cluster.on('message', (worker, message) => {
         // 2. 수정 요청 받음
         if ( message.cmd === 'val:edit-request' ) {
-            globalData = message.data;
+            let keys = Object.keys( message.data );
+            keys.forEach((key) => {
+                globalData[key] = message.data[key];
+            });
             broadcast();
         } else if ( message.cmd === 'val:broadcast' ) {
             broadcast();
