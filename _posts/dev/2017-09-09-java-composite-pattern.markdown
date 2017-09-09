@@ -5,8 +5,8 @@ description:
 image: 
 categories: dev
 history: false
-published: false
-comments: false
+published: true
+comments: true
 tags:
  - java
 ---
