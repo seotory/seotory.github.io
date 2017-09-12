@@ -19,7 +19,7 @@ tags:
 
 ## main class
 
-실질적으로 사용되는 핵심 코드는 아래의 2가지이다. 하나는 인터페이스고 하나는 인터페이스를 상속받은 클래스이다. 이 상태에서 일반적으로 코딩을 하게 되면 무조건 CommandExcutorImpl를 호출하여 객체를 생성시키는데 이렇게 하면 높은 cost 작업으로 인해 메모리 낭비가 예상된다.
+실질적으로 사용되는 핵심 코드는 아래의 2가지이다. 하나는 인터페이스고 하나는 인터페이스를 상속받은 클래스이다. 이 상태에서 일반적으로 코딩을 하게 되면 무조건 CommandExcutorImpl를 호출하여 객체를 생성시키고 높은 cost의 runCommand 메소드 작업으로 인해 메모리 낭비가 예상된다.
 
 ```java
 public interface CommandExecutor {
@@ -69,7 +69,7 @@ public class CommandExecutorProxy implements CommandExcutor {
 }
 ```
 
-# test
+# testing
 
 ```java
 public class ProxyPatternTest {

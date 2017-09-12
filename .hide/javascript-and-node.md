@@ -216,3 +216,170 @@ export function onWarkerReCreated (func) {
     onWarkerReCreatedFunc = func;
 }
 ```
+
+
+
+
+https://nodejs.org/ko/docs/guides/anatomy-of-an-http-transaction/
+https://blog.coderifleman.com/2014/11/15/javascript-and-async-error/
+
+
+function errorHandler (...args) {
+    try {
+        args[0].apply(this, args.slice(1, args.length));
+    } catch ( e ) {
+        let req = args[1];
+        let res = args[2];
+        console.error(e);
+        console.error(e.stack);
+        res.write('server error.');
+        res.writeHead(500, {'Content-Type': 'text/plain'});
+        res.end();
+    }
+}
+
+
+
+
+```js
+/**
+ * 간단한 http용 라우터 작성, 
+ * web framework 사용안한다면 아래 코드로 충분
+ */
+import http from "http";
+import querystring from "querystring";
+
+let routerSet = {}
+
+/**
+ * 컨트롤러를 꺼내온다.
+ * @param {string} path 
+ * @returns {(req: http.IncomingMessage, res: http.ServerResponse, data) => void} 
+ */
+function getController ( path: string ): (req: http.IncomingMessage, res: http.ServerResponse, data?) => void|Promise<any> {
+    return routerSet[path];
+}
+
+/**
+ * 컨트롤러를 셋팅한다.
+ * @export
+ * @param {string} path 
+ * @param {(req: http.IncomingMessage, res: http.ServerResponse, data) => void} func 
+ */
+export function addController ( path: string, func: (req: http.IncomingMessage, res: http.ServerResponse, data?) => void|Promise<any> ): void {
+    console.info(`[router] add controller - ${path}`);
+    routerSet[path] = func;
+}
+
+/**
+ * 라우터를 설정한다.
+ * @export
+ * @param {(string|{})} prefix 
+ * @param {{}} [controllers] 
+ */
+export function setRouter ( prefix: string|{}, controllers?: {} ) {
+    if ( !controllers ) {
+        controllers = <{}>prefix;
+        prefix = '';
+    }
+    let funcNames = Object.keys( controllers );
+    funcNames.forEach((funcName) => {
+        let path = `/${prefix}` + (funcName == 'index' ? `` : `/${funcName}`);
+        addController( path.replace(/\/\//ig, '/'), controllers[funcName] );
+    });
+}
+
+/**
+ * http.createServer 메소드의 인자로 이 router가 들어간다.
+ * @export
+ * @param {http.IncomingMessage} req 
+ * @param {http.ServerResponse} res 
+ */
+export function router ( req: http.IncomingMessage, res: http.ServerResponse ): void {
+
+    let url = req.url.length > 1 && req.url.endsWith('/') 
+            ? req.url.substr(0, req.url.length-1) 
+            : req.url;
+    let controlFunc = getController( url ); // req.url과 100% 매칭 찾는다.
+
+    if ( ! controlFunc || typeof controlFunc != 'function' ) {
+        console.warn(`[${req.method}]${req.url} 404 not found.`);
+        res.writeHead(404, {'Content-Type': 'text/plain'});
+        res.end();
+    } else {
+        console.info(`[${req.method}]${req.url} found.`);
+        if ( req.method == 'POST' ) {
+            post( controlFunc, req, res );
+        } else {
+            get( controlFunc, req, res );
+        }
+    }
+}
+
+/**
+ * req.method == post
+ * @param {any} controlFunc 
+ * @param {any} req 
+ * @param {any} res 
+ */
+function post ( controlFunc, req, res ): void {
+    let body = '';
+    req.on('data', ( data ) => {
+        body += data;
+        if ( body.length > 1e6 ) {
+            req.connection.destroy();
+            res.writeHead(413, {'Content-Type': 'text/plain'});
+            res.end();
+        }
+    });
+    req.on('end', () => {
+        errorHandler( controlFunc, req, res, querystring.parse(body) );
+    });
+    req.on('error', ( e ) => {
+        serverError(e, req, res);
+    });
+}
+
+/**
+ * req.method != post
+ * @param {any} controlFunc 
+ * @param {any} req 
+ * @param {any} res 
+ */
+function get ( controlFunc, req, res ): void {
+    errorHandler( controlFunc, req, res, null );
+}
+
+/**
+ * javascript에서 callback으로 들어가는 함수는 
+ * error catch가 되지 않음으로 
+ * error catch 용 강제 스코프를 만들어준다.
+ * @param {any} args 
+ */
+function errorHandler ( ...args ): void {
+    try {
+        let result =  args[0].apply(this, args.slice(1, args.length));
+        if ( result && result instanceof Promise ) {
+            result.catch(( e ) => {
+                serverError(e, args[1], args[2]);
+            });
+        }
+    } catch ( e ) {
+        serverError(e, args[1], args[2]);
+    }
+}
+
+/**
+ * server error.
+ * @param {any} req 
+ * @param {any} res 
+ * @param {any} e 
+ */
+function serverError ( e, req, res ): void {
+    console.error(e);
+    console.error(e.stack);
+    res.writeHead(500, {'Content-Type': 'text/plain'});
+    res.end();
+}
+
+```
