@@ -383,3 +383,47 @@ function serverError ( e, req, res ): void {
 }
 
 ```
+
+
+
+
+```javascript
+//simple ajax
+function callAjax(url, callback){
+    var xmlhttp;
+    // compatible with IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function(){
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+            callback(xmlhttp.responseText);
+        }
+    }
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
+```
+
+
+https://taegon.kim/archives/2535
+
+
+
+```javascript
+const EventEmitter = require('events');
+
+class Emitter extends EventEmitter {}
+
+const emitter = new Emitter();
+const logger = console;
+
+/**
+ * Add Error listener
+ */
+emitter.on('error', (err) => {
+    logger.error('Unexpected error on emitter', err);
+});
+
+// test the emitter
+emitter.emit('error', new Error('Whoops!'));
+// Unexpected error on emitter Error: Whoops!
+```

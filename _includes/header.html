@@ -32,7 +32,7 @@
           <div class="item">
             <div class="ui icon input">
               <input type="text" placeholder="Search">
-              <i class="search link icon"></i>
+              <i class="search link icon" id="site-search"></i>
             </div>
           </div>
         </div>
@@ -79,6 +79,11 @@
       .on('click', function(){
         $('#mobile-menu').animate({left: '-15rem'});
       });
+
+    $('#site-search').on('click', function(e) {
+      var text = $($(this).siblings()[0]).val();
+      window.open('https://www.google.co.kr/search?q=site:blog.seotory.com+'+text,'검색','width=800, height=700, toolbar=yes, menubar=yes, scrollbars=yes, resizable=yes');
+    });
   })
   function mobileMenuController(el) {
     $('#mobile-menu').animate({left: '0px'});
