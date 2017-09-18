@@ -427,3 +427,34 @@ emitter.on('error', (err) => {
 emitter.emit('error', new Error('Whoops!'));
 // Unexpected error on emitter Error: Whoops!
 ```
+
+
+# class contructor 에 return promise는 나쁜것인가? 나쁨 매우 나쁨
+
+https://stackoverflow.com/questions/24398699/is-it-bad-practice-to-have-a-constructor-function-return-a-promise
+
+쓸려면 아래와 같이 async-await + promise 조합. 굳.
+
+The beauty of async/await is that errors bubble up implicitly
+
+class MyClass {
+  async doEverything() {
+    const sumOfItAll = await http.scrapeTheInternet() +
+      await new Promise((resolve, reject) =>
+        http.asyncCallback((e, result) => !e ? resolve(result) : reject(e)))
+    return this.resp = sumOfItAll
+  }
+}
+If limited to ECMAScript 2015 and no async, return promise values:
+
+class ES2015 {
+  fetch(url) {
+    return new Promise((resolve, reject) =>
+      http.get(url, resolve).on('error', reject))
+      .then(resp => this.resp = resp) // plain ECMAScript stores result
+      .catch(e => { // optional internal error handler
+        console.error(e.message)
+        throw e // if errors should propagate
+      })
+  }
+}

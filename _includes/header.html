@@ -75,14 +75,13 @@
 </div>
 <script>
   $(document).ready(function(){
-    $('body').dimmer('get dimmer')
-      .on('click', function(){
-        $('#mobile-menu').animate({left: '-15rem'});
-      });
+    $('body').dimmer('get dimmer').on('click', function(){
+      $('#mobile-menu').animate({left: '-15rem'});
+    });
 
     $('#site-search').on('click', function(e) {
       var text = $($(this).siblings()[0]).val();
-      window.open('https://www.google.co.kr/search?q=site:blog.seotory.com+'+text, '_blank');
+      window.open('https://www.google.co.kr/search?q=site:blog.seotory.com+' + encodeURIComponent(text), '_blank');
     });
   })
   function mobileMenuController(el) {

@@ -13,3 +13,5 @@ It's basically a way of encoding arbitrary binary data in ASCII text. It takes 4
 
 Essentially each 6 bits of the input is encoded in a 64-character alphabet. The "standard" alphabet uses A-Z, a-z, 0-9 and + and /, with = as a padding character. There are URL-safe variants.
 
+# checkSum
+
