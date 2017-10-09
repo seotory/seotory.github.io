@@ -5,6 +5,6 @@
 }
 
 // 문단 광고 마지막 media 쿼리
-.posts_last_ad { width: 320px; height: 100px; }
-@media(min-width: 500px) { .posts_last_ad { width: 468px; height: 60px; } }
-@media(min-width: 800px) { .posts_last_ad { width: 728px; height: 90px; } }
+.posts_last_ad { width: 320px !important; height: 100px !important; }
+@media(min-width: 500px) { .posts_last_ad { width: 468px !important; height: 60px !important; } }
+@media(min-width: 800px) { .posts_last_ad { width: 728px !important; height: 90px !important; } }
