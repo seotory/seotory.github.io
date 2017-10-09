@@ -29,8 +29,7 @@ layout: default
 
       <!-- history -->
       {% include history.html history=page.history %}
-        
-
+      
       <!-- post -->
       <div class="row">
         <div class="column">
@@ -172,6 +171,9 @@ layout: default
     })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+    <!-- posts ad -->
+    {% include postsAd.html %}
   </div>
 </section>
 {% endif %}

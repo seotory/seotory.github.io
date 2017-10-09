@@ -41,8 +41,6 @@ C:/Ruby22-x64/lib/ruby/2.2.0/net/http.rb:923:in `connect': SSL_connect returned=
 
 cacert.pem 파일이 ssl 인증서 내용을 포함하고 있다. 이 파일을 `SSL_CERT_FILE` 변수에서 가르키게 되면 에러가 해결된다.
 
-{% include postsAd.html %}
-
 ## 참조
 
 - [net/http solution](https://gist.github.com/fnichol/867550){:target='_blank'}
