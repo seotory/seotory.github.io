@@ -51,3 +51,14 @@ webpack으로 nodejs server-side를 작성하려고 하니까 모듈 exports나 
 
     /***/ })
     ```
+
+4.  node 값 추가
+
+    ```js
+    node: {
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty',
+        global: true
+    }
+    ```

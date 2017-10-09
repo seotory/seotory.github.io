@@ -15,3 +15,8 @@ Essentially each 6 bits of the input is encoded in a 64-character alphabet. The 
 
 # checkSum
 
+
+
+# good
+
+https://tech.ssut.me/

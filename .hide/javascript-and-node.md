@@ -25,7 +25,38 @@ http://stackoverflow.com/questions/1590247/how-do-you-implement-a-stack-and-a-qu
 
 # scope, context
 
+자바스크립트에선 스코프와 컨텍스트가 동일하지 않다. 용어 때문에 헷갈리는 분들도 많이 있었다.
+
 Every function invocation has both a scope and a context associated with it. Fundamentally, scope is function-based while context is object-based. In other words, scope pertains to the variable access of a function when it is invoked and is unique to each invocation. Context is always the value of the this keyword which is a reference to the object that “owns” the currently executing code.
+
+
+정리할 첫 번째 중요한 점은 컨텍스트와 범위가 동일하지 않다는 것입니다. 나는 수년에 걸쳐 많은 개발자들이 종종 두 가지 용어 (혼자 포함)를 혼동하여 다른 것을 잘못 설명한다는 것을 알아 챘다. 공정하게 말하면, 용어는 수년에 걸쳐 상당히 혼란스러워졌습니다.
+
+모든 함수 호출에는 범위와 연관된 컨텍스트가 있습니다. 기본적으로 컨텍스트는 객체 기반이지만 범위는 함수 기반입니다. 즉, 범위는 호출 될 때 함수의 변수 액세스와 관련이 있으며 각 호출마다 고유합니다. 컨텍스트는 항상 this현재 실행중인 코드를 "소유"하는 개체에 대한 참조 인 키워드 값입니다 .
+
+- this 컨텍스트
+- 실행 컨텍스트
+JavaScript는 단일 스레드 언어이므로 한 번에 하나의 작업 만 실행할 수 있습니다. JavaScript 인터프리터는 처음에 코드를 실행할 때 기본적으로 전역 실행 컨텍스트로 먼저 들어갑니다. 이 지점에서 함수를 호출 할 때마다 새로운 실행 컨텍스트가 작성됩니다.
+
+이것은 혼동이 종종 발생하는 곳이며, "실행 컨텍스트"라는 용어는 실제로 앞에서 논의한 것처럼 컨텍스트가 아닌 범위를 더 많이 참조하는 모든 의도와 목적을위한 용어입니다. 불행한 이름 지정 규칙이지만 ECMAScript 사양에 정의 된 용어이므로 해당 항목에 다소의 차이가 있습니다.
+
+새 실행 컨텍스트가 만들어 질 때마다 실행 스택 의 맨 위에 추가됩니다 . 브라우저는 항상 실행 스택의 상단에있는 현재 실행 컨텍스트를 실행합니다. 완료되면 스택 맨 위에서 제거되고 컨트롤은 실행 컨텍스트로 되돌아갑니다.
+
+실행 컨텍스트는 생성 및 실행 단계로 나눌 수 있습니다. 생성 단계에서 인터프리터는 먼저 실행 컨텍스트 내에 정의 된 모든 변수, 함수 선언 및 인수로 구성된 변수 객체 ( 활성화 객체 라고도 함 )를 만듭니다 . 여기에서 스코프 체인 이 다음에 초기화되고의 값이 this마지막으로 결정됩니다. 그런 다음 실행 단계에서 코드가 해석되고 실행됩니다.
+
+
+
+- 스코프 체인
+각 실행 컨텍스트에는 스코프 체인이 결합되어 있습니다. 범위 체인은 실행 스택의 모든 실행 컨텍스트에 대한 변수 개체를 포함합니다. 변수 액세스 및 식별자 확인을 결정하는 데 사용됩니다.
+
+서로 다른 실행 컨텍스트 간의 변수 간의 이름 충돌은 전역 적으로 로컬로 이동하여 범위 체인을 등반하여 해결됩니다. 즉, 범위 체인보다 높은 변수와 같은 이름의 로컬 변수가 우선합니다.
+
+간단히 말하면, 함수의 실행 컨텍스트 내에서 변수에 액세스하려고 할 때마다 룩업 프로세스는 항상 자체 변수 객체로 시작됩니다. 식별자가 변수 객체에서 발견되지 않으면 검색은 범위 체인으로 계속됩니다. 변수 이름과 일치하는 모든 실행 컨텍스트의 변수 객체를 검사하는 범위 체인을 올라갈 것입니다.
+
+# 스트림
+
+http://blog.jeonghwan.net/node/2017/07/03/node-stream-you-need-to-know.html
+
 
 # node fs
 
@@ -477,197 +508,3 @@ if 문 없애기
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
 연산자 순서.
-
-array func은 아래와 같은 간단한 형태를 보면 매우 간단하나, 복잡한 구문을 보면 매우 어렵게 느껴진다. 쉬운 array func 부터 복잡한 array func까지 절차적으로 밟아보자.
-
-# 람다.
-
-https://ko.wikipedia.org/wiki/%EB%9E%8C%EB%8B%A4_%EB%8C%80%EC%88%98
-
-# array func
-
-- function에 비해 구문이 짧다.
-- 항상 익명이다.
-- this, arguments, super, new target을 바인딩하지 않는다.
-- 생성자로 사용할 수 없다.
-
-## 문법
-
-array func은 비슷비슷 하지만 결과가 다른 부분이 많기 때문에 간단한 라인이라도 처음에는 꼼꼼하게 보는 것이 좋다.
-
-- 기본 문법
-
-    여기서 리턴이 필요하면 명시적으로 return을 선언한다.
-
-    ```javascript
-    // 문법
-    (매개변수1, 매개변수2, 매개변수3, 매개변수n) => { 구문 }
-
-    // 리턴이 없는 예
-    let test = (a) => { console.log(a) }
-    let testVal = test(1); //console.log -> 1
-    console.log(testVal) // undefined
-
-    // 리턴이 있는 예
-    let test = (a, b, c) => { return a + b + c }
-    let testVal = test(1,2,3);
-    console.log(testVal) // 6
-    ```
-
-- 간결한 리턴 문법
-
-    오른쪽 구문에서 중괄호를 생략하면 array func에서는 자동으로 표현식을 리턴한다. 즉 return 생략이 가능하다.
-
-    ```js
-    // 문법
-    (매개변수1, 매개변수2, 매개변수3, 매개변수n) => 표현식
-
-    // 예
-    let test = (a, b, c) => a + b + c
-    let testVal = test(1,2,3);
-    console.log(testVal) // 6
-    ```
-
-- 매개변수가 하나인 경우 좌측 괄호 생략이 가능
-
-    ```js
-    // 문법
-    매개변수1 => 표현식
-    매개변수1 => { 구문 }
-
-    // 예
-    let test = a => a + 10
-    let testVal = test(1);
-    console.log(testVal) // 11
-
-    let test = a => { return a + 10 }
-    let testVal = test(1);
-    console.log(testVal) // 11
-    ```
-
-- 객체 리터럴을 반환하는 식에는 우측에 괄호를 감쌈
-
-    ```js
-    // 문법
-    매개변수1 => ({name: 매개변수1})
-
-    // 예
-    let test = a => ({aVal: a})
-    let testVal = test('에이');
-    console.log(testVal) // {aVal: "에이"}
-    ```
-
-- 매개변수에 기본값 셋팅이 가능
-
-    ```js
-    // 문법
-    (매개변수1 = 'default', 매개변수2) => { 표현식 }
-
-    // 예
-    let test = (a=10, b) => { return a + b }
-    let testVal = test(undefined, 5);
-    console.log(testVal); // 15
-
-    // 주의: undefined 대신 null을 입력하면 기본값을 넣지 않는다.
-    let testVal = test(null, 5);
-    console.log(testVal); // 5
-    ```
-
-- 매개변수는 펼침 연산자 사용 가능
-
-    ```js
-    // 문법
-    (...매개변수n) => { 표현식 }
-
-    // 예
-    let test = (...args) => { console.log(args) }
-    test(1,2,3,4,5) // console.log -> [1,2,3,4,5]
-    ```
-
-- 매개변수에 비구조화된 매개변수 또한 사용 가능
-
-    ```js
-    var f = ([a, b] = [1, 2], {x: c} = {x: a + b}) => a + b + c;
-    // 중간과정 해석
-    // ([a, b] = [1, 2])  >>  a = 1, b = 2 할당
-    // {x: c} = {x: a + b}  >> a+b 를 선 계산 후 오른쪽 x 에 할당, 할당된 x 는 다시 왼쪽 x에 할당되면서 c = 3이 할당
-    // 즉 a=1, b=2, c=3 이 됨.
-    f();  // 6
-    ```
-
-## 특징
-
-가장 중요한 특징은 this, arguments가 자동으로 바인딩이 되지 않는다는 것이다. 보통 일반 func 같은 경우는 아래와 같다.
-
-let scopeTest = {
-    run: function () {
-        console.log(this);
-        console.log(arguments);
-    }
-}
-
-scopeTest.run();
-// {run: ƒ}
-// [callee: ƒ, Symbol(Symbol.iterator): ƒ]
-
-하지만 아래와 같이 array func을 이용하면 에러가 발생한다.
-
-let scopeTest = {
-    run: () => {
-        console.log(this);
-        console.log(arguments);
-    }
-}
-
-scopeTest.run();
-
-
-let aa = () => { console.log('test'); }
-
-var aa = (...args) => { console.log(args); }
-
-var aa = (...args) => args.map((a)=>console.log(a))
-
-var aa = (...args) => val => args.map((a)=>{console.log(a + val)})
-var b = aa(1,2,3,4,5)
-b(4)
-
-// 사소하게 다르다!!
-var aa = (...args) => val => args.map((a) => {a})
-var aa = (...args) => val => args.map((a) => a)
-
-
-## 주의사항
-
-- 줄바꿈 주의
-
-    화살표 함수는  파라메터와 화살표 사이에 개행 문자를 포함 할 수 없다.
-    ```
-    // error
-    var func = ()
-           => 1; // SyntaxError: expected expression, got '=>'
-    ````
-
-- 파싱순서 주의
-
-    ```
-    let callback;
-
-    callback = callback || function() {}; // ok
-    callback = callback || () => {};      // SyntaxError: invalid arrow-function arguments
-    callback = callback || (() => {});    // ok
-    ```
-
-- undefined 주의
-
-    ```
-    let empty = () => {};
-    // empty = undefined
-    ```
-
-- 매개변수가 없을 시 주의
-
-    ```
-    // => { statements } error
-    () => { statements }
-    ```
