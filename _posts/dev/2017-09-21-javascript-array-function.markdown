@@ -255,22 +255,6 @@ let sumCurry = fixNum => input => fixNum + input;
 ```
 
 사실 위에 있는 예제들도 커링 기법이 적용된 예제들이 많다. 
-<!-- 
-이번에는 커링함수를 만들고 역커링 하는 방법도 함께 알아본다.
-```javascript
-curry = f => a => b => f(a, b)
-uncurry = f => (a, b) => f(a)(b)
-papply = (f, a) => b => f(a, b)
-
-add = (a, b) => a + b
-curriedAdd = a => b => a + b
-
-add(5,6) === 11
-curriedAdd(5)(6) === 11
-
-uncurry(curry(add))(5,6) === 11
-curry(uncurry(curriedAdd))(5)(6) === 11
-``` -->
 
 # 주의사항
 
