@@ -1,5 +1,5 @@
 ---
-title: ie browser close evendect
+title: 익스플로러 브라우저 close event 감지
 date: 2017-10-16 16:31:58 +0900
 description: 
 image: 
