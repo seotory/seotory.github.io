@@ -52,7 +52,7 @@ EOS
 
   # post file 정리
   task :order do
-    files = FileList.new("_posts/*.markdown", "_posts/*/*.markdown");
+    files = FileList.new("_posts/*.markdown", "_posts/*/*.markdown", "_posts/*/*/*.markdown");
     files.each do |filePath|
 
       fileContents = File.read(filePath)
@@ -62,12 +62,14 @@ EOS
         if (filePath.index(regObj[1]).class != NilClass && filePath.index(regObj[1]) > -1)
         else
           postName = filePath.split('/')[-1]
-          afterPath = '_posts/' + (regObj[1] ? regObj[1]+'/' : '') + postName
+          dirPath = '_posts/' + (regObj[1] ? regObj[1]+'/' : '') 
+          afterFilePath = dirPath + postName
 
           puts '[' + postName + ']의 위치가 비정상적입니다. 위치를 조정합니다.'
-          puts filePath + ' -> ' + afterPath
+          puts filePath + ' -> ' + afterFilePath
 
-          FileUtils.mv(filePath, afterPath);
+          Dir.mkdir(dirPath) unless File.exists?(dirPath)
+          FileUtils.mv(filePath, afterFilePath);
         end
       else
         puts filePath + '에 categories: 설정이 빠졌습니다.'
@@ -99,7 +101,7 @@ namespace "cate" do
     File.open(path, 'w') do |file|
       file.write <<-EOS
 ---
-layout: list
+layout: page
 ---
 
 {% include cateList.html name="#{category}" %}
@@ -147,7 +149,7 @@ end
 
 namespace "jekyll" do
   task :dev do
-    system "JEKYLL_ENV=development jekyll serve --config _config.yml,_config.dev.yml --unpublished -t";
+    system "JEKYLL_ENV=development jekyll serve --trace --config _config.yml,_config.dev.yml --unpublished -t";
   end
   task :live do
     system "JEKYLL_ENV=production jekyll serve --config _config.yml -t";

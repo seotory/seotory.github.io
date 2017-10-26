@@ -4,31 +4,38 @@
     <div class="ui stackable top fixed menu"><!-- ui large top fixed hidden menu -->
       <div class="ui container">
         <a href="/" class="teal item">{{ site.title }}</a>
-        <!-- <div class="teal item">
-          <a href="/">{{ site.title }}</a>
-        </div> -->
         <div class="right menu">
+          
+          <!-- pages -->
           {% for page in site.pages %}
           {% if page.title %}
           <a href="{{ page.url | prepend: site.baseurl }}" class="teal item">{{ page.title }}</a>
           {% endif %}
           {% endfor %}
+
+          <!-- category -->
+          {% if site.data.category %}
+          {% for depth1 in site.data.category %}
+          {% if depth1.use and depth1.items %}
           <div class="ui simple dropdown item">
-            Category
+            {{ depth1.title }}
+            {% if depth1.items %}
             <i class="dropdown icon"></i>
             <div class="menu">
-              {% for category in site.categories %}
-              <a href="/categories/{{ category | first }}/" class="teal item">{{ category | first }}</a>
+              {% for depth2 in depth1.items %}
+              {% if depth2.use %}
+              <a href="/categories/{{ depth2.url }}/" class="teal item">{{ depth2.title }}</a>
+              {% endif %}
               {% endfor %}
             </div>
+            {% endif %}
           </div>
-          <div class="ui simple dropdown item">
-            ETC
-            <i class="dropdown icon"></i>
-            <div class="menu">
-              <a href="/solutions/" class="teal item">Error solutions</a>
-            </div>
-          </div>
+          {% elsif depth1.use %}
+          <a href="/categories/{{ depth1.url }}/" class="teal item">{{ depth1.title }}</a>
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+
           <div class="item">
             <div class="ui icon input">
               <input type="text" placeholder="Search">
@@ -51,25 +58,36 @@
         </div>
     </div> 
     <div id="mobile-menu" class="ui left fixed vertical menu" style="left: -15rem; z-index: 9999;">
+      
+      <!-- pages -->
       {% for page in site.pages %}
       {% if page.title %}
       <a href="{{ page.url | prepend: site.baseurl }}" class="item">{{ page.title }}</a>
       {% endif %}
       {% endfor %}
+
+      <!-- category -->
+      {% if site.data.category %}
+      {% for depth1 in site.data.category %}
+      {% if depth1.use and depth1.items %}
       <div class="ui item">
-        <div class="text">Category</div>
+        <div class="text">{{ depth1.title }}</div>
+        {% if depth1.items %}
         <div class="menu">
-          {% for category in site.categories %}
-          <a href="/categories/{{ category | first }}/" class="item">{{ category | first }}</a>
+          {% for depth2 in depth1.items %}
+          {% if depth2.use %}
+          <a href="/categories/{{ depth2.url }}/" class="item">{{ depth2.title }}</a>
+          {% endif %}
           {% endfor %}
         </div>
+        {% endif %}
       </div>
-      <div class="ui item">
-        <div class="text">ETC</div>
-        <div class="menu">
-          <a href="/solutions/" class="item">Error solutions</a>
-        </div>
-      </div>
+      {% elsif depth1.use %}
+      <a href="/categories/{{ depth1.url }}/" class="item">{{ depth1.title }}</a>
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+
     </div>
   </div>
 </div>

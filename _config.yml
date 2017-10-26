@@ -34,21 +34,21 @@ defaults:
   -
     scope: 
       path: ""
-      type: "solutions"
-    values:
-      layout: "post"
-  -
-    scope: 
-      path: ""
       type: "pages"
     values:
       layout: "page"
+  # -
+  #   scope: 
+  #     path: ""
+  #     type: "solutions"
+  #   values:
+  #     layout: "post"
 
 # collections
-collections:
-  solutions:
-    output: true
-    permalink: /post/:year/:month/:title
+# collections:
+#   solutions:
+#     output: true
+#     permalink: /post/:year/:month/:title
 
 # highlighter settings
 # Build settings
