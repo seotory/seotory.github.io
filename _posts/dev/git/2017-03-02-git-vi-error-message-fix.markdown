@@ -4,7 +4,7 @@ title: git에서 vi 에러 메세지 해결하기
 date: 2017-03-02 13:39:26 +0900
 description: 
 image: 
-categories: dev/linux
+categories: dev/git
 history: 
  - '20170809'
 published: true

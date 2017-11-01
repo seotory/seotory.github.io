@@ -38,8 +38,11 @@ layout: default
             <p>{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
             {% endif %}
           </div>
+          {% if post.categories or post.comments %}
           <div class="extra">
-            <div class="ui label"><i class="desktop icon"></i>{{post.categories}}</div>
+            {% if post.categories %}
+            <div class="ui label"><i class="desktop icon"></i>{{ post.categories }}</div>
+            {% endif %}
             {% if post.comments %}
             <!-- <span class="right floated">
               <i class="heart outline like icon"></i>
@@ -51,6 +54,7 @@ layout: default
             </div> 
             {% endif %}
           </div>
+          {% endif %}
         </div>
       </div>
       {% endfor %}

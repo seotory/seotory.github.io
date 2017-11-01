@@ -1,6 +1,6 @@
 -
   title: Talk
-  url: /talk
+  url: talk
   use: true
 - 
   title: Dev
@@ -9,39 +9,39 @@
   items: 
     - 
       title: java
-      url: /dev/java
+      url: dev/java
       use: true
     -
       title: javascript
-      url: /dev/javascript
+      url: dev/javascript
       use: true
     -
       title: python
-      url: /dev/python
+      url: dev/python
       use: true
     -
       title: ruby
-      url: /dev/ruby
+      url: dev/ruby
       use: true
     -
       title: linux
-      url: /dev/linux
+      url: dev/linux
       use: true
     -
       title: database
-      url: /dev/database
+      url: dev/database
       use: true
     -
       title: jekyll
-      url: /dev/jekyll
+      url: dev/jekyll
       use: true
     -
       title: book
-      url: /dev/book
+      url: dev/book
       use: true
     -
       title: etc
-      url: /dev/etc
+      url: dev/etc
       use: true
 -
   title: ETC
