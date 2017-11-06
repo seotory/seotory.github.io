@@ -10,8 +10,7 @@ comments: false
 tags:
 ---
 
-<!-- 
-| header  |   |   |   |   |
+<!-- | header  |   |   |   |   |
 |---|---|---|---|---|
 |  1 |   |   |   |   |
 | 2  |   |   |   |   |
@@ -44,14 +43,21 @@ test22
 
 # 로깅
 
-git log -p --word-diff  -> 줄단위 비교 대신에 워드 단위로 표현
-git log --stat -> 변경사항의 파일별 통계
-git log --oneline --graph
-git log --since="2017-10-10" --until="2017-10-20"
-git log --after="2017-10-10" --before="2017-10-20"
+**git log -p --word-diff**  
+줄단위 비교 대신에 워드 단위로 표현
 
-git log --author="seotory" -> 원래 코드를 작성한 사람
-git log --committer="seotory" -> 커밋을 남긴 사람
+**git log --stat**  
+변경사항의 파일별 통계
+
+**git log --oneline --graph**  
+**git log --since="2017-10-10" --until="2017-10-20"**  
+**git log --after="2017-10-10" --before="2017-10-20"**  
+
+**git log --author="seotory"**  
+원래 코드를 작성한 사람
+
+**git log --committer="seotory"**  
+커밋을 남긴 사람
 
 두 가지를 사용해서 로깅해야 하는 경우는 git 프로젝트에 fetch 기능을 사용할때이다. 일반적인 상황에서는 사용할 필요가 없다.
 
