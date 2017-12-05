@@ -33,15 +33,27 @@ $ git branch
 git에서 add 명령어를 실행시키면 stage 공간으로 파일이 넘어가게 된다.
 
 **git diff --cached**  
-tets
-
 **git diff --staged**  
-test
+현재 스테이징에 있는 파일과 HEAD의 정보를 비교한다.
 
 **git diff --name-only --cached**  
-test22
+현재 스테이징에 있는 파일의 목록만을 출력한다.
+
+**git diff master~20:pom.xml pom.xml**
+로컬의 pom.xml과 master의 20번째 로그 이전의 pom.xml을 비교한다.
+
 
 # 로깅
+
+git log -p [filename]
+
+git log -p -5 [filename] 
+
+**git log --name-only --oneline**
+커밋별 변경 로그 파일만 확인하기
+
+**git log --name-only --oneline pom.xml**
+pom.xml 파일 커밋 로그만 추적한다.
 
 **git log -p --word-diff**  
 줄단위 비교 대신에 워드 단위로 표현

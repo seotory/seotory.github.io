@@ -22,6 +22,20 @@ keys *.category.shop | grep -ie "[0-9].*shop"
 grep -rnw '/path/to/somewhere/' -e "pattern"
 ```
 
+# n일 이내에 변경된 파일 찾기
+
+```
+find 폴더 -type f -mtime -일수 -print
+find 폴더 -type f -mtime -일수 -ls
+```
+
+# 히스토리 시간과 함께 보기
+
+```
+echo 'export HISTTIMEFORMAT="%d/%m/%y %T "' >> ~/.bashrc
+```
+
+
 -r or -R is recursive,
 -n is line number, and
 -w stands for match the whole word.
@@ -47,3 +61,8 @@ netstat -napt | grep 1883 | grep EST | wc -l
 
 https://blog.outsider.ne.kr/1306
 https://direnv.net/
+
+# 포트 네트웍 확인
+
+netstat -ap tcp | grep -i "listen"
+sudo lsof -PiTCP -sTCP:LISTEN
