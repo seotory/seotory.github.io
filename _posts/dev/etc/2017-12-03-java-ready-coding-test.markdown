@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 코딩 테스트 준비
+title: java 코딩 테스트 준비
 date: 2017-12-03 10:37:02 +0900
 description: 
 image: 
@@ -59,12 +59,21 @@ import java.util.*;
 웹 IDE에 따라서 * 기호가 안먹는 경우가 있다. 아래꺼 복사해서 붙이자.
 
 ```java
+import java.util.Scanner;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.IntStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.DecimalFormat;
+// 사용이 안될 수도 있음
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.ArrayUtils;
 ```
 
 # 변환
@@ -163,15 +172,59 @@ Arrays.sort(s, Collections.reverseOrder()); // 오름차순
 ```java
 import java.util.HashMap;
 
-public HashMap map = new HashMap();
+HashMap map = new HashMap();
 map.put("key", "value");
 map.get("key");
 map.containsKey("key");
 ```
 
+## ArrayList
+
+```java
+ArrayList list = new ArrayList();
+list.getLast();
+```
+
 # 연산
 
-## 문자열
+## 표준입출력
+
+### 표준입력
+
+예전엔 아래처럼..
+
+```java
+BufferedReader br = null;
+String input = "";
+try {
+    br = new BufferedReader(new InputStreamReader(System.in));
+    input = br.readLine();
+} catch(Exception e) {}
+```
+
+최근엔 아래처럼..
+
+```java
+Scanner in = new Scanner(System.in);
+int i = in.nextInt();  // int
+double d = in.nextDouble(); // double
+String s = in.nextLine(); // string
+```
+
+### 표준출력
+
+```java
+System.out.println(input);
+```
+
+## 문자열연산
+
+### 문자열에서 특정 문자 찾기
+
+```java
+String test = "test";
+String.valueOf(test.charAt(0)); // t
+```
 
 ### 문자열 찾기
 
@@ -197,7 +250,7 @@ String joined = String.join(" and ", list); // "foo and bar and baz"
 ### 문단 엔터
 
 ```java
-System.getProperty("line.separator");
+System.getProperty("line.separator"); // \n을 사용하는건 위험하다.
 ```
 
 ## 배열연산
@@ -217,6 +270,39 @@ int num = 40; // 40의 약수의 합 계산
 IntStream.range(1, num/2+1).filter(n -> num%n == 0).sum();
 ```
 
+-> 중복제거
+IntStream.of(ar).distinct().toArray();
+
+-> 인트 어레이 조인
+int[] arr = new int[] {1, 2, 3, 4, 5, 6, 7};
+String result = StringUtils.join(ArrayUtils.toObject(arr), " - ");
+
+
+## 리스트연산
+
+### 중복제거
+
+HashSet을 사용하면 정렬이 흐트러지기 때문에 LinkedHashSet을 사용한다. 속도면에서 작은 수의 리스트의 경우 손해가 있지만 큰 수이면 의외로 괜찮다.
+
+```java
+List<Integer> items = new ArrayList<Integer>();
+items.add(1);
+items.add(2);
+items.add(2);
+List<Integer> uItems = new ArrayList<Integer>(new LinkedHashSet<Integer>(items));
+// uItems > 1, 2
+```
+
+다른 방법으로 아래의 방법이 있다.
+
+```java
+List<String> items = new ArrayList<Integer>();
+items.add("1");
+items.add("2");
+items.add("2");
+List<String> uItems = items.stream().distinct().collect(Collectors.toList());
+```
+
 ## 산술연산
 
 ### 평균값 구하기
@@ -234,6 +320,25 @@ foreach(int i : iAry) {
 sum / iAry.length;
 ```
 
+### 소수점 연산
+
+```java
+float f = 0.55555f
+DecimalFormat format = new DecimalFormat("0.##");
+String str = format.format(f); // 0.55
+```
+
+```java
+float f = 0.55555f
+String str = String.format("%.2f", f); // 0.56 반올림 주의
+```
+
+```java
+float f = 0.55f
+DecimalFormat format = new DecimalFormat("0.00000");
+String str = format.format(f); // 0.55000 자리수 마춤
+```
+
 ### 반올림, 반내림, 버림, 절대값, 루트
 
 ```java
@@ -242,6 +347,36 @@ Math.ceil(83.58); // 올림
 Math.floor(83.58); // 버림
 Math.abs(-83.58); // 절대값
 Math.sqrt(2); // 루트
+```
+
+## 날자연산
+
+- [SimpleDateFormat patterns](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html){target="_blank"}
+
+### date 포맷 변경
+
+문자열 -> Date -> 포맷 변경 -> 문자열
+
+```java
+String OLD_FORMAT = "dd/MM/yyyy";
+String NEW_FORMAT = "yyyy/MM/dd";
+
+SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT);
+Date d = new Date();
+try {
+    d = sdf.parse("12/08/2010");
+} catch(Exception e) {}
+sdf.applyPattern(NEW_FORMAT);
+sdf.format(d);
+```
+
+Date 생성 -> 포맷 변경 -> 문자열
+
+```java
+String DATE_FORMAT = "yyyy/MM/dd";
+SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+Date date = new Date();
+sdf.format(date);
 ```
 
 ## 행렬연산
@@ -263,9 +398,25 @@ String.format("%8s", Integer.toBinaryString(10 & 0xFF)).replace(' ', '0'); // "0
 ```java
 int a = 10;
 int b = 6;
+// and
 a & b; // 0010 (2),  논리곱      -> 양쪽 모두가 1이면 1, 아니면 0
+// or
 a | b; // 1110 (14), 논리합      -> 어느 한쪽이라도 1이면 1, 아니면 0
+// xor
 a ^ b; // 1100 (12), 배타적 논리합 -> 어느 한쪽이 1일때 다른 쪽이 0이면 1, 아니면 0
+// not
+~a;
+```
+
+```
+Operator    Name         Example     Result  Description
+a & b       and          3 & 5       1       1 if both bits are 1.
+a | b       or           3 | 5       7       1 if either bit is 1.
+a ^ b       xor          3 ^ 5       6       1 if both bits are different.
+~a          not          ~3          -4      Inverts the bits.
+n << p      left shift   3 << 2      12      Shifts the bits of n left p positions. Zero bits are shifted into the low-order positions.
+n >> p      right shift  5 >> 2      1       Shifts the bits of n right p positions. If n is a 2's complement signed number, the sign bit is shifted into the high-order positions.
+n >>> p     right shift  -4 >>> 28   15      Shifts the bits of n right p positions. Zeros are shifted into the high-order positions.
 ```
 
 # 체크
