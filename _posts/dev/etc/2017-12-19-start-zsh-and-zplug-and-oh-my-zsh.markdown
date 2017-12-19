@@ -156,7 +156,7 @@ rm -rf fonts
 
 # iTerm2 꾸미기
 
-[http://iterm2colorschemes.com/](http://iterm2colorschemes.com/){:target="_blank"}, 감사하게도 이 사이트에 iTerm에 관련된 테마가 준비되어 있다. 다운 받고 압축을 풀면 `schemes`폴더에 수많은 테마들이 존제하고 `import`를 통해 적용 시키기만 하면된다.
+[http://iterm2colorschemes.com/](http://iterm2colorschemes.com/){:target="_blank"}, 감사하게도 이 사이트에 iTerm에 관련된 테마가 준비되어 있다. 다운 받고 압축을 풀면 `schemes` 폴더에 수많은 테마들이 존재하고 `import`를 통해 적용시키기만 하면 된다.
 
 - `iTerm2 > Preferences > Profiles > Colors` 설정에 들어간다.
 - 우측 하단 `Color Presets...` 클릭
