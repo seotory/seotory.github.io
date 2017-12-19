@@ -105,6 +105,18 @@ Character.toString(c);
 new Character(c).toString();
 ```
 
+## int -> String
+
+```java
+String str = String.valueOf(1000); // "1000"
+```
+
+## String -> int
+
+```java
+int int = Integer.parseInt("1000"); // 1000
+```
+
 # 비교
 
 ## 소문자, 대문자
