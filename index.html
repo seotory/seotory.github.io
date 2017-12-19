@@ -21,9 +21,9 @@ layout: default
       <!-- article list -->
       {% for post in paginator.posts %}
       <div class="item index">
-        {% if post.image %}
+        {% if post.image and post.image != '' %}
         <div class="ui medium image">
-          <img src="http://ts.daumcdn.net/custom/blog/100/1006037/skin/images/6.jpg">
+          <img src="{{ post.image }}">
         </div>
         {% endif %}
         <div class="content">
