@@ -86,3 +86,7 @@ git log --oneline -- [filename]
 git log --follow --oneline -- [filename] 
 git log -p -- [filename]
 git log --follow -p -- file -> 이름이 변경되더라도 추적해서 log 확인 시켜줌
+
+## 리모트 브런치와 HEAD 사이의 commit 카운트 체크
+
+**git rev-list --count HEAD ^master**

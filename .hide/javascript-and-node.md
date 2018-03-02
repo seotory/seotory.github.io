@@ -147,8 +147,9 @@ let Event = new class {
 
 let eventBus = new Event();
 eventBus.fire('click', {data: 'test'})
-eventBus.listen('click', ()=>{
-    console.log('click');    
+eventBus.listen('click', (data)=>{
+    console.log('click');
+    console.log(data);
 });
 
 ```
@@ -509,6 +510,11 @@ if 문 없애기
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
 연산자 순서.
 
+# gc
+
+https://gist.github.com/listochkin/10973974
+https://www.alexkras.com/simple-guide-to-finding-a-javascript-memory-leak-in-node-js/ <- 설명 굳.
+https://gist.github.com/listochkin/10973974#file-node-command-line-options-txt-L21 <- 옵션
 
 # test~!
 
@@ -569,3 +575,142 @@ https://nodejs.org/en/docs/guides/simple-profiling/
 http://themainframe.ca/install-htop-on-mac-os-x-with-homebrew/
 https://artillery.io/
 https://medium.com/techracers/load-testing-a-nodejs-socket-io-application-with-artillery-916275003e0f
+
+# 테스팅
+
+https://blog.coderifleman.com/2016/06/17/e2e-test-and-nightwatch/
+
+## nodejs 프로파일링.
+
+```sh
+node --inspect 실행앱.js
+```
+
+크롬으로 가서..
+
+chrome://inspect/#devices
+
+
+
+
+## 알고리즘
+
+```js
+// 선택정렬
+var nums = [4,7,1,9,3,8,6,2,5];
+(function () {
+    for (var i=0 ; i < nums.length ; i++) {
+        for (var j=(i+1) ; j < nums.length ; j++) {
+            if (nums[i] > nums[j]) {
+                let tmp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = tmp;
+            }
+        }
+    }
+})();
+console.log(nums);
+
+// 삽입정렬
+var nums = [4,7,1,9,3,8,6,2,5];
+(function () {
+    for (var i=1 ; i < nums.length ; i++) {
+
+        var key = nums[i];
+        var orderedIndex = (i-1);
+
+        // key 이전의 데이터는 정렬됨.
+        while (orderedIndex >= 0 && nums[orderedIndex] > key) {
+            nums[orderedIndex+1] = nums[orderedIndex];
+            orderedIndex --;
+        }
+
+        nums[orderedIndex+1] = key;
+    }
+})();
+console.log(nums);
+
+// 버블정렬
+var nums = [4,7,1,9,3,8,6,2,5];
+(function () {
+    console.log('    ' + nums.join(' '));
+    for (var i=0 ; i < nums.length - 1 ; i++) {
+        for (var j=0 ; j < nums.length - 1 ; j++) {
+            if (nums[j] > nums[j+1]) {
+                var tmp = nums[j];
+                nums[j] = nums[j+1];
+                nums[j+1] = tmp;
+            }
+        }
+        console.log(i + 'r: ' + nums.join(' '));
+    }
+})();
+console.log(nums);
+
+// 합병정렬 top-down
+var aryA = [4,7,1,9,3,8,6,2,5];
+var aryB = aryA.slice(0, aryA.length);
+function topDown(startIndex, endIndex, aryA, aryB) {
+
+    if (endIndex - startIndex < 2) return; // end 조건.
+    var middleIndex = Math.ceil((startIndex + endIndex) / 2);
+    topDown(startIndex, middleIndex, aryB, aryA); // 핵심. -> aryA, aryB를 뒤집에서 넣는다. 그러면 merge시에 저장이 된다.
+    topDown(middleIndex, endIndex, aryB, aryA); // 핵심. -> aryA, aryB를 뒤집에서 넣는다. 그러면 merge시에 저장이 된다.
+
+    topDownPartSort(startIndex, middleIndex, endIndex, aryA, aryB);
+}
+function topDownPartSort (startIndex, middleIndex, endIndex, aryA, aryB) {
+    var s = startIndex;
+    var m = middleIndex;
+    console.log(`startIndex: ${startIndex}, middleIndex: ${middleIndex}, endIndex: ${endIndex}`);
+    console.log(aryA.slice(startIndex, endIndex).join(' '));
+    for (var i=startIndex ; i<endIndex ; i++ ) {
+        // console.log(`[${i}] ${s} < ${middleIndex} && (${m} >= ${endIndex} || ${aryA[s]} <= ${aryA[m]})`);
+        // 중간 인덱스(카피)가 시작 인덱스(카피)보다 크고, 
+        // 중간 인덱스(카피)가 마지막 인덱스와 같거나 작고 또는
+        // aryA[시작 인덱스(카피)] 값이 aryA[중간 인덱스(카피)] 값보다 작거나 같을 때 = true.
+        if (s < middleIndex && (m >= endIndex || aryA[s] <= aryA[m])) {
+            console.log(`aryB[i] = ${aryA[s]};(idx s: ${s})`);
+            aryB[i] = aryA[s];
+            s ++;
+        } else {
+            console.log(`aryB[i] = ${aryA[m]};(idx m: ${m})`);
+            aryB[i] = aryA[m];
+            m ++;
+        }
+    }
+    console.log(aryB.slice(startIndex, endIndex).join(' '));
+}
+topDown(0, 9, aryA, aryB);
+console.log(aryA);
+console.log(aryB);
+
+// 합병정렬 bottom-up
+var aryA = [4,7,1,9,3,8,6,2,5];
+var aryB = aryA.slice(0, aryA.length);
+function bottomUp(startIndex, endIndex, aryA, aryB) {
+    for (var size=1 ; size<endIndex ; size=size*2) {
+        for (var i=0; i<endIndex ; i=i+size*2) {
+            console.log(`size: ${size}, i: ${i}, min size: ${Math.min(size, aryA.length)}`);
+            console.log(aryA.slice(i, i+size*2));
+            bottomUpPartSort( i, Math.min(endIndex, i+size), Math.min(endIndex, i+size*2), aryA, aryB);
+            console.log(aryB.slice(i, i+size*2));
+        }
+        aryA = aryB.slice(0, aryB.length); // 핵심. 카피를 함으로써 정렬된 상태를 전달.
+    }
+}
+function bottomUpPartSort (startIndex, middleIndex, endIndex, aryA, aryB) { // 위의 top-down 이랑 소트 방법은 똑같음.
+    var s = startIndex;
+    var m = middleIndex;
+    for (var i=startIndex ; i<endIndex ; i++) {
+        if (s < middleIndex && (m >= endIndex || aryA[s] <= aryA[m])) {
+            aryB[i] = aryA[s];
+            s ++;
+        } else {
+            aryB[i] = aryA[m];
+            m ++;
+        }
+    }
+}
+bottomUp(0, 9, aryA, aryB);
+```

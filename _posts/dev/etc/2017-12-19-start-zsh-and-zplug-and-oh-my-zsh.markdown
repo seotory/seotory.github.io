@@ -112,7 +112,6 @@ zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
 zplug "plugins/zsh_reload", from:oh-my-zsh
 zplug "plugins/colorize", from:oh-my-zsh
 zplug "plugins/docker", from:oh-my-zsh
-zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
 # zplug "themes/robbyrussell", from:oh-my-zsh
 
 # theme
