@@ -88,8 +88,8 @@ sass:
 paginate: 10
 paginate_path: "/list/:num/"
 
-# gems
-gems:
+# plugins
+plugins:
   - jekyll-paginate
 
 # plugins
