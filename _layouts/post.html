@@ -7,7 +7,7 @@ layout: default
     <div class="column">
       <div style="margin: 12em 0px;">
         <h1 style="font-size: 3.5em;">{{ page.title }}</h1>
-        <span>{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</span>
+        <span>{{ page.date | date: "%Y-%m-%d" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</span>
       </div>
     </div>
   </div>

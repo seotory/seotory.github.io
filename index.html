@@ -29,7 +29,7 @@ layout: default
         <div class="content">
           <a href="{{ post.url }}" class="header">{{ post.title }}</a>
           <div class="meta">
-            <span class="cinema">{{ post.date | date_to_long_string }}</span>
+            <span class="cinema">{{ post.date | date: "%Y-%m-%d" }}</span>
           </div>
           <div class="description">
             {% if post.description %}
