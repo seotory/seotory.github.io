@@ -12,7 +12,7 @@ pre.highlight
   width: 100%;
   padding: 15px 20px;
   overflow-x: auto;
-  border: 1px solid #ccc;
+  // border: 1px solid #ccc;
   border-radius: 10px;
   -webkit-overflow-scrolling: touch;
   margin-bottom: 15px;
@@ -245,7 +245,4 @@ blockquote pre.highlight {
 }
 .highlight .w {
   color: #bbbbbb;
-}
-.highlight, pre {
-  background-color: #f8f8f8;
 }
