@@ -111,42 +111,6 @@ EOS
   end
 end
 
-namespace "solution" do
-  task :new do #default
-    folder = '_solutions'
-    title = ask('Title: ')
-    category = ask('Category: ')
-    filename = category + (category ? "/" : "") + "#{Time.now.strftime('%Y-%m-%d')}-#{title.gsub(/\s/, '-').downcase}.markdown"
-
-    puts 'title name: ' + title
-    puts 'category name: ' + category
-
-    # if is new folder? make folder.
-    Dir.mkdir(File.join(folder, category)) unless File.exists?(File.join(folder, category))
-
-    # make file
-    path = File.join(folder, filename)
-    if File.exist? path; raise RuntimeError.new("File exists #{path}"); end
-    File.open(path, 'w') do |file|
-      file.write <<-EOS
----
-title: #{title}
-date: #{Time.now.strftime('%Y-%m-%d %k:%M:%S')} +0900
-description: 
-image: 
-categories: #{category}
-history: false
-published: false
-comments: false
-tags:
----
-문서를 작성해주세요.
-EOS
-    puts '성공적으로 [' + path + ']경로에 파일을 생성하였습니다.'
-    end
-  end
-end
-
 namespace "jekyll" do
   task :dev do
     system "JEKYLL_ENV=development jekyll serve --trace --config _config.yml,_config.dev.yml --unpublished -t";

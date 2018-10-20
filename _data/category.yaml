@@ -40,6 +40,10 @@
       url: dev/book
       use: true
     -
+      title: study
+      url: dev/study
+      use: true
+    -
       title: etc
       url: dev/etc
       use: true
