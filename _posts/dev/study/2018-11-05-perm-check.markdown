@@ -55,4 +55,4 @@ static public int solution(int[] A) {
 
 # 3. 링크
 
--[문제풀이](https://github.com/seotory/algoStudy/blob/master/src/main/codility/lesson/lesson4/PermCheck.java){:target="_blank"}
+- [문제풀이](https://github.com/seotory/algoStudy/blob/master/src/main/codility/lesson/lesson4/PermCheck.java){:target="_blank"}
