@@ -5,7 +5,7 @@ description:
 image: 
 categories: dev/study
 history: false
-published: false
+published: true
 comments: false
 tags:
 ---
