@@ -1,5 +1,5 @@
 ---
-title: 테이프 균형 알고리즘 문제
+title: 테이프 균형 알고리즘
 date: 2018-10-23 20:34:11 +0900
 description: 
 image: 

@@ -1,5 +1,5 @@
 ---
-title: 순열 확인
+title: 순열 확인 알고리즘
 date: 2018-11-05 22:03:51 +0900
 description: 
 image: 
