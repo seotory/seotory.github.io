@@ -1,5 +1,5 @@
 ---
-title: 한번에 개구리 강 건너기 알고리즘
+title: FrogRiverOne 알고리즘 문제풀이
 date: 2018-11-12  9:43:15 +0900
 description: 
 image: 

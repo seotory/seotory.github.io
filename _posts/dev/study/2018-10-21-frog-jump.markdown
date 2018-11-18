@@ -1,5 +1,5 @@
 ---
-title: 개구리 점프 알고리즘
+title: FrogJump 알고리즘 문제풀이
 date: 2018-10-21  2:02:18 +0900
 description: 
 image: 
