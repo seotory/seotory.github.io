@@ -114,36 +114,42 @@ layout: default
     </div> 
 
     <!-- right menu -->
-    <div class="ui computer tablet only grid" style="position: absolute; width: 300px!important; top: 0; right: 0;margin: 0px;">
+    <div class="ui computer tablet only grid" style="position: absolute; width: 328px!important; top: 0; right: -14px;margin: 0px;">
 
       <!-- tags -->
       {% if page.tags.size > 0 %}
       <div class="row">
-        <div class="ui padded segment">
-          <h4 class="ui horizontal divider header">
-            <i class="tag icon"></i>
-            Tags
-          </h4>
-          {% for tag in page.tags %}
-          <a class="ui teal label" href="/tags/?#{{ tag }}">{{ tag | downcase }}</a>
-          {% endfor %}
+        <div class="column">
+          <div class="ui segment">
+            <h4 class="ui horizontal divider header">
+              <i class="tag icon"></i>
+              Tags
+            </h4>
+            {% for tag in page.tags %}
+            <a class="ui teal label" href="/tags/?#{{ tag }}">{{ tag | downcase }}</a>
+            {% endfor %}
+          </div>
         </div>
       </div>
       {% endif %}
       
+      <!-- AD -->
+      {% if jekyll.environment != "development" %}
       <div class="row">
-        {% if jekyll.environment != "development" %}
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- post_right_300_250 -->
-        <ins class="adsbygoogle"
-              style="display:inline-block;width:300px;height:250px"
-              data-ad-client="ca-pub-1634875166425349"
-              data-ad-slot="1483687319"></ins>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        {% endif %}
+        <div class="column">
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- post_right_300_250 -->
+          <ins class="adsbygoogle"
+                style="display:inline-block;width:300px;height:250px"
+                data-ad-client="ca-pub-1634875166425349"
+                data-ad-slot="1483687319"></ins>
+          <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
       </div>
+      {% endif %}
+
     </div>
 
   </div>
@@ -151,7 +157,7 @@ layout: default
 
 {% if page.comments and jekyll.environment != "development" %}
 <!-- disqus -->
-<section style="border-top: rgba(34,36,38,.1) 1px solid; padding: 50px 0px; background: #f5f5f5;">
+<section id="disqus" style="border-top: rgba(34,36,38,.1) 1px solid; padding: 50px 0px; background: #f5f5f5;">
   <div class="ui container">
     <div id="disqus_thread"></div>
     <script>
@@ -184,32 +190,28 @@ layout: default
 {% endif %}
 
 {% if site.categories[page.categories.last].size > 1 %}
-<section style="border-top: rgba(34,36,38,.1) 1px solid; padding: 50px 0px;">
-  <div class="ui container">
+<section id="" style="border-top: rgba(34,36,38,.1) 1px solid; padding: 50px 0px;">
+  <div class="ui stackable four column padded centered grid">
     <!-- category other posts start -->
-    <div class="ui cards">
-      {% assign counter = 0 %}
-      {% for post in site.categories[page.categories.last] %}
-        {% if post.title != page.title and counter < 6 %}
-          {% assign counter=counter | plus:1 %}
-        <div class="ui centered card">
-          <div class="content">
-            <div class="header">{{post.title}}</div>
-            <div class="meta">
-              <span class="category">{{post.categories.last}}</span>
-            </div>
-            <!-- <div class="description">
-              Elliot Fu is a film-maker from New York.
-            </div> -->
-          </div>
-          <div class="ui bottom attached button">
-            <i class="add icon"></i>
-            <a class="header" href="{{post.url}}" style="color: rgba(0,0,0,.6);">Read More</a>
-          </div>
+    {% assign counter = 0 %}
+    {% for post in site.categories[page.categories.last] %}
+      {% if post.title != page.title and counter < 4 %}
+      {% assign counter=counter | plus:1 %}
+      <div class="column">
+        <div class="ui tall stacked segment">
+          <h3 class="ui header">{{post.title}}</h3>
+          <p>
+            {{ post.excerpt | strip_html | truncatewords: 40 }}
+          </p>
+          <form action="{{post.url}}">
+            <button type="submit" class="mini ui secondary button">
+              더보기 <i class="right chevron icon"></i>
+            </button>
+          </form>
         </div>
-        {% endif %}
-      {% endfor %}
-    </div>
+      </div>
+      {% endif %}
+    {% endfor %}
     <!-- category other posts end -->
   </div>
 </section>

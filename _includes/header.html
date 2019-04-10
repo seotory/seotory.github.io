@@ -3,7 +3,10 @@
   <div class="computer tablet only row">
     <div class="ui stackable top fixed menu"><!-- ui large top fixed hidden menu -->
       <div class="ui container">
-        <a href="/" class="teal item">{{ site.title }}</a>
+        <a href="/" class="teal item">
+          <i class="home icon"></i>
+          {{ site.title }}
+        </a>
         <div class="right menu">
           
           <!-- pages -->
@@ -52,7 +55,7 @@
     <div class="ui fixed inverted navbar menu">
         <a href="/" class="brand item">Seotory</a>
         <div class="right menu">
-            <a href="#" onclick="mobileMenuController(this);return false;" class="menu item" data-show-left-menu="off">
+            <a href="#" onclick="return mobileMenuController(this);" class="menu item" data-show-left-menu="off">
                 <i class="sidebar icon"></i>
             </a>
         </div>
