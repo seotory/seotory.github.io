@@ -199,5 +199,5 @@ wc < test.txt > test2.txt
 
 # 참고
 
-- [https://ko.wikipedia.org/wiki/%ED%91%9C%EC%A4%80_%EC%8A%A4%ED%8A%B8%EB%A6%BC](https://ko.wikipedia.org/wiki/%ED%91%9C%EC%A4%80_%EC%8A%A4%ED%8A%B8%EB%A6%BC)
-- [http://ryanstutorials.net/linuxtutorial/piping.php](http://ryanstutorials.net/linuxtutorial/piping.php)
+- [https://ko.wikipedia.org/wiki/표준스트림](https://ko.wikipedia.org/wiki/%ED%91%9C%EC%A4%80_%EC%8A%A4%ED%8A%B8%EB%A6%BC){:target="blank"}
+- [http://ryanstutorials.net/linuxtutorial/piping.php](http://ryanstutorials.net/linuxtutorial/piping.php){:target="blank"}
