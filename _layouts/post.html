@@ -16,7 +16,7 @@ layout: default
 <!-- contents body -->
 <section id="post" style="margin: 50px 0px;">
   <div class="ui container">
-    <div class="ui grid">
+    <div class="ui stackable grid">
 
       <!-- notice -->
       <div class="row">
@@ -60,7 +60,8 @@ layout: default
       </div>
       {% endif %}
 
-      <!-- 전후글 -->
+      {% comment %}
+      <!-- 전후글(사용안함) -->
       {% for post in site.categories[page.categories.last] %}
         {% if post.url == page.url %}
           {% assign post_index0 = forloop.index0 %}
@@ -111,6 +112,7 @@ layout: default
         </div>
       </div>
       {% endif %}
+      {% endcomment %}
     </div> 
 
     <!-- right menu -->
