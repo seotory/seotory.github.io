@@ -29,25 +29,6 @@ layout: default
           {{ content }}
         </div>
 
-        <!-- posts_last_ad -->
-        {% if jekyll.environment != "development" %}
-        <div class="column">
-          <div style="width: 100%; text-align: center;">
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- posts_last_ad -->
-            <ins class="adsbygoogle posts_last_ad"
-                style="display:inline-block"
-                data-ad-client="ca-pub-1634875166425349"
-                data-ad-slot="2796283140"
-                data-ad-format="auto"
-                data-full-width-responsive="false"></ins>
-            <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-          </div>
-        </div>
-        {% endif %}
-
         {% comment %}
         <!-- 전후글(사용안함) -->
         {% for post in site.categories[page.categories.last] %}
