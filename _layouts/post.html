@@ -2,46 +2,35 @@
 layout: default
 ---
 <!-- title header -->
-<section class="ui inverted vertical masthead center aligned segment" style="padding: 1em 0em; margin-bottom: 50px;">
-  <div class="ui container">
-    <div class="column">
-      <div style="margin: 12em 0px;">
-        <h1 style="font-size: 3.5em;">{{ page.title }}</h1>
-        <span>{{ page.date | date: "%Y-%m-%d" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</span>
-      </div>
+<section class="hero is-link is-medium">
+  <div class="container">
+    <div class="hero-body">
+      <p class="title">
+        {{ page.title }}
+      </p>
+      <p class="subtitle">
+        {{ page.date | date: "%Y-%m-%d" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}
+      </p>
     </div>
   </div>
 </section>
 
 <!-- contents body -->
-<section id="post" style="margin: 50px 0px;">
-  <div class="ui container">
-    <div class="ui stackable grid">
+<section id="post" class="section">
+  <div class="container">
+    <div class="columns">
 
-      <!-- notice -->
-      <!-- <div class="row">
-        <div class="column">
-          <div class="ui warning message">
-            <i class="home icon"></i> 블로그 UI가 개편중입니다. 참고해주세요.
-          </div>
-        </div>
-      </div> -->
-
-      <!-- history -->
-      {% include history.html history=page.history %}
-      
-      <!-- post -->
-      <div class="row">
-        <div class="column">
-          <article>
+      <div class="column is-three-quarters">
+        <!-- history -->
+        {% include history.html history=page.history %}
+        
+        <!-- post -->
+        <div class="content">
           {{ content }}
-          </article>
         </div>
-      </div>
 
-      <!-- posts_last_ad -->
-      {% if jekyll.environment != "development" %}
-      <div class="row">
+        <!-- posts_last_ad -->
+        {% if jekyll.environment != "development" %}
         <div class="column">
           <div style="width: 100%; text-align: center;">
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -57,110 +46,97 @@ layout: default
             </script>
           </div>
         </div>
-      </div>
-      {% endif %}
+        {% endif %}
 
-      {% comment %}
-      <!-- 전후글(사용안함) -->
-      {% for post in site.categories[page.categories.last] %}
-        {% if post.url == page.url %}
-          {% assign post_index0 = forloop.index0 %}
-          {% assign post_index1 = forloop.index %}
-        {% endif %}
-      {% endfor %}
-      {% for post in site.categories[page.categories.last] %}
-        {% if post_index0 == forloop.index %}
-          {% assign next_post = post.url %}
-        {% endif %}
-        {% if post_index1 == forloop.index0 %}
-          {% assign prev_post = post.url %}
-        {% endif %}
-      {% endfor %}
-      {% if prev_post or next_post %}
-      <div class="row">
-        <div class="column">
-          <div class="ui grid">
-            <div class="two column row">
-            <!-- <div class="post-prev">
-              <a href="{{ prev_post }}">< PREV</a> <br>
-            </div> -->
-              <div class="column">
-          {% if prev_post %}
-                <div class="ui fade animated primary button">
-                  <div class="visible content">Prev</div>
-                  <div class="hidden content">
-                    <i class="left arrow icon"></i>
-                  </div>
-                </div>
+        {% comment %}
+        <!-- 전후글(사용안함) -->
+        {% for post in site.categories[page.categories.last] %}
+          {% if post.url == page.url %}
+            {% assign post_index0 = forloop.index0 %}
+            {% assign post_index1 = forloop.index %}
           {% endif %}
-              </div>
-              <!-- <div class="post-next">
-                <a href="{{ next_post }}">NEXT ></a> <br>
+        {% endfor %}
+        {% for post in site.categories[page.categories.last] %}
+          {% if post_index0 == forloop.index %}
+            {% assign next_post = post.url %}
+          {% endif %}
+          {% if post_index1 == forloop.index0 %}
+            {% assign prev_post = post.url %}
+          {% endif %}
+        {% endfor %}
+        {% if prev_post or next_post %}
+        <div class="row">
+          <div class="column">
+            <div class="ui grid">
+              <div class="two column row">
+              <!-- <div class="post-prev">
+                <a href="{{ prev_post }}">< PREV</a> <br>
               </div> -->
-              <div class="right aligned column">
-          {% if next_post %}
-                <div class="ui fade animated primary button">
-                  <div class="visible content">Next</div>
-                  <div class="hidden content">
-                    <i class="right arrow icon"></i>
+                <div class="column">
+            {% if prev_post %}
+                  <div class="ui fade animated primary button">
+                    <div class="visible content">Prev</div>
+                    <div class="hidden content">
+                      <i class="left arrow icon"></i>
+                    </div>
                   </div>
+            {% endif %}
                 </div>
-          {% endif %}
+                <!-- <div class="post-next">
+                  <a href="{{ next_post }}">NEXT ></a> <br>
+                </div> -->
+                <div class="right aligned column">
+            {% if next_post %}
+                  <div class="ui fade animated primary button">
+                    <div class="visible content">Next</div>
+                    <div class="hidden content">
+                      <i class="right arrow icon"></i>
+                    </div>
+                  </div>
+            {% endif %}
+                </div>
               </div>
             </div>
           </div>
         </div>
+        {% endif %}
+        {% endcomment %}
       </div>
-      {% endif %}
-      {% endcomment %}
-    </div> 
 
-    <!-- right menu -->
-    <div class="ui computer tablet only grid" style="position: absolute; width: 328px!important; top: 0; right: -14px;margin: 0px;">
-
-      <!-- tags -->
-      {% if page.tags.size > 0 %}
-      <div class="row">
-        <div class="column">
-          <div class="ui segment">
-            <h4 class="ui horizontal divider header">
-              <i class="tag icon"></i>
-              Tags
-            </h4>
-            {% for tag in page.tags %}
-            <a class="ui teal label" href="/tags/?#{{ tag }}">{{ tag | downcase }}</a>
-            {% endfor %}
+      <div class="column">
+        <!-- tags -->
+        {% if page.tags.size > 0 %}
+        <div class="tags">
+          {% for tag in page.tags %}
+            <span class="tag"><a href="/tags/?#{{ tag }}">{{ tag | downcase }}</a></span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        
+        <!-- AD -->
+        {% if jekyll.environment != "development" %}
+        <div class="row">
+          <div class="column">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- post_right_300_250 -->
+            <ins class="adsbygoogle"
+                  style="display:inline-block;width:300px;height:250px"
+                  data-ad-client="ca-pub-1634875166425349"
+                  data-ad-slot="1483687319"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
           </div>
         </div>
-      </div>
-      {% endif %}
-      
-      <!-- AD -->
-      {% if jekyll.environment != "development" %}
-      <div class="row">
-        <div class="column">
-          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-          <!-- post_right_300_250 -->
-          <ins class="adsbygoogle"
-                style="display:inline-block;width:300px;height:250px"
-                data-ad-client="ca-pub-1634875166425349"
-                data-ad-slot="1483687319"></ins>
-          <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-        </div>
-      </div>
-      {% endif %}
-
-    </div>
-
+        {% endif %}
+      </div>      
+    </div> 
   </div>
 </section>
 
-{% if page.comments and jekyll.environment != "development" %}
 <!-- disqus -->
-<section id="disqus" style="border-top: rgba(34,36,38,.1) 1px solid; padding: 50px 0px; background: #f5f5f5;">
-  <div class="ui container">
+<section id="disqus" class="section" style="border-top: rgba(34,36,38,.1) 1px solid; border-bottom: rgba(34,36,38,.1) 1px solid; background: #f5f5f5;">
+  <div class="container">
     <div id="disqus_thread"></div>
     <script>
     /**
@@ -183,38 +159,31 @@ layout: default
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
     
     <!-- posts ad -->
-    <div style="margin-top: 30px;">
-      {% include postsAd.html %}
-    </div>
-    
+    {% include postsAd.html %}
+
   </div>
 </section>
-{% endif %}
 
 {% if site.categories[page.categories.last].size > 1 %}
-<section id="" style="border-top: rgba(34,36,38,.1) 1px solid; padding: 50px 0px;">
-  <div class="ui stackable four column padded centered grid">
-    <!-- category other posts start -->
-    {% assign counter = 0 %}
-    {% for post in site.categories[page.categories.last] %}
-      {% if post.title != page.title and counter < 4 %}
-      {% assign counter=counter | plus:1 %}
-      <div class="column">
-        <div class="ui tall stacked segment">
-          <h3 class="ui header">{{post.title}}</h3>
-          <p>
-            {{ post.excerpt | strip_html | truncatewords: 40 }}
-          </p>
-          <form action="{{post.url}}">
-            <button type="submit" class="mini ui secondary button">
-              더보기 <i class="right chevron icon"></i>
-            </button>
-          </form>
-        </div>
+<section class="section">
+  <div class="container">
+      <div class="tile is-ancestor">
+        <!-- category other posts start -->
+        {% assign counter = 0 %}
+        {% for post in site.categories[page.categories.last] %}
+          {% if post.title != page.title and counter < 4 %}
+          {% assign counter=counter | plus:1 %}
+          <div class="tile is-parent">
+            <article class="tile is-child notification is-warning">
+              <p class="title is-size-4 mb-2">{{post.title}}</p>
+              <p class="is-size-6 mb-3">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+              <a href="{{post.url}}" class="button is-warning is-light is-fullwidth">더보기</a>
+            </article>
+          </div>
+          {% endif %}
+        {% endfor %}
+        <!-- category other posts end -->
       </div>
-      {% endif %}
-    {% endfor %}
-    <!-- category other posts end -->
   </div>
 </section>
 {% endif %}

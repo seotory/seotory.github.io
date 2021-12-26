@@ -3,24 +3,10 @@
 /**
  * Syntax highlighting styles
  */
-blockquote > pre,
-figure > pre,
-// div.highlighter-rouge > pre,
-pre.highlight
- {
-  display: block;
-  width: 100%;
-  padding: 15px 20px;
-  overflow-x: auto;
-  // border: 1px solid #ccc;
-  border-radius: 10px;
-  -webkit-overflow-scrolling: touch;
-  margin-bottom: 15px;
-}
 
-figure {
-  margin: 0px;
-}
+// figure {
+//   margin: 0px;
+// }
 
 td > pre.lineno {
   color: #999988;

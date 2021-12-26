@@ -1,113 +1,92 @@
-<div class="ui grid">
-  <!-- pc menu -->
-  <div class="computer tablet only row">
-    <div class="ui stackable top fixed menu"><!-- ui large top fixed hidden menu -->
-      <div class="ui container">
-        <a href="/" class="teal item">
-          <i class="home icon"></i>
-          {{ site.title }}
-        </a>
-        <div class="right menu">
-          
-          <!-- pages -->
-          {% for page in site.pages %}
+<nav class="navbar is-transparent">
+  <div class="container">
+    <div class="navbar-brand">
+      {%- comment -%} <a class="navbar-item" href="https://bulma.io">
+        <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+      </a> {%- endcomment -%}
+
+      <!-- mobile -->
+      <div class="navbar-burger" data-target="navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div id="navbarExampleTransparentExample" class="navbar-menu">
+      <div class="navbar-start">
+
+        <!-- pages -->
+        {% for page in site.pages %}
           {% if page.title %}
-          <a href="{{ page.url | prepend: site.baseurl }}" class="teal item">{{ page.title }}</a>
+            <a href="{{ page.url | prepend: site.baseurl }}" class="navbar-item">{{ page.title }}</a>
           {% endif %}
-          {% endfor %}
+        {% endfor %}
 
-          <!-- category -->
-          {% if site.data.category %}
+        <!-- category -->
+        {% if site.data.category %}
           {% for depth1 in site.data.category %}
-          {% if depth1.use and depth1.items %}
-          <div class="ui simple dropdown item">
-            {{ depth1.title }}
-            {% if depth1.items %}
-            <i class="dropdown icon"></i>
-            <div class="menu">
-              {% for depth2 in depth1.items %}
-              {% if depth2.use %}
-              <a href="/categories/{{ depth2.url }}/" class="teal item">{{ depth2.title }}</a>
-              {% endif %}
-              {% endfor %}
-            </div>
+            {% if depth1.use and depth1.items %}
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  {{ depth1.title }}
+                </a>
+                <div class="navbar-dropdown is-boxed">
+                {% if depth1.items %}
+                  <div class="menu">
+                    {% for depth2 in depth1.items %}
+                      {% if depth2.use %}
+                        <a href="/categories/{{ depth2.url }}/" class="navbar-item">{{ depth2.title }}</a>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+                </div>
+              </div>
+            {% elsif depth1.use %}
+            <a href="/categories/{{ depth1.url }}/" class="navbar-item">{{ depth1.title }}</a>
             {% endif %}
-          </div>
-          {% elsif depth1.use %}
-          <a href="/categories/{{ depth1.url }}/" class="teal item">{{ depth1.title }}</a>
-          {% endif %}
           {% endfor %}
-          {% endif %}
+        {% endif %}
 
-          <div class="item">
-            <div class="ui icon input">
-              <input type="text" placeholder="Search">
-              <i class="search link icon" id="site-search"></i>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <div class="field has-addons">
+              <div class="control">
+                <input class="input is-small is-rounded" type="text" placeholder="Find a repository">
+              </div>
+              <div class="control">
+                <a id="site-search" class="button is-link is-small is-rounded">
+                  <span class="icon">
+                    <i class="fas fa-search"></i>
+                  </span>
+                  <span>Search</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</nav>
 
-  <!-- mobile menu -->
-  <div class="mobile only row">
-    <div class="ui fixed inverted navbar menu">
-        <a href="/" class="brand item">Seotory</a>
-        <div class="right menu">
-            <a href="#" onclick="return mobileMenuController(this);" class="menu item" data-show-left-menu="off">
-                <i class="sidebar icon"></i>
-            </a>
-        </div>
-    </div> 
-    <div id="mobile-menu" class="ui left fixed vertical menu" style="left: -15rem; z-index: 9999;">
-      
-      <!-- pages -->
-      {% for page in site.pages %}
-      {% if page.title %}
-      <a href="{{ page.url | prepend: site.baseurl }}" class="item">{{ page.title }}</a>
-      {% endif %}
-      {% endfor %}
-
-      <!-- category -->
-      {% if site.data.category %}
-      {% for depth1 in site.data.category %}
-      {% if depth1.use and depth1.items %}
-      <div class="ui item">
-        <div class="text">{{ depth1.title }}</div>
-        {% if depth1.items %}
-        <div class="menu">
-          {% for depth2 in depth1.items %}
-          {% if depth2.use %}
-          <a href="/categories/{{ depth2.url }}/" class="item">{{ depth2.title }}</a>
-          {% endif %}
-          {% endfor %}
-        </div>
-        {% endif %}
-      </div>
-      {% elsif depth1.use %}
-      <a href="/categories/{{ depth1.url }}/" class="item">{{ depth1.title }}</a>
-      {% endif %}
-      {% endfor %}
-      {% endif %}
-
-    </div>
-  </div>
-</div>
 <script>
-  $(document).ready(function(){
-    $('body').dimmer('get dimmer').on('click', function(){
-      $('#mobile-menu').animate({left: '-15rem'});
-    });
+$(document).ready(function() {
+  // Check for click events on the navbar burger icon
+  $(".navbar-burger").click(function() {
+      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+      $(".navbar-burger").toggleClass("is-active");
+      $(".navbar-menu").toggleClass("is-active");
 
-    $('#site-search').on('click', function(e) {
+  });
+
+  $('#site-search').on('click', function(e) {
       var text = $($(this).siblings()[0]).val();
       window.open('https://www.google.co.kr/search?q=site:blog.seotory.com+' + encodeURIComponent(text), '_blank');
     });
-  })
-  function mobileMenuController(el) {
-    $('#mobile-menu').animate({left: '0px'});
-    $('body').dimmer('show');
-    return false;
-  }
+});
 </script>

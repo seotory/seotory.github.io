@@ -15,7 +15,8 @@ github_username:  seotory
 facebook_username: ""
 
 # url change (/:year/:month/:day)
-permalink: /post/:year/:month/:title
+# permalink: /post/:year/:month/:title
+permalink: /post/:title
 
 # timezone
 timezone: Asia/Seoul

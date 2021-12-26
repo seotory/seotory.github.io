@@ -13,7 +13,11 @@
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
 
   <!-- semantic UI -->
-  <link rel="stylesheet" type="text/css" href="/static/lib/semantic/2.4/semantic.min.css">  
+  <!-- <link rel="stylesheet" type="text/css" href="/static/lib/semantic/2.4/semantic.min.css">   -->
+
+  <!-- CSS -->
+  <script src="https://kit.fontawesome.com/bb01885591.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 
   <!-- defualt -->
   <link rel="stylesheet" href="{{ "/static/css/main.css?v0.2" | prepend: site.baseurl }}"> 
@@ -22,15 +26,14 @@
 
   <!-- facebook -->
   <meta property="og:url" content="{% if page.url %}{{site.url}}{{page.url}}{% else %}{{site.url}}{% endif %}" />
-  <!--<meta property="og:type"               content="{{}}" />-->
   <meta property="og:title" content="{% if page.title %}{{page.title}}{% else %}seotory it blog{% endif %}" />
   <meta property="og:description" content="{{page.description}}" />
   <meta property="og:image" content="" />
 
   <!-- font -->
-  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css">
+  <!-- <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700">
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:400,700">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:400,700"> -->
 
   <!-- jQuery -->
   <script
@@ -46,10 +49,15 @@
   <!-- http-> https -->
   <script type="text/javascript">
     var host = "blog.seotory.com";
-    if ((host == window.location.host) && (window.location.protocol != "https:"))
-        window.location.protocol = "https";
-    if (document.location.href.indexOf("solution/20") > -1)
-        window.location.href = window.location.href.replace('solution', 'post');
+    if ((host == window.location.host) && (window.location.protocol != "https:")) {
+      window.location.protocol = "https";
+    }
+    if (document.location.href.indexOf("solution/20") > -1) {
+      window.location.href = window.location.href.replace('solution', 'post');
+    }
+    if (document.location.href.indexOf("post/20") > -1) {
+      window.location.href = window.location.href.replace(/\/[0-9]{4}\/[0-9]{2}/, '');
+    }
   </script>
 
   <!-- google web log -->

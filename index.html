@@ -1,37 +1,36 @@
 ---
 layout: default
 ---
-<section style="margin: 50px 0px;">
-  <div class="ui container">
+<section class="section">
+  <div class="container">
     
     {% if jekyll.environment != "development" %}
-    <!-- google AD -->
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- main_top_336_280 -->
-    <ins class="adsbygoogle"
-          style="display:inline-block;width:336px;height:280px"
-          data-ad-client="ca-pub-1634875166425349"
-          data-ad-slot="2628164514"></ins>
-    <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+    <div class="block">
+      <!-- google AD -->
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- main_top_336_280 -->
+      <ins class="adsbygoogle"
+            style="display:inline-block;width:336px;height:280px"
+            data-ad-client="ca-pub-1634875166425349"
+            data-ad-slot="2628164514"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
     {% endif %}
 
-    <div class="ui divided items">
-      <!-- article list -->
-      {% for post in paginator.posts %}
-      <div class="item index">
-        {% if post.image and post.image != '' %}
+    <!-- article list -->
+    {% for post in paginator.posts %}
+      <div class="box">
+        <!-- {% if post.image and post.image != '' %}
         <div class="ui medium image">
           <img src="{{ post.image }}">
         </div>
-        {% endif %}
+        {% endif %} -->
         <div class="content">
-          <a href="{{ post.url }}" class="header">{{ post.title }}</a>
-          <div class="meta">
-            <span class="cinema">{{ post.date | date: "%Y-%m-%d" }}</span>
-          </div>
-          <div class="description">
+          <p class="title is-4 mb-0"><a href="{{ post.url }}">{{ post.title }}</a></p>
+          <p>{{ post.date | date: "%Y-%m-%d" }}</p>
+          <div class="description mb-3">
             {% if post.description %}
             <p>{{ post.description | strip_html }}</p>
             {% else %}
@@ -39,84 +38,76 @@ layout: default
             {% endif %}
           </div>
           {% if post.categories or post.comments %}
-          <div class="extra">
             {% if post.categories %}
-            <div class="ui label"><i class="desktop icon"></i>{{ post.categories }}</div>
+            <span class="tag is-link is-normal is-light">
+              <span class="icon">
+                <i class="fas fa-info-circle"></i>
+              </span>
+              <span>{{ post.categories }}</span>
+            </span>
             {% endif %}
-            {% if post.comments %}
-            <!-- <span class="right floated">
-              <i class="heart outline like icon"></i>
-              <a href="#" onclick="return false;" data-disqus-identifier="{{post.url}}"></a> likes
-              17 likes
-            </span> -->
+            <!-- {% if post.comments %}
             <div class="ui teal label">
               <i class="comment icon"></i><a class="color-white" href="#" onclick="return false;" data-disqus-identifier="{{post.url}}"></a>
             </div> 
-            {% endif %}
-          </div>
+            {% endif %} -->
           {% endif %}
         </div>
       </div>
-      {% endfor %}
-    </div>
+    {% endfor %}
 
     {% if jekyll.environment != "development" %}
-    <!-- google AD -->
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- main_bottom_336_280 -->
-    <ins class="adsbygoogle"
-          style="display:inline-block;width:336px;height:280px"
-          data-ad-client="ca-pub-1634875166425349"
-          data-ad-slot="3965296917"></ins>
-    <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+    <div class="block">
+      <!-- google AD -->
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- main_bottom_336_280 -->
+      <ins class="adsbygoogle"
+            style="display:inline-block;width:336px;height:280px"
+            data-ad-client="ca-pub-1634875166425349"
+            data-ad-slot="3965296917"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
     {% endif %}
 
   </div>
 </section>
 
 {% if paginator.total_pages > 1 %}
-<section style="margin-bottom: 50px;">
-  <div class="ui container">
-    <div class="ui grid">
-      <div class="centered row">
-        <div class="ui pagination menu">
-          {% if paginator.previous_page %}
-          <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="icon item">
-            <i class="left chevron icon"></i>
-          </a>
-          {% else %}
-          <a href="#" class="icon item">
-            <i class="left chevron icon"></i>
-          </a>
-          {% endif %}
+<section class="section">
+  <div class="container">
+    <nav class="pagination" role="navigation" aria-label="pagination">
+      <!-- 이전 -->
+      {% if paginator.previous_page %}
+      <a class="pagination-previous is-disabled" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">Previous</a>
+      {% else %}
+      {% endif %}
 
-          {% for page in (1..paginator.total_pages) %}
-            {% if page == paginator.page %}
-          <!-- <li><a href="" class="active">{{ page }}</a></li> -->
-          <a class="active item">{{ page }}</a>
-            {% elsif page == 1 %}
-          <!-- <li><a href="/{{site.baseurl | replace: '//', '/'}}">{{ page }}</a></li> -->
-          <a href="/{{site.baseurl | replace: '//', '/'}}" class="item">{{ page }}</a>
-            {% else %}
-          <!-- <li><a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a></li> -->
-          <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}" class="item">{{ page }}</a>
-            {% endif %}
-          {% endfor %}
+      <!-- 다음 -->
+      {% if paginator.next_page %}
+        <a class="pagination-next" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next page</a>
+      {% else %}
+      {% endif %}
 
-          {% if paginator.next_page %}
-          <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="icon item">
-            <i class="right chevron icon"></i>
-          </a>
-          {% else %}
-          <a href="#" class="icon item">
-            <i class="right chevron icon"></i>
-          </a>
-          {% endif %}
-        </div>
-      </div>
-    </div>
+      <ul class="pagination-list">
+      {% for page in (1..paginator.total_pages) %}
+        {% if page == paginator.page %}
+          <li>
+            <a class="pagination-link is-current" aria-label="Page {{ page }}" aria-current="page">{{ page }}</a>
+          </li>
+        {% elsif page == 1 %}
+          <li>
+            <a class="pagination-link" href="/{{site.baseurl | replace: '//', '/'}}" aria-label="Goto page {{ page }}">{{ page }}</a>
+          </li>
+        {% else %}
+          <li>
+            <a class="pagination-link" href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}" aria-label="Goto page {{ page }}">{{ page }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+      </ul>
+    </nav>
   </div>
 </section>
 {% endif %}

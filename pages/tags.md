@@ -2,8 +2,9 @@
 title: Tags
 permalink: /tags/
 ---
-<div class="tags">
+
 {% for tag in site.tags %}
+<div class="black">
 	{% capture tag_name %}{{ tag | first }}{% endcapture %}
 	<h4 id="#{{ tag_name | slugize }}">{{ tag_name }}</h4>
 	<a name="{{ tag_name | slugize }}"></a>
@@ -12,5 +13,5 @@ permalink: /tags/
 		<li><a href="{{ root_url }}{{ post.url }}">{{post.title}}</a></li>
 	{% endfor %}
 	</ul>
-{% endfor %}
 </div>
+{% endfor %}

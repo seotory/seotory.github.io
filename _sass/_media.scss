@@ -1,9 +1,3 @@
-@media only screen and (max-width: 767px) {
-  #post > .container {
-    padding-right: 0px !important;
-  }
-}
-
 // 문단 광고 마지막 media 쿼리
 .posts_last_ad { width: 320px !important; height: 100px !important; }
 @media(min-width: 500px) { .posts_last_ad { width: 468px !important; height: 60px !important; } }
