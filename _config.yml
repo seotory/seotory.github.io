@@ -54,7 +54,7 @@ defaults:
 # highlighter settings
 # Build settings
 markdown: kramdown
-highlighter: rouge
+# highlighter: rouge
 
 # Markdown Processors
 rdiscount:
@@ -64,6 +64,7 @@ redcarpet:
   extensions: []
 
 kramdown:
+  syntax_highlighter: rouge
   auto_ids: true
   footnote_nr: 1
   entity_output: as_char

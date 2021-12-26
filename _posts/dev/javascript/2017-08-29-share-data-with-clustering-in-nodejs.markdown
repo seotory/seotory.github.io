@@ -52,7 +52,7 @@ globalVal.broadcast();
 
 아래서부터는 위에서 적었던 방법과 interface 대로 구현한 코드이다. typescript로 작성되었다.
 
-{% highlight javascript linenos %}
+```javascript
 // globalVal.ts
 import cluster from "cluster";
 
@@ -117,7 +117,7 @@ if ( cluster.isMaster ) {
         }
     });
 }
-{% endhighlight %}
+```
 
 **globalVal.get()**
 
