@@ -4,7 +4,8 @@ date: 2017-12-19 14:19:39 +0900
 description: 
 image: https://lh3.googleusercontent.com/w6YVPeAd8HXeNFgGcSyyeL_qxEDNghgSc8UgI4v1iOkMQ-2anhFSReHdbY3FjJ8vbYP2CEVKgRGcwrfTN_NUeM3NKyaIkYvwWbpFQQVlOlRnRLtimIPVUO71OJVSi_2JLoF7bKATVt4nPsHw4uu6MJiZt9BWA6TzDw7GySFnRlv0YfdKgKOv2z7Go2A0yKRLJ8s37v3qcAlrAwDa18tIyuIwktibDOiC8b0t0KfR1xn7zcuAnKGRQ62HHfyg1QUfnpoF1iPNLtX-gfnz3qoXFzjIFNbJiV47TEWLmrli48aWPVsqeZRg30_1EWq5diUG_6KnJ_FkVJeB5Ty_wRpsXqFoyIug2MjFZOUBlhqCykiZMazB5GY_P-jQ4_PxB_FDYmCFTwWqCJz7obhafnIfz7Q8zjdO2K099Ajr1j1v__zUpKVEdh4Yq84EIXivkOKg07otZ2uag9gzVjY9J7SICVMe3iaSf1HPvp8yDJra5aJDFandkHhrC05IBNdmCH6wT0jCdRVyM3wxafVST1U3ocgO5G7qJCwDv_NQl0ZUcSIWVKUK2vPZAIonhqhkVxvBMnDiVQk6bSnKfnFmELFSYxxPpItGJdp-YZaNKwTSkT6eUSpLf_8NbQgLbxBKAvrlDzOde4Yz5cawp5UgQd6UoBKTLlIkQV3J=s0
 categories: dev/etc
-history: false
+history: 
+- 20211226
 published: true
 comments: true
 tags:
@@ -47,27 +48,13 @@ brew install zsh
 chsh -s `which zsh`
 ```
 
-# oh my zsh 설치하기
+# oh my zsh 
 
-[홈페이지](http://ohmyz.sh/){:target="_blank"}에 나와 있는 방법대로 아래의 2가지 중 한 가지 방법으로 설치한다.
-
-**wget**
-
-```
-sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-```
-
-**curl**
-
-```
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-```
-
-위의 sh를 실행시키면 git에서 `oh my zsh` 저장소를 `~/.oh-my-zsh` 경로에 clone을 한다. 그리고 `vi ~/.zshrc`에 기본 셋팅을 자동으로 해준다. 여기까지는 `oh my zsh` 사용법이다.
+- 사용 안함 (*update)
 
 # zplug 설치하기
 
-일반적으로는 위의 방법까지 진행하면 크게 사용하는 데에는 지장이 없을 것이다. 개인적으로 `oh my zsh`을 커버할 수 있는 프레임워크를 원했고 찾아보니 일본 냄새 풀풀 나는 [zplug](https://github.com/zplug/zplug){:target="_blank"}이라는게 있었다.
+일반적으로는 `oh my zsh`을 이용하여 사용하는 데에는 지장이 없을 것이다. 개인적으로 `oh my zsh`을 커버할 수 있는 프레임워크를 원했고 찾아보니 일본 냄새 풀풀 나는 [zplug](https://github.com/zplug/zplug){:target="_blank"}이라는게 있었다.
 
 사실 이것 말고도 여러 가지가 있었으나 범용성이 떨어졌다. `oh my zsh`에 너무 의존적이거나 사용하기 불편하거나 느리거나 세 가지 중 하나여서 모든 zsh의 라이브러리를 커버할 수 있으면서 속도도 괜찮은 `zplug`를 선택하였다. `zplug`에서는 아래 목록을 사용할 수 있다. (사실상 거의 모든 것)
 
@@ -87,14 +74,9 @@ git clone https://github.com/zplug/zplug $ZPLUG_HOME
 
 설치는 끝났고 사용하는 법만 남았다. 기본적으로 `oh my zsh`에서 사용 가능한 플러그인과 테마가 모두 사용이 가능하다. 또한 외부테마도 사용할 수 있다. 필자는 [spaceship](https://github.com/denysdovhan/spaceship-zsh-theme){:target="_blank"}이라는 어여쁜 외부 테마를 사용할 예정이다. 
 
-기존에 `oh my zsh`에서 자동으로 작성해준 `.zshrc`의 모든 내용을 지우고 아래의 내용으로 교체한다.
+아래 내용을 copy 해서 `~/.zplugsetting` 파일을 생성한다.
 
 ```
-##################
-# VAL SET
-##################
-export ZSH=~/.oh-my-zsh
-
 ##################
 # ZPLUG LOAD
 ##################
@@ -108,8 +90,7 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
 zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
-zplug "plugins/zsh_reload", from:oh-my-zsh
+zplug "plugins/macos", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
 zplug "plugins/colorize", from:oh-my-zsh
 zplug "plugins/docker", from:oh-my-zsh
 # zplug "themes/robbyrussell", from:oh-my-zsh
@@ -122,8 +103,12 @@ zplug check || zplug install
 zplug load
 ```
 
-아래 커맨드로 적용시킨다.
+아래 커맨드를 실행시켜 라인을 추가한다.
+```
+echo ". $HOME/.zplugsetting" >> ~/.zshrc
+```
 
+아래 커맨드로 zplug를 적용시킨다.
 ```
 source ~/.zshrc
 ```
