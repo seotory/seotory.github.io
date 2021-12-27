@@ -111,11 +111,11 @@ EOS
   end
 end
 
-namespace "jekyll" do
+namespace "app" do
   task :dev do
     system "JEKYLL_ENV=development jekyll serve --trace --config _config.yml,_config.dev.yml --unpublished -t";
   end
-  task :live do
+  task :real do
     system "JEKYLL_ENV=production jekyll serve --config _config.yml -t";
   end
 end
