@@ -2,7 +2,7 @@
 layout: default
 ---
 <section class="section">
-  <div class="container">
+  <div class="container is-max-widescreen">
     
     {% if jekyll.environment != "development" %}
     <div class="block">
@@ -76,7 +76,7 @@ layout: default
 
 {% if paginator.total_pages > 1 %}
 <section class="section">
-  <div class="container">
+  <div class="container is-max-widescreen">
     <nav class="pagination" role="navigation" aria-label="pagination">
       <!-- 이전 -->
       {% if paginator.previous_page %}

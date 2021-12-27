@@ -15,7 +15,6 @@ github_username:  seotory
 facebook_username: ""
 
 # url change (/:year/:month/:day)
-# permalink: /post/:year/:month/:title
 permalink: /post/:title
 
 # timezone
@@ -26,36 +25,18 @@ markdown_ext: markdown,mkdown,mkdn,mkd,md
 
 # layout setting
 defaults:
-  -
-    scope:
+  - scope:
       path: ""
       type: "posts"
     values:
       layout: "post"
-  -
-    scope: 
+  - scope: 
       path: ""
       type: "pages"
     values:
       layout: "page"
-  # -
-  #   scope: 
-  #     path: ""
-  #     type: "solutions"
-  #   values:
-  #     layout: "post"
-
-# collections
-# collections:
-#   solutions:
-#     output: true
-#     permalink: /post/:year/:month/:title
 
 # highlighter settings
-# Build settings
-markdown: kramdown
-# highlighter: rouge
-
 # Markdown Processors
 rdiscount:
   extensions: []
@@ -63,6 +44,7 @@ rdiscount:
 redcarpet:
   extensions: []
 
+markdown: kramdown
 kramdown:
   syntax_highlighter: rouge
   auto_ids: true

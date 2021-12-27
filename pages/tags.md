@@ -4,7 +4,7 @@ permalink: /tags/
 ---
 
 {% for tag in site.tags %}
-<div class="black">
+<div class="block">
 	{% capture tag_name %}{{ tag | first }}{% endcapture %}
 	<h4 id="#{{ tag_name | slugize }}">{{ tag_name }}</h4>
 	<a name="{{ tag_name | slugize }}"></a>
