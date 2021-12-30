@@ -1,53 +1,34 @@
--
-  title: Talk
+- title: Talk
   url: talk
   use: true
-- 
-  title: Dev
+- title: Dev
   url: false
-  use: true  
+  use: true
   items: 
-    - 
-      title: java
+    - title: java
       url: dev/java
       use: true
-    -
-      title: javascript
+    - title: javascript
       url: dev/javascript
       use: true
-    -
-      title: python
+    - title: python
       url: dev/python
       use: true
-    -
-      title: ruby
+    - title: ruby
       url: dev/ruby
       use: true
-    -
-      title: linux
+    - title: linux
       url: dev/linux
       use: true
-    -
-      title: database
+    - title: database
       url: dev/database
       use: true
-    -
-      title: jekyll
+    - title: jekyll
       url: dev/jekyll
       use: true
-    -
-      title: book
-      url: dev/book
-      use: true
-    -
-      title: study
+    - title: study
       url: dev/study
-      use: true
-    -
-      title: etc
+      use: false
+    - title: etc
       url: dev/etc
       use: true
--
-  title: ETC
-  url: test/page222
-  use: false
