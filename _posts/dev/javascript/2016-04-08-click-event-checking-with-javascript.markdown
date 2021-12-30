@@ -5,7 +5,7 @@ date: 2016-04-08 16:55:59 +0900
 description: 
 image: ''
 categories: dev/javascript
-published: true
+published: false
 comments: true
 tags:
 - javascript

@@ -6,7 +6,7 @@ description: > # this means to ignore newlines until "baseurl:"
 
 # url info
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: https://blog.seotory.com # the base hostname & protocol for your site
+url: https://blog.seotory.com
 enforce_ssl: blog.seotory.com
 
 # sns info

@@ -1,1 +1,31 @@
-@charset "UTF-8";
+p {
+  word-break: break-word;
+}
+
+.content {
+  li > ul {
+    margin-top: 0.25em;
+  }
+}
+
+/* highlight */
+.highlight {
+  border-radius: 8px;
+
+  pre, code {
+    font-family: "Consolas", "Menlo", "Monaco", "Courier", monospace;
+    font-size: 0.9em;
+    line-height: $code-line-height;
+    tab-size: 4;
+  }
+
+  pre > code {
+    border: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.highlighter-rouge {
+  margin-bottom: 1em;
+}
