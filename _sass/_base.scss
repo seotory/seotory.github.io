@@ -11,6 +11,7 @@ p {
 /* highlight */
 .highlight {
   border-radius: 8px;
+  margin-bottom: 1em;
 
   pre, code {
     font-family: "Consolas", "Menlo", "Monaco", "Courier", monospace;
@@ -24,8 +25,4 @@ p {
     padding-right: 0;
     padding-left: 0;
   }
-}
-
-.highlighter-rouge {
-  margin-bottom: 1em;
 }
