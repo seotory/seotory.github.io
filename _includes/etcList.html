@@ -1,12 +1,11 @@
+<header class="list-header">
+  <h1>{{include.name}} - {{site[include.name].size}}건</h1>
+</header>
 
-	<header class="list-header">
-		<h1>{{include.name}} - {{site[include.name].size}}건</h1>
-	</header>
-
-	<div>
-		<ul>
-		{% for post in site[include.name] %}
-		  <li><a href="{{ post.url}}">{{ post.title }}</a> <span class="list-post-time">[{{ post.date }}]</span></li>
-		{% endfor %}
-		</ul>
-	</div>
+<div>
+  <ul>
+  {% for post in site[include.name] %}
+    <li><a href="{{ post.url}}">{{ post.title }}</a> <span class="list-post-time">[{{ post.date }}]</span></li>
+  {% endfor %}
+  </ul>
+</div>

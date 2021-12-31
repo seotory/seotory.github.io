@@ -10,12 +10,12 @@ p {
 
 /* highlight */
 .highlight {
-  border-radius: 8px;
+  border-radius: 0.5em;
   margin-bottom: 1em;
 
   pre, code {
-    font-family: "Consolas", "Menlo", "Monaco", "Courier", monospace;
-    font-size: 0.9em;
+    // font-family: "Consolas", "Menlo", "Monaco", "Courier", monospace;
+    // font-size: 0.9em;
     line-height: $code-line-height;
     tab-size: 4;
   }
