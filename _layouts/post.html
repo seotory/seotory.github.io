@@ -120,62 +120,62 @@ layout: default
 
 <!-- disqus -->
 {% if jekyll.environment != "development" %}
-<section id="disqus" class="section" style="border-top: rgba(34,36,38,.1) 1px solid; border-bottom: rgba(34,36,38,.1) 1px solid; background: #f5f5f5;">
-  <div class="container is-max-widescreen">
-    <div id="disqus_thread"></div>
-    <script>
-    /**
-    * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-    */
-    var disqus_shortname = 'seotory-blog';
-    var disqus_config = function () {
-      //this.page.url = "blog.seotory.com{{ page.url }}";
-      this.page.identifier = "{{ page.url }}";
-      this.page.title = "{{ page.title }}";
-    };
-    (function() { // DON'T EDIT BELOW THIS LINE
-      var d = document, s = d.createElement('script');
-      s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+  <section id="disqus" class="section" style="border-top: rgba(34,36,38,.1) 1px solid; border-bottom: rgba(34,36,38,.1) 1px solid; background: #f5f5f5;">
+    <div class="container is-max-widescreen">
+      <div id="disqus_thread"></div>
+      <script>
+      /**
+      * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+      */
+      var disqus_shortname = 'seotory-blog';
+      var disqus_config = function () {
+        //this.page.url = "blog.seotory.com{{ page.url }}";
+        this.page.identifier = "{{ page.url }}";
+        this.page.title = "{{ page.title }}";
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
 {% endif %}
 
 <!-- posts ad -->
 {% if jekyll.environment != "development" %}
-<section class="section">
-  <div class="container is-max-widescreen">
-    
-    {% include postsAd.html %}
-  </div>
-</section>
+  <section class="section">
+    <div class="container is-max-widescreen">
+      
+      {% include postsAd.html %}
+    </div>
+  </section>
 {% endif %}
 
 {% if site.categories[page.categories.last].size > 1 %}
-<section class="section">
-  <div class="container is-max-widescreen">
-    <div class="tile is-ancestor">
-      <!-- category other posts start -->
-      {% assign counter = 0 %}
-      {% for post in site.categories[page.categories.last] %}
-        {% if post.title != page.title and counter < 4 %}
-        {% assign counter=counter | plus:1 %}
-        <div class="tile is-parent">
-          <article class="tile is-child notification is-warning">
-            <p class="title is-size-4 mb-2">{{post.title}}</p>
-            <p class="is-size-6 mb-3">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
-            <a href="{{post.url}}" class="button is-warning is-light is-fullwidth">더보기</a>
-          </article>
-        </div>
-        {% endif %}
-      {% endfor %}
-      <!-- category other posts end -->
+  <section class="section">
+    <div class="container is-max-widescreen">
+      <div class="tile is-ancestor">
+        <!-- category other posts start -->
+        {% assign counter = 0 %}
+        {% for post in site.categories[page.categories.last] %}
+          {% if post.title != page.title and counter < 4 %}
+          {% assign counter=counter | plus:1 %}
+          <div class="tile is-parent">
+            <article class="tile is-child notification is-warning">
+              <p class="title is-size-4 mb-2">{{post.title}}</p>
+              <p class="is-size-6 mb-3">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+              <a href="{{post.url}}" class="button is-warning is-light is-fullwidth">더보기</a>
+            </article>
+          </div>
+          {% endif %}
+        {% endfor %}
+        <!-- category other posts end -->
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 {% endif %}
