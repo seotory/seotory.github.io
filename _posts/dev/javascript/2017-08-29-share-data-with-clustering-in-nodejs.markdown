@@ -6,7 +6,7 @@ image:
 categories: dev/javascript
 history: false
 published: true
-comments: true
+comments: false
 tags:
 ---
 

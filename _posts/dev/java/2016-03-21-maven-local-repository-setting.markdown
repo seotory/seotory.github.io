@@ -3,7 +3,7 @@ layout: post
 title: maven 로컬 저장소 셋팅
 date: 2016-03-21 15:16:58 +0900
 categories: dev/java
-published: true
+published: false
 comments: true
 tags:
 - java

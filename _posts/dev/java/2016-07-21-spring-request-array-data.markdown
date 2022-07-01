@@ -3,7 +3,7 @@ layout: post
 title:  스프링, request array data 처리하기
 date:   2016-07-21 16:04:16
 categories: dev/java
-published: true
+published: false
 comments: true
 tags: 
 - java
