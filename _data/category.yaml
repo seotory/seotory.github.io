@@ -6,29 +6,38 @@
   use: true
   items: 
     - title: java
+      value: java
       url: dev/java
       use: true
     - title: javascript
+      value: javascript
       url: dev/javascript
       use: true
     - title: python
+      value: python
       url: dev/python
       use: true
     - title: ruby
+      value: ruby
       url: dev/ruby
       use: true
     - title: linux
+      value: linux
       url: dev/linux
       use: true
     - title: database
+      value: database
       url: dev/database
       use: true
     - title: jekyll
+      valu: jekyll
       url: dev/jekyll
       use: true
     - title: study
+      value: study
       url: dev/study
       use: false
     - title: etc
+      value: etc
       url: dev/etc
       use: true
