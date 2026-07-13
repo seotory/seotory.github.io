@@ -86,3 +86,20 @@ h1, h2, h3 {
   width: 0.95em;
   height: 0.95em;
 }
+
+// Category dropdown: attached directly under the nav link — square top that
+// connects to the navbar, rounded bottom, and compact rows. (Bulma's default
+// also leaves a big empty gap on the right via padding-right: 3rem.)
+.navbar-dropdown {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+.navbar-dropdown .navbar-item {
+  padding: 0.375rem 1.25rem;
+  line-height: 1.4;
+}
+// The extra .menu wrapper inside the dropdown shouldn't add its own spacing.
+.navbar-dropdown .menu {
+  line-height: inherit;
+}
