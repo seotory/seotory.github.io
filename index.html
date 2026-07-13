@@ -41,7 +41,7 @@ layout: default
             {% if post.categories %}
             <span class="tag is-link is-normal is-light">
               <span class="icon">
-                <i class="fas fa-info-circle"></i>
+                {% include icon.html name="info" %}
               </span>
               <span>{{ post.categories }}</span>
             </span>

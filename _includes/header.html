@@ -4,7 +4,7 @@
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
         <span class="icon">
-          <i class="fas fa-home"></i>
+          {% include icon.html name="home" %}
         </span>
         <span>SEOTORY</span>
         <!-- <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28"> -->
@@ -66,7 +66,7 @@
               <div class="control">
                 <a id="site-search" class="button is-link is-small is-rounded">
                   <span class="icon">
-                    <i class="fas fa-search"></i>
+                    {% include icon.html name="search" %}
                   </span>
                   <span>Search</span>
                 </a>
@@ -81,17 +81,31 @@
 </nav>
 
 <script>
-$(document).ready(function() {
-  // Check for click events on the navbar burger icon
-  $(".navbar-burger").click(function() {
-      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-      $(".navbar-burger").toggleClass("is-active");
-      $(".navbar-menu").toggleClass("is-active");
+document.addEventListener('DOMContentLoaded', function () {
+  // Toggle the mobile navbar menu (Bulma burger)
+  document.querySelectorAll('.navbar-burger').forEach(function (burger) {
+    burger.addEventListener('click', function () {
+      var target = document.getElementById(burger.dataset.target);
+      burger.classList.toggle('is-active');
+      if (target) target.classList.toggle('is-active');
+    });
   });
 
-  $('#site-search').on('click', function(e) {
-      var text = $($(this).siblings()[0]).val();
-      window.open('https://www.google.co.kr/search?q=site:blog.seotory.com+' + encodeURIComponent(text), '_blank');
-    });
+  // Site-scoped Google search
+  var searchBtn = document.getElementById('site-search');
+  if (searchBtn) {
+    var input = searchBtn.closest('.field.has-addons').querySelector('input');
+    var runSearch = function () {
+      var text = (input && input.value ? input.value : '').trim();
+      if (!text) return;
+      window.open('https://www.google.com/search?q=site:blog.seotory.com+' + encodeURIComponent(text), '_blank');
+    };
+    searchBtn.addEventListener('click', runSearch);
+    if (input) {
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') runSearch();
+      });
+    }
+  }
 });
 </script>
