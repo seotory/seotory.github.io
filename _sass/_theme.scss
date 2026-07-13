@@ -75,3 +75,14 @@ h1, h2, h3 {
   width: 1.15em;
   height: 1.15em;
 }
+
+// Inside a tag the .icon box is a fixed 1.5rem, which dwarfs the 12px tag
+// text — shrink the box and glyph so the icon reads at the text's size.
+.tag .icon {
+  width: 1em;
+  height: 1em;
+}
+.tag .icon svg {
+  width: 0.95em;
+  height: 0.95em;
+}
