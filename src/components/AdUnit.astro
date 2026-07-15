@@ -1,0 +1,33 @@
+---
+import { ADSENSE_CLIENT } from '../consts';
+interface Props {
+  slot: string;
+  variant?: 'in-article' | 'display';
+}
+const { slot, variant = 'in-article' } = Astro.props;
+const isDisplay = variant === 'display';
+---
+{
+  import.meta.env.PROD && (
+    <div class="block has-text-centered">
+      {isDisplay ? (
+        <ins
+          class="adsbygoogle"
+          style="display:inline-block;width:336px;height:280px"
+          data-ad-client={ADSENSE_CLIENT}
+          data-ad-slot={slot}
+        />
+      ) : (
+        <ins
+          class="adsbygoogle"
+          style="display:block; text-align:center;"
+          data-ad-layout="in-article"
+          data-ad-format="fluid"
+          data-ad-client={ADSENSE_CLIENT}
+          data-ad-slot={slot}
+        />
+      )}
+      <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  )
+}

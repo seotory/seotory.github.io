@@ -1,0 +1,30 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+import { getPublishedPosts } from '../../utils/posts';
+import { PAGE_SIZE } from '../../consts';
+
+export const getStaticPaths = (async () => {
+  const posts = await getPublishedPosts();
+  const total = Math.max(1, Math.ceil(posts.length / PAGE_SIZE));
+  const paths = [];
+  // Page 1 lives at "/", so generate 2..total here (URL /list/N/).
+  for (let p = 2; p <= total; p++) {
+    paths.push({
+      params: { page: String(p) },
+      props: {
+        posts: posts.slice((p - 1) * PAGE_SIZE, p * PAGE_SIZE),
+        page: p,
+        total,
+      },
+    });
+  }
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { posts, page, total } = Astro.props;
+---
+<BaseLayout>
+  <PostList posts={posts} page={page} total={total} />
+</BaseLayout>

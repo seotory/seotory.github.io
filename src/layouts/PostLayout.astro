@@ -1,0 +1,96 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import AdUnit from '../components/AdUnit.astro';
+import { formatDate, excerpt, type Post } from '../utils/posts';
+
+interface Props {
+  post: Post;
+  related: Post[];
+}
+const { post, related } = Astro.props;
+const { title, date, tags, history } = post.data;
+const desc = post.data.description || excerpt(post.body ?? '', 30);
+---
+<BaseLayout title={title} description={desc} ogType="article">
+  <!-- title header -->
+  <section class="hero is-link is-medium">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <p class="title">{title}</p>
+        <p class="subtitle">{formatDate(date)}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- contents body -->
+  <section id="post" class="section">
+    <div class="container is-max-desktop">
+      <div class="block">
+        {
+          history && history.length > 0 && (
+            <div class="notification">
+              <div class="content">
+                <ul class="mt-0">
+                  {history.map((d) => (
+                    <li>
+                      본 포스팅은 {d.slice(0, 4)}년 {d.slice(4, 6)}월 {d.slice(6, 8)}일에
+                      수정되었습니다.
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )
+        }
+        <div class="content">
+          <slot />
+        </div>
+      </div>
+
+      {
+        tags.length > 0 && (
+          <div class="block">
+            <span class="icon-text has-text-link">
+              <span class="icon">
+                <Icon name="info" />
+              </span>
+              <span>Tags : </span>
+            </span>
+            {tags.map((tag) => (
+              <span class="tag">
+                <a href={`/tags/#${tag}`}>{tag.toLowerCase()}</a>
+              </span>
+            ))}
+          </div>
+        )
+      }
+
+      <AdUnit slot="4825106255" />
+    </div>
+  </section>
+
+  {
+    related.length > 0 && (
+      <section class="section">
+        <div class="container is-max-widescreen">
+          <div class="tile is-ancestor">
+            {related.map((p) => (
+              <div class="tile is-parent">
+                <article class="tile is-child box">
+                  <p class="title is-size-4 mb-2">
+                    <a href={`/post/${p.id}/`}>{p.data.title}</a>
+                  </p>
+                  <p class="is-size-6 mb-3">{excerpt(p.body ?? '', 40)}</p>
+                  <a href={`/post/${p.id}/`} class="button is-link is-light is-fullwidth">
+                    더보기
+                  </a>
+                </article>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

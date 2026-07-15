@@ -114,3 +114,8 @@ build-iPhoneSimulator/
 !.vscode/*.code-snippets
 
 # End of https://www.toptal.com/developers/gitignore/api/jekyll,ruby,macos,visualstudiocode
+# ── Astro / Node ──
+node_modules/
+dist/
+.astro/
+npm-debug.log*
