@@ -97,8 +97,11 @@ h1, h2, h3 {
   border-radius: 0.6rem;
   // Pull the menu up so it sits close under the "Dev" link.
   margin-top: -0.4rem;
-  // Bulma's default dropdown has a 2px top accent border — drop it.
-  border-top: 0;
+  // The white box blends into the near-white page — give it a hairline border
+  // and a soft floating shadow so its edge is clearly defined. (Replaces
+  // Bulma's default 2px top accent border.)
+  border: 1px solid hsl(220, 16%, 88%);
+  box-shadow: 0 12px 28px -10px rgba(15, 23, 42, 0.22);
 }
 .navbar-dropdown .navbar-item {
   // Rounded, inset hover highlight (left/right margin comes from the
