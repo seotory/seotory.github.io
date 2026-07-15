@@ -94,6 +94,9 @@ h1, h2, h3 {
   padding-top: 0.35rem;
   padding-bottom: 0.35rem;
   border-radius: 0 0 0.5rem 0.5rem;
+  // Pull the menu up toward the nav link — the navbar-item's tall bottom
+  // padding otherwise leaves an awkward gap under the "Dev" text.
+  margin-top: -0.75rem;
 }
 .navbar-dropdown .navbar-item {
   padding: 0.375rem 1.25rem;
