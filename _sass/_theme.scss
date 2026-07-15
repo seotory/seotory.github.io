@@ -106,3 +106,21 @@ h1, h2, h3 {
 .navbar-dropdown .menu {
   line-height: inherit;
 }
+
+// Navbar wordmark: Bulma 1.0 puts a 12px flex gap between the home icon and
+// "SEOTORY", which reads too loose for a logo — tighten it.
+.navbar-brand .navbar-item {
+  gap: 0.4rem;
+}
+
+// Related-posts tiles stack full-width with no gap between them — space them
+// out like the home list cards.
+.tile.is-ancestor > .tile.is-parent:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+// Footer: the page background is near-white, so the white footer blends in.
+// Add a hairline to separate it from the content.
+.footer {
+  border-top: 1px solid hsl(220, 16%, 91%);
+}
