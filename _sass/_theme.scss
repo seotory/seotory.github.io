@@ -1,10 +1,17 @@
-// ── Modernized theme layer on top of Bulma 1.0 ──
-// main.css is loaded after the Bulma CDN stylesheet, so overriding the
-// --bulma-* custom properties here re-derives Bulma's own colors/radii.
+// ── Theme layer on top of Bulma 1.0 ──
+// main.css loads after the Bulma CDN stylesheet. We customize Bulma the way it
+// is meant to be customized at runtime: by overriding its own --bulma-* CSS
+// variables. Rules below reference those variables (var(--bulma-*)) instead of
+// hardcoding colors/radii, so everything stays consistent with the framework.
+//
+// The handful of rules that hardcode a value are marked "custom:" — Bulma
+// exposes no variable for that specific knob (hover-lift, inline-SVG sizing,
+// inset pill hover, arrow geometry, optical nudges, layout spacing).
 
+// ── 1. Framework variable overrides (Bulma's intended theming API) ──────────
 :root {
-  // Refined indigo accent (replaces Bulma's default blue link color).
-  // Bulma derives --bulma-link / -light / -invert from this h/s/l trio.
+  // Accent — Bulma derives --bulma-link / -primary and their light/invert
+  // shades from this h/s/l trio.
   --bulma-link-h: 244deg;
   --bulma-link-s: 55%;
   --bulma-link-l: 55%;
@@ -12,72 +19,76 @@
   --bulma-primary-s: 55%;
   --bulma-primary-l: 55%;
 
-  // Softer, larger corner radii for a more current look.
+  // Corner radii (flow into boxes, buttons, inputs, tags, dropdowns, …).
   --bulma-radius-small: 0.5rem;
   --bulma-radius: 0.7rem;
   --bulma-radius-large: 1rem;
 
-  // Slightly cooler neutral scheme + near-white page so white cards lift.
+  // Neutral scheme + near-white page so white cards lift off it.
   --bulma-scheme-h: 220;
   --bulma-scheme-s: 18%;
   --bulma-body-background-color: hsl(220, 24%, 99%);
+
+  // Box shadow — override the variable so every .box picks it up.
+  --bulma-box-shadow: 0 1px 2px hsla(220, 40%, 12%, 0.04),
+                      0 10px 24px -14px hsla(220, 40%, 12%, 0.15);
 }
 
+// ── 2. Element rules (reference the variables above) ────────────────────────
+
 body {
-  line-height: 1.75;
+  line-height: 1.75; // custom: comfortable reading measure
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-// Tighter, more modern headings.
 .title,
 h1, h2, h3 {
-  letter-spacing: -0.02em;
+  letter-spacing: -0.02em; // custom: tighter display tracking
 }
 
-// Cards: hairline border + layered shadow + gentle hover lift.
+// Cards: framework radius + shadow (--bulma-box-radius / --bulma-box-shadow),
+// plus a hairline border in the framework's border color. The hover-lift is
+// custom — Bulma has no hover state for boxes.
 .box {
-  border: 1px solid hsl(220, 16%, 91%);
-  border-radius: var(--bulma-radius-large);
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04),
-              0 10px 24px -14px rgba(15, 23, 42, 0.15);
+  border: 1px solid var(--bulma-border-weak);
+  border-radius: var(--bulma-box-radius);
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
 .box:hover {
-  transform: translateY(-2px);
-  border-color: hsl(244, 40%, 85%);
-  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.05),
-              0 18px 36px -16px rgba(30, 27, 75, 0.22);
+  transform: translateY(-2px); // custom
+  border-color: var(--bulma-link-light, var(--bulma-border));
+  box-shadow: 0 2px 4px hsla(220, 40%, 12%, 0.05),
+              0 18px 36px -16px hsla(244, 45%, 20%, 0.22); // custom
 }
 
-// Post-list titles: neutral by default, accent on hover (cleaner index).
+// Post-list titles: neutral by default, framework accent on hover.
 .box .title a {
   color: inherit;
   transition: color 0.15s ease;
 }
 .box .title a:hover {
-  color: hsl(var(--bulma-link-h), var(--bulma-link-s), var(--bulma-link-l));
+  color: var(--bulma-link);
 }
 
-// Navbar: airy header with a subtle divider.
+// Navbar / footer dividers in the framework border color.
 .navbar.is-transparent {
-  border-bottom: 1px solid hsl(220, 16%, 92%);
+  border-bottom: 1px solid var(--bulma-border-weak);
+}
+.footer {
+  border-top: 1px solid var(--bulma-border-weak);
 }
 
-// Softer tags/labels.
+// Tags: keep them a touch bolder; radius follows --bulma-radius automatically.
 .tag {
-  border-radius: 0.5rem;
   font-weight: 500;
 }
 
-// Inline Lucide SVGs sit inside Bulma's .icon boxes — size them to match.
+// custom: inline Lucide SVGs sized to Bulma's .icon boxes.
 .icon svg {
   width: 1.15em;
   height: 1.15em;
 }
-
-// Inside a tag the .icon box is a fixed 1.5rem, which dwarfs the 12px tag
-// text — shrink the box and glyph so the icon reads at the text's size.
 .tag .icon {
   width: 1em;
   height: 1em;
@@ -87,49 +98,36 @@ h1, h2, h3 {
   height: 0.95em;
 }
 
-// Category dropdown: attached directly under the nav link — square top that
-// connects to the navbar, rounded bottom, and compact rows. (Bulma's default
-// also leaves a big empty gap on the right via padding-right: 3rem.)
+// Category dropdown. Radius uses the framework's dropdown radius variable; the
+// inset padding + rounded items (pill hover) and the pull-up are custom shape
+// choices Bulma doesn't model.
 .navbar-dropdown {
-  // Uniformly rounded floating box (all four corners), with inner padding so
-  // the hover items sit inset from the box edges.
-  padding: 0.4rem;
-  border-radius: 0.6rem;
-  // Pull the menu up so it sits close under the "Dev" link.
-  margin-top: -0.4rem;
-  // The white box blends into the near-white page — give it a hairline border
-  // and a soft floating shadow so its edge is clearly defined. (Replaces
-  // Bulma's default 2px top accent border.)
-  border: 1px solid hsl(220, 16%, 88%);
-  box-shadow: 0 12px 28px -10px rgba(15, 23, 42, 0.22);
+  border-radius: var(--bulma-navbar-dropdown-radius);
+  border: 1px solid var(--bulma-border);
+  box-shadow: var(--bulma-navbar-dropdown-boxed-shadow); // framework shadow
+  padding: 0.4rem;      // custom: inset so hover pills have side margin
+  margin-top: -0.4rem;  // custom: sit close under the link
 }
 .navbar-dropdown .navbar-item {
-  // Rounded, inset hover highlight (left/right margin comes from the
-  // container's 0.4rem padding above).
-  padding: 0.45rem 0.9rem;
+  padding: 0.45rem 0.9rem;         // custom
   line-height: 1.4;
-  border-radius: 0.4rem;
+  border-radius: var(--bulma-radius); // rounded pill hover, framework radius
 }
-// The extra .menu wrapper inside the dropdown shouldn't add its own spacing.
 .navbar-dropdown .menu {
   line-height: inherit;
 }
 
-// Navbar wordmark: Bulma 1.0 puts a 12px flex gap between the home icon and
-// "SEOTORY", which reads too loose for a logo — tighten it.
+// Navbar wordmark spacing + optical nudge (custom — no Bulma variable).
 .navbar-brand .navbar-item {
   gap: 0.4rem;
 }
-// "SEOTORY" is all-caps, so its ink sits high in the line box and the
-// box-centered icon looks a touch low — nudge the icon up 1px to optically
-// align.
 .navbar-brand .icon {
   position: relative;
   top: -1px;
 }
 
-// Dropdown trigger arrow: Bulma's chevron is large and sits far from the
-// label (2.5em right padding). Shrink it and pull it in closer.
+// Dropdown trigger arrow: Bulma only exposes the arrow *color*
+// (--bulma-navbar-dropdown-arrow, already our accent). Size/offset are custom.
 .navbar-item.has-dropdown .navbar-link {
   padding-right: 1.6em;
 }
@@ -140,14 +138,7 @@ h1, h2, h3 {
   right: 0.8em;
 }
 
-// Related-posts tiles stack full-width with no gap between them — space them
-// out like the home list cards.
+// custom: related-posts tiles stack with no gap — space them like home cards.
 .tile.is-ancestor > .tile.is-parent:not(:last-child) {
   margin-bottom: 1.5rem;
-}
-
-// Footer: the page background is near-white, so the white footer blends in.
-// Add a hairline to separate it from the content.
-.footer {
-  border-top: 1px solid hsl(220, 16%, 91%);
 }
