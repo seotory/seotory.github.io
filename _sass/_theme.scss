@@ -120,6 +120,25 @@ h1, h2, h3 {
 .navbar-brand .navbar-item {
   gap: 0.4rem;
 }
+// "SEOTORY" is all-caps, so its ink sits high in the line box and the
+// box-centered icon looks a touch low — nudge the icon up 1px to optically
+// align.
+.navbar-brand .icon {
+  position: relative;
+  top: -1px;
+}
+
+// Dropdown trigger arrow: Bulma's chevron is large and sits far from the
+// label (2.5em right padding). Shrink it and pull it in closer.
+.navbar-item.has-dropdown .navbar-link {
+  padding-right: 1.6em;
+}
+.navbar-link:not(.is-arrowless)::after {
+  width: 0.5em;
+  height: 0.5em;
+  border-width: 1.5px;
+  right: 0.8em;
+}
 
 // Related-posts tiles stack full-width with no gap between them — space them
 // out like the home list cards.
