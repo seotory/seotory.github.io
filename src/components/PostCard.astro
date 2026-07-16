@@ -1,0 +1,29 @@
+---
+import type { Post } from '../utils/posts';
+import { excerpt, formatDate } from '../utils/posts';
+import Icon from './Icon.astro';
+
+interface Props {
+  post: Post;
+}
+const { post } = Astro.props;
+const url = `/post/${post.id}/`;
+const desc = post.data.description || excerpt(post.body ?? '', 40);
+---
+<div class="box">
+  <div class="content">
+    <p class="title is-4 mb-0"><a href={url}>{post.data.title}</a></p>
+    <p>{formatDate(post.data.date)}</p>
+    <div class="description mb-3"><p>{desc}</p></div>
+    {
+      post.data.categories && (
+        <span class="tag is-link is-normal is-light">
+          <span class="icon">
+            <Icon name="info" />
+          </span>
+          <span>{post.data.categories}</span>
+        </span>
+      )
+    }
+  </div>
+</div>

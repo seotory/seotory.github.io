@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPublishedPosts, type Post } from '../utils/posts';
+
+const posts = await getPublishedPosts();
+const tagMap = new Map<string, Post[]>();
+for (const p of posts) {
+  for (const t of p.data.tags) {
+    if (!tagMap.has(t)) tagMap.set(t, []);
+    tagMap.get(t)!.push(p);
+  }
+}
+const tags = [...tagMap.keys()].sort((a, b) => a.localeCompare(b));
+---
+<BaseLayout title="Tags - Seotory">
+  <section class="page-content section">
+    <div class="container is-max-desktop">
+      {
+        tags.map((tag) => (
+          <div class="block" id={tag}>
+            <h4 class="title is-5">{tag}</h4>
+            <ul>
+              {tagMap.get(tag)!.map((post) => (
+                <li>
+                  <a href={`/post/${post.id}/`}>{post.data.title}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,17 @@
+---
+import BaseLayout from './BaseLayout.astro';
+interface Props {
+  title?: string;
+  frontmatter?: { title?: string };
+}
+const title = Astro.props.title ?? Astro.props.frontmatter?.title;
+---
+<BaseLayout title={title ? `${title} - Seotory` : undefined}>
+  <section class="page-content section">
+    <div class="container is-max-desktop">
+      <div class="content">
+        <slot />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,44 @@
+---
+interface Props {
+  page: number;
+  total: number;
+}
+const { page, total } = Astro.props;
+const href = (n: number) => (n === 1 ? '/' : `/list/${n}/`);
+const hasPrev = page > 1;
+const hasNext = page < total;
+const pages = Array.from({ length: total }, (_, i) => i + 1);
+---
+<nav class="pagination" role="navigation" aria-label="pagination">
+  {
+    hasPrev ? (
+      <a class="pagination-previous" href={href(page - 1)}>Previous</a>
+    ) : (
+      <a class="pagination-previous" disabled>Previous</a>
+    )
+  }
+  {
+    hasNext ? (
+      <a class="pagination-next" href={href(page + 1)}>Next page</a>
+    ) : (
+      <a class="pagination-next" disabled>Next page</a>
+    )
+  }
+  <ul class="pagination-list">
+    {
+      pages.map((n) => (
+        <li>
+          {n === page ? (
+            <a class="pagination-link is-current" aria-label={`Page ${n}`} aria-current="page">
+              {n}
+            </a>
+          ) : (
+            <a class="pagination-link" href={href(n)} aria-label={`Goto page ${n}`}>
+              {n}
+            </a>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</nav>

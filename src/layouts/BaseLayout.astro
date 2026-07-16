@@ -1,0 +1,66 @@
+---
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_URL, ADSENSE_CLIENT } from '../consts';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.scss';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogType?: string;
+}
+const { title, description, ogType = 'website' } = Astro.props;
+const pageTitle = title ? title : SITE_TITLE;
+const pageDesc = (description || SITE_DESCRIPTION).slice(0, 160);
+const canonical = new URL(Astro.url.pathname, SITE_URL).href;
+---
+<!doctype html>
+<html lang="ko" data-theme="light">
+  <head>
+    <title>{pageTitle}</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={pageDesc} />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Bulma (CDN) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+
+    <link rel="canonical" href={canonical} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={SITE_TITLE}
+      href={`${SITE_URL}/feed.xml`}
+    />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDesc} />
+
+    {
+      /* Google AdSense loader (production builds only) */
+      import.meta.env.PROD && (
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+          crossorigin="anonymous"
+        />
+      )
+    }
+
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+  </body>
+</html>
