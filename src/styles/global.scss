@@ -24,6 +24,13 @@ pre.astro-code {
   tab-size: 4;
   overflow-x: auto;
 }
+// Shiki (github-light) sets an inline white background, which vanishes against
+// the near-white page. Override it with GitHub's code-block grey + a hairline
+// so the block reads as a distinct block. (!important beats Shiki's inline style.)
+pre.astro-code {
+  background-color: #f6f8fa !important;
+  border: 1px solid var(--bulma-border-weak);
+}
 .content :not(pre) > code {
   font-size: 0.9em;
 }
