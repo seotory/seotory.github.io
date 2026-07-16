@@ -1,11 +1,9 @@
-// ── Global styles (ported from the Jekyll site) ──
+// ── Global styles ──
 // Loaded after the Bulma CDN stylesheet, so overriding --bulma-* here re-derives
-// Bulma's own colors/radii. The site renders in Bulma's default font (the
-// original defined a NanumBarunGothic @font-face but never applied it).
+// Bulma's own colors/radii. Type is Bulma's default font stack.
 
 $code-line-height: 1.3;
 
-// From _base.scss
 p {
   word-break: break-word;
 }
@@ -13,8 +11,7 @@ p {
   margin-top: 0.25em;
 }
 
-// Code blocks — Shiki (pre.astro-code) replaces Rouge. Keep them rounded and
-// legible, matching the old .highlight treatment.
+// Code blocks (Shiki renders <pre class="astro-code">) — rounded and legible.
 .content pre,
 pre.astro-code {
   border-radius: 0.5em;
@@ -24,9 +21,9 @@ pre.astro-code {
   tab-size: 4;
   overflow-x: auto;
 }
-// Shiki (github-light) sets an inline white background, which vanishes against
-// the near-white page. Override it with GitHub's code-block grey + a hairline
-// so the block reads as a distinct block. (!important beats Shiki's inline style.)
+// Shiki sets an inline white background, which vanishes against the near-white
+// page — override it with GitHub's code-block grey + a hairline so each block
+// reads as a distinct block. (!important beats Shiki's inline style.)
 pre.astro-code {
   background-color: #f6f8fa !important;
   border: 1px solid var(--bulma-border-weak);
@@ -35,7 +32,7 @@ pre.astro-code {
   font-size: 0.9em;
 }
 
-// ═══ Theme layer (was _sass/_theme.scss) ═══════════════════════════════════
+// ═══ Theme layer ═══════════════════════════════════════════════════════════
 // Customize Bulma via its own --bulma-* variables where possible; the few
 // rules that hardcode values are marked "custom" (Bulma exposes no variable).
 

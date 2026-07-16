@@ -2,10 +2,8 @@
 title: java builder pattern (빌더 패턴)
 date: 2017-09-03 18:11:59 +0900
 description: ""
-image: ""
 categories: dev/java
 published: true
-comments: true
 tags:
   - java
 ---

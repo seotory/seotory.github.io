@@ -2,10 +2,8 @@
 title: GNU/Linux의 일반적인 환경변수
 date: 2016-05-01 12:01:18 +0900
 description: ""
-image: ""
 categories: dev/linux
 published: true
-comments: true
 tags: []
 ---
 

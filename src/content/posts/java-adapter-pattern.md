@@ -2,10 +2,8 @@
 title: java adapter pattern (어뎁터 패턴)
 date: 2017-09-03 18:20:43 +0900
 description: ""
-image: ""
 categories: dev/java
 published: true
-comments: true
 tags:
   - java
 ---

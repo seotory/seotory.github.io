@@ -2,10 +2,8 @@
 title: 자바스크립트 화살표 함수 (array function)
 date: 2017-09-21 10:56:01 +0900
 description: ""
-image: ""
 categories: dev/javascript
 published: true
-comments: true
 tags: []
 ---
 

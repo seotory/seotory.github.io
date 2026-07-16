@@ -2,10 +2,8 @@
 title: java singleton pattern (싱글톤 패턴)
 date: "2016-03-19 12:04:16"
 description: ""
-image: ""
 categories: dev/java
 published: true
-comments: true
 tags:
   - java
   - pattern

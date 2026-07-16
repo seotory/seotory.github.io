@@ -1,25 +1,18 @@
-// Site-wide configuration (ported from Jekyll _config.yml / _data/category.yaml).
+// Site-wide configuration.
 
 export const SITE_TITLE = 'Seotory';
 export const SITE_DESCRIPTION =
   '서토리의 고분고투 개발 스토리를 담은 블로그입니다.';
 export const SITE_URL = 'https://blog.seotory.com';
 
-export const SOCIAL = {
-  twitter: 'seotory',
-  github: 'seotory',
-  email: 'seotory437@gmail.com',
-};
-
-// Google AdSense / Disqus (as in the original site).
+// Google AdSense.
 export const ADSENSE_CLIENT = 'ca-pub-1634875166425349';
-export const DISQUS_SHORTNAME = 'seotory-blog';
 
-// Posts per page (was Jekyll `paginate: 10`).
+// Posts per page.
 export const PAGE_SIZE = 10;
 
-// Navigation — mirrors _data/category.yaml. `path` is the category key used in
-// /categories/<path>/ URLs; children render as a dropdown.
+// Navigation. `path` is the category key used in /categories/<path>/ URLs;
+// children render as a dropdown.
 export type NavItem = {
   title: string;
   path?: string;
@@ -27,7 +20,7 @@ export type NavItem = {
   items?: NavItem[];
 };
 
-// Standalone page links shown before the category nav (were Jekyll pages).
+// Standalone page links shown before the category nav.
 export const PAGES_NAV = [
   { title: 'About', path: '/about/' },
   { title: 'Tags', path: '/tags/' },

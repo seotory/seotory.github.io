@@ -8,12 +8,11 @@ const posts = defineCollection({
     date: z.coerce.date(),
     description: z.string().optional().default(''),
     image: z.string().optional().default(''),
-    // Path-like category from the old Jekyll front matter, e.g. "dev/java".
+    // Path-like category, e.g. "dev/java".
     categories: z.string().default(''),
     // Optional list of "YYYYMMDD" edit dates.
     history: z.array(z.string()).optional().default([]),
     published: z.boolean().default(true),
-    comments: z.boolean().default(true),
     tags: z.array(z.string()).optional().default([]),
   }),
 });
