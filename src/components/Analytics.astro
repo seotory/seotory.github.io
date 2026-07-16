@@ -1,0 +1,22 @@
+---
+import { GA4_MEASUREMENT_ID } from '../consts';
+// Only load in production builds, so local dev traffic never hits the property.
+const enabled = import.meta.env.PROD && GA4_MEASUREMENT_ID;
+// Google's canonical gtag snippet, emitted verbatim so `gtag` stays global and
+// stays callable for events later (define:vars would scope it to an IIFE).
+const snippet = `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA4_MEASUREMENT_ID}');`;
+---
+{
+  enabled && (
+    <>
+      <script
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`}
+      />
+      <script is:inline set:html={snippet} />
+    </>
+  )
+}

@@ -8,6 +8,9 @@ export const SITE_URL = 'https://blog.seotory.com';
 // Google AdSense.
 export const ADSENSE_CLIENT = 'ca-pub-1634875166425349';
 
+// Google Analytics 4 measurement ID (stream: seotory blog - GA4).
+export const GA4_MEASUREMENT_ID = 'G-6S4LG3QJ26';
+
 // Posts per page.
 export const PAGE_SIZE = 10;
 
