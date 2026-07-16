@@ -2,6 +2,7 @@
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_URL, ADSENSE_CLIENT } from '../consts';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Analytics from '../components/Analytics.astro';
 import '../styles/global.scss';
 
 interface Props {
@@ -55,6 +56,8 @@ const canonical = new URL(Astro.url.pathname, SITE_URL).href;
         />
       )
     }
+
+    <Analytics />
 
     <meta name="generator" content={Astro.generator} />
   </head>
