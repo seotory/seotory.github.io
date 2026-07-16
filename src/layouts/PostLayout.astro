@@ -50,15 +50,15 @@ const desc = post.data.description || excerpt(post.body ?? '', 30);
 
       {
         tags.length > 0 && (
-          <div class="block">
-            <span class="icon-text has-text-link">
+          <div class="block is-flex is-align-items-center is-flex-wrap-wrap">
+            <span class="icon-text has-text-link mr-2">
               <span class="icon">
                 <Icon name="info" />
               </span>
-              <span>Tags : </span>
+              <span>Tags :</span>
             </span>
             {tags.map((tag) => (
-              <span class="tag">
+              <span class="tag mr-2">
                 <a href={`/tags/#${tag}`}>{tag.toLowerCase()}</a>
               </span>
             ))}

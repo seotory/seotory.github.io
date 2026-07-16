@@ -2,10 +2,8 @@
 title: java factory pattern (팩토리 패턴)
 date: 2016-08-28 16:23:51 +0900
 description: ""
-image: ""
 categories: dev/java
 published: true
-comments: true
 tags:
   - java
   - pattern

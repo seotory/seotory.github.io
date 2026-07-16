@@ -6,15 +6,15 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://blog.seotory.com',
   base: '/',
-  // Directory-style URLs (…/index.html) to match Jekyll's trailing-slash
-  // permalinks for pagination/category pages; posts get a trailing slash too.
+  // Directory-style URLs (…/index.html) — keeps the trailing-slash URLs the
+  // site has always used.
   trailingSlash: 'ignore',
   build: { format: 'directory' },
-  // Preserve the old Jekyll feed URL (/feed/) for existing RSS subscribers.
+  // Keep /feed/ working for existing RSS subscribers.
   redirects: { '/feed': '/feed.xml' },
   integrations: [sitemap()],
   markdown: {
-    // Rouge → Shiki. Light theme to match the (light-only) site.
+    // Light theme to match the (light-only) site.
     shikiConfig: { theme: 'github-light', wrap: false },
   },
 });

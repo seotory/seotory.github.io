@@ -2,10 +2,8 @@
 title: javascript es6 class 및 mixin 사용해보기
 date: 2017-08-08 10:25:59 +0900
 description: ""
-image: ""
 categories: dev/javascript
 published: true
-comments: true
 tags:
   - javascript
 ---

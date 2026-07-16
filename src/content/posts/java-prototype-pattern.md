@@ -2,10 +2,8 @@
 title: java prototype pattern (프로토타입 패턴)
 date: "2015-09-06 12:04:16"
 description: ""
-image: ""
 categories: dev/java
 published: true
-comments: true
 tags:
   - java
   - pattern

@@ -9,8 +9,8 @@ export async function getPublishedPosts(): Promise<Post[]> {
 }
 
 /**
- * Category keys a post belongs to: the full path plus each segment, matching
- * Jekyll's folder + front-matter behaviour. "dev/java" -> ["dev/java","dev","java"]
+ * Category keys a post belongs to: the full path plus each segment, so that
+ * /categories/dev/ lists everything under dev/. "dev/java" -> ["dev/java","dev","java"]
  */
 export function categoryKeys(categories: string): string[] {
   const full = (categories || '').trim();
@@ -44,7 +44,7 @@ export function excerpt(body: string, words = 40): string {
   return arr.length > words ? arr.slice(0, words).join(' ') + '...' : text;
 }
 
-/** YYYY-MM-DD in the site's timezone (Asia/Seoul), like the old "%Y-%m-%d". */
+/** YYYY-MM-DD in the site's timezone (Asia/Seoul). */
 export function formatDate(date: Date): string {
   return new Intl.DateTimeFormat('en-CA', {
     year: 'numeric',

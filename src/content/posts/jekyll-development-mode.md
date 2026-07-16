@@ -2,10 +2,8 @@
 title: jekyll 개발모드로 사용 및 빌드하기
 date: 2017-08-10 13:13:02 +0900
 description: ""
-image: ""
 categories: dev/jekyll
 published: true
-comments: true
 tags:
   - jekyll
   - env
