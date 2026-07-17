@@ -55,12 +55,23 @@
 }
 
 /* ── Prose (markdown post/page bodies) ────────────────────────────────────── */
+/* Typography ships a dark code block (light text on dark slate); this site uses
+   GitHub's light one, so retarget its own variables. Without this, a fence with
+   no language — which Shiki leaves unstyled — inherits the light text and
+   disappears against the light background.
+   `.prose.prose-blog` (0,2,0) is needed to outrank the plugin's own `.prose`
+   (0,1,0), which sets these on the same element and would otherwise win on
+   source order. */
+.prose.prose-blog {
+  --tw-prose-pre-bg: #f6f8fa;
+  --tw-prose-pre-code: #24292e;
+}
+
 @layer components {
   .prose-blog {
-    /* Shiki paints its own token colours; give the block GitHub's grey so it
-       reads as a distinct block against the near-white page. */
     :where(pre) {
-      background-color: #f6f8fa !important;
+      /* !important only to beat Shiki's inline background-color:#fff */
+      background-color: var(--tw-prose-pre-bg) !important;
       border: 1px solid var(--color-hairline);
       border-radius: 0.5em;
       padding: 1em 1.25em;

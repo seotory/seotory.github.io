@@ -81,14 +81,14 @@ const categoryNav = CATEGORY_NAV.filter((n) => n.use);
         type="search"
         name="q"
         placeholder="블로그 내 검색"
-        class="h-9 w-52 rounded-l-full border border-r-0 border-accent-200 bg-white px-4 text-sm outline-none placeholder:text-ink-soft/60 focus:border-accent-500"
+        class="h-10 w-52 rounded-l-lg border border-r-0 border-accent-200 bg-white px-3 text-sm outline-none placeholder:text-ink-soft/60 focus:border-accent-500"
       />
       <button
         type="submit"
-        class="flex h-9 items-center gap-1.5 rounded-r-full bg-accent-600 px-4 text-sm font-medium text-white hover:bg-accent-700"
+        class="flex h-10 items-center rounded-r-lg bg-accent-600 px-3 text-white hover:bg-accent-700"
+        aria-label="검색"
       >
         <Icon name="search" class="size-4" />
-        <span>Search</span>
       </button>
     </form>
 
@@ -156,19 +156,21 @@ const categoryNav = CATEGORY_NAV.filter((n) => n.use);
         categoryNav.map((item) =>
           item.items ? (
             <>
-              <div class="mt-3 px-3 pb-1 text-xs font-semibold uppercase tracking-wide text-ink-soft/70">
+              <div class="mt-4 px-3 pb-1 text-xs font-semibold uppercase tracking-wide text-ink-soft/70">
                 {item.title}
               </div>
-              {item.items
-                .filter((c) => c.use)
-                .map((c) => (
-                  <a
-                    href={`/categories/${c.path}/`}
-                    class="rounded-lg px-3 py-2.5 text-ink hover:bg-accent-50"
-                  >
-                    {c.title}
-                  </a>
-                ))}
+              <div class="ml-3 flex flex-col border-l border-hairline pl-3">
+                {item.items
+                  .filter((c) => c.use)
+                  .map((c) => (
+                    <a
+                      href={`/categories/${c.path}/`}
+                      class="rounded-lg px-3 py-2 text-[0.95rem] text-ink-soft hover:bg-accent-50 hover:text-accent-700"
+                    >
+                      {c.title}
+                    </a>
+                  ))}
+              </div>
             </>
           ) : (
             <a
