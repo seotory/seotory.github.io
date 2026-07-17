@@ -23,7 +23,11 @@ const canonical = new URL(Astro.url.pathname, SITE_URL).href;
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={pageDesc} />
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <!-- Browsers take the SVG and stop; the .ico is only reached by those that
+         can't (older Safari), so both must show the same mark. -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Pretendard (CDN). The dynamic-subset build splits the (large) Korean
          range into ~90 unicode-range slices, so a page only downloads the
