@@ -37,6 +37,15 @@ pre.astro-code {
 // rules that hardcode values are marked "custom" (Bulma exposes no variable).
 
 :root {
+  // Type — Bulma's default stack is Latin-only (Inter, SF Pro, …), so Korean
+  // fell through to whatever the OS picked and mixed badly with the Latin.
+  // Pretendard covers Latin + Korean in one family (Inter-compatible metrics).
+  // The tail is the fallback chain if the webfont never loads.
+  --bulma-family-primary: 'Pretendard Variable', Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Noto Sans KR',
+    'Malgun Gothic', Roboto, 'Helvetica Neue', sans-serif;
+  --bulma-family-secondary: var(--bulma-family-primary);
+
   // Accent — Bulma derives --bulma-link / -primary and their shades from these.
   --bulma-link-h: 244deg;
   --bulma-link-s: 55%;
