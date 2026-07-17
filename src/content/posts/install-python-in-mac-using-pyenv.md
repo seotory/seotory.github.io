@@ -2,7 +2,7 @@
 title: mac에 pyenv를 이용해 python 설치하기
 date: 2017-03-05 11:10:36 +0900
 description: ""
-categories: dev/python
+categories: dev
 published: true
 tags:
   - python

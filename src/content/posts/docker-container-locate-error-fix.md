@@ -2,7 +2,7 @@
 title: docker 컨테이너 내의 locale(로케일) 에러 해결
 date: 2017-02-28 10:37:02 +0900
 description: ""
-categories: dev/etc
+categories: dev
 published: true
 tags:
   - linux

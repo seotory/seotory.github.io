@@ -14,11 +14,8 @@ export const getStaticPaths = (async () => {
   const keys = new Set<string>();
   // Keys from actual posts…
   posts.forEach((p) => categoryKeys(p.data.categories).forEach((k) => keys.add(k)));
-  // …plus every nav category, so linked-but-empty pages (e.g. Talk) still exist.
-  CATEGORY_NAV.forEach((item) => {
-    if (item.path) keys.add(item.path);
-    item.items?.forEach((c) => c.path && keys.add(c.path));
-  });
+  // …plus every nav category, so a linked-but-empty page still exists.
+  CATEGORY_NAV.forEach((item) => keys.add(item.path));
   return [...keys].map((key) => ({
     params: { path: key },
     props: { key, posts: postsInCategory(posts, key) },

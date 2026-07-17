@@ -2,7 +2,7 @@
 title: java proxy pattern (프록시 패턴)
 date: 2017-09-09 10:30:01 +0900
 description: ""
-categories: dev/java
+categories: dev
 published: true
 tags:
   - java
