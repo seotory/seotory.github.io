@@ -34,7 +34,7 @@ const tags = [...tagMap.keys()].sort((a, b) => a.localeCompare(b));
         tags.map((tag) => (
           <section id={tag} class="scroll-mt-20">
             <h2 class="text-lg font-bold tracking-tight text-accent-700">#{tag}</h2>
-            <ul class="mt-2 divide-y divide-hairline rounded-card border border-hairline bg-white">
+            <ul class="mt-2 divide-y divide-hairline overflow-hidden rounded-card border border-hairline bg-white">
               {tagMap.get(tag)!.map((post) => (
                 <li>
                   <a href={`/post/${post.id}/`} class="block px-5 py-3 hover:bg-accent-50">

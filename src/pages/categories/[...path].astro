@@ -38,7 +38,7 @@ const { key, posts } = Astro.props;
       posts.length === 0 ? (
         <p class="mt-6 text-ink-soft">아직 글이 없습니다.</p>
       ) : (
-        <ul class="mt-6 divide-y divide-hairline rounded-card border border-hairline bg-white">
+        <ul class="mt-6 divide-y divide-hairline overflow-hidden rounded-card border border-hairline bg-white">
           {posts.map((post) => (
             <li>
               <a
