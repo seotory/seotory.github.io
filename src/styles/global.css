@@ -100,6 +100,14 @@
     border-radius: 0.35em;
     font-weight: 500;
   }
+  /* The plugin sets code and strong to the same 600, so code inside bold text
+     matches on its own. Dropping code to 500 above breaks that, leaving the
+     code span lighter than the sentence it's emphasising. Follow the plugin's
+     own `pre code { font-weight: inherit }` idiom and take the weight from
+     whatever context the code sits in. */
+  :where(strong) :where(code) {
+    font-weight: inherit;
+  }
 }
 
 @layer components {
