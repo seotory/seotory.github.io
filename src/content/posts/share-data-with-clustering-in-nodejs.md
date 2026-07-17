@@ -2,7 +2,7 @@
 title: nodejs cluster 프로세스에서 데이터 공유하기
 date: 2017-08-29 17:17:54 +0900
 description: ""
-categories: dev
+category: dev
 published: true
 tags: []
 ---

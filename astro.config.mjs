@@ -2,6 +2,24 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import { CATEGORY_PATHS } from './src/consts';
+
+// Posts used to be split across these sub-categories; they're all one "dev"
+// category now, so send the old URLs there rather than letting indexed links
+// 404. A path drops out of this list the moment it becomes a live category
+// again — otherwise the redirect would silently shadow the real page.
+const RETIRED_CATEGORY_PATHS = [
+  'dev/java', 'dev/javascript', 'dev/python', 'dev/ruby', 'dev/linux',
+  'dev/database', 'dev/jekyll', 'dev/git', 'dev/study', 'dev/etc',
+  'java', 'javascript', 'python', 'ruby', 'linux', 'jekyll', 'git', 'etc',
+  'talk',
+];
+const categoryRedirects = Object.fromEntries(
+  RETIRED_CATEGORY_PATHS.filter((p) => !CATEGORY_PATHS.includes(p)).map((p) => [
+    `/categories/${p}`,
+    '/categories/dev/',
+  ]),
+);
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,28 +32,7 @@ export default defineConfig({
   redirects: {
     // Keep /feed/ working for existing RSS subscribers.
     '/feed': '/feed.xml',
-    // Posts used to be split across dev/* sub-categories (plus a bare segment
-    // page for each). They're all one "dev" category now, so point the old
-    // URLs at it rather than letting indexed links 404.
-    '/categories/dev/java': '/categories/dev/',
-    '/categories/dev/javascript': '/categories/dev/',
-    '/categories/dev/python': '/categories/dev/',
-    '/categories/dev/ruby': '/categories/dev/',
-    '/categories/dev/linux': '/categories/dev/',
-    '/categories/dev/database': '/categories/dev/',
-    '/categories/dev/jekyll': '/categories/dev/',
-    '/categories/dev/git': '/categories/dev/',
-    '/categories/dev/study': '/categories/dev/',
-    '/categories/dev/etc': '/categories/dev/',
-    '/categories/java': '/categories/dev/',
-    '/categories/javascript': '/categories/dev/',
-    '/categories/python': '/categories/dev/',
-    '/categories/ruby': '/categories/dev/',
-    '/categories/linux': '/categories/dev/',
-    '/categories/jekyll': '/categories/dev/',
-    '/categories/git': '/categories/dev/',
-    '/categories/etc': '/categories/dev/',
-    '/categories/talk': '/categories/dev/',
+    ...categoryRedirects,
   },
   integrations: [sitemap()],
   vite: { plugins: [tailwindcss()] },

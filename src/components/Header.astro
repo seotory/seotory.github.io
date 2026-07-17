@@ -1,15 +1,7 @@
 ---
 import { PAGES_NAV, CATEGORY_NAV } from '../consts';
 import Icon from './Icon.astro';
-
-// One flat list — page links first, then categories.
-const nav = [
-  ...PAGES_NAV,
-  ...CATEGORY_NAV.filter((c) => c.use).map((c) => ({
-    title: c.title,
-    path: `/categories/${c.path}/`,
-  })),
-];
+const categoryNav = CATEGORY_NAV.filter((n) => n.use);
 ---
 <header
   class="sticky top-0 z-30 border-b border-hairline bg-white/80 backdrop-blur-sm"
@@ -30,14 +22,52 @@ const nav = [
     <!-- Desktop nav -->
     <div class="ml-4 hidden items-center gap-1 lg:flex">
       {
-        nav.map((n) => (
+        PAGES_NAV.map((p) => (
           <a
-            href={n.path}
+            href={p.path}
             class="rounded-lg px-3 py-2 text-ink-soft hover:bg-accent-50 hover:text-accent-700"
           >
-            {n.title}
+            {p.title}
           </a>
         ))
+      }
+      {
+        categoryNav.map((item) =>
+          item.items ? (
+            <div class="group relative">
+              <a
+                href={`/categories/${item.path}/`}
+                class="flex items-center gap-1 rounded-lg px-3 py-2 text-ink-soft group-hover:bg-accent-50 group-hover:text-accent-700"
+                aria-haspopup="true"
+              >
+                {item.title}
+                <Icon name="chevron-down" class="size-3.5 text-accent-600" />
+              </a>
+              {/* Hover dropdown — the pt-1 keeps a hoverable bridge to the panel */}
+              <div class="invisible absolute left-0 top-full pt-1 opacity-0 transition group-hover:visible group-hover:opacity-100">
+                <div class="min-w-44 rounded-xl border border-hairline bg-white p-1.5 shadow-lg shadow-slate-900/10">
+                  {item.items
+                    .filter((c) => c.use)
+                    .map((c) => (
+                      <a
+                        href={`/categories/${c.path}/`}
+                        class="block rounded-lg px-3 py-1.5 text-ink-soft hover:bg-accent-50 hover:text-accent-700"
+                      >
+                        {c.title}
+                      </a>
+                    ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <a
+              href={`/categories/${item.path}/`}
+              class="rounded-lg px-3 py-2 text-ink-soft hover:bg-accent-50 hover:text-accent-700"
+            >
+              {item.title}
+            </a>
+          )
+        )
       }
     </div>
 
@@ -116,11 +146,46 @@ const nav = [
 
     <nav class="flex flex-col" aria-label="모바일 탐색">
       {
-        nav.map((n) => (
-          <a href={n.path} class="rounded-lg px-3 py-2 leading-6 text-ink hover:bg-accent-50">
-            {n.title}
+        PAGES_NAV.map((p) => (
+          <a href={p.path} class="rounded-lg px-3 py-2 leading-6 text-ink hover:bg-accent-50">
+            {p.title}
           </a>
         ))
+      }
+      {
+        categoryNav.map((item) =>
+          item.items ? (
+            <>
+              {/* Identical to its 1st-level siblings — the indent + rule below
+                  carry the grouping, so it needs no styling of its own. */}
+              <a
+                href={`/categories/${item.path}/`}
+                class="rounded-lg px-3 py-2 leading-6 text-ink hover:bg-accent-50"
+              >
+                {item.title}
+              </a>
+              <div class="ml-3 flex flex-col border-l border-hairline pl-3">
+                {item.items
+                  .filter((c) => c.use)
+                  .map((c) => (
+                    <a
+                      href={`/categories/${c.path}/`}
+                      class="rounded-lg px-3 py-1.5 text-[0.95rem] leading-6 text-ink-soft hover:bg-accent-50 hover:text-accent-700"
+                    >
+                      {c.title}
+                    </a>
+                  ))}
+              </div>
+            </>
+          ) : (
+            <a
+              href={`/categories/${item.path}/`}
+              class="rounded-lg px-3 py-2 leading-6 text-ink hover:bg-accent-50"
+            >
+              {item.title}
+            </a>
+          )
+        )
       }
     </nav>
   </div>

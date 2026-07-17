@@ -14,7 +14,7 @@ export async function GET(context: APIContext) {
       pubDate: post.data.date,
       description: post.data.description || excerpt(post.body ?? '', 60),
       link: `/post/${post.id}/`,
-      categories: [...post.data.tags, post.data.categories].filter(Boolean),
+      categories: [...post.data.tags, post.data.category].filter(Boolean),
     })),
   });
 }

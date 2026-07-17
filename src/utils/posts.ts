@@ -12,21 +12,21 @@ export async function getPublishedPosts(): Promise<Post[]> {
  * Category keys a post belongs to: the full path plus each segment, so that
  * /categories/dev/ lists everything under dev/. "dev/java" -> ["dev/java","dev","java"]
  */
-export function categoryKeys(categories: string): string[] {
-  const full = (categories || '').trim();
+export function categoryKeys(category: string): string[] {
+  const full = (category || '').trim();
   if (!full) return [];
   const segs = full.split('/').filter(Boolean);
   return Array.from(new Set([full, ...segs]));
 }
 
 export function postsInCategory(posts: Post[], key: string): Post[] {
-  return posts.filter((p) => categoryKeys(p.data.categories).includes(key));
+  return posts.filter((p) => categoryKeys(p.data.category).includes(key));
 }
 
 /** Related posts: same full category path, excluding the current post. */
 export function relatedPosts(posts: Post[], current: Post, limit = 4): Post[] {
   return posts
-    .filter((p) => p.id !== current.id && p.data.categories === current.data.categories)
+    .filter((p) => p.id !== current.id && p.data.category === current.data.category)
     .slice(0, limit);
 }
 

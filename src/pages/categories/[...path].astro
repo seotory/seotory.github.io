@@ -13,9 +13,12 @@ export const getStaticPaths = (async () => {
   const posts = await getPublishedPosts();
   const keys = new Set<string>();
   // Keys from actual posts…
-  posts.forEach((p) => categoryKeys(p.data.categories).forEach((k) => keys.add(k)));
+  posts.forEach((p) => categoryKeys(p.data.category).forEach((k) => keys.add(k)));
   // …plus every nav category, so a linked-but-empty page still exists.
-  CATEGORY_NAV.forEach((item) => keys.add(item.path));
+  CATEGORY_NAV.forEach((item) => {
+    keys.add(item.path);
+    item.items?.forEach((c) => keys.add(c.path));
+  });
   return [...keys].map((key) => ({
     params: { path: key },
     props: { key, posts: postsInCategory(posts, key) },
