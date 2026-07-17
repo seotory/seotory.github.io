@@ -25,6 +25,17 @@ const canonical = new URL(Astro.url.pathname, SITE_URL).href;
     <meta name="description" content={pageDesc} />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
+    <!-- Pretendard (CDN). The dynamic-subset build splits the (large) Korean
+         range into ~90 unicode-range slices, so a page only downloads the
+         glyphs it actually uses. Ships font-display: swap. -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    />
+
     <!-- Bulma (CDN) -->
     <link
       rel="stylesheet"
