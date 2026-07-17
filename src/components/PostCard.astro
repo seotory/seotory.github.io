@@ -10,20 +10,23 @@ const { post } = Astro.props;
 const url = `/post/${post.id}/`;
 const desc = post.data.description || excerpt(post.body ?? '', 40);
 ---
-<div class="box">
-  <div class="content">
-    <p class="title is-4 mb-0"><a href={url}>{post.data.title}</a></p>
-    <p>{formatDate(post.data.date)}</p>
-    <div class="description mb-3"><p>{desc}</p></div>
-    {
-      post.data.categories && (
-        <span class="tag is-link is-normal is-light">
-          <span class="icon">
-            <Icon name="info" />
-          </span>
-          <span>{post.data.categories}</span>
-        </span>
-      )
-    }
-  </div>
-</div>
+<article
+  class="group rounded-card border border-hairline bg-white p-6 shadow-sm shadow-slate-900/[0.04] transition duration-200 hover:-translate-y-0.5 hover:border-accent-200 hover:shadow-lg hover:shadow-accent-900/10"
+>
+  <h2 class="text-xl font-bold tracking-tight">
+    <a href={url} class="text-ink group-hover:text-accent-600">{post.data.title}</a>
+  </h2>
+  <p class="mt-1 text-sm text-ink-soft">{formatDate(post.data.date)}</p>
+  <p class="mt-3 text-ink-soft">{desc}</p>
+  {
+    post.data.categories && (
+      <a
+        href={`/categories/${post.data.categories}/`}
+        class="mt-4 inline-flex items-center gap-1 rounded-lg bg-accent-50 px-2.5 py-1 text-sm font-medium text-accent-700 hover:bg-accent-100"
+      >
+        <Icon name="info" class="size-3.5" />
+        {post.data.categories}
+      </a>
+    )
+  }
+</article>

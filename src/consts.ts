@@ -33,6 +33,9 @@ export const CATEGORY_NAV: NavItem[] = [
   { title: 'Talk', path: 'talk', use: true },
   {
     title: 'Dev',
+    // /categories/dev/ lists every post under dev/*, so the group heading is a
+    // real destination — it links like its siblings instead of being inert.
+    path: 'dev',
     use: true,
     items: [
       { title: 'java', path: 'dev/java', use: true },

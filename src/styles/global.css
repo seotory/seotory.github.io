@@ -1,0 +1,89 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+/* ── Design tokens ──────────────────────────────────────────────────────────
+   Carries over the look the site already had: indigo accent, near-white page,
+   Pretendard for Korean + Latin, GitHub-grey code blocks. */
+@theme {
+  /* Pretendard covers Latin + Hangul in one family; the tail is the fallback
+     chain for when the webfont doesn't load. */
+  --font-sans:
+    'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', Roboto,
+    'Helvetica Neue', sans-serif;
+
+  /* Accent — the indigo the site has been using: hsl(244 55% 55%) */
+  --color-accent-50: hsl(244 55% 97%);
+  --color-accent-100: hsl(244 55% 94%);
+  --color-accent-200: hsl(244 50% 86%);
+  --color-accent-500: hsl(244 55% 62%);
+  --color-accent-600: hsl(244 55% 55%);
+  --color-accent-700: hsl(244 52% 47%);
+  --color-accent-900: hsl(244 45% 26%);
+
+  /* Neutrals tuned to the previous cool-grey scheme */
+  --color-page: hsl(220 24% 99%);
+  --color-hairline: hsl(220 16% 91%);
+  --color-ink: hsl(220 18% 20%);
+  --color-ink-soft: hsl(220 12% 42%);
+
+  --radius-card: 1rem;
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.02em;
+  }
+  /* Lock scrolling behind the open mobile drawer */
+  body.drawer-open {
+    overflow: hidden;
+  }
+}
+
+/* ── Prose (markdown post/page bodies) ────────────────────────────────────── */
+/* Typography ships a dark code block (light text on dark slate); this site uses
+   GitHub's light one, so retarget its own variables. Without this, a fence with
+   no language — which Shiki leaves unstyled — inherits the light text and
+   disappears against the light background.
+   `.prose.prose-blog` (0,2,0) is needed to outrank the plugin's own `.prose`
+   (0,1,0), which sets these on the same element and would otherwise win on
+   source order. */
+.prose.prose-blog {
+  --tw-prose-pre-bg: #f6f8fa;
+  --tw-prose-pre-code: #24292e;
+}
+
+@layer components {
+  .prose-blog {
+    :where(pre) {
+      /* !important only to beat Shiki's inline background-color:#fff */
+      background-color: var(--tw-prose-pre-bg) !important;
+      border: 1px solid var(--color-hairline);
+      border-radius: 0.5em;
+      padding: 1em 1.25em;
+      line-height: 1.3;
+      tab-size: 4;
+      overflow-x: auto;
+    }
+    :where(p) {
+      word-break: break-word;
+    }
+    :where(li > ul) {
+      margin-top: 0.25em;
+    }
+  }
+}

@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,6 +14,7 @@ export default defineConfig({
   // Keep /feed/ working for existing RSS subscribers.
   redirects: { '/feed': '/feed.xml' },
   integrations: [sitemap()],
+  vite: { plugins: [tailwindcss()] },
   markdown: {
     // Light theme to match the (light-only) site.
     shikiConfig: { theme: 'github-light', wrap: false },

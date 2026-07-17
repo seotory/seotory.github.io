@@ -13,82 +13,78 @@ const { title, date, tags, history } = post.data;
 const desc = post.data.description || excerpt(post.body ?? '', 30);
 ---
 <BaseLayout title={title} description={desc} ogType="article">
-  <!-- title header -->
-  <section class="hero is-link is-medium">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <p class="title">{title}</p>
-        <p class="subtitle">{formatDate(date)}</p>
-      </div>
+  <!-- Title header -->
+  <header class="bg-accent-600 text-white">
+    <div class="mx-auto max-w-3xl px-4 py-20">
+      <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">{title}</h1>
+      <p class="mt-2 text-white/70">{formatDate(date)}</p>
     </div>
-  </section>
+  </header>
 
-  <!-- contents body -->
-  <section id="post" class="section">
-    <div class="container is-max-desktop">
-      <div class="block">
-        {
-          history && history.length > 0 && (
-            <div class="notification">
-              <div class="content">
-                <ul class="mt-0">
-                  {history.map((d) => (
-                    <li>
-                      본 포스팅은 {d.slice(0, 4)}년 {d.slice(4, 6)}월 {d.slice(6, 8)}일에
-                      수정되었습니다.
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          )
-        }
-        <div class="content">
-          <slot />
-        </div>
-      </div>
-
-      {
-        tags.length > 0 && (
-          <div class="block is-flex is-align-items-center is-flex-wrap-wrap">
-            <span class="icon-text has-text-link mr-2">
-              <span class="icon">
-                <Icon name="info" />
-              </span>
-              <span>Tags :</span>
-            </span>
-            {tags.map((tag) => (
-              <span class="tag mr-2">
-                <a href={`/tags/#${tag}`}>{tag.toLowerCase()}</a>
-              </span>
+  <div class="mx-auto max-w-3xl px-4 py-12">
+    {
+      history && history.length > 0 && (
+        <aside class="mb-8 rounded-xl border border-hairline bg-white p-4 text-sm text-ink-soft">
+          <ul class="space-y-1">
+            {history.map((d) => (
+              <li>
+                본 포스팅은 {d.slice(0, 4)}년 {d.slice(4, 6)}월 {d.slice(6, 8)}일에 수정되었습니다.
+              </li>
             ))}
-          </div>
-        )
-      }
+          </ul>
+        </aside>
+      )
+    }
 
-      <AdUnit slot="4825106255" />
-    </div>
-  </section>
+    <article class="prose prose-slate prose-blog max-w-none prose-a:text-accent-600">
+      <slot />
+    </article>
+
+    {
+      tags.length > 0 && (
+        <div class="mt-10 flex flex-wrap items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-700">
+            <Icon name="info" class="size-4" />
+            Tags :
+          </span>
+          {tags.map((tag) => (
+            <a
+              href={`/tags/#${tag}`}
+              class="rounded-lg bg-accent-50 px-2.5 py-1 text-sm font-medium text-accent-700 hover:bg-accent-100"
+            >
+              {tag.toLowerCase()}
+            </a>
+          ))}
+        </div>
+      )
+    }
+
+    <AdUnit slot="4825106255" />
+  </div>
 
   {
     related.length > 0 && (
-      <section class="section">
-        <div class="container is-max-widescreen">
-          <div class="tile is-ancestor">
-            {related.map((p) => (
-              <div class="tile is-parent">
-                <article class="tile is-child box">
-                  <p class="title is-size-4 mb-2">
-                    <a href={`/post/${p.id}/`}>{p.data.title}</a>
-                  </p>
-                  <p class="is-size-6 mb-3">{excerpt(p.body ?? '', 40)}</p>
-                  <a href={`/post/${p.id}/`} class="button is-link is-light is-fullwidth">
-                    더보기
-                  </a>
-                </article>
-              </div>
-            ))}
-          </div>
+      <section class="mx-auto max-w-4xl px-4 pb-4">
+        <h2 class="mb-5 text-lg font-bold tracking-tight">같은 카테고리의 다른 글</h2>
+        <div class="grid gap-5 sm:grid-cols-2">
+          {related.map((p) => (
+            <article class="group flex flex-col rounded-card border border-hairline bg-white p-5 shadow-sm shadow-slate-900/[0.04] transition duration-200 hover:-translate-y-0.5 hover:border-accent-200 hover:shadow-lg hover:shadow-accent-900/10">
+              <h3 class="text-lg font-bold tracking-tight">
+                <a href={`/post/${p.id}/`} class="text-ink group-hover:text-accent-600">
+                  {p.data.title}
+                </a>
+              </h3>
+              <p class="mt-2 line-clamp-3 flex-1 text-sm text-ink-soft">
+                {excerpt(p.body ?? '', 30)}
+              </p>
+              <a
+                href={`/post/${p.id}/`}
+                class="mt-4 inline-flex justify-center rounded-lg bg-accent-50 px-3 py-2 text-sm font-medium text-accent-700 hover:bg-accent-100"
+              >
+                더보기
+              </a>
+            </article>
+          ))}
         </div>
       </section>
     )

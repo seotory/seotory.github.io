@@ -3,102 +3,235 @@ import { PAGES_NAV, CATEGORY_NAV } from '../consts';
 import Icon from './Icon.astro';
 const categoryNav = CATEGORY_NAV.filter((n) => n.use);
 ---
-<nav class="navbar is-transparent">
-  <div class="container is-max-widescreen">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="/">
-        <span class="icon"><Icon name="home" /></span>
-        <span>SEOTORY</span>
-      </a>
-      <div class="navbar-burger" data-target="navMenu">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
+<header
+  class="sticky top-0 z-30 border-b border-hairline bg-white/80 backdrop-blur-sm"
+>
+  <nav
+    class="mx-auto flex h-14 max-w-6xl items-center gap-2 px-4"
+    aria-label="주 메뉴"
+  >
+    <!-- Wordmark -->
+    <a
+      href="/"
+      class="flex items-center gap-1.5 font-semibold tracking-tight text-ink hover:text-accent-600"
+    >
+      <Icon name="home" class="size-[1.15em] -translate-y-px" />
+      <span>SEOTORY</span>
+    </a>
 
-    <div id="navMenu" class="navbar-menu">
-      <div class="navbar-start">
-        {PAGES_NAV.map((p) => <a href={p.path} class="navbar-item">{p.title}</a>)}
-
-        {
-          categoryNav.map((item) =>
-            item.items ? (
-              <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">{item.title}</a>
-                <div class="navbar-dropdown">
-                  <div class="menu">
-                    {item.items
-                      .filter((c) => c.use)
-                      .map((c) => (
-                        <a href={`/categories/${c.path}/`} class="navbar-item">
-                          {c.title}
-                        </a>
-                      ))}
-                  </div>
+    <!-- Desktop nav -->
+    <div class="ml-4 hidden items-center gap-1 lg:flex">
+      {
+        PAGES_NAV.map((p) => (
+          <a
+            href={p.path}
+            class="rounded-lg px-3 py-2 text-ink-soft hover:bg-accent-50 hover:text-accent-700"
+          >
+            {p.title}
+          </a>
+        ))
+      }
+      {
+        categoryNav.map((item) =>
+          item.items ? (
+            <div class="group relative">
+              <a
+                href={`/categories/${item.path}/`}
+                class="flex items-center gap-1 rounded-lg px-3 py-2 text-ink-soft group-hover:bg-accent-50 group-hover:text-accent-700"
+                aria-haspopup="true"
+              >
+                {item.title}
+                <Icon name="chevron-down" class="size-3.5 text-accent-600" />
+              </a>
+              {/* Hover dropdown — the pt-1 keeps a hoverable bridge to the panel */}
+              <div class="invisible absolute left-0 top-full pt-1 opacity-0 transition group-hover:visible group-hover:opacity-100">
+                <div class="min-w-44 rounded-xl border border-hairline bg-white p-1.5 shadow-lg shadow-slate-900/10">
+                  {item.items
+                    .filter((c) => c.use)
+                    .map((c) => (
+                      <a
+                        href={`/categories/${c.path}/`}
+                        class="block rounded-lg px-3 py-1.5 text-ink-soft hover:bg-accent-50 hover:text-accent-700"
+                      >
+                        {c.title}
+                      </a>
+                    ))}
                 </div>
               </div>
-            ) : (
-              <a href={`/categories/${item.path}/`} class="navbar-item">
+            </div>
+          ) : (
+            <a
+              href={`/categories/${item.path}/`}
+              class="rounded-lg px-3 py-2 text-ink-soft hover:bg-accent-50 hover:text-accent-700"
+            >
+              {item.title}
+            </a>
+          )
+        )
+      }
+    </div>
+
+    <!-- Desktop search -->
+    <form
+      class="ml-auto hidden items-center lg:flex"
+      data-site-search
+      role="search"
+    >
+      <input
+        type="search"
+        name="q"
+        placeholder="블로그 내 검색"
+        class="h-10 w-52 rounded-l-lg border border-r-0 border-accent-200 bg-white px-3 text-sm outline-none placeholder:text-ink-soft/60 focus:border-accent-500"
+      />
+      <button
+        type="submit"
+        class="flex h-10 items-center rounded-r-lg bg-accent-600 px-3 text-white hover:bg-accent-700"
+        aria-label="검색"
+      >
+        <Icon name="search" class="size-4" />
+      </button>
+    </form>
+
+    <!-- Burger (mobile) -->
+    <button
+      type="button"
+      id="drawer-open"
+      class="ml-auto rounded-lg p-2 text-ink hover:bg-accent-50 lg:hidden"
+      aria-label="메뉴 열기"
+      aria-controls="drawer"
+      aria-expanded="false"
+    >
+      <Icon name="menu" class="size-6" />
+    </button>
+  </nav>
+</header>
+
+<!-- ── Mobile drawer ──────────────────────────────────────────────────────── -->
+<div id="drawer-overlay" class="fixed inset-0 z-40 hidden bg-slate-900/40 lg:hidden"></div>
+
+<aside
+  id="drawer"
+  class="fixed inset-y-0 left-0 z-50 flex w-72 max-w-[80vw] -translate-x-full flex-col border-r border-hairline bg-white transition-transform duration-200 ease-out lg:hidden"
+  aria-label="모바일 메뉴"
+  aria-hidden="true"
+>
+  <div class="flex h-14 shrink-0 items-center justify-between border-b border-hairline px-4">
+    <span class="font-semibold tracking-tight">SEOTORY</span>
+    <button
+      type="button"
+      id="drawer-close"
+      class="rounded-lg p-2 text-ink hover:bg-accent-50"
+      aria-label="메뉴 닫기"
+    >
+      <Icon name="close" class="size-5" />
+    </button>
+  </div>
+
+  <div class="flex-1 overflow-y-auto p-3">
+    <form class="mb-3 flex" data-site-search role="search">
+      <input
+        type="search"
+        name="q"
+        placeholder="블로그 내 검색"
+        class="h-10 min-w-0 flex-1 rounded-l-lg border border-r-0 border-accent-200 px-3 text-sm outline-none focus:border-accent-500"
+      />
+      <button
+        type="submit"
+        class="rounded-r-lg bg-accent-600 px-3 text-white"
+        aria-label="검색"
+      >
+        <Icon name="search" class="size-4" />
+      </button>
+    </form>
+
+    <nav class="flex flex-col" aria-label="모바일 탐색">
+      {
+        PAGES_NAV.map((p) => (
+          <a href={p.path} class="rounded-lg px-3 py-2 leading-6 text-ink hover:bg-accent-50">
+            {p.title}
+          </a>
+        ))
+      }
+      {
+        categoryNav.map((item) =>
+          item.items ? (
+            <>
+              {/* Identical to its 1st-level siblings — the indent + rule below
+                  carry the grouping, so it needs no styling of its own. */}
+              <a
+                href={`/categories/${item.path}/`}
+                class="rounded-lg px-3 py-2 leading-6 text-ink hover:bg-accent-50"
+              >
                 {item.title}
               </a>
-            )
+              <div class="ml-3 flex flex-col border-l border-hairline pl-3">
+                {item.items
+                  .filter((c) => c.use)
+                  .map((c) => (
+                    <a
+                      href={`/categories/${c.path}/`}
+                      class="rounded-lg px-3 py-1.5 text-[0.95rem] leading-6 text-ink-soft hover:bg-accent-50 hover:text-accent-700"
+                    >
+                      {c.title}
+                    </a>
+                  ))}
+              </div>
+            </>
+          ) : (
+            <a
+              href={`/categories/${item.path}/`}
+              class="rounded-lg px-3 py-2 leading-6 text-ink hover:bg-accent-50"
+            >
+              {item.title}
+            </a>
           )
-        }
-      </div>
-
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="field is-grouped">
-            <div class="field has-addons">
-              <div class="control">
-                <input
-                  class="input is-link is-small is-rounded"
-                  type="text"
-                  placeholder="Find a repository"
-                />
-              </div>
-              <div class="control">
-                <a id="site-search" class="button is-link is-small is-rounded">
-                  <span class="icon"><Icon name="search" /></span>
-                  <span>Search</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        )
+      }
+    </nav>
   </div>
-</nav>
+</aside>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Mobile burger toggle
-    document.querySelectorAll<HTMLElement>('.navbar-burger').forEach((burger) => {
-      burger.addEventListener('click', () => {
-        const target = document.getElementById(burger.dataset.target || '');
-        burger.classList.toggle('is-active');
-        target?.classList.toggle('is-active');
-      });
+  // ── Site search: both nav forms hand off to a site-scoped Google search ──
+  document.querySelectorAll<HTMLFormElement>('form[data-site-search]').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = (form.querySelector('input[name="q"]') as HTMLInputElement | null)?.value.trim();
+      if (!q) return;
+      window.open(
+        'https://www.google.com/search?q=site:blog.seotory.com+' + encodeURIComponent(q),
+        '_blank'
+      );
     });
-
-    // Site-scoped Google search
-    const searchBtn = document.getElementById('site-search');
-    if (searchBtn) {
-      const input = searchBtn
-        .closest('.field.has-addons')
-        ?.querySelector('input') as HTMLInputElement | null;
-      const run = () => {
-        const text = (input?.value || '').trim();
-        if (!text) return;
-        window.open(
-          'https://www.google.com/search?q=site:blog.seotory.com+' + encodeURIComponent(text),
-          '_blank'
-        );
-      };
-      searchBtn.addEventListener('click', run);
-      input?.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') run();
-      });
-    }
   });
+
+  // ── Mobile drawer ────────────────────────────────────────────────────────
+  const drawer = document.getElementById('drawer');
+  const overlay = document.getElementById('drawer-overlay');
+  const openBtn = document.getElementById('drawer-open');
+  const closeBtn = document.getElementById('drawer-close');
+
+  if (drawer && overlay && openBtn && closeBtn) {
+    const setOpen = (open: boolean) => {
+      drawer.classList.toggle('-translate-x-full', !open);
+      drawer.setAttribute('aria-hidden', String(!open));
+      overlay.classList.toggle('hidden', !open);
+      openBtn.setAttribute('aria-expanded', String(open));
+      document.body.classList.toggle('drawer-open', open);
+      // Move focus with the panel so keyboard/screen-reader users follow it.
+      if (open) closeBtn.focus();
+      else openBtn.focus();
+    };
+
+    openBtn.addEventListener('click', () => setOpen(true));
+    closeBtn.addEventListener('click', () => setOpen(false));
+    overlay.addEventListener('click', () => setOpen(false));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !drawer.classList.contains('-translate-x-full')) setOpen(false);
+    });
+    // Leaving mobile width with the drawer open would strand the scroll lock.
+    matchMedia('(min-width: 1024px)').addEventListener('change', (e) => {
+      if (e.matches) setOpen(false);
+    });
+  }
 </script>
