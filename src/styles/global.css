@@ -65,6 +65,41 @@
 .prose.prose-blog {
   --tw-prose-pre-bg: #f6f8fa;
   --tw-prose-pre-code: #24292e;
+
+  /* These posts use loose markdown lists (blank lines between items), so every
+     item wraps its text in a <p> and takes the full 1.25em paragraph margin —
+     each one-line item ended up 48px tall and the list read as a stack of
+     separate paragraphs. Tighten the item rhythm so a list holds together.
+     (0,2,0) again, to outrank the plugin's own (0,1,0) rules.) */
+  :where(li) {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+  }
+  :where(li > p) {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+  }
+  /* A code block inside a list item shouldn't shove the item apart either. */
+  :where(li) :where(pre) {
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+  }
+
+  /* Typography decorates inline <code> with literal backticks via ::before /
+     ::after. The markdown is fine — `foo` already parses to <code>foo</code> —
+     so the backticks are pure noise on screen. Drop them and mark inline code
+     with a chip instead, which is what the backticks were standing in for. */
+  :where(code)::before,
+  :where(code)::after {
+    content: none;
+  }
+  :where(:not(pre) > code) {
+    background-color: var(--color-accent-50);
+    color: var(--color-accent-700);
+    padding: 0.15em 0.4em;
+    border-radius: 0.35em;
+    font-weight: 500;
+  }
 }
 
 @layer components {
