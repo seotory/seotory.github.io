@@ -65,6 +65,25 @@
 .prose.prose-blog {
   --tw-prose-pre-bg: #f6f8fa;
   --tw-prose-pre-code: #24292e;
+
+  /* These posts use loose markdown lists (blank lines between items), so every
+     item wraps its text in a <p> and takes the full 1.25em paragraph margin —
+     each one-line item ended up 48px tall and the list read as a stack of
+     separate paragraphs. Tighten the item rhythm so a list holds together.
+     (0,2,0) again, to outrank the plugin's own (0,1,0) rules.) */
+  :where(li) {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+  }
+  :where(li > p) {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+  }
+  /* A code block inside a list item shouldn't shove the item apart either. */
+  :where(li) :where(pre) {
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+  }
 }
 
 @layer components {
