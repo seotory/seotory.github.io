@@ -147,7 +147,7 @@ const categoryNav = CATEGORY_NAV.filter((n) => n.use);
     <nav class="flex flex-col" aria-label="모바일 탐색">
       {
         PAGES_NAV.map((p) => (
-          <a href={p.path} class="rounded-lg px-3 py-2.5 text-ink hover:bg-accent-50">
+          <a href={p.path} class="rounded-lg px-3 py-2 leading-6 text-ink hover:bg-accent-50">
             {p.title}
           </a>
         ))
@@ -156,16 +156,16 @@ const categoryNav = CATEGORY_NAV.filter((n) => n.use);
         categoryNav.map((item) =>
           item.items ? (
             <>
-              <div class="mt-4 px-3 pb-1 text-xs font-semibold uppercase tracking-wide text-ink-soft/70">
-                {item.title}
-              </div>
+              {/* Same scale/padding as its 1st-level siblings; it heads a group
+                  rather than linking anywhere, so it gets weight instead of hover. */}
+              <div class="px-3 py-2 font-semibold leading-6 text-ink">{item.title}</div>
               <div class="ml-3 flex flex-col border-l border-hairline pl-3">
                 {item.items
                   .filter((c) => c.use)
                   .map((c) => (
                     <a
                       href={`/categories/${c.path}/`}
-                      class="rounded-lg px-3 py-2 text-[0.95rem] text-ink-soft hover:bg-accent-50 hover:text-accent-700"
+                      class="rounded-lg px-3 py-1.5 text-[0.95rem] leading-6 text-ink-soft hover:bg-accent-50 hover:text-accent-700"
                     >
                       {c.title}
                     </a>
@@ -175,7 +175,7 @@ const categoryNav = CATEGORY_NAV.filter((n) => n.use);
           ) : (
             <a
               href={`/categories/${item.path}/`}
-              class="rounded-lg px-3 py-2.5 text-ink hover:bg-accent-50"
+              class="rounded-lg px-3 py-2 leading-6 text-ink hover:bg-accent-50"
             >
               {item.title}
             </a>
