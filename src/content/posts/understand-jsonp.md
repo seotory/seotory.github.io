@@ -2,7 +2,7 @@
 title: javascript ajax 통신, jsonp 의 모든 것
 date: 2016-04-04 19:09:44 +0900
 description: 전통적인 웹 브라우져에서는 same-origin policy (SOP) 정책에 따라 다른 도메인간의 request을 제한하고 있다. 그러나 &lt;script/&gt; 태그는 same-origin-policy (SOP) 정책에 속하지 않는다는 사실을 근거로, 서로 다른 도메인간의 javascript 호출을 위하여 jsonp (또는 json with padding) 이 사용되었다.
-categories: dev/javascript
+category: dev
 published: true
 tags:
   - javascript

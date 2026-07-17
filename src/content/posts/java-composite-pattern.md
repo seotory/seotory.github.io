@@ -2,7 +2,7 @@
 title: java composite pattern (컴포지트 패턴)
 date: 2017-09-09  8:58:43 +0900
 description: ""
-categories: dev/java
+category: dev
 published: true
 tags:
   - java

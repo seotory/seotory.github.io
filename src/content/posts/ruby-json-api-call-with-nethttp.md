@@ -2,7 +2,7 @@
 title: ruby에서 net/http를 이용한 json api call
 date: 2016-03-23  8:59:59 +0900
 description: ""
-categories: dev/ruby
+category: dev
 published: true
 tags:
   - ruby

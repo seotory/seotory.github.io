@@ -2,7 +2,7 @@
 title: centos에서 java version관리 (alternatives 사용)
 date: 2016-08-21 11:09:55 +0900
 description: ""
-categories: dev/linux
+category: dev
 published: true
 tags: []
 ---

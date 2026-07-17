@@ -2,7 +2,7 @@
 title: 리눅스에서 std(standard streams)란
 date: 2016-04-16 20:35:47 +0900
 description: ""
-categories: dev/linux
+category: dev
 published: true
 tags: []
 ---

@@ -2,7 +2,7 @@
 title: java factory pattern (팩토리 패턴)
 date: 2016-08-28 16:23:51 +0900
 description: ""
-categories: dev/java
+category: dev
 published: true
 tags:
   - java
