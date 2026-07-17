@@ -84,6 +84,22 @@
     margin-top: 0.75em;
     margin-bottom: 0.75em;
   }
+
+  /* Typography decorates inline <code> with literal backticks via ::before /
+     ::after. The markdown is fine — `foo` already parses to <code>foo</code> —
+     so the backticks are pure noise on screen. Drop them and mark inline code
+     with a chip instead, which is what the backticks were standing in for. */
+  :where(code)::before,
+  :where(code)::after {
+    content: none;
+  }
+  :where(:not(pre) > code) {
+    background-color: var(--color-accent-50);
+    color: var(--color-accent-700);
+    padding: 0.15em 0.4em;
+    border-radius: 0.35em;
+    font-weight: 500;
+  }
 }
 
 @layer components {
