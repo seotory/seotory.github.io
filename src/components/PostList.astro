@@ -11,20 +11,11 @@ interface Props {
 }
 const { posts, page, total } = Astro.props;
 ---
-<section class="section">
-  <div class="container is-max-widescreen">
-    <AdUnit slot="2628164514" variant="display" />
+<div class="mx-auto max-w-4xl px-4 py-10">
+  <AdUnit slot="2628164514" variant="display" />
+  <div class="flex flex-col gap-5">
     {posts.map((post) => <PostCard post={post} />)}
-    <AdUnit slot="3965296917" variant="display" />
   </div>
-</section>
-
-{
-  total > 1 && (
-    <section class="section pt-0">
-      <div class="container is-max-widescreen">
-        <Pagination page={page} total={total} />
-      </div>
-    </section>
-  )
-}
+  <AdUnit slot="3965296917" variant="display" />
+  {total > 1 && <Pagination page={page} total={total} />}
+</div>

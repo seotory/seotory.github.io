@@ -3,7 +3,7 @@ import { SITE_TITLE, SITE_DESCRIPTION, SITE_URL, ADSENSE_CLIENT } from '../const
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Analytics from '../components/Analytics.astro';
-import '../styles/global.scss';
+import '../styles/global.css';
 
 interface Props {
   title?: string;
@@ -16,7 +16,7 @@ const pageDesc = (description || SITE_DESCRIPTION).slice(0, 160);
 const canonical = new URL(Astro.url.pathname, SITE_URL).href;
 ---
 <!doctype html>
-<html lang="ko" data-theme="light">
+<html lang="ko">
   <head>
     <title>{pageTitle}</title>
     <meta charset="utf-8" />
@@ -34,12 +34,6 @@ const canonical = new URL(Astro.url.pathname, SITE_URL).href;
       as="style"
       crossorigin
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
-    />
-
-    <!-- Bulma (CDN) -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
     />
 
     <link rel="canonical" href={canonical} />

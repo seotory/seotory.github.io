@@ -28,21 +28,30 @@ export const getStaticPaths = (async () => {
 const { key, posts } = Astro.props;
 ---
 <BaseLayout title={`${key} - Seotory`}>
-  <section class="page-content section">
-    <div class="container is-max-widescreen">
-      <header class="list-header">
-        <h1 class="title is-4">{key} - {posts.length}건</h1>
-      </header>
-      <ul>
-        {
-          posts.map((post) => (
+  <div class="mx-auto max-w-3xl px-4 py-12">
+    <h1 class="text-2xl font-bold tracking-tight">
+      {key}
+      <span class="ml-1 text-base font-normal text-ink-soft">{posts.length}건</span>
+    </h1>
+
+    {
+      posts.length === 0 ? (
+        <p class="mt-6 text-ink-soft">아직 글이 없습니다.</p>
+      ) : (
+        <ul class="mt-6 divide-y divide-hairline rounded-card border border-hairline bg-white">
+          {posts.map((post) => (
             <li>
-              <a href={`/post/${post.id}/`}>{post.data.title}</a>{' '}
-              <span class="list-post-time">[{formatDate(post.data.date)}]</span>
+              <a
+                href={`/post/${post.id}/`}
+                class="flex items-baseline justify-between gap-4 px-5 py-3.5 hover:bg-accent-50"
+              >
+                <span class="font-medium text-ink">{post.data.title}</span>
+                <span class="shrink-0 text-sm text-ink-soft">{formatDate(post.data.date)}</span>
+              </a>
             </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
+          ))}
+        </ul>
+      )
+    }
+  </div>
 </BaseLayout>

@@ -5,40 +5,55 @@ interface Props {
 }
 const { page, total } = Astro.props;
 const href = (n: number) => (n === 1 ? '/' : `/list/${n}/`);
-const hasPrev = page > 1;
-const hasNext = page < total;
 const pages = Array.from({ length: total }, (_, i) => i + 1);
+
+const base =
+  'inline-flex h-10 min-w-10 items-center justify-center rounded-lg border px-3 text-sm font-medium';
+const enabled = `${base} border-hairline bg-white text-ink hover:border-accent-200 hover:text-accent-700`;
+const disabled = `${base} cursor-not-allowed border-transparent bg-slate-100 text-ink-soft/40`;
+const current = `${base} border-accent-600 bg-accent-600 text-white`;
 ---
-<nav class="pagination" role="navigation" aria-label="pagination">
-  {
-    hasPrev ? (
-      <a class="pagination-previous" href={href(page - 1)}>Previous</a>
-    ) : (
-      <a class="pagination-previous" disabled>Previous</a>
-    )
-  }
-  {
-    hasNext ? (
-      <a class="pagination-next" href={href(page + 1)}>Next page</a>
-    ) : (
-      <a class="pagination-next" disabled>Next page</a>
-    )
-  }
-  <ul class="pagination-list">
+<nav class="mt-10 flex items-center justify-between gap-4" aria-label="페이지네이션">
+  <ol class="flex flex-wrap items-center gap-2">
     {
       pages.map((n) => (
         <li>
           {n === page ? (
-            <a class="pagination-link is-current" aria-label={`Page ${n}`} aria-current="page">
+            <span class={current} aria-current="page" aria-label={`${n} 페이지 (현재)`}>
               {n}
-            </a>
+            </span>
           ) : (
-            <a class="pagination-link" href={href(n)} aria-label={`Goto page ${n}`}>
+            <a class={enabled} href={href(n)} aria-label={`${n} 페이지로`}>
               {n}
             </a>
           )}
         </li>
       ))
     }
-  </ul>
+  </ol>
+
+  <div class="flex shrink-0 gap-2">
+    {
+      page > 1 ? (
+        <a class={enabled} href={href(page - 1)} rel="prev">
+          Previous
+        </a>
+      ) : (
+        <span class={disabled} aria-disabled="true">
+          Previous
+        </span>
+      )
+    }
+    {
+      page < total ? (
+        <a class={enabled} href={href(page + 1)} rel="next">
+          Next page
+        </a>
+      ) : (
+        <span class={disabled} aria-disabled="true">
+          Next page
+        </span>
+      )
+    }
+  </div>
 </nav>
