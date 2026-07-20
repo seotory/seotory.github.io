@@ -108,6 +108,17 @@
   :where(strong) :where(code) {
     font-weight: inherit;
   }
+
+  /* Typography zeroes h1's top margin because it assumes h1 is the document
+     title and thus the first element. Here the title lives in the layout
+     header and the body uses `#` for section headings, so every section h1
+     rendered flush against the paragraph above it while the `##` subsections
+     kept their 2em. Give h1 a top margin slightly larger than h2's so the
+     heading hierarchy reads top-down (h1 > h2 > h3). The plugin's own
+     `:first-child { margin-top: 0 }` still protects the very top of the post. */
+  :where(h1) {
+    margin-top: 1.6em;
+  }
 }
 
 @layer components {
