@@ -7,5 +7,5 @@ title: About
 
 ## blog history
 
-- 2016년 3월 18일 blog 이전 (tistory -> jekyll)
-- 2026년 7월 blog 이전 (jekyll -> astro)
+- 2016년 3월 18일 blog 마이그레이션 (tistory -> jekyll)
+- 2026년 7월 blog 마이그레이션 (jekyll -> astro)
