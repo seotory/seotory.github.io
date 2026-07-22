@@ -1,0 +1,236 @@
+<!DOCTYPE html><html lang="ko"><head><title>자바스크립트 화살표 함수 (array function)</title><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="array func 은 아래와 같은 간단한 형태를 보면 매우 간단하나, 복잡한 구문을 보면 매우 어렵게 느껴진다. 쉬운 array func 부터 복잡한 array func 까지 절차적으로 밟아보자. array func array func의..."><!-- Browsers take the SVG and stop; the .ico is only reached by those that
+         can't (older Safari), so both must show the same mark. --><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="16x16 32x32 48x48"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- Pretendard (CDN). The dynamic-subset build splits the (large) Korean
+         range into ~90 unicode-range slices, so a page only downloads the
+         glyphs it actually uses. Ships font-display: swap. --><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="canonical" href="https://blog.seotory.com/post/javascript-array-function/"><link rel="alternate" type="application/rss+xml" title="Seotory" href="https://blog.seotory.com/feed.xml"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph --><meta property="og:type" content="article"><meta property="og:url" content="https://blog.seotory.com/post/javascript-array-function/"><meta property="og:title" content="자바스크립트 화살표 함수 (array function)"><meta property="og:description" content="array func 은 아래와 같은 간단한 형태를 보면 매우 간단하나, 복잡한 구문을 보면 매우 어렵게 느껴진다. 쉬운 array func 부터 복잡한 array func 까지 절차적으로 밟아보자. array func array func의..."><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1634875166425349" crossorigin="anonymous"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-6S4LG3QJ26"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-6S4LG3QJ26');</script><meta name="generator" content="Astro v7.0.9"><link rel="stylesheet" href="/_astro/BaseLayout.BA3ZA544.css"></head><body><header class="sticky top-0 z-30 border-b border-hairline bg-white/80 backdrop-blur-sm"><nav class="mx-auto flex h-14 max-w-6xl items-center gap-2 px-4" aria-label="주 메뉴"><!-- Wordmark --><a href="/" class="flex items-center gap-1.5 font-semibold tracking-tight text-ink hover:text-accent-600"><svg class="size-[1.15em] -translate-y-px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>SEOTORY</span></a><!-- Desktop nav --><div class="ml-4 hidden items-center gap-1 lg:flex"><a href="/about/" class="rounded-lg px-3 py-2 text-ink-soft hover:bg-accent-50 hover:text-accent-700">About</a><a href="/tags/" class="rounded-lg px-3 py-2 text-ink-soft hover:bg-accent-50 hover:text-accent-700">Tags</a><a href="/categories/dev/" class="rounded-lg px-3 py-2 text-ink-soft hover:bg-accent-50 hover:text-accent-700">Dev</a></div><!-- Desktop search --><form class="ml-auto hidden items-center lg:flex" data-site-search role="search"><input type="search" name="q" placeholder="블로그 내 검색" class="peer h-8 w-52 rounded-l-md border border-r-0 border-accent-200 bg-white px-2.5 text-[0.8125rem] outline-none placeholder:text-ink-soft/60 focus:border-accent-500"><button type="submit" class="flex h-8 items-center rounded-r-md border border-l-0 border-accent-200 bg-accent-50 px-2.5 text-accent-700 hover:bg-accent-100 peer-focus:border-accent-500" aria-label="검색"><svg class="size-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button></form><!-- Burger (mobile) --><button type="button" id="drawer-open" class="ml-auto rounded-lg p-2 text-ink hover:bg-accent-50 lg:hidden" aria-label="메뉴 열기" aria-controls="drawer" aria-expanded="false"><svg class="size-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg></button></nav></header><!-- ── Mobile drawer ──────────────────────────────────────────────────────── --><div id="drawer-overlay" class="fixed inset-0 z-40 hidden bg-slate-900/40 lg:hidden"></div><aside id="drawer" class="fixed inset-y-0 left-0 z-50 flex w-72 max-w-[80vw] -translate-x-full flex-col border-r border-hairline bg-white transition-transform duration-200 ease-out lg:hidden" aria-label="모바일 메뉴" aria-hidden="true"><div class="flex h-[57px] shrink-0 items-center justify-between border-b border-hairline px-4"><span class="font-semibold tracking-tight">SEOTORY</span><button type="button" id="drawer-close" class="rounded-lg p-2 text-ink hover:bg-accent-50" aria-label="메뉴 닫기"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><div class="flex-1 overflow-y-auto p-3"><form class="mb-3 flex" data-site-search role="search"><input type="search" name="q" placeholder="블로그 내 검색" class="peer h-8 min-w-0 flex-1 rounded-l-md border border-r-0 border-accent-200 px-2.5 text-[0.8125rem] outline-none focus:border-accent-500"><button type="submit" class="flex h-8 items-center rounded-r-md border border-l-0 border-accent-200 bg-accent-50 px-2.5 text-accent-700 hover:bg-accent-100 peer-focus:border-accent-500" aria-label="검색"><svg class="size-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button></form><nav class="flex flex-col" aria-label="모바일 탐색"><a href="/about/" class="rounded-lg px-3 py-2 leading-6 text-ink hover:bg-accent-50">About</a><a href="/tags/" class="rounded-lg px-3 py-2 leading-6 text-ink hover:bg-accent-50">Tags</a><a href="/categories/dev/" class="rounded-lg px-3 py-2 leading-6 text-ink hover:bg-accent-50">Dev</a></nav></div></aside><script type="module">document.querySelectorAll(`form[data-site-search]`).forEach(e=>{e.addEventListener(`submit`,t=>{t.preventDefault();let n=e.querySelector(`input[name="q"]`)?.value.trim();n&&window.open(`https://www.google.com/search?q=site:blog.seotory.com+`+encodeURIComponent(n),`_blank`)})});var e=document.getElementById(`drawer`),t=document.getElementById(`drawer-overlay`),n=document.getElementById(`drawer-open`),r=document.getElementById(`drawer-close`);if(e&&t&&n&&r){let i=i=>{e.classList.toggle(`-translate-x-full`,!i),e.setAttribute(`aria-hidden`,String(!i)),t.classList.toggle(`hidden`,!i),n.setAttribute(`aria-expanded`,String(i)),document.body.classList.toggle(`drawer-open`,i),i?r.focus():n.focus()};n.addEventListener(`click`,()=>i(!0)),r.addEventListener(`click`,()=>i(!1)),t.addEventListener(`click`,()=>i(!1)),document.addEventListener(`keydown`,t=>{t.key===`Escape`&&!e.classList.contains(`-translate-x-full`)&&i(!1)}),matchMedia(`(min-width: 1024px)`).addEventListener(`change`,e=>{e.matches&&i(!1)})}</script><header class="bg-accent-600 text-white"><div class="mx-auto max-w-3xl px-4 py-20"><h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">자바스크립트 화살표 함수 (array function)</h1><p class="mt-2 text-white/70">2017-09-21</p></div></header><div class="mx-auto max-w-3xl px-4 py-12"><article class="prose prose-slate prose-blog max-w-none prose-a:text-accent-600"><p><code>array func</code>은 아래와 같은 간단한 형태를 보면 매우 간단하나, 복잡한 구문을 보면 매우 어렵게 느껴진다. 쉬운 <code>array func</code> 부터 복잡한 <code>array func</code>까지 절차적으로 밟아보자.</p>
+<!-- # 람다. -->
+<!-- https://ko.wikipedia.org/wiki/%EB%9E%8C%EB%8B%A4_%EB%8C%80%EC%88%98 -->
+<h1 id="array-func">array func</h1>
+<p>array func의 특징을 정리해보자면 아래와 같이 간략하게 정리할 수 있다.</p>
+<ul>
+<li>function에 비해 구문이 짧다.</li>
+<li>항상 익명이다.</li>
+<li>this, arguments, super, new target을 바인딩하지 않는다.</li>
+<li>생성자로 사용할 수 없다.</li>
+</ul>
+<h2 id="문법">문법</h2>
+<p><code>array func</code>은 비슷비슷 하지만 결과가 다른 부분이 많기 때문에 간단한 라인이라도 처음에는 꼼꼼하게 보는 것이 좋다.</p>
+<ul>
+<li>
+<p>기본 문법</p>
+<p>여기서 리턴이 필요하면 명시적으로 return을 선언한다.</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// 문법</span></span>
+<span class="line"><span style="color:#24292E">(</span><span style="color:#E36209">매개변수1</span><span style="color:#24292E">, </span><span style="color:#E36209">매개변수2</span><span style="color:#24292E">, </span><span style="color:#E36209">매개변수3</span><span style="color:#24292E">, </span><span style="color:#E36209">매개변수n</span><span style="color:#24292E">) </span><span style="color:#D73A49">=&gt;</span><span style="color:#24292E"> { 구문 }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 리턴이 없는 예</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#6F42C1"> test</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> (</span><span style="color:#E36209">a</span><span style="color:#24292E">) </span><span style="color:#D73A49">=&gt;</span><span style="color:#24292E"> { console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(a) }</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#24292E"> testVal </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> test</span><span style="color:#24292E">(</span><span style="color:#005CC5">1</span><span style="color:#24292E">); </span><span style="color:#6A737D">//console.log -&gt; 1</span></span>
+<span class="line"><span style="color:#24292E">console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(testVal) </span><span style="color:#6A737D">// undefined</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 리턴이 있는 예</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#6F42C1"> test</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> (</span><span style="color:#E36209">a</span><span style="color:#24292E">, </span><span style="color:#E36209">b</span><span style="color:#24292E">, </span><span style="color:#E36209">c</span><span style="color:#24292E">) </span><span style="color:#D73A49">=&gt;</span><span style="color:#24292E"> { </span><span style="color:#D73A49">return</span><span style="color:#24292E"> a </span><span style="color:#D73A49">+</span><span style="color:#24292E"> b </span><span style="color:#D73A49">+</span><span style="color:#24292E"> c }</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#24292E"> testVal </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> test</span><span style="color:#24292E">(</span><span style="color:#005CC5">1</span><span style="color:#24292E">,</span><span style="color:#005CC5">2</span><span style="color:#24292E">,</span><span style="color:#005CC5">3</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#24292E">console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(testVal) </span><span style="color:#6A737D">// 6</span></span></code></pre>
+</li>
+<li>
+<p>간결한 리턴 문법</p>
+<p>오른쪽 구문에서 중괄호를 생략하면 <code>array func</code>에서는 자동으로 표현식을 리턴한다. 즉 return 생략이 가능하다.</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#6A737D">// 문법</span></span>
+<span class="line"><span style="color:#24292E">(</span><span style="color:#E36209">매개변수1</span><span style="color:#24292E">, </span><span style="color:#E36209">매개변수2</span><span style="color:#24292E">, </span><span style="color:#E36209">매개변수3</span><span style="color:#24292E">, </span><span style="color:#E36209">매개변수n</span><span style="color:#24292E">) </span><span style="color:#D73A49">=&gt;</span><span style="color:#24292E"> 표현식</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 예</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#6F42C1"> test</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> (</span><span style="color:#E36209">a</span><span style="color:#24292E">, </span><span style="color:#E36209">b</span><span style="color:#24292E">, </span><span style="color:#E36209">c</span><span style="color:#24292E">) </span><span style="color:#D73A49">=&gt;</span><span style="color:#24292E"> a </span><span style="color:#D73A49">+</span><span style="color:#24292E"> b </span><span style="color:#D73A49">+</span><span style="color:#24292E"> c</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#24292E"> testVal </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> test</span><span style="color:#24292E">(</span><span style="color:#005CC5">1</span><span style="color:#24292E">,</span><span style="color:#005CC5">2</span><span style="color:#24292E">,</span><span style="color:#005CC5">3</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#24292E">console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(testVal) </span><span style="color:#6A737D">// 6</span></span></code></pre>
+</li>
+<li>
+<p>매개변수가 하나인 경우 좌측 괄호 생략이 가능</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#6A737D">// 문법</span></span>
+<span class="line"><span style="color:#E36209">매개변수1</span><span style="color:#D73A49"> =&gt;</span><span style="color:#24292E"> 표현식</span></span>
+<span class="line"><span style="color:#E36209">매개변수1</span><span style="color:#D73A49"> =&gt;</span><span style="color:#24292E"> { 구문 }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 예</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#6F42C1"> test</span><span style="color:#D73A49"> =</span><span style="color:#E36209"> a</span><span style="color:#D73A49"> =&gt;</span><span style="color:#24292E"> a </span><span style="color:#D73A49">+</span><span style="color:#005CC5"> 10</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#24292E"> testVal </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> test</span><span style="color:#24292E">(</span><span style="color:#005CC5">1</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#24292E">console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(testVal) </span><span style="color:#6A737D">// 11</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#6F42C1"> test</span><span style="color:#D73A49"> =</span><span style="color:#E36209"> a</span><span style="color:#D73A49"> =&gt;</span><span style="color:#24292E"> { </span><span style="color:#D73A49">return</span><span style="color:#24292E"> a </span><span style="color:#D73A49">+</span><span style="color:#005CC5"> 10</span><span style="color:#24292E"> }</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#24292E"> testVal </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> test</span><span style="color:#24292E">(</span><span style="color:#005CC5">1</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#24292E">console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(testVal) </span><span style="color:#6A737D">// 11</span></span></code></pre>
+</li>
+<li>
+<p>객체 리터럴을 반환하는 식에는 우측에 괄호를 감쌈</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#6A737D">// 문법</span></span>
+<span class="line"><span style="color:#E36209">매개변수1</span><span style="color:#D73A49"> =&gt;</span><span style="color:#24292E"> ({name: 매개변수1})</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 예</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#6F42C1"> test</span><span style="color:#D73A49"> =</span><span style="color:#E36209"> a</span><span style="color:#D73A49"> =&gt;</span><span style="color:#24292E"> ({aVal: a})</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#24292E"> testVal </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> test</span><span style="color:#24292E">(</span><span style="color:#032F62">'에이'</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#24292E">console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(testVal) </span><span style="color:#6A737D">// {aVal: "에이"}</span></span></code></pre>
+</li>
+<li>
+<p>매개변수에 기본값 셋팅이 가능</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#6A737D">// 문법</span></span>
+<span class="line"><span style="color:#24292E">(</span><span style="color:#E36209">매개변수1</span><span style="color:#D73A49"> =</span><span style="color:#032F62"> 'default'</span><span style="color:#24292E">, </span><span style="color:#E36209">매개변수2</span><span style="color:#24292E">) </span><span style="color:#D73A49">=&gt;</span><span style="color:#24292E"> { 표현식 }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 예</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#6F42C1"> test</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> (</span><span style="color:#E36209">a</span><span style="color:#D73A49">=</span><span style="color:#005CC5">10</span><span style="color:#24292E">, </span><span style="color:#E36209">b</span><span style="color:#24292E">) </span><span style="color:#D73A49">=&gt;</span><span style="color:#24292E"> { </span><span style="color:#D73A49">return</span><span style="color:#24292E"> a </span><span style="color:#D73A49">+</span><span style="color:#24292E"> b }</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#24292E"> testVal </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> test</span><span style="color:#24292E">(</span><span style="color:#005CC5">undefined</span><span style="color:#24292E">, </span><span style="color:#005CC5">5</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#24292E">console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(testVal); </span><span style="color:#6A737D">// 15</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 주의: undefined 대신 null을 입력하면 기본값을 넣지 않는다.</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#24292E"> testVal </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> test</span><span style="color:#24292E">(</span><span style="color:#005CC5">null</span><span style="color:#24292E">, </span><span style="color:#005CC5">5</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#24292E">console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(testVal); </span><span style="color:#6A737D">// 5</span></span></code></pre>
+</li>
+<li>
+<p>매개변수는 펼침 연산자 사용 가능</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#6A737D">// 문법</span></span>
+<span class="line"><span style="color:#24292E">(</span><span style="color:#D73A49">...</span><span style="color:#E36209">매개변수n</span><span style="color:#24292E">) </span><span style="color:#D73A49">=&gt;</span><span style="color:#24292E"> { 표현식 }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 예</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#6F42C1"> test</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> (</span><span style="color:#D73A49">...</span><span style="color:#E36209">args</span><span style="color:#24292E">) </span><span style="color:#D73A49">=&gt;</span><span style="color:#24292E"> { console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(args) }</span></span>
+<span class="line"><span style="color:#6F42C1">test</span><span style="color:#24292E">(</span><span style="color:#005CC5">1</span><span style="color:#24292E">,</span><span style="color:#005CC5">2</span><span style="color:#24292E">,</span><span style="color:#005CC5">3</span><span style="color:#24292E">,</span><span style="color:#005CC5">4</span><span style="color:#24292E">,</span><span style="color:#005CC5">5</span><span style="color:#24292E">) </span><span style="color:#6A737D">// console.log -&gt; [1,2,3,4,5], return -&gt; undefined</span></span></code></pre>
+</li>
+<li>
+<p>매개변수에 비구조화된 매개변수 또한 사용 가능</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#D73A49">var</span><span style="color:#6F42C1"> f</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> ([</span><span style="color:#E36209">a</span><span style="color:#24292E">, </span><span style="color:#E36209">b</span><span style="color:#24292E">] </span><span style="color:#D73A49">=</span><span style="color:#24292E"> [</span><span style="color:#005CC5">1</span><span style="color:#24292E">, </span><span style="color:#005CC5">2</span><span style="color:#24292E">], {</span><span style="color:#E36209">x</span><span style="color:#24292E">: </span><span style="color:#E36209">c</span><span style="color:#24292E">} </span><span style="color:#D73A49">=</span><span style="color:#24292E"> {x: a </span><span style="color:#D73A49">+</span><span style="color:#24292E"> b}) </span><span style="color:#D73A49">=&gt;</span><span style="color:#24292E"> a </span><span style="color:#D73A49">+</span><span style="color:#24292E"> b </span><span style="color:#D73A49">+</span><span style="color:#24292E"> c;</span></span>
+<span class="line"><span style="color:#6A737D">// 중간과정 해석</span></span>
+<span class="line"><span style="color:#6A737D">// ([a, b] = [1, 2])  &gt;&gt;  a = 1, b = 2 할당</span></span>
+<span class="line"><span style="color:#6A737D">// {x: c} = {x: a + b}  &gt;&gt; a+b 를 선 계산 후 오른쪽 x 에 할당, 할당된 x 는 다시 왼쪽 x에 할당되면서 c = 3이 할당</span></span>
+<span class="line"><span style="color:#6A737D">// 즉 a=1, b=2, c=3 이 됨.</span></span>
+<span class="line"><span style="color:#6F42C1">f</span><span style="color:#24292E">();  </span><span style="color:#6A737D">// 6</span></span></code></pre>
+</li>
+</ul>
+<h2 id="function과-다른-점">function과 다른 점</h2>
+<p>가장 중요한 특징은 this, arguments가 자동으로 바인딩이 되지 않는다는 것이다. 보통 일반 func 같은 경우는 아래와 같다.</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#D73A49">let</span><span style="color:#24292E"> scopeTest </span><span style="color:#D73A49">=</span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#6F42C1">    run</span><span style="color:#24292E">: </span><span style="color:#D73A49">function</span><span style="color:#24292E"> () {</span></span>
+<span class="line"><span style="color:#24292E">        console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(</span><span style="color:#005CC5">this</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#24292E">        console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(</span><span style="color:#005CC5">arguments</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">scopeTest.</span><span style="color:#6F42C1">run</span><span style="color:#24292E">();</span></span>
+<span class="line"><span style="color:#6A737D">// console.log -&gt; {run: ƒ}</span></span>
+<span class="line"><span style="color:#6A737D">// console.log -&gt; [callee: ƒ, Symbol(Symbol.iterator): ƒ]</span></span></code></pre>
+<p>하지만 아래와 같이 <code>array func</code>을 이용하면 에러가 발생한다.</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#D73A49">let</span><span style="color:#24292E"> scopeTest </span><span style="color:#D73A49">=</span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#6F42C1">    run</span><span style="color:#24292E">: () </span><span style="color:#D73A49">=&gt;</span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#24292E">        console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(</span><span style="color:#005CC5">this</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#24292E">        console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(</span><span style="color:#005CC5">arguments</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">scopeTest.</span><span style="color:#6F42C1">run</span><span style="color:#24292E">();</span></span>
+<span class="line"><span style="color:#6A737D">// console.log -&gt; Window {stop: ƒ, open: ƒ, alert: ƒ, confirm: ƒ, prompt: ƒ, …}</span></span>
+<span class="line"><span style="color:#6A737D">// console.log -&gt; Uncaught ReferenceError: arguments is not defined</span></span>
+<span class="line"><span style="color:#6A737D">// console.log -&gt;    at Object.run (&lt;anonymous&gt;:4:21)</span></span>
+<span class="line"><span style="color:#6A737D">// console.log -&gt;    at &lt;anonymous&gt;:8:11</span></span></code></pre>
+<h2 id="사용예제">사용예제</h2>
+<p>위에서 간략하게 <code>array func</code>의 사용법과 특징을 배웠으니 이번에는 예제를 통해 익혀보자. 처음 접하는 문법을 빠르게 익힐때에는 쉬운 문법부터 복잡한 문법까지 절차적으로 익혀가되 해당하는 문법을 완벽하게 이해하고 넘어가야 도움이 된다.</p>
+<p>아래는 array func과 일반 func으로 번갈아가며 비교해본다.</p>
+<ul>
+<li>
+<p>기초</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// array function</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#6F42C1"> resultlVal</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> () </span><span style="color:#D73A49">=&gt;</span><span style="color:#24292E"> { console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(</span><span style="color:#032F62">'test'</span><span style="color:#24292E">); }</span></span>
+<span class="line"><span style="color:#6A737D">// function</span></span>
+<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> resultVal</span><span style="color:#24292E">() {</span></span>
+<span class="line"><span style="color:#24292E">  console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(</span><span style="color:#032F62">'test'</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// array function</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#6F42C1"> resultlVal</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> (</span><span style="color:#D73A49">...</span><span style="color:#E36209">args</span><span style="color:#24292E">) </span><span style="color:#D73A49">=&gt;</span><span style="color:#24292E"> { console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(args); }</span></span>
+<span class="line"><span style="color:#6A737D">// function</span></span>
+<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> resultVal</span><span style="color:#24292E">(</span><span style="color:#D73A49">...</span><span style="color:#E36209">args</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#24292E">  console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(args);</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// array function</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#6F42C1"> resultlVal</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> (</span><span style="color:#D73A49">...</span><span style="color:#E36209">args</span><span style="color:#24292E">) </span><span style="color:#D73A49">=&gt;</span><span style="color:#24292E"> args;</span></span>
+<span class="line"><span style="color:#6A737D">// function</span></span>
+<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> resultVal</span><span style="color:#24292E">(</span><span style="color:#D73A49">...</span><span style="color:#E36209">args</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">  return</span><span style="color:#24292E"> args;</span></span>
+<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+</li>
+<li>
+<p>함수 내 함수</p>
+<p>1번 예제에서는 return 값이 없기 때문에 이 args.map에 대한 연산은 undefined의 배열이 된다.</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// 1</span></span>
+<span class="line"><span style="color:#6A737D">// array function</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#6F42C1"> result</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> (</span><span style="color:#D73A49">...</span><span style="color:#E36209">args</span><span style="color:#24292E">) </span><span style="color:#D73A49">=&gt;</span><span style="color:#E36209"> val</span><span style="color:#D73A49"> =&gt;</span><span style="color:#24292E"> args.</span><span style="color:#6F42C1">map</span><span style="color:#24292E">(</span><span style="color:#E36209">a</span><span style="color:#D73A49"> =&gt;</span><span style="color:#24292E"> {a </span><span style="color:#D73A49">+</span><span style="color:#24292E"> val})</span></span>
+<span class="line"><span style="color:#6A737D">// function</span></span>
+<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> result</span><span style="color:#24292E"> (</span><span style="color:#D73A49">...</span><span style="color:#E36209">args</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">  return</span><span style="color:#D73A49"> function</span><span style="color:#24292E">(</span><span style="color:#E36209">val</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E"> args.</span><span style="color:#6F42C1">map</span><span style="color:#24292E">(</span><span style="color:#D73A49">function</span><span style="color:#24292E">(</span><span style="color:#E36209">a</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#24292E">      a </span><span style="color:#D73A49">+</span><span style="color:#24292E"> val; </span></span>
+<span class="line"><span style="color:#24292E">    });</span></span>
+<span class="line"><span style="color:#24292E">  }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 2</span></span>
+<span class="line"><span style="color:#6A737D">// array function</span></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#6F42C1"> result</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> (</span><span style="color:#D73A49">...</span><span style="color:#E36209">args</span><span style="color:#24292E">) </span><span style="color:#D73A49">=&gt;</span><span style="color:#E36209"> val</span><span style="color:#D73A49"> =&gt;</span><span style="color:#24292E"> args.</span><span style="color:#6F42C1">map</span><span style="color:#24292E">(</span><span style="color:#E36209">a</span><span style="color:#D73A49"> =&gt;</span><span style="color:#24292E"> a </span><span style="color:#D73A49">+</span><span style="color:#24292E"> val)</span></span>
+<span class="line"><span style="color:#6A737D">// function</span></span>
+<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> result</span><span style="color:#24292E"> (</span><span style="color:#D73A49">...</span><span style="color:#E36209">args</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">  return</span><span style="color:#D73A49"> function</span><span style="color:#24292E">(</span><span style="color:#E36209">val</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E"> args.</span><span style="color:#6F42C1">map</span><span style="color:#24292E">(</span><span style="color:#D73A49">function</span><span style="color:#24292E">(</span><span style="color:#E36209">a</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">      return</span><span style="color:#24292E"> a </span><span style="color:#D73A49">+</span><span style="color:#24292E"> val;</span></span>
+<span class="line"><span style="color:#24292E">    });</span></span>
+<span class="line"><span style="color:#24292E">  }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+</li>
+<li>
+<p>기타 array func 사용법</p>
+<p>필자가 callback 패턴을 promise 패턴으로 바꾸는 방법 중 가장 자주 사용하는 방법은 아래와 같은 promiseWrapper함수 유틸을 만들고 사용하는 방법이다. 이 로직 역시 array func으로 아래와 같이 작성할 수 있다.</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#6A737D">// array function</span></span>
+<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> promiseWrapper</span><span style="color:#24292E"> (</span><span style="color:#E36209">func</span><span style="color:#24292E">, </span><span style="color:#D73A49">...</span><span style="color:#E36209">args</span><span style="color:#24292E">) { </span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#D73A49"> new</span><span style="color:#005CC5"> Promise</span><span style="color:#24292E">(</span><span style="color:#E36209">resolve</span><span style="color:#D73A49"> =&gt;</span><span style="color:#6F42C1"> func</span><span style="color:#24292E">(</span><span style="color:#D73A49">...</span><span style="color:#24292E">args, </span><span style="color:#D73A49">...</span><span style="color:#E36209">returnArgs</span><span style="color:#D73A49"> =&gt;</span><span style="color:#6F42C1"> resolve</span><span style="color:#24292E">(returnArgs)));</span></span>
+<span class="line"><span style="color:#24292E">};</span></span>
+<span class="line"><span style="color:#6A737D">// function</span></span>
+<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> promiseWrapper</span><span style="color:#24292E"> (</span><span style="color:#E36209">func</span><span style="color:#24292E">, </span><span style="color:#D73A49">...</span><span style="color:#E36209">args</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">  return</span><span style="color:#D73A49"> new</span><span style="color:#005CC5"> Promise</span><span style="color:#24292E">(</span><span style="color:#D73A49">function</span><span style="color:#24292E">(</span><span style="color:#E36209">resolve</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#6F42C1"> func</span><span style="color:#24292E">(</span><span style="color:#D73A49">...</span><span style="color:#24292E">args, </span><span style="color:#D73A49">function</span><span style="color:#24292E">(</span><span style="color:#D73A49">...</span><span style="color:#E36209">returnArgs</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">      return</span><span style="color:#6F42C1"> resolve</span><span style="color:#24292E">(returnArgs);</span></span>
+<span class="line"><span style="color:#24292E">    })</span></span>
+<span class="line"><span style="color:#24292E">  })</span></span>
+<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+</li>
+</ul>
+<h1 id="커링-currying">커링 (currying)</h1>
+<!-- https://blog.benestudio.co/currying-in-javascript-es6-540d2ad09400 -->
+<p><code>array func</code>의 기본기를 알아보았으니 이번에는 커링도 한번 해보도록 하자. 커랑이란 간단하게 이야기하자면 함수의 인자를 고정시켜 적용하는 함수를 만드는 기법이다.</p>
+<p>아래는 합을 구하는데 커링 기법을 이용한 것이다.</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#D73A49">let</span><span style="color:#6F42C1"> sumCurry</span><span style="color:#D73A49"> =</span><span style="color:#E36209"> fixNum</span><span style="color:#D73A49"> =&gt;</span><span style="color:#E36209"> input</span><span style="color:#D73A49"> =&gt;</span><span style="color:#24292E"> fixNum </span><span style="color:#D73A49">+</span><span style="color:#24292E"> input;</span></span></code></pre>
+<p>사실 위에 있는 예제들도 커링 기법이 적용된 예제들이 많다.</p>
+<h1 id="주의사항">주의사항</h1>
+<ul>
+<li>
+<p>줄바꿈 주의</p>
+<p>화살표 함수는 파라메터와 화살표 사이에 개행 문자를 포함 할 수 없다.</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#6A737D">// error</span></span>
+<span class="line"><span style="color:#D73A49">var</span><span style="color:#24292E"> func </span><span style="color:#D73A49">=</span><span style="color:#24292E"> ()</span></span>
+<span class="line"><span style="color:#D73A49">        =&gt;</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">; </span><span style="color:#6A737D">// SyntaxError: expected expression, got '=&gt;'</span></span></code></pre>
+</li>
+<li>
+<p>파싱순서 주의</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#D73A49">let</span><span style="color:#24292E"> callback;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">callback </span><span style="color:#D73A49">=</span><span style="color:#24292E"> callback </span><span style="color:#D73A49">||</span><span style="color:#D73A49"> function</span><span style="color:#24292E">() {}; </span><span style="color:#6A737D">// ok</span></span>
+<span class="line"><span style="color:#24292E">callback </span><span style="color:#D73A49">=</span><span style="color:#24292E"> callback </span><span style="color:#D73A49">||</span><span style="color:#24292E"> () </span><span style="color:#D73A49">=&gt;</span><span style="color:#24292E"> {};      </span><span style="color:#6A737D">// SyntaxError: invalid arrow-function arguments</span></span>
+<span class="line"><span style="color:#24292E">callback </span><span style="color:#D73A49">=</span><span style="color:#24292E"> callback </span><span style="color:#D73A49">||</span><span style="color:#24292E"> (() </span><span style="color:#D73A49">=&gt;</span><span style="color:#24292E"> {});    </span><span style="color:#6A737D">// ok</span></span></code></pre>
+</li>
+<li>
+<p>undefined 주의</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#D73A49">let</span><span style="color:#6F42C1"> empty</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> () </span><span style="color:#D73A49">=&gt;</span><span style="color:#24292E"> {};</span></span>
+<span class="line"><span style="color:#6A737D">// empty = undefined</span></span></code></pre>
+</li>
+<li>
+<p>매개변수가 없을 시 주의</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#6A737D">// =&gt; { statements } error</span></span>
+<span class="line"><span style="color:#24292E">() </span><span style="color:#D73A49">=&gt;</span><span style="color:#24292E"> { statements }</span></span></code></pre>
+</li>
+</ul>
+</article><div class="my-8 text-center"><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-1634875166425349" data-ad-slot="4825106255"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div><section class="mx-auto max-w-4xl px-4 pb-12"><h2 class="mb-5 text-lg font-bold tracking-tight">같은 카테고리의 다른 글</h2><div class="grid gap-5 sm:grid-cols-2"><article class="group flex flex-col rounded-card border border-hairline bg-white p-5 shadow-sm shadow-slate-900/[0.04] transition duration-200 hover:-translate-y-0.5 hover:border-accent-200 hover:shadow-lg hover:shadow-accent-900/10"><h3 class="text-lg font-bold tracking-tight"><a href="/post/private-source-public-build/" class="text-ink group-hover:text-accent-600">블로그 소스를 감추면서 GitHub Pages는 무료로 유지하기</a></h3><p class="mt-2 line-clamp-3 flex-1 text-sm text-ink-soft">이 블로그는 소스가 공개돼 있었다. github.io 레포에 astro 소스가 그대로 들어 있어 누구나 src/ 를 열어 볼 수 있었다. 정적 블로그는 어차피 빌드된 HTML을 모두에게 서빙하니 코드가 공개돼도 큰일은 아니다....</p><a href="/post/private-source-public-build/" class="mt-4 inline-flex justify-center rounded-lg bg-accent-50 px-3 py-2 text-sm font-medium text-accent-700 hover:bg-accent-100">더보기</a></article><article class="group flex flex-col rounded-card border border-hairline bg-white p-5 shadow-sm shadow-slate-900/[0.04] transition duration-200 hover:-translate-y-0.5 hover:border-accent-200 hover:shadow-lg hover:shadow-accent-900/10"><h3 class="text-lg font-bold tracking-tight"><a href="/post/homelab-part-2/" class="text-ink group-hover:text-accent-600">미니PC 홈랩 구축기 (하) — Cloudflare Tunnel, Caddy, 그리고 세 번의 502</a></h3><p class="mt-2 line-clamp-3 flex-1 text-sm text-ink-soft">지난 편에서 Proxmox 위에 VM을 세우고, NFS로 저장소를 연결하고, 백업 체계를 잡았다. 이번 편은 그 위에 서비스를 올리고 외부에 공개하는 과정이다. 목표는 명확했다. 공유기에 포트를 하나도 열지 않고, 집 밖에서...</p><a href="/post/homelab-part-2/" class="mt-4 inline-flex justify-center rounded-lg bg-accent-50 px-3 py-2 text-sm font-medium text-accent-700 hover:bg-accent-100">더보기</a></article><article class="group flex flex-col rounded-card border border-hairline bg-white p-5 shadow-sm shadow-slate-900/[0.04] transition duration-200 hover:-translate-y-0.5 hover:border-accent-200 hover:shadow-lg hover:shadow-accent-900/10"><h3 class="text-lg font-bold tracking-tight"><a href="/post/homelab-part-1/" class="text-ink group-hover:text-accent-600">미니PC 홈랩 구축기 (상) — Proxmox, NFS, 그리고 백업 설계</a></h3><p class="mt-2 line-clamp-3 flex-1 text-sm text-ink-soft">집에 있던 장비들을 모아 홈랩을 구축했다. 구성은 Proxmox VE를 올린 G3 미니PC(N100, RAM 16GB, NVMe 256GB), 중앙 저장소 역할의 시놀리지 NAS, 경량 앱을 담당하는 라즈베리파이 5, 그리고 이들을 묶는 아이피타임...</p><a href="/post/homelab-part-1/" class="mt-4 inline-flex justify-center rounded-lg bg-accent-50 px-3 py-2 text-sm font-medium text-accent-700 hover:bg-accent-100">더보기</a></article><article class="group flex flex-col rounded-card border border-hairline bg-white p-5 shadow-sm shadow-slate-900/[0.04] transition duration-200 hover:-translate-y-0.5 hover:border-accent-200 hover:shadow-lg hover:shadow-accent-900/10"><h3 class="text-lg font-bold tracking-tight"><a href="/post/migrate-jekyll-to-astro/" class="text-ink group-hover:text-accent-600">10년 묵은 jekyll 블로그를 astro로 옮기기 — 카테고리, URL, 그리고 조용히 죽어 있던 것들</a></h3><p class="mt-2 line-clamp-3 flex-1 text-sm text-ink-soft">이 블로그는 2016년에 jekyll 로 만들었다. 그리고 10년 동안 글만 몇 개 올렸을 뿐, 블로그 자체에는 거의 손을 대지 않았다. 잘 돌아가는 것처럼 보였기 때문이다. 정적 사이트라 서버가 죽을 일이...</p><a href="/post/migrate-jekyll-to-astro/" class="mt-4 inline-flex justify-center rounded-lg bg-accent-50 px-3 py-2 text-sm font-medium text-accent-700 hover:bg-accent-100">더보기</a></article></div></section><footer class="border-t border-hairline bg-white py-8"><div class="mx-auto max-w-6xl px-4 text-center text-sm text-ink-soft"><p>Copyrightⓒ2016-2026 By <a href="https://blog.seotory.com" target="_blank" class="font-semibold text-accent-600 hover:text-accent-700">Seotory</a></p></div></footer></body></html>
